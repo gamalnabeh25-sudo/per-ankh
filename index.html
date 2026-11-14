@@ -623,6 +623,14 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 .creator-whatsapp:hover{transform:translateY(-2px);box-shadow:0 8px 24px #25d36633}
 .creator-whatsapp span{font-size:19px}
 @media(max-width:700px){.creator{padding:48px 14px 64px}.creator-profile{grid-template-columns:1fr;gap:26px;padding:22px 17px}.creator-photo-shell{width:min(100%,390px)}.creator-bio{text-align:center}.creator-bio .creator-rule{margin:20px auto}.creator-role{line-height:1.9}.creator-join{display:flex;flex-direction:column;align-items:center}.creator-bio p{font-size:14px}}
+
+/* Founder is a dedicated, numbered destination; no profile details are repeated elsewhere. */
+.founder-section{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 18%,rgba(193,145,67,.13),transparent 42%),linear-gradient(145deg,#0b1d2c 0%,#071522 58%,#0c2433 100%);border-top:1px solid rgba(216,181,107,.22)}
+.founder-section:before{content:"𓂀   𓏏   𓊹   𓇳   𓂀";position:absolute;inset:22px 0 auto;text-align:center;letter-spacing:clamp(18px,5vw,56px);font-size:clamp(18px,3vw,30px);color:rgba(216,181,107,.08);pointer-events:none;z-index:-1}
+.founder-section-number{text-align:center;color:var(--gold2);font:700 11px Georgia,serif;letter-spacing:3px;margin:0 auto 18px}
+.founder-section .creator-section-head,.founder-section .creator-profile{position:relative}
+.founder-section .creator-profile{background:linear-gradient(145deg,rgba(17,43,61,.96),rgba(5,20,33,.97));border-color:rgba(216,181,107,.48);box-shadow:0 24px 70px rgba(0,0,0,.36),inset 0 0 0 6px rgba(216,181,107,.055)}
+.founder-tile{border-color:rgba(216,181,107,.45)}
 </style>
 
 </head>
@@ -631,7 +639,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <header>
 <div class="nav">
 <a aria-label="بر عنخ الرئيسية" class="brand" href="#home"><span class="brandmark"><span>𓂀</span></span><span class="brandname">PER ANKH<small>بيت الحياة · HOUSE OF LIFE</small></span></a>
-<nav aria-label="التنقل الرئيسي في الموقع" id="navlinks"><a href="#home">الرئيسية</a><a href="#discover">الأقسام الرئيسية</a><a href="#kings-details">الملوك</a><a href="#religion-details">الديانة</a><a href="#timeline-details">العصور والأسرات</a><a href="#sites-details">المواقع الأثرية</a><a href="#library-details">المكتبة</a><a href="#learning-details">التعلم والاختبار</a><a href="#about">المؤسس</a><a class="nav-extra" href="#architecture-details">العمارة والفنون</a><a class="nav-extra" href="#daily-life-details">الحياة اليومية</a><a class="nav-extra" href="#virtual-museum">المتحف الافتراضي</a><a class="nav-extra" href="#digital-lab">معمل الآثار الرقمي</a><a class="nav-extra" href="#academy-details">أكاديمية بر عنخ</a><a class="nav-extra" href="#references-details">المراجع والمصادر</a><a class="nav-extra" href="#library-expanded">المكتبة الأثرية</a><a class="nav-extra" href="#interactive-lab">مختبر الحضارة التفاعلي</a><a class="nav-extra" href="#atlas-explorer">الأطلس الأثري</a><a class="nav-extra" href="#photo-gallery">معرض الصور الأثري</a><a class="nav-extra" href="#community-hub">مجتمع بر عنخ</a></nav>
+<nav aria-label="التنقل الرئيسي في الموقع" id="navlinks"><a href="#home">الرئيسية</a><a href="#discover">الأقسام الرئيسية</a><a href="#kings-details">الملوك</a><a href="#religion-details">الديانة</a><a href="#timeline-details">العصور والأسرات</a><a href="#sites-details">المواقع الأثرية</a><a href="#library-details">المكتبة</a><a href="#learning-details">التعلم والاختبار</a><a class="nav-extra" href="#architecture-details">العمارة والفنون</a><a class="nav-extra" href="#daily-life-details">الحياة اليومية</a><a class="nav-extra" href="#virtual-museum">المتحف الافتراضي</a><a class="nav-extra" href="#digital-lab">معمل الآثار الرقمي</a><a class="nav-extra" href="#academy-details">أكاديمية بر عنخ</a><a class="nav-extra" href="#references-details">المراجع والمصادر</a><a class="nav-extra" href="#library-expanded">المكتبة الأثرية</a><a class="nav-extra" href="#interactive-lab">مختبر الحضارة التفاعلي</a><a class="nav-extra" href="#atlas-explorer">الأطلس الأثري</a><a class="nav-extra" href="#photo-gallery">معرض الصور الأثري</a><a class="nav-extra" href="#community-hub">مجتمع بر عنخ</a><a class="nav-extra" href="#about">16 · المؤسس</a></nav>
 <div class="nav-actions"><button class="lang" id="langBtn">EN</button><button aria-label="فتح حساب المستخدم" class="account-nav" id="accountOpen" type="button">حسابي</button><button aria-controls="navlinks" aria-expanded="false" aria-haspopup="true" aria-label="فتح قائمة أقسام الموقع" class="menu" id="menuBtn">☰</button></div>
 </div>
 </header>
@@ -641,7 +649,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="kicker">رحلة إلى قلب الحضارة</div>
 <h1>بر عنخ<em>PER ANKH</em></h1>
 <p class="lead">بيت الحياة — بوابتك لاكتشاف ملوك مصر القديمة، وديانتها، وعصورها، ومواقعها الأثرية في موسوعة معرفية تفاعلية.</p>
-<div class="founder-line"><span class="founder-role">باحث في الآثار المصرية <small>Egyptian Archaeology Researcher</small></span></div>
+
 <div class="actions"><a class="btn primary" href="#discover" id="startExploreBtn">ابدأ الاستكشاف <span>←</span></a><a class="btn secondary" href="#kings-details">استكشف ملوك مصر القديمة</a></div>
 </div>
 <div aria-hidden="true" class="hero-art">
@@ -679,6 +687,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article aria-label="الأطلس الأثري" class="tile tile-sites" data-section-image="atlas" data-section-type="sub" data-symbol="⌖"><span class="tile-kind-badge sub-badge">قسم فرعي</span><div class="num" data-original-index="13">13 / ATLAS</div><h3>الأطلس الأثري</h3><p>خريطة مصر الحديثة مع مواقع أثرية وإشارات واضحة.</p><a href="#atlas-explorer">افتح الأطلس ←</a></article>
 <article aria-label="معرض الصور الأثري" class="tile tile-library" data-section-image="gallery" data-section-type="sub" data-symbol="▧"><span class="tile-kind-badge sub-badge">قسم فرعي</span><div class="num" data-original-index="14">14 / PHOTO GALLERY</div><h3>معرض الصور الأثري</h3><p>بحث بصري في صور ويكيميديا كومنز مع فتح بيانات الترخيص.</p><a href="#photo-gallery">تصفح المعرض ←</a></article>
 <article aria-label="مجتمع بر عنخ" class="tile tile-religion" data-section-image="community" data-section-type="sub" data-symbol="◎"><span class="tile-kind-badge sub-badge">قسم فرعي</span><div class="num" data-original-index="15">15 / COMMUNITY</div><h3>مجتمع بر عنخ</h3><p>حسابات ومفضلة وتعليقات واقتراحات.</p><a href="#community-hub">انضم للمجتمع ←</a></article>
+<article aria-label="المؤسس" class="tile tile-sites founder-tile" data-section-image="founder" data-section-type="sub" data-symbol="𓂀"><span class="tile-kind-badge sub-badge">قسم خاص</span><div class="num" data-original-index="16">16 / FOUNDER</div><h3>المؤسس</h3><p>تعرف على مؤسس ومطور مشروع بر عنخ.</p><a href="#about">اكتشف المؤسس ←</a></article>
 </div>
 </section>
 <section class="content-section interactive-lab" id="interactive-lab">
@@ -777,51 +786,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <section class="section" id="about-project" style="padding-top:65px;padding-bottom:65px">
 <div class="section-head" style="margin-bottom:0"><div class="eyebrow">ABOUT THE PROJECT</div><h2>بر عنخ — PER ANKH</h2><p>منصة معرفية رقمية تهدف إلى تقديم الحضارة المصرية القديمة بصورة دقيقة، تفاعلية، وممتعة؛ من خلال محتوى أثري موثق وتجربة استكشاف حديثة.</p></div>
 </section>
-<section class="creator" id="about">
-<div class="creator-section-head">
-<div class="creator-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<h2>المؤسس</h2>
-<p>تعرف على مؤسس بر عنخ</p>
-</div>
-<div class="creator-frame creator-profile">
-<div class="creator-photo-shell">
-<div class="creator-photo-ornament" aria-hidden="true">𓂀</div>
-<img id="founderPortrait" class="creator-photo" alt="صورة جمال نبيه" loading="lazy" decoding="async">
-<div class="creator-photo-caption">PER ANKH · FOUNDER</div>
-</div>
-<div class="creator-bio">
-<div class="creator-symbol">𓂀</div>
-<div class="creator-label">باحث في الآثار المصرية</div>
-<h2>جمال نبيه</h2>
-<div class="creator-en">GAMAL NABIH</div>
-<div class="creator-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="creator-rule"></div>
-<p>شغوف بالحضارة المصرية القديمة، ومحب لدراسة آثارها وتاريخها، وأسعى إلى تقديم المعرفة الأثرية بصورة رقمية تفاعلية تجمع بين الدقة وسهولة الوصول.</p>
-<p class="creator-note">بر عنخ مشروع بدأ من شغفي بالحضارة المصرية القديمة ورغبتي في توثيقها وتقديمها بصورة تفاعلية حديثة.</p>
-<div class="creator-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-<div class="creator-join">
-<p>لو حابب تنضم لفريق بر عنخ وتكون جزء من رحلتنا، تواصل معانا.</p>
-<a class="creator-whatsapp" href="https://wa.me/qr/Y2TGCXSDBLBJO1" target="_blank" rel="noopener noreferrer" aria-label="الانضمام إلى فريق بر عنخ عبر واتساب"><span aria-hidden="true">＋</span> انضم إلى فريق بر عنخ</a>
-</div>
-</div>
-</div>
-</section>
-<script>
-(()=>{const img=document.getElementById('founderPortrait');if(!img)return;fetch('/assets/gamal-founder-image.txt?v=2',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('portrait asset unavailable');return r.text()}).then(b64=>{const binary=atob(b64.trim()),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);const url=URL.createObjectURL(new Blob([bytes],{type:'image/webp'}));img.src=url}).catch(()=>{img.alt='تعذر تحميل صورة المؤسس'})})();
-</script>
-<section class="content-section knowledge-section" id="architecture-details">
-<div class="content-head"><div class="eyebrow">PART 05 · ARCHITECTURE &amp; ART</div><h2>العمارة والفنون في مصر القديمة</h2><p>اقرأ المنشأة بوصفها دليلًا تاريخيًا وفنيًا: الوظيفة، التخطيط، المادة، الزخرفة، والسياق الديني والسياسي.</p></div>
-<div class="knowledge-intro"><p>لم تكن العمارة المصرية نمطًا واحدًا ثابتًا؛ فقد تغيرت أشكال المقابر والمعابد والمنشآت الملكية عبر العصور، كما اختلفت باختلاف الوظيفة والموقع والموارد المتاحة.</p><p>تُعرض هنا خطوط عامة مدعومة بمراجع مؤسسية، مع تجنب تقديم فرضية واحدة على أنها تفسير نهائي لجميع أساليب البناء.</p></div>
-<div class="content-grid">
-<article class="content-card"><div class="mini">01 · FUNERARY ARCHITECTURE</div><h3>المصطبة والهرم المدرج</h3><p>تساعد المصاطب على فهم تطور المقبرة الملكية والنخبوية. ويُمثل مجمع زوسر بسقارة تحولًا مهمًا نحو البناء الحجري الضخم والهرم المدرج.</p></article>
-<article class="content-card"><div class="mini">02 · PYRAMID COMPLEX</div><h3>الهرم الحقيقي ومجموعته</h3><p>شهد عصر سنفرو تطورًا في بناء الأهرام ذات الأوجه المستقيمة، ثم صار مجمع الهرم يتضمن عناصر مثل المعبد الجنائزي ومعبد الوادي والطريق الصاعد، مع اختلافات بين المنشآت.</p></article>
-<article class="content-card"><div class="mini">03 · TEMPLE PLAN</div><h3>المعبد المصري</h3><p>تتكرر في معابد كثيرة عناصر مثل الصرح والفناء المفتوح وقاعة الأعمدة وقدس الأقداس. لكن التخطيط لا ينطبق بصورة حرفية على كل المعابد أو العصور.</p></article>
-<article class="content-card"><div class="mini">04 · MATERIALS &amp; CONSTRUCTION</div><h3>مواد البناء وتقنياته</h3><p>استُخدم الطوب اللبن والحجر الجيري والرملي والجرانيت وغيرها بحسب الوظيفة والموضع. تفاصيل رفع الكتل ووسائل النقل تختلف بين المشروعات وما زالت بعض آلياتها موضوع نقاش.</p></article>
-<article class="content-card"><div class="mini">05 · SCULPTURE</div><h3>النحت والتمثال</h3><p>تُقرأ التماثيل من خلال المادة والحجم والوضعية والملامح والكتابة المصاحبة ومكان العثور عليها؛ ولا يكفي الشكل وحده لتحديد هوية القطعة أو وظيفتها.</p></article>
-<article class="content-card"><div class="mini">06 · PAINTING &amp; RELIEF</div><h3>التصوير والنقش البارز</h3><p>تحمل مشاهد المقابر والمعابد دلالات دينية واجتماعية وسياسية. وقد تخضع المناظر لقواعد رمزية وطقسية، فلا تُعامل تلقائيًا باعتبارها تصويرًا حرفيًا للحياة.</p></article>
-</div>
-<div class="source-strip"><b>مراجع هذا القسم:</b> <a href="https://www.metmuseum.org/essays/egypt-in-the-old-kingdom-ca-2649-2150-b-c" rel="noopener" target="_blank">The Met · Egypt in the Old Kingdom</a> · <a href="https://www.ees.ac.uk/resource/temples-in-ancient-egypt.html" rel="noopener" target="_blank">Egypt Exploration Society · Temples in Ancient Egypt</a> · <a href="https://smarthistory.org/ancient-egyptian-art/" rel="noopener" target="_blank">Smarthistory · Ancient Egyptian Art</a></div>
-</section>
+
 <section class="content-section knowledge-section" id="daily-life-details">
 <div class="content-head"><div class="eyebrow">PART 06 · DAILY LIFE</div><h2>الحياة اليومية في مصر القديمة</h2><p>الحياة خارج القصور والمعابد: الأسرة والعمل والغذاء والملبس والقرية والمدينة والاقتصاد.</p></div>
 <div class="knowledge-intro"><p>نعيد بناء الحياة اليومية من مصادر متباينة: مناظر المقابر، والبرديات، والرسائل، والسجلات الإدارية، وبقايا المنازل والأدوات، والهياكل العظمية واللقى المادية. كل نوع من الأدلة له حدود وأسئلة مختلفة.</p><p><strong>تنبيه منهجي:</strong> مناظر المقابر قد تكون مثالية أو طقسية، وتعكس منظور صاحب المقبرة ومكانته؛ لذلك لا تمثل وحدها حياة جميع السكان أو كل تفاصيل الواقع اليومي.</p></div>
@@ -877,6 +842,51 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div aria-labelledby="authTitle" aria-modal="true" class="auth-modal" id="authModal" role="dialog"><div class="auth-card"><div class="auth-head"><h2 id="authTitle">حساب بر عنخ</h2><button class="modal-x" id="authClose">إغلاق ✕</button></div><div id="authForms"><div class="auth-tabs"><button class="active" data-auth-tab="login">دخول</button><button data-auth-tab="signup">حساب جديد</button></div><button class="auth-google" id="googleSignIn" type="button"><span aria-hidden="true">G</span> المتابعة باستخدام Google</button><div class="auth-divider"><span>أو بالبريد الإلكتروني</span></div><div class="hidden" id="signupNameWrap"><label for="authName">الاسم المعروض</label><input autocomplete="name" id="authName" placeholder="اسمك"/></div><label for="authEmail">البريد الإلكتروني</label><input autocomplete="email" id="authEmail" placeholder="name@example.com" type="email"/><label for="authPassword">كلمة المرور</label><input autocomplete="current-password" id="authPassword" minlength="8" placeholder="8 أحرف على الأقل" type="password"/><button class="auth-submit" id="authSubmit">تسجيل الدخول</button><div class="auth-links"><button id="forgotPassword">نسيت كلمة المرور؟</button></div><div class="auth-divider"><span>أو بدون حساب</span></div><button class="auth-guest" id="guestContinue" type="button">الدخول كزائر</button></div><div class="hidden" id="authSignedIn"><div class="auth-user">مرحبًا <strong id="authDisplayName"></strong><div class="community-hint" id="authEmailView"></div></div><button class="auth-submit" id="authSignOut">تسجيل الخروج</button></div><div aria-live="polite" class="auth-message" id="authMessage"></div></div></div>
 <div aria-label="لوحة إدارة بر عنخ" aria-modal="true" class="admin-shell" id="adminShell" role="dialog"><div class="admin-panel"><div class="admin-head"><h2>لوحة إدارة بر عنخ</h2><button class="modal-x" id="adminClose">إغلاق ✕</button></div><div class="admin-stat-grid" id="adminStats"></div><div class="admin-tabs"><button class="active" data-admin-tab="comments">التعليقات</button><button data-admin-tab="suggestions">الاقتراحات</button><button data-admin-tab="content">المحتوى</button><button data-admin-tab="media">الوسائط</button><button data-admin-tab="analytics">الإحصائيات والزوار</button></div><div id="adminContent"></div></div></div>
 <div aria-label="تفاصيل الصورة" aria-modal="true" class="gallery-modal" id="galleryModal" role="dialog"><div class="gallery-modal-inner"><button class="gallery-modal-close" id="galleryModalClose" type="button">إغلاق ✕</button><div id="galleryModalBody"></div></div></div>
+<section class="creator founder-section" id="about" aria-labelledby="founder-heading"><div class="founder-section-number">16 / FOUNDER</div>
+<div class="creator-section-head">
+<div class="creator-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
+<h2 id="founder-heading">المؤسس</h2>
+<p>تعرف على مؤسس بر عنخ</p>
+</div>
+<div class="creator-frame creator-profile">
+<div class="creator-photo-shell">
+<div class="creator-photo-ornament" aria-hidden="true">𓂀</div>
+<img id="founderPortrait" class="creator-photo" alt="صورة جمال نبيه" loading="lazy" decoding="async">
+<div class="creator-photo-caption">PER ANKH · FOUNDER</div>
+</div>
+<div class="creator-bio">
+<div class="creator-symbol">𓂀</div>
+<div class="creator-label">باحث في الآثار المصرية</div>
+<h2>جمال نبيه</h2>
+<div class="creator-en">GAMAL NABIH</div>
+<div class="creator-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
+<div class="creator-rule"></div>
+<p>شغوف بالحضارة المصرية القديمة، ومحب لدراسة آثارها وتاريخها، وأسعى إلى تقديم المعرفة الأثرية بصورة رقمية تفاعلية تجمع بين الدقة وسهولة الوصول.</p>
+<p class="creator-note">بر عنخ مشروع بدأ من شغفي بالحضارة المصرية القديمة ورغبتي في توثيقها وتقديمها بصورة تفاعلية حديثة.</p>
+<div class="creator-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
+<div class="creator-join">
+<p>لو حابب تنضم لفريق بر عنخ وتكون جزء من رحلتنا، تواصل معانا.</p>
+<a class="creator-whatsapp" href="https://wa.me/qr/Y2TGCXSDBLBJO1" target="_blank" rel="noopener noreferrer" aria-label="الانضمام إلى فريق بر عنخ عبر واتساب"><span aria-hidden="true">＋</span> انضم إلى فريق بر عنخ</a>
+</div>
+</div>
+</div>
+</section>
+<script>
+(()=>{const img=document.getElementById('founderPortrait');if(!img)return;fetch('/assets/gamal-founder-image.txt?v=2',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('portrait asset unavailable');return r.text()}).then(b64=>{const binary=atob(b64.trim()),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);const url=URL.createObjectURL(new Blob([bytes],{type:'image/webp'}));img.src=url}).catch(()=>{img.alt='تعذر تحميل صورة المؤسس'})})();
+</script>
+<section class="content-section knowledge-section" id="architecture-details">
+<div class="content-head"><div class="eyebrow">PART 05 · ARCHITECTURE &amp; ART</div><h2>العمارة والفنون في مصر القديمة</h2><p>اقرأ المنشأة بوصفها دليلًا تاريخيًا وفنيًا: الوظيفة، التخطيط، المادة، الزخرفة، والسياق الديني والسياسي.</p></div>
+<div class="knowledge-intro"><p>لم تكن العمارة المصرية نمطًا واحدًا ثابتًا؛ فقد تغيرت أشكال المقابر والمعابد والمنشآت الملكية عبر العصور، كما اختلفت باختلاف الوظيفة والموقع والموارد المتاحة.</p><p>تُعرض هنا خطوط عامة مدعومة بمراجع مؤسسية، مع تجنب تقديم فرضية واحدة على أنها تفسير نهائي لجميع أساليب البناء.</p></div>
+<div class="content-grid">
+<article class="content-card"><div class="mini">01 · FUNERARY ARCHITECTURE</div><h3>المصطبة والهرم المدرج</h3><p>تساعد المصاطب على فهم تطور المقبرة الملكية والنخبوية. ويُمثل مجمع زوسر بسقارة تحولًا مهمًا نحو البناء الحجري الضخم والهرم المدرج.</p></article>
+<article class="content-card"><div class="mini">02 · PYRAMID COMPLEX</div><h3>الهرم الحقيقي ومجموعته</h3><p>شهد عصر سنفرو تطورًا في بناء الأهرام ذات الأوجه المستقيمة، ثم صار مجمع الهرم يتضمن عناصر مثل المعبد الجنائزي ومعبد الوادي والطريق الصاعد، مع اختلافات بين المنشآت.</p></article>
+<article class="content-card"><div class="mini">03 · TEMPLE PLAN</div><h3>المعبد المصري</h3><p>تتكرر في معابد كثيرة عناصر مثل الصرح والفناء المفتوح وقاعة الأعمدة وقدس الأقداس. لكن التخطيط لا ينطبق بصورة حرفية على كل المعابد أو العصور.</p></article>
+<article class="content-card"><div class="mini">04 · MATERIALS &amp; CONSTRUCTION</div><h3>مواد البناء وتقنياته</h3><p>استُخدم الطوب اللبن والحجر الجيري والرملي والجرانيت وغيرها بحسب الوظيفة والموضع. تفاصيل رفع الكتل ووسائل النقل تختلف بين المشروعات وما زالت بعض آلياتها موضوع نقاش.</p></article>
+<article class="content-card"><div class="mini">05 · SCULPTURE</div><h3>النحت والتمثال</h3><p>تُقرأ التماثيل من خلال المادة والحجم والوضعية والملامح والكتابة المصاحبة ومكان العثور عليها؛ ولا يكفي الشكل وحده لتحديد هوية القطعة أو وظيفتها.</p></article>
+<article class="content-card"><div class="mini">06 · PAINTING &amp; RELIEF</div><h3>التصوير والنقش البارز</h3><p>تحمل مشاهد المقابر والمعابد دلالات دينية واجتماعية وسياسية. وقد تخضع المناظر لقواعد رمزية وطقسية، فلا تُعامل تلقائيًا باعتبارها تصويرًا حرفيًا للحياة.</p></article>
+</div>
+<div class="source-strip"><b>مراجع هذا القسم:</b> <a href="https://www.metmuseum.org/essays/egypt-in-the-old-kingdom-ca-2649-2150-b-c" rel="noopener" target="_blank">The Met · Egypt in the Old Kingdom</a> · <a href="https://www.ees.ac.uk/resource/temples-in-ancient-egypt.html" rel="noopener" target="_blank">Egypt Exploration Society · Temples in Ancient Egypt</a> · <a href="https://smarthistory.org/ancient-egyptian-art/" rel="noopener" target="_blank">Smarthistory · Ancient Egyptian Art</a></div>
+</section>
 </main>
 <footer class="perankh-footer">
 <div class="footer-inner">
@@ -885,7 +895,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <span aria-hidden="true" class="footer-brand-divider"></span>
 <span class="footer-brand-en" dir="ltr" lang="en">PER ANKH</span>
 </div>
-<div class="footer-credit">مشروع أسسه وأنشأه وطوّره <strong>جمال نبيه</strong><span class="footer-role">باحث في الآثار المصرية · Egyptian Archaeology Researcher</span></div>
+<div class="footer-credit">© <strong>جمال نبيه</strong></div>
 <div class="footer-copyright" dir="rtl"><span dir="ltr">© 2026</span><span aria-hidden="true" class="footer-dot">✦</span><span>جميع الحقوق محفوظة</span></div>
 </div>
 </footer>
@@ -1420,7 +1430,8 @@ if(librarySection){
   <label for="paCopticLookup">كلمة قبطية أو معنى بالإنجليزية</label><input id="paCopticLookup" type="search" placeholder="ⲥⲙⲟⲩ أو blessing" dir="auto">
   <button type="button" class="tool-btn" id="paCopticLookupBtn">ابحث في القاموس القبطي</button>
   <p>مصادر النصوص والتحليل: <a href="https://copticscriptorium.org/" target="_blank" rel="noopener noreferrer">Coptic SCRIPTORIUM</a> للنصوص المشفوعة بترجمات وبيانات لغوية، و<a href="https://coptic-dictionary.org/" target="_blank" rel="noopener noreferrer">Coptic Dictionary Online</a> للمعجم والبحث متعدد اللهجات.</p>
-  <div class="pa-hiero-warning">لا يترجم هذا الحقل النص تلقائيًا. نتيجة البحث تُعرض في القاموس المرجعي الخارجي؛ لا تُنسب ترجمة إلى بر عنخ إلا بعد تسجيل المدخل والمصدر واللهجة والمعنى والشاهد.</div>
+  <div class="pa-hiero-warning">لا يترجم هذا الحقل النص تلقائيًا. نتيجة البحث تُعرض في القاموس المرجعي الخارجي؛ لا تُنسب ترجمة إلى بر عنخ إلا بعد تسجيل المدخل والمصدر واللهجة والمعنى والشاهد.
+</div>
  </section>
  <section class="pa-hiero-pane" data-content="sources" hidden><h4>المراجع والمنهج العلمي</h4>
   <ul>

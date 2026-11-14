@@ -593,6 +593,38 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 .analytics-footnote{margin-top:14px}
 @media(max-width:650px){.analytics-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-columns{grid-template-columns:1fr}.analytics-kpi{padding:12px}.analytics-kpi b{font-size:23px}}
 </style>
+
+<style>
+/* Founder profile — separate personal section; original portrait is preserved without AI face edits. */
+.founder-role,.footer-role{display:block;flex-basis:100%;font-size:11px;color:var(--gold2);letter-spacing:.4px}
+.footer-role{margin-top:4px;color:var(--muted)}
+.creator{padding:76px 24px 100px}
+.creator-section-head{text-align:center;max-width:760px;margin:0 auto 34px}
+.creator-section-head h2{font-size:clamp(30px,4vw,42px);color:var(--gold2);margin:8px 0}
+.creator-section-head p{margin:0;color:var(--muted);font-size:14px}
+.creator-profile{max-width:980px;display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.1fr);align-items:center;gap:42px;text-align:start;padding:34px}
+.creator-photo-shell{position:relative;max-width:390px;margin:auto;padding:12px;background:linear-gradient(145deg,#f2d99d,#916a2d 28%,#e8c77e 52%,#69491f 78%,#f0d69a);clip-path:polygon(8% 0,92% 0,100% 8%,100% 92%,92% 100%,8% 100%,0 92%,0 8%);box-shadow:0 20px 55px #0009}
+.creator-photo-shell:before{content:"";position:absolute;inset:7px;border:1px solid #fff0c6aa;pointer-events:none;z-index:2}
+.creator-photo{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 43%;border:2px solid #392812;background:#0b1d30}
+.creator-photo-ornament{position:absolute;z-index:3;top:18px;left:50%;transform:translateX(-50%);font-size:30px;color:#f6dfaa;text-shadow:0 2px 10px #000}
+.creator-photo-caption{text-align:center;padding:9px 4px 2px;color:#2a1d0c;font:700 10px Georgia,serif;letter-spacing:3px}
+.creator-bio h2{font-size:clamp(30px,4vw,42px);margin:5px 0;color:var(--gold2)}
+.creator-bio .creator-symbol{font-size:30px;margin:0}
+.creator-bio .creator-label{font-size:13px;color:var(--teal)}
+.creator-bio .creator-en{margin-top:2px}
+.creator-role{font-size:12px;color:#d8c18e;margin-top:10px}
+.creator-role span{color:var(--teal);padding:0 5px}
+.creator-bio p{line-height:2;margin:12px 0;color:#dce4e9}
+.creator-bio .creator-note{max-width:none!important}
+.creator-bio .creator-credit{margin-top:22px}
+.creator-join{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.creator-join p{font-size:14px;color:var(--gold2);margin:0 0 13px}
+.creator-whatsapp{display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid #36b878;border-radius:5px;background:linear-gradient(120deg,#146c48,#0c4b38);color:#fff;font-size:13px;font-weight:700;transition:.2s}
+.creator-whatsapp:hover{transform:translateY(-2px);box-shadow:0 8px 24px #25d36633}
+.creator-whatsapp span{font-size:19px}
+@media(max-width:700px){.creator-profile{grid-template-columns:1fr;gap:28px;padding:24px 18px}.creator-photo-shell{width:min(100%,340px)}.creator-bio{text-align:center}.creator-bio .creator-rule{margin:20px auto}.creator-role{line-height:1.8}.creator-join{display:flex;flex-direction:column;align-items:center}}
+</style>
+
 </head>
 <body>
 <div class="topline"></div>
@@ -609,7 +641,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="kicker">رحلة إلى قلب الحضارة</div>
 <h1>بر عنخ<em>PER ANKH</em></h1>
 <p class="lead">بيت الحياة — بوابتك لاكتشاف ملوك مصر القديمة، وديانتها، وعصورها، ومواقعها الأثرية في موسوعة معرفية تفاعلية.</p>
-<div class="founder-line"><span>صاحب الفكرة والمؤسس والمطوّر</span><strong>جمال نبيه</strong><small>GAMAL NABIH</small></div>
+<div class="founder-line"><span>صاحب الفكرة والمؤسس والمطوّر</span><strong>جمال نبيه</strong><small>GAMAL NABIH</small><span class="founder-role">باحث في الآثار المصرية</span></div>
 <div class="actions"><a class="btn primary" href="#discover" id="startExploreBtn">ابدأ الاستكشاف <span>←</span></a><a class="btn secondary" href="#kings-details">استكشف ملوك مصر القديمة</a></div>
 </div>
 <div aria-hidden="true" class="hero-art">
@@ -746,18 +778,37 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="section-head" style="margin-bottom:0"><div class="eyebrow">ABOUT THE PROJECT</div><h2>بر عنخ — PER ANKH</h2><p>منصة معرفية رقمية تهدف إلى تقديم الحضارة المصرية القديمة بصورة دقيقة، تفاعلية، وممتعة؛ من خلال محتوى أثري موثق وتجربة استكشاف حديثة.</p></div>
 </section>
 <section class="creator" id="about">
-<div class="creator-frame">
+<div class="creator-section-head">
 <div class="creator-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
+<h2>المؤسس</h2>
+<p>تعرف على مؤسس بر عنخ</p>
+</div>
+<div class="creator-frame creator-profile">
+<div class="creator-photo-shell">
+<div class="creator-photo-ornament" aria-hidden="true">𓂀</div>
+<img id="founderPortrait" class="creator-photo" alt="صورة جمال نبيه" loading="lazy" decoding="async">
+<div class="creator-photo-caption">PER ANKH · FOUNDER</div>
+</div>
+<div class="creator-bio">
 <div class="creator-symbol">𓂀</div>
-<div class="creator-label">تصميم وتطوير وإنشاء</div>
+<div class="creator-label">طالب الآثار المصرية</div>
 <h2>جمال نبيه</h2>
 <div class="creator-en">GAMAL NABIH</div>
+<div class="creator-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
 <div class="creator-rule"></div>
-<p>صاحب فكرة ومؤسس ومطوّر مشروع بر عنخ — PER ANKH</p>
-<p class="creator-note">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
+<p>شغوف بالحضارة المصرية القديمة، ومحب لدراسة آثارها وتاريخها، وأسعى إلى تقديم المعرفة الأثرية بصورة رقمية تفاعلية تجمع بين الدقة وسهولة الوصول.</p>
+<p class="creator-note">بر عنخ مشروع بدأ من شغفي بالحضارة المصرية القديمة ورغبتي في توثيقها وتقديمها بصورة تفاعلية حديثة.</p>
 <div class="creator-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
+<div class="creator-join">
+<p>لو حابب تنضم لفريق بر عنخ وتكون جزء من رحلتنا، تواصل معانا.</p>
+<a class="creator-whatsapp" href="https://wa.me/qr/Y2TGCXSDBLBJO1" target="_blank" rel="noopener noreferrer" aria-label="التواصل مع المؤسس عبر واتساب"><span aria-hidden="true">◉</span> تواصل عبر واتساب</a>
+</div>
+</div>
 </div>
 </section>
+<script>
+(()=>{const img=document.getElementById('founderPortrait');if(!img)return;fetch('/assets/gamal-founder-image.txt').then(r=>{if(!r.ok)throw new Error('portrait asset unavailable');return r.text()}).then(b64=>{const binary=atob(b64.trim()),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);const url=URL.createObjectURL(new Blob([bytes],{type:'image/webp'}));img.src=url}).catch(()=>{img.alt='تعذر تحميل صورة المؤسس'})})();
+</script>
 <section class="content-section knowledge-section" id="architecture-details">
 <div class="content-head"><div class="eyebrow">PART 05 · ARCHITECTURE &amp; ART</div><h2>العمارة والفنون في مصر القديمة</h2><p>اقرأ المنشأة بوصفها دليلًا تاريخيًا وفنيًا: الوظيفة، التخطيط، المادة، الزخرفة، والسياق الديني والسياسي.</p></div>
 <div class="knowledge-intro"><p>لم تكن العمارة المصرية نمطًا واحدًا ثابتًا؛ فقد تغيرت أشكال المقابر والمعابد والمنشآت الملكية عبر العصور، كما اختلفت باختلاف الوظيفة والموقع والموارد المتاحة.</p><p>تُعرض هنا خطوط عامة مدعومة بمراجع مؤسسية، مع تجنب تقديم فرضية واحدة على أنها تفسير نهائي لجميع أساليب البناء.</p></div>
@@ -834,7 +885,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <span aria-hidden="true" class="footer-brand-divider"></span>
 <span class="footer-brand-en" dir="ltr" lang="en">PER ANKH</span>
 </div>
-<div class="footer-credit">مشروع أسسه وأنشأه وطوّره <strong>جمال نبيه</strong></div>
+<div class="footer-credit">مشروع أسسه وأنشأه وطوّره <strong>جمال نبيه</strong><span class="footer-role">باحث في الآثار المصرية</span></div>
 <div class="footer-copyright" dir="rtl"><span dir="ltr">© 2026</span><span aria-hidden="true" class="footer-dot">✦</span><span>جميع الحقوق محفوظة</span></div>
 </div>
 </footer>
@@ -1154,6 +1205,7 @@ loadPublicComments();});
 /* Bilingual UI for all static and dynamically-created account, community, admin, Academy and gallery controls. */
 (()=>{
  const dictionary={
+ 'باحث في الآثار المصرية':'Egyptian Archaeology Researcher','طالب الآثار المصرية':'Egyptian Archaeology Student','المؤسس':'Founder','تعرف على مؤسس بر عنخ':'Meet the founder of PER ANKH','شغوف بالحضارة المصرية القديمة، ومحب لدراسة آثارها وتاريخها، وأسعى إلى تقديم المعرفة الأثرية بصورة رقمية تفاعلية تجمع بين الدقة وسهولة الوصول.':'Passionate about ancient Egyptian civilization and the study of its archaeology and history. I aim to present archaeological knowledge through an accurate and accessible interactive digital experience.','بر عنخ مشروع بدأ من شغفي بالحضارة المصرية القديمة ورغبتي في توثيقها وتقديمها بصورة تفاعلية حديثة.':'PER ANKH began with my passion for ancient Egyptian civilization and my desire to document and present it through a modern interactive experience.','لو حابب تنضم لفريق بر عنخ وتكون جزء من رحلتنا، تواصل معانا.':'If you would like to join the PER ANKH team and be part of our journey, get in touch with us.','تواصل عبر واتساب':'Contact via WhatsApp',
  'حساب بر عنخ':'Per Ankh Account','إغلاق ✕':'Close ✕','دخول':'Sign in','حساب جديد':'Create account','المتابعة باستخدام Google':'Continue with Google','أو بالبريد الإلكتروني':'or continue with email','الاسم المعروض':'Display name','اسمك':'Your name','البريد الإلكتروني':'Email address','كلمة المرور':'Password','8 أحرف على الأقل':'At least 8 characters','تسجيل الدخول':'Sign in','إنشاء الحساب':'Create account','نسيت كلمة المرور؟':'Forgot password?','أو بدون حساب':'or without an account','الدخول كزائر':'Continue as guest','مرحبًا':'Welcome','تسجيل الخروج':'Sign out','لوحة إدارة بر عنخ':'Per Ankh Admin Dashboard','التعليقات':'Comments','الاقتراحات':'Suggestions','المحتوى':'Content','الوسائط':'Media','حسابي':'My account','زائر':'Guest','مجتمع بر عنخ':'Per Ankh Community','شارك معرفتك، احتفظ بموضوعاتك المفضلة، واقترح ما يساعدنا على تطوير الموسوعة.':'Share your knowledge, save topics, and suggest ways to improve the encyclopedia.','المفضلة الخاصة بي':'My favourites','احفظ الملوك والمواقع والموضوعات التي تريد الرجوع إليها. المفضلة مرتبطة بحسابك.':'Save kings, sites and topics you want to revisit. Your favourites are linked to your account.','اكتب تعليقًا':'Write a comment','التعليقات تمر بالمراجعة قبل ظهورها للزوار حفاظًا على جودة النقاش والمحتوى العلمي.':'Comments are reviewed before publication to maintain the quality of discussion and scholarly content.','إرسال للمراجعة':'Submit for review','اقتراحات التطوير':'Improvement suggestions','هل تريد إضافة موقع أثري أو ملك أو مصدر أو ميزة جديدة؟ أرسل اقتراحك لفريق بر عنخ.':'Would you like to add an archaeological site, king, source or feature? Send your suggestion to the Per Ankh team.','إرسال الاقتراح':'Send suggestion','حسابك ومساهماتك':'Your account and contributions','لوحة الإدارة':'Admin dashboard','أضف إلى المفضلة':'Add to favourites','موقع أثري':'Archaeological site','ملك':'King','مقال':'Article','معبود':'Deity','عصر':'Period','صورة':'Image','المفضلة':'Favorites','المفضلة والحفظ متاحان بعد تسجيل الدخول.':'Favorites and personal saves are available after signing in.','سجّل الدخول لعرض مفضلتك.':'Sign in to view your favorites.','سجّل الدخول لمتابعة تعليقاتك واقتراحاتك.':'Sign in to follow your comments and suggestions.','أنت تتصفح بر عنخ كزائر. سجّل الدخول لفتح المميزات الشخصية وحفظ نشاطك.':'You are browsing Per Ankh as a guest. Sign in to unlock personal features and save your activity.','تسجيل الدخول / إنشاء حساب':'Sign in / Create account','جارٍ تحويلك إلى Google...':'Redirecting to Google...','تعذر بدء تسجيل Google: ':'Could not start Google sign-in: ','أدخل البريد الإلكتروني وكلمة المرور.':'Enter your email address and password.','جارٍ تنفيذ الطلب...':'Processing your request...','تم إنشاء الحساب وتسجيل الدخول.':'Account created and signed in.','تم إنشاء الحساب. راجع بريدك لتأكيده ثم سجّل الدخول.':'Account created. Check your email to confirm it, then sign in.','تم تسجيل الدخول بنجاح.':'Signed in successfully.','تعذر إتمام العملية: ':'Could not complete the request: ','تم تسجيل الدخول باسم ':'Signed in as ','تعذر تحميل المفضلة.':'Could not load favorites.','لم تضف عناصر إلى المفضلة بعد.':'You have not added any favorites yet.','حذف':'Delete','اكتب اسم العنصر أو معرّفه أولًا.':'Enter an item name or ID first.','العنصر موجود بالفعل في المفضلة.':'This item is already in your favorites.','تعذر إرسال التعليق: ':'Could not send comment: ','اكتب تعليقًا لا يقل عن 3 أحرف.':'Write a comment of at least 3 characters.','وصل تعليقك وسيظهر بعد المراجعة.':'Your comment was submitted and will appear after moderation.','أكمل عنوان الاقتراح وتفاصيله.':'Complete the suggestion title and details.','تعذر إرسال الاقتراح: ':'Could not send suggestion: ','تم إرسال اقتراحك بنجاح. شكرًا لمساهمتك!':'Your suggestion was submitted. Thank you for contributing!','لا توجد تعليقات منشورة بعد.':'There are no published comments yet.','هذه الصفحة مخصصة لإدارة الموقع.':'This page is reserved for site administrators.','عناصر المحتوى':'Content items','نشط':'Active','اتصال قاعدة البيانات':'Database connection','مراجعة التعليقات':'Moderate comments','التعليق':'Comment','الحالة':'Status','الإجراء':'Action','نشر':'Publish','رفض':'Reject','انتظار':'Pending','حذف التعليق؟':'Delete this comment?','اقتراحات الزوار':'Visitor suggestions','التفاصيل':'Details','تحديث':'Update','حفظ':'Save','إدارة المحتوى':'Manage content','إضافة عناصر موسوعية قابلة للنشر. المحتوى الحالي للموقع لن يُستبدل تلقائيًا؛ هذه مساحة لإدارة الإضافات الجديدة.':'Add publishable encyclopedia items. Existing static site content is not replaced automatically; this area manages new additions.','عنوان العنصر':'Item title','معرّف الرابط بالإنجليزية':'URL slug in English','مقال':'Article','ملك':'King','موقع أثري':'Archaeological site','عصر':'Period','معبود':'Deity','مصدر':'Resource','ملخص العنصر':'Item summary','النص أو بيانات المحتوى':'Text or content data','مسودة':'Draft','منشور':'Published','حفظ المحتوى':'Save content','العنوان ومعرّف الرابط مطلوبان.':'Title and URL slug are required.','تعذر الحفظ: ':'Could not save: ','تم حفظ العنصر.':'Item saved.','تبديل حالة النشر':'Toggle publish status','حذف عنصر المحتوى؟':'Delete this content item?','تم حفظ النتيجة في حسابك.':'Your result was saved to your account.','حُفظت النتيجة محليًا على هذا الجهاز. سجّل الدخول لمزامنة نتائجك مع حسابك.':'Your result was saved on this device. Sign in to sync your results with your account.','المسار':'Track','المدة':'Duration','مكتبة الوسائط':'Media library','الرفع متاح للمدير فقط. الملفات المدعومة صور JPG وPNG وWebP وAVIF بحد أقصى 10 ميجابايت.':'Uploads are admin-only. Supported image files: JPG, PNG, WebP and AVIF, up to 10 MB.','رفع الصورة':'Upload image','اختر صورة أولًا.':'Choose an image first.','حجم الملف أكبر من 10 ميجابايت.':'The file is larger than 10 MB.','فشل الرفع: ':'Upload failed: ','تم رفع الصورة بنجاح.':'Image uploaded successfully.','تم تسجيل الخروج.':'Signed out.','اكتب بريدك الإلكتروني أولًا.':'Enter your email address first.','تعذر إرسال رابط الاستعادة: ':'Could not send the recovery link: ','إذا كان البريد مسجلًا، ستصلك رسالة لاستعادة كلمة المرور.':'If the email is registered, you will receive a password recovery message.','مستوى التوثيق':'Documentation level','كل الموضوعات':'All topics','الملوك والعصور':'Kings & periods','الديانة والمعتقدات':'Religion & beliefs','العمارة والمواقع':'Architecture & sites','الفنون والآثار':'Art & artifacts','الفنون والآثار والعمارة':'Arts, artifacts & architecture','المصادر والقراءة الأثرية':'Sources & archaeological reading','موضوعات متنوعة':'Mixed topics','الحياة اليومية':'Daily life','المصادر والمنهج':'Sources & method','موضوعات عامة':'General topics','10 أسئلة · مراجعة سريعة':'10 questions · Quick review','20 سؤالًا · اختبار قياسي':'20 questions · Standard test','40 سؤالًا · تحدي متقدم':'40 questions · Advanced challenge','ابدأ الاختبار':'Start test','ابدأ جولة جديدة':'Start a new round','السؤال التالي ←':'Next question →','إنهاء الجولة':'End round','تحديث السجل':'Refresh history','سجل التقدم':'Progress history','لم تُحمّل النتائج بعد.':'Results have not been loaded yet.','السؤال':'Question','النتيجة':'Score','انتهى الاختبار':'Test completed','لا توجد نتائج مسجلة بعد.':'No results have been recorded yet.','تصفح المعرض':'Browse gallery','جارٍ البحث في أرشيف ويكيميديا كومنز...':'Searching the Wikimedia Commons archive...','لم نعثر على صور بهذه الكلمات. جرّب كلمة بحث أخرى.':'No images were found for these terms. Try another search.','تعذر تحميل الصور حاليًا. تحقق من الاتصال وحاول مرة أخرى.':'Images cannot be loaded right now. Check your connection and try again.','تحميل صور إضافية':'Load more images','افتح صفحة الملف وبيانات الترخيص على ويكيميديا كومنز ↗':'Open the Wikimedia Commons file page and licence details ↗','ابحث في معرض الصور':'Search the gallery','المعابد والنقوش':'Temples & reliefs','التماثيل':'Statues','المقابر والتصوير':'Tombs & paintings','الأهرامات':'Pyramids','البرديات والكتابة':'Papyri & writing','القطع الأثرية':'Artifacts','الكل':'All','تصنيف موضوعي':'Topic classification','لا توجد نتائج مطابقة. جرّب اسمًا آخر أو اختر كل العصور.':'No matching results. Try another name or choose all periods.'
  };
  const attrMap={'placeholder':{'اسمك':'Your name','name@example.com':'name@example.com','اكتب اسمك هنا':'Type your name here','اسم العنصر أو معرّفه':'Item name or ID','اكتب تعليقك أو سؤالك...':'Write your comment or question...','عنوان الاقتراح':'Suggestion title','اشرح اقتراحك...':'Describe your suggestion...','ابحث عن ملك بالاسم أو الأسرة...':'Search for a king by name or dynasty...','ابحث عن معبد أو تمثال أو نقش...':'Search for a temple, statue or relief...','عنوان العنصر':'Item title','معرّف الرابط بالإنجليزية':'URL slug in English','ملخص العنصر':'Item summary','النص أو بيانات المحتوى':'Text or content data','ابحث في معرض الصور':'Search the gallery'},'aria-label':{'ابحث في معرض الصور':'Search gallery','لوحة إدارة بر عنخ':'Per Ankh Admin Dashboard','تفاصيل الصورة':'Image details'}};

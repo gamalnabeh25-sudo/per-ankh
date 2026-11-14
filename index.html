@@ -202,6 +202,14 @@ html[dir="ltr"] body{text-align:left}html[dir="ltr"] .content-head{text-align:ce
 @media(max-width:620px){.primary-explore,.explore-support{grid-template-columns:1fr}.tile{min-height:185px}.academy-launch{grid-template-columns:1fr}.academy-launch button{grid-column:auto}.academy-options{grid-template-columns:1fr}.academy-history-head{align-items:flex-start;flex-direction:column}.academy-stats{grid-template-columns:repeat(3,1fr)}.academy-quiz-panel{padding:15px}.gallery-toolbar input{min-width:100%}.gallery-filters button{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.tile:hover,.gallery-card:hover,.academy-option:hover{transform:none!important;transition:none!important}}
 
+
+/* Founder archaeology title — requested addition only */
+.archaeology-title{display:inline-flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:8px;color:#c4ced8;font-size:12px;letter-spacing:.2px;line-height:1.8}
+.archaeology-title [lang="en"]{direction:ltr;letter-spacing:.5px;color:#75d2c3}
+.creator-archaeology-title{display:flex;margin:10px auto 0;font-size:13px}
+.footer-archaeology-title{display:flex;gap:9px;margin-top:3px;font-size:11px}
+.founder-line .archaeology-title{flex-basis:100%;justify-content:flex-start;margin-top:0;padding-right:0}
+@media(max-width:560px){.founder-line .archaeology-title{gap:7px}.creator-archaeology-title{font-size:12px}.footer-archaeology-title{font-size:10px}}
 </style>
 <style>
 /* PART 04–05: interactive knowledge layer */
@@ -609,7 +617,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="kicker">رحلة إلى قلب الحضارة</div>
 <h1>بر عنخ<em>PER ANKH</em></h1>
 <p class="lead">بيت الحياة — بوابتك لاكتشاف ملوك مصر القديمة، وديانتها، وعصورها، ومواقعها الأثرية في موسوعة معرفية تفاعلية.</p>
-<div class="founder-line"><span>صاحب الفكرة والمؤسس والمطوّر</span><strong>جمال نبيه</strong><small>GAMAL NABIH</small></div>
+<div class="founder-line"><span>صاحب الفكرة والمؤسس والمطوّر</span><strong>جمال نبيه</strong><small>GAMAL NABIH</small><span class="archaeology-title"><span lang="ar">باحث في الآثار المصرية</span><span lang="en" dir="ltr">Egyptian Archaeology Researcher</span></span></div>
 <div class="actions"><a class="btn primary" href="#discover" id="startExploreBtn">ابدأ الاستكشاف <span>←</span></a><a class="btn secondary" href="#kings-details">استكشف ملوك مصر القديمة</a></div>
 </div>
 <div aria-hidden="true" class="hero-art">
@@ -752,6 +760,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="creator-label">تصميم وتطوير وإنشاء</div>
 <h2>جمال نبيه</h2>
 <div class="creator-en">GAMAL NABIH</div>
+<div class="archaeology-title creator-archaeology-title"><span lang="ar">باحث في الآثار المصرية</span><span lang="en" dir="ltr">Egyptian Archaeology Researcher</span></div>
 <div class="creator-rule"></div>
 <p>صاحب فكرة ومؤسس ومطوّر مشروع بر عنخ — PER ANKH</p>
 <p class="creator-note">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
@@ -834,7 +843,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <span aria-hidden="true" class="footer-brand-divider"></span>
 <span class="footer-brand-en" dir="ltr" lang="en">PER ANKH</span>
 </div>
-<div class="footer-credit">مشروع أسسه وأنشأه وطوّره <strong>جمال نبيه</strong></div>
+<div class="footer-credit">مشروع أسسه وأنشأه وطوّره <strong>جمال نبيه</strong><span class="archaeology-title footer-archaeology-title"><span lang="ar">باحث في الآثار المصرية</span><span lang="en" dir="ltr">Egyptian Archaeology Researcher</span></span></div>
 <div class="footer-copyright" dir="rtl"><span dir="ltr">© 2026</span><span aria-hidden="true" class="footer-dot">✦</span><span>جميع الحقوق محفوظة</span></div>
 </div>
 </footer>

@@ -625,36 +625,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 @media(max-width:700px){.creator{padding:48px 14px 64px}.creator-profile{grid-template-columns:1fr;gap:26px;padding:22px 17px}.creator-photo-shell{width:min(100%,390px)}.creator-bio{text-align:center}.creator-bio .creator-rule{margin:20px auto}.creator-role{line-height:1.9}.creator-join{display:flex;flex-direction:column;align-items:center}.creator-bio p{font-size:14px}}
 </style>
 
-
-<style>
-/* PER ANKH founder profile — scoped to the founder section only. */
-.creator{padding:48px 14px 68px;background:radial-gradient(ellipse at center,#142d40 0%,#071321 70%);scroll-margin-top:90px}
-.creator-profile{position:relative;display:flex;flex-direction:column;align-items:center;gap:0;max-width:620px;margin:0 auto;padding:28px clamp(18px,4vw,34px) 36px;text-align:center;border:1px solid rgba(216,181,107,.42);outline:1px solid rgba(216,181,107,.16);outline-offset:8px;border-radius:2px;background:linear-gradient(150deg,rgba(17,43,61,.98),rgba(5,20,33,.98));box-shadow:0 24px 70px rgba(0,0,0,.34),inset 0 0 0 5px rgba(216,181,107,.045)}
-.creator-profile:before,.creator-profile:after{content:"✧";position:absolute;top:16px;color:var(--gold);font-size:24px;line-height:1}.creator-profile:before{right:18px}.creator-profile:after{left:18px}
-.creator-profile .creator-eyebrow{max-width:100%;margin:0 auto 18px;color:var(--teal);font-size:clamp(10px,2.1vw,12px);letter-spacing:clamp(2px,.55vw,4px);line-height:1.9;text-align:center}
-.creator-photo-shell{position:relative;width:min(100%,390px);margin:4px auto 0;padding:10px;border:1px solid rgba(255,239,193,.72);border-radius:48% 48% 15px 15px / 24% 24% 15px 15px;background:linear-gradient(135deg,#f5dfa8 0%,#a47b3c 22%,#e8c77e 48%,#785326 76%,#f2d99d 100%);box-shadow:0 18px 42px rgba(0,0,0,.42),0 0 0 5px rgba(216,181,107,.14)}
-.creator-photo-shell:before{content:"";position:absolute;inset:5px;border:1px solid rgba(255,239,193,.7);border-radius:inherit;pointer-events:none;z-index:2}
-.creator-photo{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:center center;border:1px solid #382817;border-radius:47% 47% 8px 8px / 23% 23% 8px 8px;background:#0b1d30;image-rendering:auto}
-.creator-photo-ornament{position:absolute;z-index:4;top:-25px;left:50%;transform:translateX(-50%);display:grid;place-items:center;width:52px;height:52px;border:2px solid var(--gold2);border-radius:50%;background:#071827;color:var(--gold2);font-size:26px;box-shadow:0 3px 12px #0008}
-.creator-bio{width:100%;padding-top:28px;text-align:center}
-.creator-bio .creator-symbol{margin:0 0 5px;color:var(--gold);font-size:40px;text-shadow:0 0 25px #d8b56b55}
-.creator-bio .creator-label{color:#c8d2dc;font-size:13px}
-.creator-bio h2{margin:8px 0 0;color:var(--gold2);font-size:clamp(30px,5vw,42px)}
-.creator-bio .creator-en{margin-top:5px;color:#c4ced8;font-size:13px;letter-spacing:3px;direction:ltr}
-.creator-bio .creator-role{margin-top:18px;color:var(--gold2);font-size:clamp(13px,2vw,16px);line-height:1.9}
-.creator-bio .creator-role span{padding:0 5px;color:var(--teal)}
-.creator-bio .creator-rule{width:105px;height:1px;margin:23px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.creator-bio p{max-width:520px;margin:13px auto;color:#e2e8ed;font-size:15px;line-height:2.05}
-.creator-bio .creator-note{color:var(--muted)!important;font-size:13px}
-.creator-bio .creator-credit{margin-top:27px;color:#9eacb9;font-size:11px;letter-spacing:3px;line-height:1.9}
-.creator-bio .creator-credit strong{color:var(--gold2)}
-.creator-join{display:flex;flex-direction:column;align-items:center;margin-top:27px;padding-top:22px;border-top:1px solid rgba(216,181,107,.25)}
-.creator-join p{margin:0 auto 15px;color:#e2e8ed;font-size:14px}
-.creator-whatsapp{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:min(100%,330px);padding:14px 20px;border:1px solid #36b878;border-radius:999px;background:linear-gradient(120deg,#16834f,#0b573c);color:#fff;font-size:13px;font-weight:700;transition:transform .2s,box-shadow .2s}
-.creator-whatsapp:hover{transform:translateY(-2px);box-shadow:0 8px 24px #25d36633}
-.creator-whatsapp span{font-size:19px}
-@media(max-width:560px){.creator{padding:36px 14px 54px}.creator-profile{padding:28px 17px 30px}.creator-photo-shell{width:min(100%,360px)}.creator-bio{padding-top:25px}.creator-bio p{font-size:14px}.creator-bio .creator-credit{font-size:10px;letter-spacing:2.5px}}
-</style>
 </head>
 <body>
 <div class="topline"></div>
@@ -808,21 +778,26 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="section-head" style="margin-bottom:0"><div class="eyebrow">ABOUT THE PROJECT</div><h2>بر عنخ — PER ANKH</h2><p>منصة معرفية رقمية تهدف إلى تقديم الحضارة المصرية القديمة بصورة دقيقة، تفاعلية، وممتعة؛ من خلال محتوى أثري موثق وتجربة استكشاف حديثة.</p></div>
 </section>
 <section class="creator" id="about">
-<div class="creator-frame creator-profile">
+<div class="creator-section-head">
 <div class="creator-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
+<h2>المؤسس</h2>
+<p>تعرف على مؤسس بر عنخ</p>
+</div>
+<div class="creator-frame creator-profile">
 <div class="creator-photo-shell">
 <div class="creator-photo-ornament" aria-hidden="true">𓂀</div>
-<img id="founderPortrait" class="creator-photo" src="" alt="جمال نبيه في متحف" width="1152" height="1536" loading="lazy" decoding="async">
+<img id="founderPortrait" class="creator-photo" alt="صورة جمال نبيه" loading="lazy" decoding="async">
+<div class="creator-photo-caption">PER ANKH · FOUNDER</div>
 </div>
 <div class="creator-bio">
-<div class="creator-symbol" aria-hidden="true">𓂀</div>
-<div class="creator-label">مؤسس ومطور مشروع بر عنخ</div>
+<div class="creator-symbol">𓂀</div>
+<div class="creator-label">باحث في الآثار المصرية</div>
 <h2>جمال نبيه</h2>
 <div class="creator-en">GAMAL NABIH</div>
 <div class="creator-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
 <div class="creator-rule"></div>
-<p>شغوف بالحضارة المصرية القديمة، ومهتم بدراسة آثارها وتوثيق تراثها وتقديمه بصورة معرفية تفاعلية.</p>
-<p class="creator-note">مؤسس ومطور مشروع بر عنخ — PER ANKH، موسوعة رقمية للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
+<p>شغوف بالحضارة المصرية القديمة، ومحب لدراسة آثارها وتاريخها، وأسعى إلى تقديم المعرفة الأثرية بصورة رقمية تفاعلية تجمع بين الدقة وسهولة الوصول.</p>
+<p class="creator-note">بر عنخ مشروع بدأ من شغفي بالحضارة المصرية القديمة ورغبتي في توثيقها وتقديمها بصورة تفاعلية حديثة.</p>
 <div class="creator-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
 <div class="creator-join">
 <p>لو حابب تنضم لفريق بر عنخ وتكون جزء من رحلتنا، تواصل معانا.</p>

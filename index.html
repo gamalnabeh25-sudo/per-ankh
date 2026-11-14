@@ -655,21 +655,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 .creator-whatsapp span{font-size:19px}
 @media(max-width:560px){.creator{padding:36px 14px 54px}.creator-profile{padding:28px 17px 30px}.creator-photo-shell{width:min(100%,360px)}.creator-bio{padding-top:25px}.creator-bio p{font-size:14px}.creator-bio .creator-credit{font-size:10px;letter-spacing:2.5px}}
 </style>
-
-<style id="per-ankh-minimal-footer-identity">
-.footer-credit{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}
-.footer-credit>strong{color:var(--gold2);font-size:14px;letter-spacing:1px}
-.footer-credit .footer-role{display:block;flex-basis:auto;margin:0;color:var(--muted);font-size:12px;letter-spacing:0}
-.footer-website{color:var(--teal);font-size:12px;text-decoration:underline;text-underline-offset:4px}
-</style>
-<style id="per-ankh-section-signature">
-.site-signature{display:flex;flex-direction:column;align-items:center;gap:7px;max-width:720px;margin:48px auto 0;padding:23px 16px 18px;border-top:1px solid rgba(216,181,107,.34);text-align:center;color:#aebbc7}
-.site-signature strong{color:var(--gold2);font-size:clamp(15px,2vw,18px);letter-spacing:.7px}
-.site-signature span{color:#c4ced8;font-size:clamp(11px,1.5vw,13px);line-height:1.8}
-.site-signature a{color:var(--teal);font-size:12px;text-decoration:underline;text-underline-offset:4px}
-.site-signature small{color:#8293a2;font-size:10px}
-@media(max-width:560px){.site-signature{margin-top:35px;padding:20px 10px 14px}}
-</style>
 </head>
 <body>
 <div class="topline"></div>
@@ -686,7 +671,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="kicker">رحلة إلى قلب الحضارة</div>
 <h1>بر عنخ<em>PER ANKH</em></h1>
 <p class="lead">بيت الحياة — بوابتك لاكتشاف ملوك مصر القديمة، وديانتها، وعصورها، ومواقعها الأثرية في موسوعة معرفية تفاعلية.</p>
-
+<div class="founder-line"><span class="founder-role">باحث في الآثار المصرية <small>Egyptian Archaeology Researcher</small></span></div>
 <div class="actions"><a class="btn primary" href="#discover" id="startExploreBtn">ابدأ الاستكشاف <span>←</span></a><a class="btn secondary" href="#kings-details">استكشف ملوك مصر القديمة</a></div>
 </div>
 <div aria-hidden="true" class="hero-art">
@@ -702,12 +687,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </svg>
 </div>
 <div class="hero-foot">ANCIENT EGYPT · HISTORY · CULTURE · DISCOVERY</div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="section" id="discover">
 <div class="section-head"><div class="eyebrow">EXPLORE THE CIVILIZATION</div><h2>بوابتك إلى مصر القديمة</h2><p>مسارات معرفية تجمع التاريخ والآثار والفن في تجربة واحدة.</p></div>
@@ -730,13 +709,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article aria-label="الأطلس الأثري" class="tile tile-sites" data-section-image="atlas" data-section-type="sub" data-symbol="⌖"><span class="tile-kind-badge sub-badge">قسم فرعي</span><div class="num" data-original-index="13">13 / ATLAS</div><h3>الأطلس الأثري</h3><p>خريطة مصر الحديثة مع مواقع أثرية وإشارات واضحة.</p><a href="#atlas-explorer">افتح الأطلس ←</a></article>
 <article aria-label="معرض الصور الأثري" class="tile tile-library" data-section-image="gallery" data-section-type="sub" data-symbol="▧"><span class="tile-kind-badge sub-badge">قسم فرعي</span><div class="num" data-original-index="14">14 / PHOTO GALLERY</div><h3>معرض الصور الأثري</h3><p>بحث بصري في صور ويكيميديا كومنز مع فتح بيانات الترخيص.</p><a href="#photo-gallery">تصفح المعرض ←</a></article>
 <article aria-label="مجتمع بر عنخ" class="tile tile-religion" data-section-image="community" data-section-type="sub" data-symbol="◎"><span class="tile-kind-badge sub-badge">قسم فرعي</span><div class="num" data-original-index="15">15 / COMMUNITY</div><h3>مجتمع بر عنخ</h3><p>حسابات ومفضلة وتعليقات واقتراحات.</p><a href="#community-hub">انضم للمجتمع ←</a></article>
-<article aria-label="المؤسس" class="tile tile-founder" data-section-image="founder" data-section-type="main" data-symbol="𓂀" role="group" tabindex="0"><span class="tile-kind-badge main-badge">قسم رئيسي</span><div class="num" data-original-index="16">16 / FOUNDER</div><h3>المؤسس</h3><p>تعرف على مؤسس ومطور مشروع بر عنخ ورحلته مع توثيق الحضارة المصرية القديمة.</p><a href="#about">اكتشف قسم المؤسس ←</a></article>
-</div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
 </div>
 </section>
 <section class="content-section interactive-lab" id="interactive-lab">
@@ -778,12 +750,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="era-selector" id="era-selector"><button data-era="early">العصر العتيق</button><button data-era="old">الدولة القديمة</button><button data-era="middle">الدولة الوسطى</button><button data-era="new">الدولة الحديثة</button><button data-era="late">العصر المتأخر</button></div><div class="era-ruler" id="era-ruler"><span></span></div><div aria-live="polite" class="lab-detail" id="era-detail">اختر عصرًا لعرض الفترة والملامح.</div><small class="lab-source-note">التواريخ تقريبية وفق التقسيمات الشائعة، وقد تختلف سنوات البداية والنهاية بين المراجع المتخصصة.</small>
 </article>
 </div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="content-section" id="kings-details">
 <div class="content-head"><div class="eyebrow">PART 02 · THE PHARAOHS</div><h2>ملوك مصر القديمة</h2><p>تعرف على حكام مصر القديمة عبر العصور، مع ربط كل ملك بأسرته وآثاره ومشروعاته وشواهد عصره.</p></div>
@@ -794,20 +760,8 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 <div class="content-grid" id="kingGrid"></div>
 <div class="note-panel">سجل يضم 150 ملكًا من عصور مصر القديمة. تختلف مستويات المعلومات والتوثيق من بطاقة لأخرى؛ وتوضح كل بطاقة ما إذا كان لها مصدر فردي مباشر أو مرجع عام للفترة. التواريخ تقريبية، وبعض مسائل التأريخ والنسب الملكي محل نقاش علمي.</div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
-<section class="content-section" id="timeline-details"><div class="content-head"><div class="eyebrow">PART 02 · CHRONOLOGY</div><h2>رحلة عبر العصور والأسرات</h2><p>اختر عصرًا لقراءة ملامحه السياسية والمعمارية والفنية وأبرز شواهده الأثرية.</p></div><div class="timeline" id="timelineGrid"></div><div class="note-panel">التواريخ تقريبية، وقد تختلف حدود العصور وتسلسلات بعض الملوك بين المراجع. يعرض الموقع الخلافات المعروفة ولا يقدم كل التواريخ كحقائق قطعية.</div><div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
-</section>
+<section class="content-section" id="timeline-details"><div class="content-head"><div class="eyebrow">PART 02 · CHRONOLOGY</div><h2>رحلة عبر العصور والأسرات</h2><p>اختر عصرًا لقراءة ملامحه السياسية والمعمارية والفنية وأبرز شواهده الأثرية.</p></div><div class="timeline" id="timelineGrid"></div><div class="note-panel">التواريخ تقريبية، وقد تختلف حدود العصور وتسلسلات بعض الملوك بين المراجع. يعرض الموقع الخلافات المعروفة ولا يقدم كل التواريخ كحقائق قطعية.</div></section>
 <section class="content-section" id="sites-details">
 <div class="content-head"><div class="eyebrow">PART 03 · PLACES &amp; MONUMENTS</div><h2>المواقع الأثرية</h2><p>من الجبانة الملكية إلى المعبد ومقابر الأفراد؛ اضغط على أي موقع لقراءة تاريخه وتخطيطه المعماري وفنونه وأبرز آثاره.</p></div>
 <div class="content-grid">
@@ -817,12 +771,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article class="content-card"><div class="mini">DEIR EL-BAHARI</div><h3>الدير البحري</h3><p>المعابد الجنائزية، ومن أشهرها معبد حتشبسوت ومعبد منتوحتب الثاني.</p><span class="glyph">𓆣</span></article>
 <article class="content-card"><div class="mini">BENI HASAN</div><h3>بني حسن</h3><p>مقابر حكام الأقاليم ونماذج مهمة من فنون الدولة الوسطى.</p><span class="glyph">𓅃</span></article>
 <article class="content-card"><div class="mini">ABU SIMBEL</div><h3>أبو سمبل</h3><p>معبدا رمسيس الثاني ونفرتاري، ومن أبرز عمائر النحت في الصخر.</p><span class="glyph">𓂀</span></article>
-</div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
 </div>
 </section>
 <section class="content-section" id="religion-details">
@@ -835,12 +783,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article class="content-card"><div class="mini">SACRED NINE</div><h3>التاسوع المقدس</h3><p>تاسوع هليوبوليس وصلته بأسطورة الخلق ومجموعة المعبودات.</p><span class="glyph">𓂀</span></article>
 <article class="content-card"><div class="mini">SACRED TEXTS</div><h3>النصوص الدينية</h3><p>نصوص الأهرام والتوابيت وكتاب الموتى وتطور الفكر الجنائزي.</p><span class="glyph">𓏏</span></article>
 </div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="content-section" id="library-details">
 <div class="content-head"><div class="eyebrow">PART 03 · KNOWLEDGE &amp; SOURCES</div><h2>بوابة القراءة والمصادر</h2><p>استكشف المقالات الأثرية والكتب والمراجع وقاموس المصطلحات من خلال بطاقات المكتبة التفصيلية بالأسفل.</p></div>
@@ -848,27 +790,9 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="content-grid" id="libraryGrid"></div>
 <div class="glossary-wrap"><h3>قاموس المصطلحات الأثرية</h3><input aria-label="ابحث عن مصطلح" id="termSearch" placeholder="ابحث عن مصطلح..." type="search"/><div class="glossary-grid" id="glossaryGrid"></div></div>
 </div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
-<section class="content-section" id="learning-details"><div class="content-head"><div class="eyebrow">PART 04 · INTERACTIVE LEARNING</div><h2>التعلم والاستكشاف</h2><p>اختبر معلوماتك في أسئلة مستقلة، واكتب اسمك بالعلامات الهيروغليفية التقريبية، واستكشف مواقع مصر القديمة على خريطة تخطيطية.</p></div><div class="quiz-box" id="quizBox"><h3>اختبار بر عنخ</h3><div class="detail-meta" id="quizCounter">بنك الأسئلة · الجولة: 20 سؤالًا</div><div class="progress-track"><span id="quizProgress"></span></div><p id="quizQuestion">ابدأ الاختبار لتظهر الأسئلة والاختيارات والتفسير بعد الإجابة.</p><div class="quiz-options" id="quizOptions"></div><div aria-live="polite" class="quiz-feedback" id="quizFeedback"></div><button class="tool-btn" id="quizStart">ابدأ اختبارًا من 20 سؤالًا</button><button class="tool-btn" id="quizNext" style="display:none">السؤال التالي ←</button></div><div class="learning-tools"><article class="tool-panel map-panel"><div class="mini">ARCHAEOLOGICAL EXPLORER</div><h3>خريطة مصر الأثرية التفاعلية</h3><p>اضغط على أي نقطة لعرض الموقع وأهم آثاره والفترة المرتبطة به. الخريطة بتصميم طبقي ذي عمق بصري ونقاط قابلة للضغط، وهي خريطة استكشافية تخطيطية وليست نموذجًا جغرافيًا مساحيًا أو تضاريس ثلاثية الأبعاد.</p><div class="map-layout"><div class="map-svg-wrap"><svg aria-label="خريطة تخطيطية لمواقع أثرية في مصر القديمة" role="img" viewbox="0 0 420 560"><defs><lineargradient id="land" x1="0" x2="1"><stop stop-color="#17354a"></stop><stop offset="1" stop-color="#0d2336"></stop></lineargradient></defs><path d="M105 18 L265 23 L288 70 L260 125 L278 188 L250 246 L264 307 L235 366 L243 430 L212 535 L160 532 L151 455 L168 385 L145 322 L153 260 L128 207 L145 143 L116 91 Z" fill="#06111d" stroke="#8e754c" stroke-width="3" transform="translate(0 11)"></path><path d="M105 18 L265 23 L288 70 L260 125 L278 188 L250 246 L264 307 L235 366 L243 430 L212 535 L160 532 L151 455 L168 385 L145 322 L153 260 L128 207 L145 143 L116 91 Z" fill="url(#land)" stroke="#b9985d" stroke-width="2"></path><path d="M183 520 C204 448 176 392 194 338 C210 287 177 240 197 195 C211 157 185 113 208 65" fill="none" opacity=".75" stroke="#55c4b5" stroke-linecap="round" stroke-width="8"></path><path d="M205 66 L75 20 M205 66 L320 16 M205 66 L205 10" opacity=".65" stroke="#55c4b5" stroke-width="4"></path><g id="mapPins"></g><text fill="#c5d2dc" font-size="12" text-anchor="end" x="340" y="540">جنوب</text><text fill="#c5d2dc" font-size="12" text-anchor="end" x="340" y="30">شمال</text></svg></div><div class="map-info" id="mapInfo"><b>اختر موقعًا من الخريطة</b><span>سيظهر هنا وصف مختصر للموقع.</span></div></div><div class="map-list" id="mapList"></div></article></div><div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
-</section>
-<section class="content-section" id="atlas-explorer"><div class="section-head"><div class="eyebrow">PART 05 · ARCHAEOLOGICAL ATLAS</div><h2>الأطلس الأثري لمصر</h2><p>استكشف مجموعة من المواقع الأثرية المصرية. مواضع العلامات تقريبية لأغراض الاستكشاف، ويجب الرجوع إلى المصادر المتخصصة قبل استخدامها في أعمال المساحة أو التوثيق.</p></div><div class="atlas-toolbar"><input aria-label="ابحث عن موقع أثري" id="atlasSearch" placeholder="ابحث عن موقع أثري…" type="search"/><select aria-label="تصفية حسب النوع" id="atlasFilter"><option value="all">كل أنواع المواقع</option><option value="pyramid">أهرامات وجبانات</option><option value="temple">معابد</option><option value="city">مدن ومناطق أثرية</option><option value="tomb">مقابر وجبانات</option></select></div><div aria-label="مفتاح ألوان المواقع على الخريطة" class="atlas-legend"><span><i class="legend-dot pyramid"></i> أهرامات وجبانات</span><span><i class="legend-dot temple"></i> معابد</span><span><i class="legend-dot city"></i> مدن ومناطق أثرية</span><span><i class="legend-dot tomb"></i> مقابر</span></div><div class="atlas-layout"><div aria-label="خريطة تفاعلية للمواقع الأثرية" class="map-panel" id="perAnkhMap" role="application"><div class="map-fallback"><span>𓇳</span><b>خريطة مصر الأثرية</b><small>جارٍ تحميل الخريطة التفاعلية…</small></div></div><aside class="atlas-side"><h3>مواقع للاستكشاف</h3><div class="atlas-results" id="atlasResults"></div><p class="source-note">الخريطة تعتمد على OpenStreetMap عبر Leaflet. أسماء المواقع وإحداثياتها هنا نقطة بداية تعليمية وليست بديلًا عن الخرائط المساحية المعتمدة.</p></aside></div><div class="terrain-feature" style="margin-top:22px"><div class="section-head"><div class="eyebrow">3D TERRAIN VIEW</div><h3>التضاريس ثلاثية الأبعاد — نموذج استكشافي</h3><p>تصوير تضاريسي تخطيطي لمجرى النيل والدلتا والصحراء، مع نقاط المواقع الأثرية. هذا النموذج ليس DEM مساحيًا ولا يُستخدم للقياسات أو تحديد الحدود الأثرية.</p></div><div class="terrain-wrap" style="position:relative;background:radial-gradient(ellipse at 50% 45%,#25485a,#081523 75%);border:1px solid var(--line);border-radius:20px;overflow:hidden"><canvas aria-label="نموذج تضاريسي ثلاثي الأبعاد تخطيطي لمصر القديمة" id="egyptTerrain3d" style="width:100%;height:460px;display:block;touch-action:none"></canvas><div style="position:absolute;top:14px;right:16px;color:#f0d79d;font-size:.82rem;pointer-events:none">اسحب للتدوير · عجلة الفأرة للتقريب</div><div style="position:absolute;bottom:12px;left:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="tool-btn" id="terrainReset" type="button">إعادة ضبط</button><button class="tool-btn" id="terrainViewTop" type="button">من أعلى</button></div></div><div aria-live="polite" class="museum-info" id="terrainSiteInfo"><b>استكشف المواقع</b><p>اضغط على إحدى النقاط الذهبية لعرض اسم الموقع ووصفه، أو اختره من قائمة الأطلس بالأعلى.</p></div></div><div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
-</section>
+<section class="content-section" id="learning-details"><div class="content-head"><div class="eyebrow">PART 04 · INTERACTIVE LEARNING</div><h2>التعلم والاستكشاف</h2><p>اختبر معلوماتك في أسئلة مستقلة، واكتب اسمك بالعلامات الهيروغليفية التقريبية، واستكشف مواقع مصر القديمة على خريطة تخطيطية.</p></div><div class="quiz-box" id="quizBox"><h3>اختبار بر عنخ</h3><div class="detail-meta" id="quizCounter">بنك الأسئلة · الجولة: 20 سؤالًا</div><div class="progress-track"><span id="quizProgress"></span></div><p id="quizQuestion">ابدأ الاختبار لتظهر الأسئلة والاختيارات والتفسير بعد الإجابة.</p><div class="quiz-options" id="quizOptions"></div><div aria-live="polite" class="quiz-feedback" id="quizFeedback"></div><button class="tool-btn" id="quizStart">ابدأ اختبارًا من 20 سؤالًا</button><button class="tool-btn" id="quizNext" style="display:none">السؤال التالي ←</button></div><div class="learning-tools"><article class="tool-panel map-panel"><div class="mini">ARCHAEOLOGICAL EXPLORER</div><h3>خريطة مصر الأثرية التفاعلية</h3><p>اضغط على أي نقطة لعرض الموقع وأهم آثاره والفترة المرتبطة به. الخريطة بتصميم طبقي ذي عمق بصري ونقاط قابلة للضغط، وهي خريطة استكشافية تخطيطية وليست نموذجًا جغرافيًا مساحيًا أو تضاريس ثلاثية الأبعاد.</p><div class="map-layout"><div class="map-svg-wrap"><svg aria-label="خريطة تخطيطية لمواقع أثرية في مصر القديمة" role="img" viewbox="0 0 420 560"><defs><lineargradient id="land" x1="0" x2="1"><stop stop-color="#17354a"></stop><stop offset="1" stop-color="#0d2336"></stop></lineargradient></defs><path d="M105 18 L265 23 L288 70 L260 125 L278 188 L250 246 L264 307 L235 366 L243 430 L212 535 L160 532 L151 455 L168 385 L145 322 L153 260 L128 207 L145 143 L116 91 Z" fill="#06111d" stroke="#8e754c" stroke-width="3" transform="translate(0 11)"></path><path d="M105 18 L265 23 L288 70 L260 125 L278 188 L250 246 L264 307 L235 366 L243 430 L212 535 L160 532 L151 455 L168 385 L145 322 L153 260 L128 207 L145 143 L116 91 Z" fill="url(#land)" stroke="#b9985d" stroke-width="2"></path><path d="M183 520 C204 448 176 392 194 338 C210 287 177 240 197 195 C211 157 185 113 208 65" fill="none" opacity=".75" stroke="#55c4b5" stroke-linecap="round" stroke-width="8"></path><path d="M205 66 L75 20 M205 66 L320 16 M205 66 L205 10" opacity=".65" stroke="#55c4b5" stroke-width="4"></path><g id="mapPins"></g><text fill="#c5d2dc" font-size="12" text-anchor="end" x="340" y="540">جنوب</text><text fill="#c5d2dc" font-size="12" text-anchor="end" x="340" y="30">شمال</text></svg></div><div class="map-info" id="mapInfo"><b>اختر موقعًا من الخريطة</b><span>سيظهر هنا وصف مختصر للموقع.</span></div></div><div class="map-list" id="mapList"></div></article></div></section>
+<section class="content-section" id="atlas-explorer"><div class="section-head"><div class="eyebrow">PART 05 · ARCHAEOLOGICAL ATLAS</div><h2>الأطلس الأثري لمصر</h2><p>استكشف مجموعة من المواقع الأثرية المصرية. مواضع العلامات تقريبية لأغراض الاستكشاف، ويجب الرجوع إلى المصادر المتخصصة قبل استخدامها في أعمال المساحة أو التوثيق.</p></div><div class="atlas-toolbar"><input aria-label="ابحث عن موقع أثري" id="atlasSearch" placeholder="ابحث عن موقع أثري…" type="search"/><select aria-label="تصفية حسب النوع" id="atlasFilter"><option value="all">كل أنواع المواقع</option><option value="pyramid">أهرامات وجبانات</option><option value="temple">معابد</option><option value="city">مدن ومناطق أثرية</option><option value="tomb">مقابر وجبانات</option></select></div><div aria-label="مفتاح ألوان المواقع على الخريطة" class="atlas-legend"><span><i class="legend-dot pyramid"></i> أهرامات وجبانات</span><span><i class="legend-dot temple"></i> معابد</span><span><i class="legend-dot city"></i> مدن ومناطق أثرية</span><span><i class="legend-dot tomb"></i> مقابر</span></div><div class="atlas-layout"><div aria-label="خريطة تفاعلية للمواقع الأثرية" class="map-panel" id="perAnkhMap" role="application"><div class="map-fallback"><span>𓇳</span><b>خريطة مصر الأثرية</b><small>جارٍ تحميل الخريطة التفاعلية…</small></div></div><aside class="atlas-side"><h3>مواقع للاستكشاف</h3><div class="atlas-results" id="atlasResults"></div><p class="source-note">الخريطة تعتمد على OpenStreetMap عبر Leaflet. أسماء المواقع وإحداثياتها هنا نقطة بداية تعليمية وليست بديلًا عن الخرائط المساحية المعتمدة.</p></aside></div><div class="terrain-feature" style="margin-top:22px"><div class="section-head"><div class="eyebrow">3D TERRAIN VIEW</div><h3>التضاريس ثلاثية الأبعاد — نموذج استكشافي</h3><p>تصوير تضاريسي تخطيطي لمجرى النيل والدلتا والصحراء، مع نقاط المواقع الأثرية. هذا النموذج ليس DEM مساحيًا ولا يُستخدم للقياسات أو تحديد الحدود الأثرية.</p></div><div class="terrain-wrap" style="position:relative;background:radial-gradient(ellipse at 50% 45%,#25485a,#081523 75%);border:1px solid var(--line);border-radius:20px;overflow:hidden"><canvas aria-label="نموذج تضاريسي ثلاثي الأبعاد تخطيطي لمصر القديمة" id="egyptTerrain3d" style="width:100%;height:460px;display:block;touch-action:none"></canvas><div style="position:absolute;top:14px;right:16px;color:#f0d79d;font-size:.82rem;pointer-events:none">اسحب للتدوير · عجلة الفأرة للتقريب</div><div style="position:absolute;bottom:12px;left:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="tool-btn" id="terrainReset" type="button">إعادة ضبط</button><button class="tool-btn" id="terrainViewTop" type="button">من أعلى</button></div></div><div aria-live="polite" class="museum-info" id="terrainSiteInfo"><b>استكشف المواقع</b><p>اضغط على إحدى النقاط الذهبية لعرض اسم الموقع ووصفه، أو اختره من قائمة الأطلس بالأعلى.</p></div></div></section>
 <section class="content-section" id="virtual-museum"><div class="section-head"><div class="eyebrow">PART 06 · VIRTUAL MUSEUM</div><h2>المتحف الافتراضي</h2><p>مجموعات موضوعية وسجلات تعريفية للقطع، مع الفصل بين البيانات الموثقة والقراءة التفسيرية. افتح أي سجل لعرض تفاصيله ومصدره.</p></div><div class="museum-feature"><div class="museum-mark">𓂀</div><div><span class="eyebrow">DIGITAL GALLERIES</span><h3>اقرأ القطعة… لا تكتفِ بمشاهدتها</h3><p>كل سجل يوضح اسم القطعة، وتأريخها التقريبي، ومادتها، وسياق العثور عليها أو وظيفتها، ومكان حفظها، ورابطًا لمصدر يمكن مراجعته.</p></div></div><div class="atlas-toolbar museum-toolbar"><input aria-label="ابحث في المتحف" id="museumSearch" placeholder="ابحث عن قطعة أو موضوع…" type="search"/><select aria-label="تصفية قاعات المتحف" id="museumFilter"><option value="all">كل القاعات</option><option value="royal">الملكية والسلطة</option><option value="belief">المعتقدات والطقوس</option><option value="daily">الحياة اليومية</option><option value="art">العمارة والفنون</option><option value="writing">الكتابة والتدوين</option></select></div><div class="museum-grid" id="museumGrid">
 <button class="museum-card" data-exhibit="narmer" data-room="royal"><span>𓆣</span><b>لوحة الملك نعرمر</b><small>نقش احتفالي · عصر التكوين</small></button>
 <button class="museum-card" data-exhibit="rosetta" data-room="writing"><span>𓏞</span><b>حجر رشيد</b><small>نقش بثلاثة أنظمة كتابية · 196 ق.م</small></button>
@@ -878,28 +802,10 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <button class="museum-card" data-exhibit="tools" data-room="daily"><span>𓏏</span><b>أدوات الحياة اليومية</b><small>المادة والصناعة والاستعمال</small></button>
 <button class="museum-card" data-exhibit="relief" data-room="art"><span>𓉐</span><b>النقوش البارزة</b><small>تقنيات النحت وقراءة المشهد</small></button>
 <button class="museum-card" data-exhibit="architecture" data-room="art"><span>𓊖</span><b>العناصر المعمارية</b><small>الأعمدة والتيجان والكتل الحجرية</small></button>
-</div><div aria-live="polite" class="museum-info" id="museumInfo"><h3>ابدأ جولتك</h3><p>اختر سجلًا من البطاقات لعرض بطاقة تعريف موسعة ومصدر للمراجعة. السجلات الموضوعية تشرح أنواع القطع ولا تدّعي أنها قطعة متحفية بعينها.</p></div><p class="source-note">ملاحظة توثيقية: لوحة نعرمر وحجر رشيد لهما سجلات/صفحات مرجعية محددة. بقية البطاقات مداخل تعليمية موضوعية وليست فهرسة لقطعة برقم تسجيل. لا تُستخدم الصور إلا بعد التحقق من شروط إعادة الاستخدام.</p><div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
-</section>
-<section class="content-section" id="digital-lab"><div class="section-head"><div class="eyebrow">PART 07 · DIGITAL ARCHAEOLOGY LAB</div><h2>معمل الآثار الرقمي</h2><p>نماذج تعليمية مبسطة وأدوات تفاعلية لفهم العمارة واللقى الأثرية. النموذج ثلاثي الأبعاد التالي توضيحي وليس إعادة بناء أثرية دقيقة.</p></div><div class="lab-layout"><div class="model-wrap"><div class="model-label">نموذج تعليمي تخطيطي · معبد مصري</div><canvas aria-label="نموذج ثلاثي الأبعاد تخطيطي لمعبد مصري" id="temple3d"></canvas><div class="model-controls"><button id="modelReset">إعادة ضبط</button><span>اسحب للتدوير · استخدم عجلة الفأرة للتقريب</span></div></div><div class="lab-explain"><h3>قراءة عناصر المعبد</h3><p>اختر عنصرًا من القائمة لتتعرف على وظيفته المعمارية بصورة مبسطة.</p><div class="element-list"><button data-element="pylon">الصرح</button><button data-element="court">الفناء</button><button data-element="hypostyle">قاعة الأعمدة</button><button data-element="sanctuary">قدس الأقداس</button></div><div aria-live="polite" class="element-info" id="elementInfo">يتكون النموذج من كتل هندسية رمزية لتوضيح التتابع المكاني، ولا يمثل معبدًا بعينه.</div></div></div><div class="lab-tools"><a href="#pyramid-detail">مقارنة الأهرامات</a><a href="#god-detail">تاسوع هليوبوليس</a><a href="#duat-hours">ساعات العالم الآخر</a><a href="#temple-detail">مخطط المعبد</a><a href="#mummy-steps">مراحل التحنيط</a><a href="#judgement-detail">وزن القلب</a><a href="#build-sequence">بناء الهرم</a></div><div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
-</section>
+</div><div aria-live="polite" class="museum-info" id="museumInfo"><h3>ابدأ جولتك</h3><p>اختر سجلًا من البطاقات لعرض بطاقة تعريف موسعة ومصدر للمراجعة. السجلات الموضوعية تشرح أنواع القطع ولا تدّعي أنها قطعة متحفية بعينها.</p></div><p class="source-note">ملاحظة توثيقية: لوحة نعرمر وحجر رشيد لهما سجلات/صفحات مرجعية محددة. بقية البطاقات مداخل تعليمية موضوعية وليست فهرسة لقطعة برقم تسجيل. لا تُستخدم الصور إلا بعد التحقق من شروط إعادة الاستخدام.</p></section>
+<section class="content-section" id="digital-lab"><div class="section-head"><div class="eyebrow">PART 07 · DIGITAL ARCHAEOLOGY LAB</div><h2>معمل الآثار الرقمي</h2><p>نماذج تعليمية مبسطة وأدوات تفاعلية لفهم العمارة واللقى الأثرية. النموذج ثلاثي الأبعاد التالي توضيحي وليس إعادة بناء أثرية دقيقة.</p></div><div class="lab-layout"><div class="model-wrap"><div class="model-label">نموذج تعليمي تخطيطي · معبد مصري</div><canvas aria-label="نموذج ثلاثي الأبعاد تخطيطي لمعبد مصري" id="temple3d"></canvas><div class="model-controls"><button id="modelReset">إعادة ضبط</button><span>اسحب للتدوير · استخدم عجلة الفأرة للتقريب</span></div></div><div class="lab-explain"><h3>قراءة عناصر المعبد</h3><p>اختر عنصرًا من القائمة لتتعرف على وظيفته المعمارية بصورة مبسطة.</p><div class="element-list"><button data-element="pylon">الصرح</button><button data-element="court">الفناء</button><button data-element="hypostyle">قاعة الأعمدة</button><button data-element="sanctuary">قدس الأقداس</button></div><div aria-live="polite" class="element-info" id="elementInfo">يتكون النموذج من كتل هندسية رمزية لتوضيح التتابع المكاني، ولا يمثل معبدًا بعينه.</div></div></div><div class="lab-tools"><a href="#pyramid-detail">مقارنة الأهرامات</a><a href="#god-detail">تاسوع هليوبوليس</a><a href="#duat-hours">ساعات العالم الآخر</a><a href="#temple-detail">مخطط المعبد</a><a href="#mummy-steps">مراحل التحنيط</a><a href="#judgement-detail">وزن القلب</a><a href="#build-sequence">بناء الهرم</a></div></section>
 <section class="section" id="about-project" style="padding-top:65px;padding-bottom:65px">
 <div class="section-head" style="margin-bottom:0"><div class="eyebrow">ABOUT THE PROJECT</div><h2>بر عنخ — PER ANKH</h2><p>منصة معرفية رقمية تهدف إلى تقديم الحضارة المصرية القديمة بصورة دقيقة، تفاعلية، وممتعة؛ من خلال محتوى أثري موثق وتجربة استكشاف حديثة.</p></div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="creator" id="about">
 <div class="creator-frame creator-profile">
@@ -926,7 +832,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 </section>
 <script>
-(()=>{const img=document.getElementById('founderPortrait');if(!img)return;fetch('/assets/gamal-founder-image.txt?v=2',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('portrait asset unavailable');return r.text()}).then(b64=>{const binary=atob(b64.trim()),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);img.src=URL.createObjectURL(new Blob([bytes],{type:'image/webp'}))}).catch(()=>{img.alt='تعذر تحميل صورة المؤسس'})})();
+(()=>{const img=document.getElementById('founderPortrait');if(!img)return;fetch('/assets/gamal-founder-image.txt?v=2',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('portrait asset unavailable');return r.text()}).then(b64=>{const binary=atob(b64.trim()),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);const url=URL.createObjectURL(new Blob([bytes],{type:'image/webp'}));img.src=url}).catch(()=>{img.alt='تعذر تحميل صورة المؤسس'})})();
 </script>
 <section class="content-section knowledge-section" id="architecture-details">
 <div class="content-head"><div class="eyebrow">PART 05 · ARCHITECTURE &amp; ART</div><h2>العمارة والفنون في مصر القديمة</h2><p>اقرأ المنشأة بوصفها دليلًا تاريخيًا وفنيًا: الوظيفة، التخطيط، المادة، الزخرفة، والسياق الديني والسياسي.</p></div>
@@ -940,12 +846,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article class="content-card"><div class="mini">06 · PAINTING &amp; RELIEF</div><h3>التصوير والنقش البارز</h3><p>تحمل مشاهد المقابر والمعابد دلالات دينية واجتماعية وسياسية. وقد تخضع المناظر لقواعد رمزية وطقسية، فلا تُعامل تلقائيًا باعتبارها تصويرًا حرفيًا للحياة.</p></article>
 </div>
 <div class="source-strip"><b>مراجع هذا القسم:</b> <a href="https://www.metmuseum.org/essays/egypt-in-the-old-kingdom-ca-2649-2150-b-c" rel="noopener" target="_blank">The Met · Egypt in the Old Kingdom</a> · <a href="https://www.ees.ac.uk/resource/temples-in-ancient-egypt.html" rel="noopener" target="_blank">Egypt Exploration Society · Temples in Ancient Egypt</a> · <a href="https://smarthistory.org/ancient-egyptian-art/" rel="noopener" target="_blank">Smarthistory · Ancient Egyptian Art</a></div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="content-section knowledge-section" id="daily-life-details">
 <div class="content-head"><div class="eyebrow">PART 06 · DAILY LIFE</div><h2>الحياة اليومية في مصر القديمة</h2><p>الحياة خارج القصور والمعابد: الأسرة والعمل والغذاء والملبس والقرية والمدينة والاقتصاد.</p></div>
@@ -959,12 +859,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article class="content-card"><div class="mini">06 · WRITING &amp; ADMINISTRATION</div><h3>الكتابة والإدارة</h3><p>أتاحت البرديات واللوحات والأختام تتبع الحسابات والمراسلات وتوزيع المواد. ولم تكن مهارة القراءة والكتابة موزعة بالتساوي بين جميع أفراد المجتمع.</p></article>
 </div>
 <div class="source-strip"><b>مراجع للمتابعة:</b> <a href="https://unesdoc.unesco.org/ark:/48223/pf0000080986" rel="noopener" target="_blank">UNESCO · Daily life in the land of the Pharaohs</a> · <a href="https://www.britishmuseum.org/learn/schools/ages-7-11/ancient-egypt" rel="noopener" target="_blank">British Museum · Ancient Egypt learning resources</a> · <a href="https://smarthistory.org/reframing-art-history/world-of-ancient-egypt/" rel="noopener" target="_blank">Smarthistory · The world of ancient Egypt</a></div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="content-section academy-section" id="academy-details">
 <div class="content-head"><div class="eyebrow">PART 09 · PER ANKH ACADEMY</div><h2>أكاديمية بر عنخ</h2><p>مسار تعليمي مستقل يجمع بنك الأسئلة والمراجعة الذاتية وسجل النتائج. كل جولة تعرض تفسير الإجابة ومصدرها بعد الاختيار.</p></div>
@@ -976,12 +870,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 <div class="academy-history"><div class="academy-history-head"><div><h3>سجل التقدم</h3><p>نتائج الحساب المسجل تُحفظ في قاعدة بيانات Supabase، ونتائج الزائر تُحفظ محليًا على هذا الجهاز.</p></div><button class="tool-btn secondary-tool" id="academyRefreshHistory" type="button">تحديث السجل</button></div><div aria-live="polite" id="academyHistoryList"><p class="community-hint">لم تُحمّل النتائج بعد.</p></div></div>
 <div class="academy-note">ملاحظة: التصنيفات الموضوعية استدلالية، وقد يكون السؤال الواحد متعدد المحاور. بنك الأسئلة يحتوي 300 سؤالًا بأربعة اختيارات وشرح ورابط مصدر؛ وجود الرابط لا يغني عن مراجعة المرجع قبل الاقتباس الأكاديمي.</div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="content-section knowledge-section" id="references-details">
 <div class="content-head"><div class="eyebrow">PART 10 · REFERENCES &amp; SOURCES</div><h2>المراجع والمصادر</h2><p>بوابة للمصادر المؤسسية التي يستند إليها المحتوى، مع توضيح وظيفة المصدر وحدوده.</p></div>
@@ -995,24 +883,12 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 <div class="reference-method"><h3>كيف نقرأ المرجع؟</h3><ol><li>نحدد نوع المصدر: سجل قطعة، صفحة متحف، قائمة ملكية، تقرير حفائر، مقال علمي، أو مادة تعليمية.</li><li>نراجع ما يثبته الرابط تحديدًا؛ فقائمة الأسرات لا تثبت وحدها تفاصيل النسب أو مدة الحكم أو كل أحداث السيرة.</li><li>نميز بين الدليل الأثري المباشر، والتفسير الحديث، والرواية المتأخرة، والفرضية المختلف عليها.</li><li>نضع تاريخ الاطلاع وبيانات النشر والصفحة عند إعداد بحث جامعي أو اقتباس مباشر.</li></ol></div>
 <div class="source-strip">تنويه توثيقي: وجود رابط أو اسم مؤسسة لا يعني أن كل فقرة موثقة منه. تميّز البطاقة بين صفحة فردية، وقائمة زمنية عامة، ومدخل لا يحمل إحالة مباشرة. أي معلومة لا تتوفر لها إحالة مناسبة تُوسم «غير مؤكدة» أو «لا تتوفر عنها معلومات موثقة».</div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="content-section gallery-section" id="photo-gallery">
 <div class="content-head"><div class="eyebrow">PART 03 · VISUAL ARCHIVE</div><h2>معرض الصور الأثري</h2><p>استكشف الصور المتاحة على ويكيميديا كومنز حسب الموضوع، وافتح كل صورة لمعرفة عنوانها ومصدرها وبيانات الإسناد المتاحة.</p></div>
 <div class="gallery-toolbar"><input aria-label="ابحث في معرض الصور" id="gallerySearch" placeholder="ابحث عن معبد أو تمثال أو نقش..." type="search"/><div class="gallery-filters" id="galleryFilters"><button class="active" data-gallery="Egyptian temple relief">المعابد والنقوش</button><button data-gallery="Ancient Egyptian statue">التماثيل</button><button data-gallery="Ancient Egyptian tomb painting">المقابر والتصوير</button><button data-gallery="Egyptian pyramids archaeology">الأهرامات</button><button data-gallery="Ancient Egyptian papyrus">البرديات والكتابة</button><button data-gallery="Ancient Egyptian artifacts museum">القطع الأثرية</button></div></div>
 <div aria-live="polite" class="gallery-status" id="galleryStatus">اضغط على أحد التصنيفات لتحميل الصور من ويكيميديا كومنز.</div><div class="archaeology-gallery" id="archaeologyGallery"></div><div class="gallery-actions"><button class="tool-btn" hidden="" id="galleryMore" type="button">تحميل صور إضافية</button></div>
 <p class="atlas-note">الصور تُحمّل عند الطلب من Wikimedia Commons. تختلف تراخيص الصور وشروط الإسناد من ملف لآخر؛ افتح صفحة المصدر قبل إعادة استخدام أي صورة، ولا يعني ظهورها هنا أن جميعها متاحة للاستخدام التجاري.</p>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
-</div>
 </section>
 <section class="content-section community-section" id="community-hub">
 <div class="content-head"><div class="eyebrow">PART 04 · COMMUNITY</div><h2>مجتمع بر عنخ</h2><p>شارك معرفتك، احتفظ بموضوعاتك المفضلة، واقترح ما يساعدنا على تطوير الموسوعة.</p></div>
@@ -1021,12 +897,6 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article class="community-card"><h3>اكتب تعليقًا</h3><p>التعليقات تمر بالمراجعة قبل ظهورها للزوار حفاظًا على جودة النقاش والمحتوى العلمي.</p><textarea aria-label="التعليق" id="commentBody" maxlength="2000" placeholder="اكتب تعليقك أو سؤالك..."></textarea><button class="community-btn" id="sendComment">إرسال للمراجعة</button><div aria-live="polite" class="community-hint" id="commentMessage"></div><div class="community-feed" id="publicComments"></div></article>
 <article class="community-card"><h3>اقتراحات التطوير</h3><p>هل تريد إضافة موقع أثري أو ملك أو مصدر أو ميزة جديدة؟ أرسل اقتراحك لفريق بر عنخ.</p><input id="suggestionSubject" maxlength="160" placeholder="عنوان الاقتراح"/><textarea id="suggestionBody" maxlength="3000" placeholder="اشرح اقتراحك..."></textarea><button class="community-btn" id="sendSuggestion">إرسال الاقتراح</button><div aria-live="polite" class="community-hint" id="suggestionMessage"></div></article>
 <article class="community-card"><h3>حسابك ومساهماتك</h3><div id="communityAccount"><p class="community-hint">سجّل الدخول لمتابعة تعليقاتك واقتراحاتك.</p><button class="community-btn" id="communityLogin">تسجيل الدخول / إنشاء حساب</button></div><div class="auth-links"><button class="admin-btn hidden" id="openAdmin">لوحة الإدارة</button></div></article>
-</div>
-<div class="site-signature" aria-label="تعريف الباحث وموقع بر عنخ">
-<strong>جمال نبيه · GAMAL NABIH</strong>
-<span>باحث في الآثار المصرية · Egyptian Archaeology Researcher</span>
-<a href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a>
-<small>© 2026 · جميع الحقوق محفوظة</small>
 </div>
 </section>
 <div aria-labelledby="authTitle" aria-modal="true" class="auth-modal" id="authModal" role="dialog"><div class="auth-card"><div class="auth-head"><h2 id="authTitle">حساب بر عنخ</h2><button class="modal-x" id="authClose">إغلاق ✕</button></div><div id="authForms"><div class="auth-tabs"><button class="active" data-auth-tab="login">دخول</button><button data-auth-tab="signup">حساب جديد</button></div><button class="auth-google" id="googleSignIn" type="button"><span aria-hidden="true">G</span> المتابعة باستخدام Google</button><div class="auth-divider"><span>أو بالبريد الإلكتروني</span></div><div class="hidden" id="signupNameWrap"><label for="authName">الاسم المعروض</label><input autocomplete="name" id="authName" placeholder="اسمك"/></div><label for="authEmail">البريد الإلكتروني</label><input autocomplete="email" id="authEmail" placeholder="name@example.com" type="email"/><label for="authPassword">كلمة المرور</label><input autocomplete="current-password" id="authPassword" minlength="8" placeholder="8 أحرف على الأقل" type="password"/><button class="auth-submit" id="authSubmit">تسجيل الدخول</button><div class="auth-links"><button id="forgotPassword">نسيت كلمة المرور؟</button></div><div class="auth-divider"><span>أو بدون حساب</span></div><button class="auth-guest" id="guestContinue" type="button">الدخول كزائر</button></div><div class="hidden" id="authSignedIn"><div class="auth-user">مرحبًا <strong id="authDisplayName"></strong><div class="community-hint" id="authEmailView"></div></div><button class="auth-submit" id="authSignOut">تسجيل الخروج</button></div><div aria-live="polite" class="auth-message" id="authMessage"></div></div></div>
@@ -1040,7 +910,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <span aria-hidden="true" class="footer-brand-divider"></span>
 <span class="footer-brand-en" dir="ltr" lang="en">PER ANKH</span>
 </div>
-<div class="footer-credit"><strong>جمال نبيه · GAMAL NABIH</strong><span class="footer-role">باحث في الآثار المصرية · Egyptian Archaeology Researcher</span><a class="footer-website" href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a></div>
+<div class="footer-credit">مشروع أسسه وأنشأه وطوّره <strong>جمال نبيه</strong><span class="footer-role">باحث في الآثار المصرية · Egyptian Archaeology Researcher</span></div>
 <div class="footer-copyright" dir="rtl"><span dir="ltr">© 2026</span><span aria-hidden="true" class="footer-dot">✦</span><span>جميع الحقوق محفوظة</span></div>
 </div>
 </footer>

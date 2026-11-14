@@ -655,29 +655,12 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 .creator-whatsapp span{font-size:19px}
 @media(max-width:560px){.creator{padding:36px 14px 54px}.creator-profile{padding:28px 17px 30px}.creator-photo-shell{width:min(100%,360px)}.creator-bio{padding-top:25px}.creator-bio p{font-size:14px}.creator-bio .creator-credit{font-size:10px;letter-spacing:2.5px}}
 </style>
-<style id="per-ankh-shared-identity">
-.site-identity-card{position:relative;isolation:isolate;max-width:850px;margin:28px auto 38px;padding:clamp(24px,4vw,42px) clamp(18px,4vw,40px);text-align:center;border:1px solid rgba(216,181,107,.38);outline:1px solid rgba(216,181,107,.13);outline-offset:6px;background:linear-gradient(145deg,rgba(15,37,55,.97),rgba(7,20,34,.98));box-shadow:0 18px 55px rgba(0,0,0,.24),inset 0 0 0 5px rgba(216,181,107,.035);color:var(--white)}
-.site-identity-card:before,.site-identity-card:after{content:"✧";position:absolute;top:16px;color:var(--gold2);font-size:23px}
-.site-identity-card:before{right:18px}.site-identity-card:after{left:18px}
-.site-identity-eyebrow{color:var(--teal);font-size:clamp(9px,1.5vw,12px);letter-spacing:clamp(2px,.55vw,4px);line-height:1.9}
-.site-identity-eye{margin:15px auto 3px;color:var(--gold2);font-size:clamp(38px,5vw,54px);line-height:1.2;text-shadow:0 0 22px rgba(216,181,107,.25)}
-.site-identity-caption{color:#b9c6d1;font-size:14px;margin-top:5px}
-.site-identity-card h2{margin:9px 0 0;color:var(--gold2);font-size:clamp(29px,4vw,42px);line-height:1.45}
-.site-identity-en{margin-top:4px;color:#c4ced8;font-size:13px;letter-spacing:4px;direction:ltr}
-.site-identity-rule{width:150px;height:1px;margin:24px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.site-identity-card p{max-width:650px;margin:11px auto;color:#d9e1e8;line-height:2;font-size:clamp(13px,1.5vw,16px)}
-.site-identity-card .site-identity-lead{font-size:clamp(17px,2.1vw,23px);color:#e5eaf0}
-.site-identity-role{margin-top:17px;color:var(--gold2);font-size:clamp(12px,1.5vw,15px);line-height:1.9}
-.site-identity-role span{padding:0 5px;color:var(--teal)}
-.site-identity-credit{margin-top:20px;color:#9eacb9;font-size:10px;letter-spacing:clamp(1.5px,.4vw,3px);line-height:1.9}
-.site-identity-credit strong{color:var(--gold2)}
-#home .site-identity-card{max-width:700px;margin:0 0 28px;text-align:center}
-#home .site-identity-card h2{font-size:clamp(26px,4vw,36px)}
-#discover .site-identity-card{margin-top:0}
-#discover [data-section-image="founder"]::before{background-image:linear-gradient(0deg,rgba(4,13,23,.2),rgba(4,13,23,.2)),var(--founder-tile-image,linear-gradient(145deg,#173f68,#071321))!important;background-position:center 35%!important;background-size:cover!important}
-.tile-founder{border-color:rgba(216,181,107,.62)!important}
-.tile-founder .main-badge{background:rgba(216,181,107,.18);color:#f0d79d;border-color:rgba(216,181,107,.45)}
-@media(max-width:560px){.site-identity-card{margin:22px 2px 30px;padding:26px 16px}.site-identity-card p{line-height:1.9}.site-identity-card .site-identity-lead{font-size:16px}#home .site-identity-card{margin:0 0 24px}}
+
+<style id="per-ankh-minimal-footer-identity">
+.footer-credit{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}
+.footer-credit>strong{color:var(--gold2);font-size:14px;letter-spacing:1px}
+.footer-credit .footer-role{display:block;flex-basis:auto;margin:0;color:var(--muted);font-size:12px;letter-spacing:0}
+.footer-website{color:var(--teal);font-size:12px;text-decoration:underline;text-underline-offset:4px}
 </style>
 </head>
 <body>
@@ -691,18 +674,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </header>
 <main>
 <section class="hero" id="home">
-<div class="hero-inner"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<div class="hero-inner">
 <div class="kicker">رحلة إلى قلب الحضارة</div>
 <h1>بر عنخ<em>PER ANKH</em></h1>
 <p class="lead">بيت الحياة — بوابتك لاكتشاف ملوك مصر القديمة، وديانتها، وعصورها، ومواقعها الأثرية في موسوعة معرفية تفاعلية.</p>
@@ -723,18 +695,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 <div class="hero-foot">ANCIENT EGYPT · HISTORY · CULTURE · DISCOVERY</div>
 </section>
-<section class="section" id="discover"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="section" id="discover">
 <div class="section-head"><div class="eyebrow">EXPLORE THE CIVILIZATION</div><h2>بوابتك إلى مصر القديمة</h2><p>مسارات معرفية تجمع التاريخ والآثار والفن في تجربة واحدة.</p></div>
 <div class="explore primary-explore">
 <article aria-label="موسوعة الملوك" class="tile tile-kings" data-section-image="kings" data-section-type="main" data-symbol="𓆣" role="group" tabindex="0"><span class="tile-kind-badge main-badge">قسم رئيسي</span><div class="num" data-original-index="1">01 / KINGS</div><h3>موسوعة الملوك</h3><p>150 سجلًا ملكيًا مع بيان مستوى الإحالة المرجعية في كل بطاقة.</p><a href="#kings-details">اكتشف الملوك ←</a></article>
@@ -758,18 +719,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article aria-label="المؤسس" class="tile tile-founder" data-section-image="founder" data-section-type="main" data-symbol="𓂀" role="group" tabindex="0"><span class="tile-kind-badge main-badge">قسم رئيسي</span><div class="num" data-original-index="16">16 / FOUNDER</div><h3>المؤسس</h3><p>تعرف على مؤسس ومطور مشروع بر عنخ ورحلته مع توثيق الحضارة المصرية القديمة.</p><a href="#about">اكتشف قسم المؤسس ←</a></article>
 </div>
 </section>
-<section class="content-section interactive-lab" id="interactive-lab"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section interactive-lab" id="interactive-lab">
 <div class="content-head"><div class="eyebrow">PART 02 · INTERACTIVE KNOWLEDGE</div><h2>مختبر الحضارة التفاعلي</h2><p>شاهد بعض أفكار المصريين القدماء في رسوم مبسطة قابلة للاستكشاف. اختر عنصرًا لعرض المعلومة المرتبطة به.</p></div>
 <div class="lab-grid">
 <article class="lab-panel"><div class="lab-kicker">01 · ROYAL ARCHITECTURE</div><h3>مقارنة ارتفاع الأهرامات</h3><p class="lab-intro">ارتفاعات تقريبية للأهرامات عند اكتمال بنائها، وليست ارتفاعاتها الحالية.</p>
@@ -809,18 +759,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </article>
 </div>
 </section>
-<section class="content-section" id="kings-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section" id="kings-details">
 <div class="content-head"><div class="eyebrow">PART 02 · THE PHARAOHS</div><h2>ملوك مصر القديمة</h2><p>تعرف على حكام مصر القديمة عبر العصور، مع ربط كل ملك بأسرته وآثاره ومشروعاته وشواهد عصره.</p></div>
 <div class="interactive-tools">
 <input aria-label="ابحث عن ملك" id="kingSearch" placeholder="ابحث عن ملك بالاسم أو الأسرة..." type="search"/>
@@ -830,30 +769,8 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="content-grid" id="kingGrid"></div>
 <div class="note-panel">سجل يضم 150 ملكًا من عصور مصر القديمة. تختلف مستويات المعلومات والتوثيق من بطاقة لأخرى؛ وتوضح كل بطاقة ما إذا كان لها مصدر فردي مباشر أو مرجع عام للفترة. التواريخ تقريبية، وبعض مسائل التأريخ والنسب الملكي محل نقاش علمي.</div>
 </section>
-<section class="content-section" id="timeline-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside><div class="content-head"><div class="eyebrow">PART 02 · CHRONOLOGY</div><h2>رحلة عبر العصور والأسرات</h2><p>اختر عصرًا لقراءة ملامحه السياسية والمعمارية والفنية وأبرز شواهده الأثرية.</p></div><div class="timeline" id="timelineGrid"></div><div class="note-panel">التواريخ تقريبية، وقد تختلف حدود العصور وتسلسلات بعض الملوك بين المراجع. يعرض الموقع الخلافات المعروفة ولا يقدم كل التواريخ كحقائق قطعية.</div></section>
-<section class="content-section" id="sites-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section" id="timeline-details"><div class="content-head"><div class="eyebrow">PART 02 · CHRONOLOGY</div><h2>رحلة عبر العصور والأسرات</h2><p>اختر عصرًا لقراءة ملامحه السياسية والمعمارية والفنية وأبرز شواهده الأثرية.</p></div><div class="timeline" id="timelineGrid"></div><div class="note-panel">التواريخ تقريبية، وقد تختلف حدود العصور وتسلسلات بعض الملوك بين المراجع. يعرض الموقع الخلافات المعروفة ولا يقدم كل التواريخ كحقائق قطعية.</div></section>
+<section class="content-section" id="sites-details">
 <div class="content-head"><div class="eyebrow">PART 03 · PLACES &amp; MONUMENTS</div><h2>المواقع الأثرية</h2><p>من الجبانة الملكية إلى المعبد ومقابر الأفراد؛ اضغط على أي موقع لقراءة تاريخه وتخطيطه المعماري وفنونه وأبرز آثاره.</p></div>
 <div class="content-grid">
 <article class="content-card"><div class="mini">GIZA</div><h3>هضبة الجيزة</h3><p>الأهرامات الكبرى وأبو الهول ومقابر الجبانة الملكية.</p><span class="glyph">𓉐</span></article>
@@ -864,18 +781,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article class="content-card"><div class="mini">ABU SIMBEL</div><h3>أبو سمبل</h3><p>معبدا رمسيس الثاني ونفرتاري، ومن أبرز عمائر النحت في الصخر.</p><span class="glyph">𓂀</span></article>
 </div>
 </section>
-<section class="content-section" id="religion-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section" id="religion-details">
 <div class="content-head"><div class="eyebrow">PART 03 · BELIEFS &amp; RITUALS</div><h2>الديانة المصرية القديمة</h2><p>اختر موضوعًا لقراءة شرح منظم للمعبودات وقصص الخلق والعالم الآخر والطقوس والنصوص الدينية.</p></div>
 <div class="content-grid">
 <article class="content-card"><div class="mini">DIVINITIES</div><h3>المعبودات</h3><p>أوزير وإيزيس وحورس ورع وآمون وتحوت وغيرهم، مع مراكز عبادتهم ورموزهم.</p><span class="glyph">𓊹</span></article>
@@ -886,18 +792,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <article class="content-card"><div class="mini">SACRED TEXTS</div><h3>النصوص الدينية</h3><p>نصوص الأهرام والتوابيت وكتاب الموتى وتطور الفكر الجنائزي.</p><span class="glyph">𓏏</span></article>
 </div>
 </section>
-<section class="content-section" id="library-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section" id="library-details">
 <div class="content-head"><div class="eyebrow">PART 03 · KNOWLEDGE &amp; SOURCES</div><h2>بوابة القراءة والمصادر</h2><p>استكشف المقالات الأثرية والكتب والمراجع وقاموس المصطلحات من خلال بطاقات المكتبة التفصيلية بالأسفل.</p></div>
 <div class="library-expanded-content" id="library-expanded">
 <div class="content-grid" id="libraryGrid"></div>
@@ -905,30 +800,8 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 </section>
 <section class="content-section" id="learning-details"><div class="content-head"><div class="eyebrow">PART 04 · INTERACTIVE LEARNING</div><h2>التعلم والاستكشاف</h2><p>اختبر معلوماتك في أسئلة مستقلة، واكتب اسمك بالعلامات الهيروغليفية التقريبية، واستكشف مواقع مصر القديمة على خريطة تخطيطية.</p></div><div class="quiz-box" id="quizBox"><h3>اختبار بر عنخ</h3><div class="detail-meta" id="quizCounter">بنك الأسئلة · الجولة: 20 سؤالًا</div><div class="progress-track"><span id="quizProgress"></span></div><p id="quizQuestion">ابدأ الاختبار لتظهر الأسئلة والاختيارات والتفسير بعد الإجابة.</p><div class="quiz-options" id="quizOptions"></div><div aria-live="polite" class="quiz-feedback" id="quizFeedback"></div><button class="tool-btn" id="quizStart">ابدأ اختبارًا من 20 سؤالًا</button><button class="tool-btn" id="quizNext" style="display:none">السؤال التالي ←</button></div><div class="learning-tools"><article class="tool-panel map-panel"><div class="mini">ARCHAEOLOGICAL EXPLORER</div><h3>خريطة مصر الأثرية التفاعلية</h3><p>اضغط على أي نقطة لعرض الموقع وأهم آثاره والفترة المرتبطة به. الخريطة بتصميم طبقي ذي عمق بصري ونقاط قابلة للضغط، وهي خريطة استكشافية تخطيطية وليست نموذجًا جغرافيًا مساحيًا أو تضاريس ثلاثية الأبعاد.</p><div class="map-layout"><div class="map-svg-wrap"><svg aria-label="خريطة تخطيطية لمواقع أثرية في مصر القديمة" role="img" viewbox="0 0 420 560"><defs><lineargradient id="land" x1="0" x2="1"><stop stop-color="#17354a"></stop><stop offset="1" stop-color="#0d2336"></stop></lineargradient></defs><path d="M105 18 L265 23 L288 70 L260 125 L278 188 L250 246 L264 307 L235 366 L243 430 L212 535 L160 532 L151 455 L168 385 L145 322 L153 260 L128 207 L145 143 L116 91 Z" fill="#06111d" stroke="#8e754c" stroke-width="3" transform="translate(0 11)"></path><path d="M105 18 L265 23 L288 70 L260 125 L278 188 L250 246 L264 307 L235 366 L243 430 L212 535 L160 532 L151 455 L168 385 L145 322 L153 260 L128 207 L145 143 L116 91 Z" fill="url(#land)" stroke="#b9985d" stroke-width="2"></path><path d="M183 520 C204 448 176 392 194 338 C210 287 177 240 197 195 C211 157 185 113 208 65" fill="none" opacity=".75" stroke="#55c4b5" stroke-linecap="round" stroke-width="8"></path><path d="M205 66 L75 20 M205 66 L320 16 M205 66 L205 10" opacity=".65" stroke="#55c4b5" stroke-width="4"></path><g id="mapPins"></g><text fill="#c5d2dc" font-size="12" text-anchor="end" x="340" y="540">جنوب</text><text fill="#c5d2dc" font-size="12" text-anchor="end" x="340" y="30">شمال</text></svg></div><div class="map-info" id="mapInfo"><b>اختر موقعًا من الخريطة</b><span>سيظهر هنا وصف مختصر للموقع.</span></div></div><div class="map-list" id="mapList"></div></article></div></section>
-<section class="content-section" id="atlas-explorer"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside><div class="section-head"><div class="eyebrow">PART 05 · ARCHAEOLOGICAL ATLAS</div><h2>الأطلس الأثري لمصر</h2><p>استكشف مجموعة من المواقع الأثرية المصرية. مواضع العلامات تقريبية لأغراض الاستكشاف، ويجب الرجوع إلى المصادر المتخصصة قبل استخدامها في أعمال المساحة أو التوثيق.</p></div><div class="atlas-toolbar"><input aria-label="ابحث عن موقع أثري" id="atlasSearch" placeholder="ابحث عن موقع أثري…" type="search"/><select aria-label="تصفية حسب النوع" id="atlasFilter"><option value="all">كل أنواع المواقع</option><option value="pyramid">أهرامات وجبانات</option><option value="temple">معابد</option><option value="city">مدن ومناطق أثرية</option><option value="tomb">مقابر وجبانات</option></select></div><div aria-label="مفتاح ألوان المواقع على الخريطة" class="atlas-legend"><span><i class="legend-dot pyramid"></i> أهرامات وجبانات</span><span><i class="legend-dot temple"></i> معابد</span><span><i class="legend-dot city"></i> مدن ومناطق أثرية</span><span><i class="legend-dot tomb"></i> مقابر</span></div><div class="atlas-layout"><div aria-label="خريطة تفاعلية للمواقع الأثرية" class="map-panel" id="perAnkhMap" role="application"><div class="map-fallback"><span>𓇳</span><b>خريطة مصر الأثرية</b><small>جارٍ تحميل الخريطة التفاعلية…</small></div></div><aside class="atlas-side"><h3>مواقع للاستكشاف</h3><div class="atlas-results" id="atlasResults"></div><p class="source-note">الخريطة تعتمد على OpenStreetMap عبر Leaflet. أسماء المواقع وإحداثياتها هنا نقطة بداية تعليمية وليست بديلًا عن الخرائط المساحية المعتمدة.</p></aside></div><div class="terrain-feature" style="margin-top:22px"><div class="section-head"><div class="eyebrow">3D TERRAIN VIEW</div><h3>التضاريس ثلاثية الأبعاد — نموذج استكشافي</h3><p>تصوير تضاريسي تخطيطي لمجرى النيل والدلتا والصحراء، مع نقاط المواقع الأثرية. هذا النموذج ليس DEM مساحيًا ولا يُستخدم للقياسات أو تحديد الحدود الأثرية.</p></div><div class="terrain-wrap" style="position:relative;background:radial-gradient(ellipse at 50% 45%,#25485a,#081523 75%);border:1px solid var(--line);border-radius:20px;overflow:hidden"><canvas aria-label="نموذج تضاريسي ثلاثي الأبعاد تخطيطي لمصر القديمة" id="egyptTerrain3d" style="width:100%;height:460px;display:block;touch-action:none"></canvas><div style="position:absolute;top:14px;right:16px;color:#f0d79d;font-size:.82rem;pointer-events:none">اسحب للتدوير · عجلة الفأرة للتقريب</div><div style="position:absolute;bottom:12px;left:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="tool-btn" id="terrainReset" type="button">إعادة ضبط</button><button class="tool-btn" id="terrainViewTop" type="button">من أعلى</button></div></div><div aria-live="polite" class="museum-info" id="terrainSiteInfo"><b>استكشف المواقع</b><p>اضغط على إحدى النقاط الذهبية لعرض اسم الموقع ووصفه، أو اختره من قائمة الأطلس بالأعلى.</p></div></div></section>
-<section class="content-section" id="virtual-museum"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside><div class="section-head"><div class="eyebrow">PART 06 · VIRTUAL MUSEUM</div><h2>المتحف الافتراضي</h2><p>مجموعات موضوعية وسجلات تعريفية للقطع، مع الفصل بين البيانات الموثقة والقراءة التفسيرية. افتح أي سجل لعرض تفاصيله ومصدره.</p></div><div class="museum-feature"><div class="museum-mark">𓂀</div><div><span class="eyebrow">DIGITAL GALLERIES</span><h3>اقرأ القطعة… لا تكتفِ بمشاهدتها</h3><p>كل سجل يوضح اسم القطعة، وتأريخها التقريبي، ومادتها، وسياق العثور عليها أو وظيفتها، ومكان حفظها، ورابطًا لمصدر يمكن مراجعته.</p></div></div><div class="atlas-toolbar museum-toolbar"><input aria-label="ابحث في المتحف" id="museumSearch" placeholder="ابحث عن قطعة أو موضوع…" type="search"/><select aria-label="تصفية قاعات المتحف" id="museumFilter"><option value="all">كل القاعات</option><option value="royal">الملكية والسلطة</option><option value="belief">المعتقدات والطقوس</option><option value="daily">الحياة اليومية</option><option value="art">العمارة والفنون</option><option value="writing">الكتابة والتدوين</option></select></div><div class="museum-grid" id="museumGrid">
+<section class="content-section" id="atlas-explorer"><div class="section-head"><div class="eyebrow">PART 05 · ARCHAEOLOGICAL ATLAS</div><h2>الأطلس الأثري لمصر</h2><p>استكشف مجموعة من المواقع الأثرية المصرية. مواضع العلامات تقريبية لأغراض الاستكشاف، ويجب الرجوع إلى المصادر المتخصصة قبل استخدامها في أعمال المساحة أو التوثيق.</p></div><div class="atlas-toolbar"><input aria-label="ابحث عن موقع أثري" id="atlasSearch" placeholder="ابحث عن موقع أثري…" type="search"/><select aria-label="تصفية حسب النوع" id="atlasFilter"><option value="all">كل أنواع المواقع</option><option value="pyramid">أهرامات وجبانات</option><option value="temple">معابد</option><option value="city">مدن ومناطق أثرية</option><option value="tomb">مقابر وجبانات</option></select></div><div aria-label="مفتاح ألوان المواقع على الخريطة" class="atlas-legend"><span><i class="legend-dot pyramid"></i> أهرامات وجبانات</span><span><i class="legend-dot temple"></i> معابد</span><span><i class="legend-dot city"></i> مدن ومناطق أثرية</span><span><i class="legend-dot tomb"></i> مقابر</span></div><div class="atlas-layout"><div aria-label="خريطة تفاعلية للمواقع الأثرية" class="map-panel" id="perAnkhMap" role="application"><div class="map-fallback"><span>𓇳</span><b>خريطة مصر الأثرية</b><small>جارٍ تحميل الخريطة التفاعلية…</small></div></div><aside class="atlas-side"><h3>مواقع للاستكشاف</h3><div class="atlas-results" id="atlasResults"></div><p class="source-note">الخريطة تعتمد على OpenStreetMap عبر Leaflet. أسماء المواقع وإحداثياتها هنا نقطة بداية تعليمية وليست بديلًا عن الخرائط المساحية المعتمدة.</p></aside></div><div class="terrain-feature" style="margin-top:22px"><div class="section-head"><div class="eyebrow">3D TERRAIN VIEW</div><h3>التضاريس ثلاثية الأبعاد — نموذج استكشافي</h3><p>تصوير تضاريسي تخطيطي لمجرى النيل والدلتا والصحراء، مع نقاط المواقع الأثرية. هذا النموذج ليس DEM مساحيًا ولا يُستخدم للقياسات أو تحديد الحدود الأثرية.</p></div><div class="terrain-wrap" style="position:relative;background:radial-gradient(ellipse at 50% 45%,#25485a,#081523 75%);border:1px solid var(--line);border-radius:20px;overflow:hidden"><canvas aria-label="نموذج تضاريسي ثلاثي الأبعاد تخطيطي لمصر القديمة" id="egyptTerrain3d" style="width:100%;height:460px;display:block;touch-action:none"></canvas><div style="position:absolute;top:14px;right:16px;color:#f0d79d;font-size:.82rem;pointer-events:none">اسحب للتدوير · عجلة الفأرة للتقريب</div><div style="position:absolute;bottom:12px;left:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="tool-btn" id="terrainReset" type="button">إعادة ضبط</button><button class="tool-btn" id="terrainViewTop" type="button">من أعلى</button></div></div><div aria-live="polite" class="museum-info" id="terrainSiteInfo"><b>استكشف المواقع</b><p>اضغط على إحدى النقاط الذهبية لعرض اسم الموقع ووصفه، أو اختره من قائمة الأطلس بالأعلى.</p></div></div></section>
+<section class="content-section" id="virtual-museum"><div class="section-head"><div class="eyebrow">PART 06 · VIRTUAL MUSEUM</div><h2>المتحف الافتراضي</h2><p>مجموعات موضوعية وسجلات تعريفية للقطع، مع الفصل بين البيانات الموثقة والقراءة التفسيرية. افتح أي سجل لعرض تفاصيله ومصدره.</p></div><div class="museum-feature"><div class="museum-mark">𓂀</div><div><span class="eyebrow">DIGITAL GALLERIES</span><h3>اقرأ القطعة… لا تكتفِ بمشاهدتها</h3><p>كل سجل يوضح اسم القطعة، وتأريخها التقريبي، ومادتها، وسياق العثور عليها أو وظيفتها، ومكان حفظها، ورابطًا لمصدر يمكن مراجعته.</p></div></div><div class="atlas-toolbar museum-toolbar"><input aria-label="ابحث في المتحف" id="museumSearch" placeholder="ابحث عن قطعة أو موضوع…" type="search"/><select aria-label="تصفية قاعات المتحف" id="museumFilter"><option value="all">كل القاعات</option><option value="royal">الملكية والسلطة</option><option value="belief">المعتقدات والطقوس</option><option value="daily">الحياة اليومية</option><option value="art">العمارة والفنون</option><option value="writing">الكتابة والتدوين</option></select></div><div class="museum-grid" id="museumGrid">
 <button class="museum-card" data-exhibit="narmer" data-room="royal"><span>𓆣</span><b>لوحة الملك نعرمر</b><small>نقش احتفالي · عصر التكوين</small></button>
 <button class="museum-card" data-exhibit="rosetta" data-room="writing"><span>𓏞</span><b>حجر رشيد</b><small>نقش بثلاثة أنظمة كتابية · 196 ق.م</small></button>
 <button class="museum-card" data-exhibit="royal" data-room="royal"><span>𓋹</span><b>التماثيل الملكية</b><small>صورة الملك والشرعية والهيبة</small></button>
@@ -938,18 +811,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <button class="museum-card" data-exhibit="relief" data-room="art"><span>𓉐</span><b>النقوش البارزة</b><small>تقنيات النحت وقراءة المشهد</small></button>
 <button class="museum-card" data-exhibit="architecture" data-room="art"><span>𓊖</span><b>العناصر المعمارية</b><small>الأعمدة والتيجان والكتل الحجرية</small></button>
 </div><div aria-live="polite" class="museum-info" id="museumInfo"><h3>ابدأ جولتك</h3><p>اختر سجلًا من البطاقات لعرض بطاقة تعريف موسعة ومصدر للمراجعة. السجلات الموضوعية تشرح أنواع القطع ولا تدّعي أنها قطعة متحفية بعينها.</p></div><p class="source-note">ملاحظة توثيقية: لوحة نعرمر وحجر رشيد لهما سجلات/صفحات مرجعية محددة. بقية البطاقات مداخل تعليمية موضوعية وليست فهرسة لقطعة برقم تسجيل. لا تُستخدم الصور إلا بعد التحقق من شروط إعادة الاستخدام.</p></section>
-<section class="content-section" id="digital-lab"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside><div class="section-head"><div class="eyebrow">PART 07 · DIGITAL ARCHAEOLOGY LAB</div><h2>معمل الآثار الرقمي</h2><p>نماذج تعليمية مبسطة وأدوات تفاعلية لفهم العمارة واللقى الأثرية. النموذج ثلاثي الأبعاد التالي توضيحي وليس إعادة بناء أثرية دقيقة.</p></div><div class="lab-layout"><div class="model-wrap"><div class="model-label">نموذج تعليمي تخطيطي · معبد مصري</div><canvas aria-label="نموذج ثلاثي الأبعاد تخطيطي لمعبد مصري" id="temple3d"></canvas><div class="model-controls"><button id="modelReset">إعادة ضبط</button><span>اسحب للتدوير · استخدم عجلة الفأرة للتقريب</span></div></div><div class="lab-explain"><h3>قراءة عناصر المعبد</h3><p>اختر عنصرًا من القائمة لتتعرف على وظيفته المعمارية بصورة مبسطة.</p><div class="element-list"><button data-element="pylon">الصرح</button><button data-element="court">الفناء</button><button data-element="hypostyle">قاعة الأعمدة</button><button data-element="sanctuary">قدس الأقداس</button></div><div aria-live="polite" class="element-info" id="elementInfo">يتكون النموذج من كتل هندسية رمزية لتوضيح التتابع المكاني، ولا يمثل معبدًا بعينه.</div></div></div><div class="lab-tools"><a href="#pyramid-detail">مقارنة الأهرامات</a><a href="#god-detail">تاسوع هليوبوليس</a><a href="#duat-hours">ساعات العالم الآخر</a><a href="#temple-detail">مخطط المعبد</a><a href="#mummy-steps">مراحل التحنيط</a><a href="#judgement-detail">وزن القلب</a><a href="#build-sequence">بناء الهرم</a></div></section>
+<section class="content-section" id="digital-lab"><div class="section-head"><div class="eyebrow">PART 07 · DIGITAL ARCHAEOLOGY LAB</div><h2>معمل الآثار الرقمي</h2><p>نماذج تعليمية مبسطة وأدوات تفاعلية لفهم العمارة واللقى الأثرية. النموذج ثلاثي الأبعاد التالي توضيحي وليس إعادة بناء أثرية دقيقة.</p></div><div class="lab-layout"><div class="model-wrap"><div class="model-label">نموذج تعليمي تخطيطي · معبد مصري</div><canvas aria-label="نموذج ثلاثي الأبعاد تخطيطي لمعبد مصري" id="temple3d"></canvas><div class="model-controls"><button id="modelReset">إعادة ضبط</button><span>اسحب للتدوير · استخدم عجلة الفأرة للتقريب</span></div></div><div class="lab-explain"><h3>قراءة عناصر المعبد</h3><p>اختر عنصرًا من القائمة لتتعرف على وظيفته المعمارية بصورة مبسطة.</p><div class="element-list"><button data-element="pylon">الصرح</button><button data-element="court">الفناء</button><button data-element="hypostyle">قاعة الأعمدة</button><button data-element="sanctuary">قدس الأقداس</button></div><div aria-live="polite" class="element-info" id="elementInfo">يتكون النموذج من كتل هندسية رمزية لتوضيح التتابع المكاني، ولا يمثل معبدًا بعينه.</div></div></div><div class="lab-tools"><a href="#pyramid-detail">مقارنة الأهرامات</a><a href="#god-detail">تاسوع هليوبوليس</a><a href="#duat-hours">ساعات العالم الآخر</a><a href="#temple-detail">مخطط المعبد</a><a href="#mummy-steps">مراحل التحنيط</a><a href="#judgement-detail">وزن القلب</a><a href="#build-sequence">بناء الهرم</a></div></section>
 <section class="section" id="about-project" style="padding-top:65px;padding-bottom:65px">
 <div class="section-head" style="margin-bottom:0"><div class="eyebrow">ABOUT THE PROJECT</div><h2>بر عنخ — PER ANKH</h2><p>منصة معرفية رقمية تهدف إلى تقديم الحضارة المصرية القديمة بصورة دقيقة، تفاعلية، وممتعة؛ من خلال محتوى أثري موثق وتجربة استكشاف حديثة.</p></div>
 </section>
@@ -978,20 +840,9 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 </section>
 <script>
-(()=>{const img=document.getElementById('founderPortrait'),tile=document.querySelector('#discover [data-section-image="founder"]');if(!img&&!tile)return;fetch('/assets/gamal-founder-image.txt?v=2',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('portrait asset unavailable');return r.text()}).then(b64=>{const binary=atob(b64.trim()),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);const url=URL.createObjectURL(new Blob([bytes],{type:'image/webp'}));if(img)img.src=url;if(tile)tile.style.setProperty('--founder-tile-image', 'url("'+url+'")')}).catch(()=>{if(img)img.alt='تعذر تحميل صورة المؤسس'})})();
+(()=>{const img=document.getElementById('founderPortrait');if(!img)return;fetch('/assets/gamal-founder-image.txt?v=2',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('portrait asset unavailable');return r.text()}).then(b64=>{const binary=atob(b64.trim()),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);img.src=URL.createObjectURL(new Blob([bytes],{type:'image/webp'}))}).catch(()=>{img.alt='تعذر تحميل صورة المؤسس'})})();
 </script>
-<section class="content-section knowledge-section" id="architecture-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section knowledge-section" id="architecture-details">
 <div class="content-head"><div class="eyebrow">PART 05 · ARCHITECTURE &amp; ART</div><h2>العمارة والفنون في مصر القديمة</h2><p>اقرأ المنشأة بوصفها دليلًا تاريخيًا وفنيًا: الوظيفة، التخطيط، المادة، الزخرفة، والسياق الديني والسياسي.</p></div>
 <div class="knowledge-intro"><p>لم تكن العمارة المصرية نمطًا واحدًا ثابتًا؛ فقد تغيرت أشكال المقابر والمعابد والمنشآت الملكية عبر العصور، كما اختلفت باختلاف الوظيفة والموقع والموارد المتاحة.</p><p>تُعرض هنا خطوط عامة مدعومة بمراجع مؤسسية، مع تجنب تقديم فرضية واحدة على أنها تفسير نهائي لجميع أساليب البناء.</p></div>
 <div class="content-grid">
@@ -1004,18 +855,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 <div class="source-strip"><b>مراجع هذا القسم:</b> <a href="https://www.metmuseum.org/essays/egypt-in-the-old-kingdom-ca-2649-2150-b-c" rel="noopener" target="_blank">The Met · Egypt in the Old Kingdom</a> · <a href="https://www.ees.ac.uk/resource/temples-in-ancient-egypt.html" rel="noopener" target="_blank">Egypt Exploration Society · Temples in Ancient Egypt</a> · <a href="https://smarthistory.org/ancient-egyptian-art/" rel="noopener" target="_blank">Smarthistory · Ancient Egyptian Art</a></div>
 </section>
-<section class="content-section knowledge-section" id="daily-life-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section knowledge-section" id="daily-life-details">
 <div class="content-head"><div class="eyebrow">PART 06 · DAILY LIFE</div><h2>الحياة اليومية في مصر القديمة</h2><p>الحياة خارج القصور والمعابد: الأسرة والعمل والغذاء والملبس والقرية والمدينة والاقتصاد.</p></div>
 <div class="knowledge-intro"><p>نعيد بناء الحياة اليومية من مصادر متباينة: مناظر المقابر، والبرديات، والرسائل، والسجلات الإدارية، وبقايا المنازل والأدوات، والهياكل العظمية واللقى المادية. كل نوع من الأدلة له حدود وأسئلة مختلفة.</p><p><strong>تنبيه منهجي:</strong> مناظر المقابر قد تكون مثالية أو طقسية، وتعكس منظور صاحب المقبرة ومكانته؛ لذلك لا تمثل وحدها حياة جميع السكان أو كل تفاصيل الواقع اليومي.</p></div>
 <div class="content-grid">
@@ -1028,18 +868,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 </div>
 <div class="source-strip"><b>مراجع للمتابعة:</b> <a href="https://unesdoc.unesco.org/ark:/48223/pf0000080986" rel="noopener" target="_blank">UNESCO · Daily life in the land of the Pharaohs</a> · <a href="https://www.britishmuseum.org/learn/schools/ages-7-11/ancient-egypt" rel="noopener" target="_blank">British Museum · Ancient Egypt learning resources</a> · <a href="https://smarthistory.org/reframing-art-history/world-of-ancient-egypt/" rel="noopener" target="_blank">Smarthistory · The world of ancient Egypt</a></div>
 </section>
-<section class="content-section academy-section" id="academy-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section academy-section" id="academy-details">
 <div class="content-head"><div class="eyebrow">PART 09 · PER ANKH ACADEMY</div><h2>أكاديمية بر عنخ</h2><p>مسار تعليمي مستقل يجمع بنك الأسئلة والمراجعة الذاتية وسجل النتائج. كل جولة تعرض تفسير الإجابة ومصدرها بعد الاختيار.</p></div>
 <div class="academy-hero"><div><span class="academy-kicker">LEARN · PRACTICE · REVIEW</span><h3>حوّل المعرفة إلى تقدّم يمكن قياسه</h3><p>اختر مجالًا وعددًا من الأسئلة. الأسئلة مأخوذة من بنك بر عنخ الحالي (300 سؤال)، والتصنيف الموضوعي آلي للمساعدة على المراجعة وليس حكمًا نهائيًا على موضوع السؤال.</p></div><div class="academy-stats"><div><b id="academyBankCount">300</b><span>سؤال في البنك</span></div><div><b>4</b><span>اختيارات لكل سؤال</span></div><div><b>100%</b><span>عرض التفسير والمصدر بعد الإجابة</span></div></div></div>
 <div class="academy-launch"><label for="academyTopic">مجال المراجعة</label><select id="academyTopic"><option value="all">كل الموضوعات</option><option value="kings">الملوك والعصور</option><option value="beliefs">الديانة والمعتقدات</option><option value="artifacts">الفنون والآثار والعمارة</option><option value="evidence">المصادر والقراءة الأثرية</option><option value="general">موضوعات متنوعة</option></select><label for="academyLength">عدد الأسئلة</label><select id="academyLength"><option value="10">10 أسئلة · مراجعة سريعة</option><option selected="" value="20">20 سؤالًا · اختبار قياسي</option><option value="40">40 سؤالًا · تحدي متقدم</option></select><button class="tool-btn" id="academyStart" type="button">ابدأ الاختبار</button></div>
@@ -1050,18 +879,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="academy-history"><div class="academy-history-head"><div><h3>سجل التقدم</h3><p>نتائج الحساب المسجل تُحفظ في قاعدة بيانات Supabase، ونتائج الزائر تُحفظ محليًا على هذا الجهاز.</p></div><button class="tool-btn secondary-tool" id="academyRefreshHistory" type="button">تحديث السجل</button></div><div aria-live="polite" id="academyHistoryList"><p class="community-hint">لم تُحمّل النتائج بعد.</p></div></div>
 <div class="academy-note">ملاحظة: التصنيفات الموضوعية استدلالية، وقد يكون السؤال الواحد متعدد المحاور. بنك الأسئلة يحتوي 300 سؤالًا بأربعة اختيارات وشرح ورابط مصدر؛ وجود الرابط لا يغني عن مراجعة المرجع قبل الاقتباس الأكاديمي.</div>
 </section>
-<section class="content-section knowledge-section" id="references-details"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section knowledge-section" id="references-details">
 <div class="content-head"><div class="eyebrow">PART 10 · REFERENCES &amp; SOURCES</div><h2>المراجع والمصادر</h2><p>بوابة للمصادر المؤسسية التي يستند إليها المحتوى، مع توضيح وظيفة المصدر وحدوده.</p></div>
 <div class="content-grid">
 <article class="content-card"><div class="mini">UNIVERSITY SOURCE</div><h3>UCL · Digital Egypt</h3><p>قوائم زمنية وصفحات فردية للملوك، وعناصر عن الآثار واللغة والدين. تختلف كمية المعلومات من صفحة إلى أخرى.</p><a class="source-link" href="https://www.ucl.ac.uk/museums-static/digitalegypt/" rel="noopener" target="_blank">فتح المصدر ↗</a></article>
@@ -1074,35 +892,13 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <div class="reference-method"><h3>كيف نقرأ المرجع؟</h3><ol><li>نحدد نوع المصدر: سجل قطعة، صفحة متحف، قائمة ملكية، تقرير حفائر، مقال علمي، أو مادة تعليمية.</li><li>نراجع ما يثبته الرابط تحديدًا؛ فقائمة الأسرات لا تثبت وحدها تفاصيل النسب أو مدة الحكم أو كل أحداث السيرة.</li><li>نميز بين الدليل الأثري المباشر، والتفسير الحديث، والرواية المتأخرة، والفرضية المختلف عليها.</li><li>نضع تاريخ الاطلاع وبيانات النشر والصفحة عند إعداد بحث جامعي أو اقتباس مباشر.</li></ol></div>
 <div class="source-strip">تنويه توثيقي: وجود رابط أو اسم مؤسسة لا يعني أن كل فقرة موثقة منه. تميّز البطاقة بين صفحة فردية، وقائمة زمنية عامة، ومدخل لا يحمل إحالة مباشرة. أي معلومة لا تتوفر لها إحالة مناسبة تُوسم «غير مؤكدة» أو «لا تتوفر عنها معلومات موثقة».</div>
 </section>
-<section class="content-section gallery-section" id="photo-gallery"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section gallery-section" id="photo-gallery">
 <div class="content-head"><div class="eyebrow">PART 03 · VISUAL ARCHIVE</div><h2>معرض الصور الأثري</h2><p>استكشف الصور المتاحة على ويكيميديا كومنز حسب الموضوع، وافتح كل صورة لمعرفة عنوانها ومصدرها وبيانات الإسناد المتاحة.</p></div>
 <div class="gallery-toolbar"><input aria-label="ابحث في معرض الصور" id="gallerySearch" placeholder="ابحث عن معبد أو تمثال أو نقش..." type="search"/><div class="gallery-filters" id="galleryFilters"><button class="active" data-gallery="Egyptian temple relief">المعابد والنقوش</button><button data-gallery="Ancient Egyptian statue">التماثيل</button><button data-gallery="Ancient Egyptian tomb painting">المقابر والتصوير</button><button data-gallery="Egyptian pyramids archaeology">الأهرامات</button><button data-gallery="Ancient Egyptian papyrus">البرديات والكتابة</button><button data-gallery="Ancient Egyptian artifacts museum">القطع الأثرية</button></div></div>
 <div aria-live="polite" class="gallery-status" id="galleryStatus">اضغط على أحد التصنيفات لتحميل الصور من ويكيميديا كومنز.</div><div class="archaeology-gallery" id="archaeologyGallery"></div><div class="gallery-actions"><button class="tool-btn" hidden="" id="galleryMore" type="button">تحميل صور إضافية</button></div>
 <p class="atlas-note">الصور تُحمّل عند الطلب من Wikimedia Commons. تختلف تراخيص الصور وشروط الإسناد من ملف لآخر؛ افتح صفحة المصدر قبل إعادة استخدام أي صورة، ولا يعني ظهورها هنا أن جميعها متاحة للاستخدام التجاري.</p>
 </section>
-<section class="content-section community-section" id="community-hub"><aside class="site-identity-card" aria-label="هوية مؤسس ومطور بر عنخ">
-<div class="site-identity-eyebrow">FOUNDER · CREATOR · PROJECT DEVELOPER</div>
-<div class="site-identity-eye" aria-hidden="true">𓂀</div>
-<div class="site-identity-caption">تصميم وتطوير وإنشاء</div>
-<h2>جمال نبيه</h2>
-<div class="site-identity-en">GAMAL NABIH</div>
-<div class="site-identity-rule"></div>
-<p class="site-identity-lead">صاحب فكرة ومؤسس ومطور مشروع بر عنخ — PER ANKH</p>
-<p class="site-identity-copy">مشروع معرفي رقمي مستقل للتعريف بحضارة مصر القديمة وتوثيق تراثها وإتاحته بصورة تفاعلية حديثة.</p>
-<div class="site-identity-role">باحث في الآثار المصرية <span>·</span> Egyptian Archaeology Researcher</div>
-<div class="site-identity-credit">FOUNDED &amp; CREATED BY <strong>GAMAL NABIH</strong></div>
-</aside>
+<section class="content-section community-section" id="community-hub">
 <div class="content-head"><div class="eyebrow">PART 04 · COMMUNITY</div><h2>مجتمع بر عنخ</h2><p>شارك معرفتك، احتفظ بموضوعاتك المفضلة، واقترح ما يساعدنا على تطوير الموسوعة.</p></div>
 <div class="community-grid">
 <article class="community-card"><h3>المفضلة الخاصة بي</h3><p>احفظ الملوك والمواقع والموضوعات التي تريد الرجوع إليها. المفضلة مرتبطة بحسابك.</p><div class="admin-toolbar"><select id="favType"><option value="site">موقع أثري</option><option value="king">ملك</option><option value="article">مقال</option><option value="deity">معبود</option><option value="period">عصر</option><option value="image">صورة</option></select><input id="favId" placeholder="اسم العنصر أو معرّفه"/></div><button class="community-btn" id="addFavorite">أضف إلى المفضلة</button><div class="community-feed" id="favoritesList"><div class="community-hint">سجّل الدخول لعرض مفضلتك.</div></div></article>
@@ -1122,7 +918,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 <span aria-hidden="true" class="footer-brand-divider"></span>
 <span class="footer-brand-en" dir="ltr" lang="en">PER ANKH</span>
 </div>
-<div class="footer-credit">مشروع أسسه وأنشأه وطوّره <strong>جمال نبيه</strong><span class="footer-role">باحث في الآثار المصرية · Egyptian Archaeology Researcher</span></div>
+<div class="footer-credit"><strong>جمال نبيه · GAMAL NABIH</strong><span class="footer-role">باحث في الآثار المصرية · Egyptian Archaeology Researcher</span><a class="footer-website" href="https://per-ankh-egypt.vercel.app/" target="_blank" rel="noopener noreferrer">الموقع الإلكتروني · PER ANKH</a></div>
 <div class="footer-copyright" dir="rtl"><span dir="ltr">© 2026</span><span aria-hidden="true" class="footer-dot">✦</span><span>جميع الحقوق محفوظة</span></div>
 </div>
 </footer>

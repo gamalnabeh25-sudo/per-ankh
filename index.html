@@ -1066,7 +1066,24 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
   };
   const fmtDate=(v)=>v?new Date(v).toLocaleString('ar-EG'):'غير متاح';
   const fmtTime=(v)=>v?new Date(v).toLocaleTimeString('ar-EG'):'غير متاح';
-  const statusLabel=(v)=>v==='active'?'مسجل نشط الآن':v==='logged_out'?'مسجل سجّل الخروج':'مسجل غير نشط';
+  const elapsedLabel=(value)=>{
+   if(!value)return 'الوقت غير متاح';
+   const seconds=Math.max(0,Math.floor((Date.now()-new Date(value).getTime())/1000));
+   if(!Number.isFinite(seconds))return 'الوقت غير متاح';
+   if(seconds<60)return 'أقل من دقيقة';
+   const minutes=Math.floor(seconds/60),hours=Math.floor(minutes/60),days=Math.floor(hours/24);
+   const parts=[];
+   if(days)parts.push(days.toLocaleString('ar-EG')+' '+(days===1?'يوم':days===2?'يومين':'يوم'));
+   const remHours=hours%24,remMinutes=minutes%60;
+   if(remHours)parts.push(remHours.toLocaleString('ar-EG')+' '+(remHours===1?'ساعة':remHours===2?'ساعتين':'ساعة'));
+   if(remMinutes && parts.length<2)parts.push(remMinutes.toLocaleString('ar-EG')+' '+(remMinutes===1?'دقيقة':remMinutes===2?'دقيقتين':'دقيقة'));
+   return 'منذ '+parts.join(' و');
+  };
+  const statusLabel=(row)=>{
+   if(row.status==='active')return 'متصل الآن';
+   const reference=row.status==='logged_out'?(row.last_logout_at||row.last_seen_at):(row.last_seen_at||row.last_login_at);
+   return 'غير متصل '+elapsedLabel(reference);
+  };
   const browserArabic=(v)=>({'Google Chrome':'جوجل كروم','Microsoft Edge':'مايكروسوفت إيدج','Firefox':'فايرفوكس','Safari':'سفاري','Opera':'أوبرا','متصفح غير محدد':'متصفح غير محدد'}[v]||v||'غير متاح');
   const osArabic=(v)=>({'Android':'أندرويد','iOS':'آي أو إس','Windows':'ويندوز','macOS':'ماك','Linux':'لينكس','نظام غير محدد':'نظام غير محدد'}[v]||v||'غير متاح');
   const languageArabic=(v)=>{if(!v)return 'غير متاح';const code=v.toLowerCase();return code.startsWith('ar')?'العربية':code.startsWith('en')?'الإنجليزية':code.startsWith('fr')?'الفرنسية':code.startsWith('de')?'الألمانية':code.startsWith('es')?'الإسبانية':v};
@@ -1107,7 +1124,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      const table=document.createElement('table');table.className='admin-table';
      const thead=document.createElement('thead');thead.innerHTML='<tr><th>الاسم</th><th>البريد الإلكتروني</th><th>الحالة</th><th>تاريخ إنشاء الحساب</th><th>آخر تسجيل دخول</th><th>آخر تسجيل خروج</th><th>آخر نشاط</th><th>مرات الدخول المسجلة</th><th>آخر صفحة</th></tr>';table.append(thead);
      const tbody=document.createElement('tbody');
-     payload.accounts.forEach(row=>{const tr=document.createElement('tr');[row.name||'عضو مسجل',row.email||'غير متاح',statusLabel(row.status),fmtDate(row.created_at),fmtDate(row.last_login_at),fmtDate(row.last_logout_at),fmtDate(row.last_seen_at),Number(row.login_count||0).toLocaleString('ar-EG'),arabicPath(row.last_path)].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td)});tbody.append(tr)});
+     payload.accounts.forEach(row=>{const tr=document.createElement('tr');[row.name||'عضو مسجل',row.email||'غير متاح',statusLabel(row),fmtDate(row.created_at),fmtDate(row.last_login_at),fmtDate(row.last_logout_at),fmtDate(row.last_seen_at),Number(row.login_count||0).toLocaleString('ar-EG'),arabicPath(row.last_path)].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td)});tbody.append(tr)});
      table.append(tbody);accounts.append(table);
     }else accounts.textContent='لا توجد حسابات مسجلة.';
     const accountById=new Map((payload.accounts||[]).map(row=>[row.id,row]));

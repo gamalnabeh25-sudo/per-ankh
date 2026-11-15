@@ -1066,7 +1066,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
   };
   const fmtDate=(v)=>v?new Date(v).toLocaleString('ar-EG'):'غير متاح';
   const fmtTime=(v)=>v?new Date(v).toLocaleTimeString('ar-EG'):'غير متاح';
-  const statusLabel=(v)=>v==='active'?'مسجل نشط الآن':v==='logged_out'?'سجّل الخروج':'مسجل غير نشط';
+  const statusLabel=(v)=>v==='active'?'مسجل نشط الآن':v==='logged_out'?'مسجل سجّل الخروج':'مسجل غير نشط';
   const browserArabic=(v)=>({'Google Chrome':'جوجل كروم','Microsoft Edge':'مايكروسوفت إيدج','Firefox':'فايرفوكس','Safari':'سفاري','Opera':'أوبرا','متصفح غير محدد':'متصفح غير محدد'}[v]||v||'غير متاح');
   const osArabic=(v)=>({'Android':'أندرويد','iOS':'آي أو إس','Windows':'ويندوز','macOS':'ماك','Linux':'لينكس','نظام غير محدد':'نظام غير محدد'}[v]||v||'غير متاح');
   const languageArabic=(v)=>{if(!v)return 'غير متاح';const code=v.toLowerCase();return code.startsWith('ar')?'العربية':code.startsWith('en')?'الإنجليزية':code.startsWith('fr')?'الفرنسية':code.startsWith('de')?'الألمانية':code.startsWith('es')?'الإسبانية':v};
@@ -1105,9 +1105,9 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
     const accounts=$('analyticsAccounts');accounts.replaceChildren();
     if(payload.accounts?.length){
      const table=document.createElement('table');table.className='admin-table';
-     const thead=document.createElement('thead');thead.innerHTML='<tr><th>الاسم</th><th>البريد الإلكتروني</th><th>الحالة</th><th>تاريخ إنشاء الحساب</th><th>آخر تسجيل دخول</th><th>آخر تسجيل خروج</th><th>عدد مرات الدخول</th><th>آخر صفحة</th></tr>';table.append(thead);
+     const thead=document.createElement('thead');thead.innerHTML='<tr><th>الاسم</th><th>البريد الإلكتروني</th><th>الحالة</th><th>تاريخ إنشاء الحساب</th><th>آخر تسجيل دخول</th><th>آخر تسجيل خروج</th><th>آخر نشاط</th><th>عدد مرات الدخول</th><th>آخر صفحة</th></tr>';table.append(thead);
      const tbody=document.createElement('tbody');
-     payload.accounts.forEach(row=>{const tr=document.createElement('tr');[row.name||'عضو مسجل',row.email||'غير متاح',statusLabel(row.status),fmtDate(row.created_at),fmtDate(row.last_login_at),fmtDate(row.last_logout_at),Number(row.login_count||0).toLocaleString('ar-EG'),arabicPath(row.last_path)].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td)});tbody.append(tr)});
+     payload.accounts.forEach(row=>{const tr=document.createElement('tr');[row.name||'عضو مسجل',row.email||'غير متاح',statusLabel(row.status),fmtDate(row.created_at),fmtDate(row.last_login_at),fmtDate(row.last_logout_at),fmtDate(row.last_seen_at),Number(row.login_count||0).toLocaleString('ar-EG'),arabicPath(row.last_path)].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td)});tbody.append(tr)});
      table.append(tbody);accounts.append(table);
     }else accounts.textContent='لا توجد حسابات مسجلة.';
     const visitors=$('analyticsVisitors');visitors.replaceChildren();

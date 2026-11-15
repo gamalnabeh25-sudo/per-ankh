@@ -1138,7 +1138,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
     });
     const payload=await response.json().catch(()=>({}));
     if(!response.ok)throw new Error('تعذر تحميل الإحصائيات. تحقق من الاتصال وصلاحيات المدير ثم حاول مرة أخرى.');
-    const cairoDayBounds=()=>{const now=new Date();const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Cairo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(now);const p=t=>parts.find(x=>x.type===t)?.value||'01';const offset=new Intl.DateTimeFormat('en-US',{timeZone:'Africa/Cairo',timeZoneName:'longOffset'}).formatToParts(now).find(x=>x.type==='timeZoneName')?.value||'GMT+02:00';const m=offset.match(/GMT([+-])(\\d{2}):(\\d{2})/);const mins=m?(m[1]==='+'?1:-1)*(Number(m[2])*60+Number(m[3])):120;const start=Date.UTC(Number(p('year')),Number(p('month'))-1,Number(p('day')))-mins*60000;return [start,start+86400000]};
+    const cairoDayBounds=()=>{const now=new Date();const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Cairo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(now);const p=t=>parts.find(x=>x.type===t)?.value||'01';const offset=new Intl.DateTimeFormat('en-US',{timeZone:'Africa/Cairo',timeZoneName:'longOffset'}).formatToParts(now).find(x=>x.type==='timeZoneName')?.value||'GMT+02:00';const m=offset.match(/GMT([+-])(\d{2}):(\d{2})/);const mins=m?(m[1]==='+'?1:-1)*(Number(m[2])*60+Number(m[3])):120;const start=Date.UTC(Number(p('year')),Number(p('month'))-1,Number(p('day')))-mins*60000;return [start,start+86400000]};
     const [todayStartForKpis,todayEndForKpis]=cairoDayBounds();
     const kpis=[
      {id:'today',label:'زوار اليوم',value:payload.visitors_today??0},

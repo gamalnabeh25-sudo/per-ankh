@@ -589,6 +589,13 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 .analytics-kpi,.analytics-card{background:linear-gradient(145deg,#102a40,#091b2c);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
 .analytics-kpi b{display:block;color:var(--gold2);font-size:27px;direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
 .analytics-kpi span{color:var(--muted);font-size:12px}
+.analytics-kpi-button{width:100%;text-align:right;color:inherit;cursor:pointer;font:inherit;transition:border-color .18s,transform .18s}
+.analytics-kpi-button:hover,.analytics-kpi-button:focus-visible{border-color:var(--gold2);transform:translateY(-2px);outline:none}
+.analytics-kpi-button small{display:block;margin-top:8px;color:var(--teal);font-size:10px}
+.analytics-detail{margin:14px 0 18px}
+.analytics-detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.analytics-detail-head h4{margin:0;color:var(--gold2)}
+.analytics-detail[hidden]{display:none}
 .analytics-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .analytics-card h4{margin:0 0 12px;color:var(--gold2)}
 .analytics-row,.analytics-user{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #ffffff12;font-size:13px}
@@ -600,7 +607,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 .analytics-user small,.analytics-user time{font-size:11px;color:var(--muted);overflow-wrap:anywhere}
 .analytics-footnote{margin-top:14px}
 
-@media(max-width:650px){.analytics-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-columns{grid-template-columns:1fr}.analytics-kpi{padding:12px}.analytics-kpi b{font-size:23px}}
+@media(max-width:650px){.analytics-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-columns{grid-template-columns:1fr}.analytics-kpi{padding:12px}.analytics-kpi b{font-size:23px}.analytics-detail-head{align-items:stretch}.analytics-detail-head .community-btn{width:100%}}
 /* Admin analytics: responsive records instead of cramped wide tables */
 .analytics-record-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;min-width:0}
 .analytics-record{min-width:0;padding:15px;border:1px solid rgba(216,181,107,.2);border-radius:10px;background:linear-gradient(145deg,#102a40,#0a1d2e);overflow:hidden}
@@ -1088,7 +1095,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
  async function adminLoad(){if(!await requireAdmin())return;const [c,s,n]=await Promise.all([sb.from('comments').select('id,status',{count:'exact',head:true}),sb.from('suggestions').select('id,status',{count:'exact',head:true}),sb.from('content_items').select('id,status',{count:'exact',head:true})]);$('adminStats').innerHTML=`<div class="admin-stat"><b>${c.count||0}</b><span>التعليقات</span></div><div class="admin-stat"><b>${s.count||0}</b><span>الاقتراحات</span></div><div class="admin-stat"><b>${n.count||0}</b><span>عناصر المحتوى</span></div><div class="admin-stat"><b>نشط</b><span>اتصال قاعدة البيانات</span></div>`;await adminRenderTab()}
  async function loadAdminAnalytics(){
   const host=$('adminContent');host.replaceChildren();
-  host.innerHTML='<div class="analytics-toolbar"><div><h3>إحصائيات الزوار والحسابات</h3><p class="community-hint">لوحة متابعة الزيارات والأعضاء وحالات الاتصال. بيانات الأجهزة تقريبية ومبنية على معلومات المتصفح فقط، ولا تعني تحديد هوية الزائر المجهول.</p></div><button class="community-btn" id="refreshAnalytics">تحديث البيانات</button></div><div id="analyticsMessage" class="community-hint" aria-live="polite">جارٍ تحميل البيانات...</div><div id="analyticsKpis" class="analytics-kpis"></div><div class="analytics-columns"><section class="analytics-card"><h4>أكثر الصفحات زيارة خلال آخر 30 يومًا</h4><div id="analyticsPages"></div></section><section class="analytics-card"><h4>المتصلون الآن</h4><div id="analyticsUsers"></div></section></div><section class="analytics-card" style="margin-top:16px"><h4>سجل الحسابات المسجلة</h4><p class="community-hint">الحسابات تظل محفوظة بعد تسجيل الخروج أو انقطاع الاتصال.</p><div id="analyticsAccounts"></div></section><section class="analytics-card" style="margin-top:16px"><h4>سجل الزوار والأجهزة</h4><p class="community-hint">لا يتم جمع اسم الزائر المجهول أو رقم هاتفه أو عنوانه. بيانات الأجهزة القديمة قد لا تكون متاحة.</p><div id="analyticsVisitors"></div></section><section class="analytics-card" style="margin-top:16px"><h4>سجل الدخول والخروج</h4><p class="community-hint">آخر ١٠٠ عملية دخول أو تسجيل خروج محفوظة.</p><div id="analyticsEvents"></div></section>';
+  host.innerHTML='<div class="analytics-toolbar"><div><h3>إحصائيات الزوار والحسابات</h3><p class="community-hint">لوحة متابعة الزيارات والأعضاء وحالات الاتصال. بيانات الأجهزة تقريبية ومبنية على معلومات المتصفح فقط، ولا تعني تحديد هوية الزائر المجهول.</p></div><button class="community-btn" id="refreshAnalytics">تحديث البيانات</button></div><div id="analyticsMessage" class="community-hint" aria-live="polite">جارٍ تحميل البيانات...</div><div id="analyticsKpis" class="analytics-kpis"></div><section id="analyticsDetail" class="analytics-card analytics-detail" hidden aria-live="polite"></section><div class="analytics-columns"><section class="analytics-card"><h4>أكثر الصفحات زيارة خلال آخر 30 يومًا</h4><div id="analyticsPages"></div></section><section class="analytics-card"><h4>المتصلون الآن</h4><div id="analyticsUsers"></div></section></div><section class="analytics-card" style="margin-top:16px"><h4>سجل الحسابات المسجلة</h4><p class="community-hint">الحسابات تظل محفوظة بعد تسجيل الخروج أو انقطاع الاتصال.</p><div id="analyticsAccounts"></div></section><section class="analytics-card" style="margin-top:16px"><h4>سجل الزوار والأجهزة</h4><p class="community-hint">لا يتم جمع اسم الزائر المجهول أو رقم هاتفه أو عنوانه. بيانات الأجهزة القديمة قد لا تكون متاحة.</p><div id="analyticsVisitors"></div></section><section class="analytics-card" style="margin-top:16px"><h4>سجل الدخول والخروج</h4><p class="community-hint">آخر ١٠٠ عملية دخول أو تسجيل خروج محفوظة.</p><div id="analyticsEvents"></div></section>';
   const arabicPath=(path)=>{
    const key=(path||'/').replace(/^\/+|\/+$/g,'');
    const labels={'':'الرئيسية','home':'الرئيسية','discover':'الأقسام الرئيسية','kings-details':'ملوك مصر القديمة','religion-details':'الديانة والمعتقدات','timeline-details':'العصور والأسرات','sites-details':'المواقع الأثرية','library-details':'المكتبة','learning-details':'التعلم والاختبارات','about':'المؤسس','architecture-details':'العمارة والفنون','daily-life-details':'الحياة اليومية','virtual-museum':'المتحف الافتراضي','digital-lab':'معمل الآثار الرقمي','academy-details':'أكاديمية بر عنخ','references-details':'المراجع والمصادر','library-expanded':'المكتبة الأثرية','interactive-lab':'مختبر الحضارة التفاعلي','atlas-explorer':'الأطلس الأثري','photo-gallery':'معرض الصور الأثري','community-hub':'مجتمع بر عنخ'};
@@ -1131,19 +1138,29 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
     });
     const payload=await response.json().catch(()=>({}));
     if(!response.ok)throw new Error('تعذر تحميل الإحصائيات. تحقق من الاتصال وصلاحيات المدير ثم حاول مرة أخرى.');
+    const cairoDayBounds=()=>{const now=new Date();const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Cairo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(now);const p=t=>parts.find(x=>x.type===t)?.value||'01';const offset=new Intl.DateTimeFormat('en-US',{timeZone:'Africa/Cairo',timeZoneName:'longOffset'}).formatToParts(now).find(x=>x.type==='timeZoneName')?.value||'GMT+02:00';const m=offset.match(/GMT([+-])(\d{2}):(\d{2})/);const mins=m?(m[1]==='+'?1:-1)*(Number(m[2])*60+Number(m[3])):120;const start=Date.UTC(Number(p('year')),Number(p('month'))-1,Number(p('day')))-mins*60000;return [start,start+86400000]};
+    const [todayStartForKpis,todayEndForKpis]=cairoDayBounds();
     const kpis=[
-     ['زوار اليوم',payload.visitors_today??0],
-     ['الزوار المتصلون الآن',payload.online_visitors??0],
-     ['الجلسات النشطة الآن',payload.online_sessions??0],
-     ['الزوار غير المسجلين الآن',payload.online_guests??0],
-     ['الأعضاء المسجلون النشطون الآن',payload.online_registered??0],
-     ['إجمالي الزيارات',payload.total_visits??0],
-     ['إجمالي مشاهدات الصفحات',payload.total_page_views??0],
-     ['زوار مميزون خلال 30 يومًا',payload.unique_visitors_30d??0],
-     ['الحسابات المسجلة',payload.accounts?.length??0]
+     {id:'today',label:'زوار اليوم',value:payload.visitors_today??0},
+     {id:'online',label:'الزوار المتصلون الآن',value:payload.online_visitors??0},
+     {id:'activeSessions',label:'الجلسات النشطة الآن',value:payload.online_sessions??0},
+     {id:'guests',label:'الزوار غير المسجلين الآن',value:payload.online_guests??0},
+     {id:'membersOnline',label:'الأعضاء النشطون الآن',value:payload.online_registered??0},
+     {id:'visits',label:'إجمالي الزيارات',value:payload.total_visits??0},
+     {id:'views',label:'إجمالي مشاهدات الصفحات',value:payload.total_page_views??0},
+     {id:'unique30',label:'زوار مميزون خلال 30 يومًا',value:payload.unique_visitors_30d??0},
+     {id:'accounts',label:'الحسابات المسجلة',value:payload.accounts?.length??0},
+     {id:'sessionsToday',label:'جلسات اليوم',value:payload.sessions_today??0},
+     {id:'accountsToday',label:'حسابات جديدة اليوم',value:(payload.accounts||[]).filter(a=>{const t=new Date(a.created_at||0).getTime();return t>=todayStartForKpis&&t<todayEndForKpis}).length}
     ];
     const kpiHost=$('analyticsKpis');kpiHost.replaceChildren();
-    kpis.forEach(([label,value])=>{const card=document.createElement('div');card.className='analytics-kpi';const strong=document.createElement('b');strong.textContent=Number(value).toLocaleString('ar-EG');const span=document.createElement('span');span.textContent=label;card.append(strong,span);kpiHost.append(card)});
+    kpis.forEach(item=>{
+     const card=document.createElement('button');card.type='button';card.className='analytics-kpi analytics-kpi-button';card.setAttribute('aria-label','عرض تفاصيل '+item.label);
+     const strong=document.createElement('b');strong.textContent=Number(item.value).toLocaleString('ar-EG');
+     const span=document.createElement('span');span.textContent=item.label;
+     const hint=document.createElement('small');hint.textContent='اضغط لعرض التفاصيل';
+     card.append(strong,span,hint);card.addEventListener('click',()=>showKpiDetail(item.id,item.label));kpiHost.append(card);
+    });
     const pages=$('analyticsPages');pages.replaceChildren();
     if(payload.top_pages_30d?.length){payload.top_pages_30d.forEach(row=>{const line=document.createElement('div');line.className='analytics-row';const name=document.createElement('span');name.textContent=arabicPath(row.path);const count=document.createElement('b');count.textContent=Number(row.views).toLocaleString('ar-EG')+' مشاهدة';line.append(name,count);pages.append(line)})}
     else pages.textContent='لا توجد مشاهدات مسجلة خلال آخر 30 يومًا.';
@@ -1168,29 +1185,92 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      addFields(card,[['تاريخ إنشاء الحساب',fmtDate(row.created_at)],['آخر تسجيل دخول',fmtDate(row.last_login_at)],['آخر تسجيل خروج',fmtDate(row.last_logout_at)],['آخر نشاط',fmtDate(row.last_seen_at)],['مرات الدخول المسجلة',Number(row.login_count||0).toLocaleString('ar-EG')],['آخر صفحة',arabicPath(row.last_path)]]);
     });
     const accountById=new Map(accounts.map(row=>[row.id,row]));
-    const visitors=[...(payload.visitors||[])].sort((a,b)=>new Date(b.last_seen||0)-new Date(a.last_seen||0));
     const nowMs=Date.now();
     const sessionDuration=(row)=>{
-     if(!row.started_at||!row.last_seen)return 'غير متاح';
-     const mins=Math.max(0,Math.floor((new Date(row.last_seen)-new Date(row.started_at))/60000));
-     if(mins<1)return 'أقل من دقيقة';
-     const days=Math.floor(mins/1440),hours=Math.floor((mins%1440)/60),minutes=mins%60,parts=[];
-     if(days)parts.push(days.toLocaleString('ar-EG')+' يوم');
-     if(hours)parts.push(hours.toLocaleString('ar-EG')+' ساعة');
-     if(minutes&&parts.length<2)parts.push(minutes.toLocaleString('ar-EG')+' دقيقة');
-     return parts.join(' و');
+     if(!row.started_at||!row.last_seen)return 0;
+     return Math.max(0,Math.floor((new Date(row.last_seen)-new Date(row.started_at))/1000));
     };
-    renderRecords($('analyticsVisitors'),visitors,(card,row)=>{
-     const online=!row.ended_at&&row.last_seen&&(nowMs-new Date(row.last_seen).getTime())<=90000;
-     const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.user_id?(accountById.get(row.user_id)?.name||'عضو مسجل'):'زائر بدون حساب';const email=document.createElement('small');email.textContent=row.user_id?(accountById.get(row.user_id)?.email||'حساب مسجل'):'جلسة زائر مجهولة';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=online?'متصل الآن':row.ended_at?'انتهت الجلسة':'غير نشط';head.append(info,status);card.append(head);
-     addFields(card,[['نوع الجهاز',row.device_type||'غير متاح للزيارات القديمة'],['المتصفح',browserArabic(row.browser_name)],['نظام التشغيل',osArabic(row.os_name)],['لغة المتصفح',languageArabic(row.language)],['بداية الزيارة',fmtDate(row.started_at)],['آخر نشاط',online?'الآن':elapsedLabel(row.last_seen)],['الفترة المسجلة للجلسة',sessionDuration(row)],['آخر صفحة',arabicPath(row.current_path)]]);
+    const groupedVisitors=new Map();
+    for(const row of (payload.visitors||[])){
+     const key=row.user_id?'user:'+row.user_id:'visitor:'+row.visitor_id;
+     if(!groupedVisitors.has(key))groupedVisitors.set(key,{key,user_id:row.user_id||null,visitor_id:row.visitor_id,sessions:[]});
+     groupedVisitors.get(key).sessions.push(row);
+    }
+    const visitors=[...groupedVisitors.values()].map(person=>{
+     person.sessions.sort((a,b)=>new Date(b.last_seen||0)-new Date(a.last_seen||0));
+     person.latest=person.sessions[0]||{};
+     person.first_seen=person.sessions.reduce((v,r)=>!v||new Date(r.started_at||0)<new Date(v)?r.started_at:v,null);
+     person.last_seen=person.latest.last_seen;
+     person.session_count=person.sessions.length;
+     person.total_duration=person.sessions.reduce((sum,r)=>sum+sessionDuration(r),0);
+     person.is_online=person.sessions.some(r=>!r.ended_at&&r.last_seen&&(nowMs-new Date(r.last_seen).getTime())<=90000);
+     return person;
+    }).sort((a,b)=>new Date(b.last_seen||0)-new Date(a.last_seen||0));
+    const visitorName=(person)=>person.user_id?(accountById.get(person.user_id)?.name||'عضو مسجل'):'زائر بدون حساب';
+    const visitorEmail=(person)=>person.user_id?(accountById.get(person.user_id)?.email||'حساب مسجل'):'زائر غير مسجل';
+    const durationText=(seconds)=>{
+     if(!seconds)return 'أقل من دقيقة';
+     const mins=Math.floor(seconds/60),hours=Math.floor(mins/60),days=Math.floor(hours/24),parts=[];
+     if(days)parts.push(days.toLocaleString('ar-EG')+' يوم');
+     if(hours%24)parts.push((hours%24).toLocaleString('ar-EG')+' ساعة');
+     if(mins%60&&parts.length<2)parts.push((mins%60).toLocaleString('ar-EG')+' دقيقة');
+     return parts.join(' و')||'أقل من دقيقة';
+    };
+    renderRecords($('analyticsVisitors'),visitors,(card,person)=>{
+     const row=person.latest,head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=visitorName(person);const email=document.createElement('small');email.textContent=visitorEmail(person);info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=person.is_online?'متصل الآن':'غير متصل';head.append(info,status);card.append(head);
+     addFields(card,[['نوع الجهاز',row.device_type||'غير متاح للزيارات القديمة'],['المتصفح',browserArabic(row.browser_name)],['نظام التشغيل',osArabic(row.os_name)],['لغة المتصفح',languageArabic(row.language)],['أول زيارة',fmtDate(person.first_seen)],['آخر نشاط',fmtDate(person.last_seen)],['عدد الجلسات',Number(person.session_count).toLocaleString('ar-EG')],['إجمالي مدة الجلسات',durationText(person.total_duration)],['آخر صفحة',arabicPath(row.current_path)]]);
     });
     const events=[...(payload.account_events||[])].sort((a,b)=>new Date(b.event_at||0)-new Date(a.event_at||0));
     renderRecords($('analyticsEvents'),events,(card,row)=>{
      const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.display_name_snapshot||'عضو مسجل';const email=document.createElement('small');email.textContent=row.email_snapshot||'غير متاح';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=row.event_type==='login'?'تسجيل دخول':'تسجيل خروج';head.append(info,status);card.append(head);
      addFields(card,[['التاريخ والوقت',fmtDate(row.event_at)],['الصفحة',arabicPath(row.current_path)]]);
     });
-    const notes=[];if(payload.visitors_today_sampled)notes.push('عدد زوار اليوم محسوب من عينة أول ١٠٬٠٠٠ جلسة.');if(payload.unique_visitors_sampled)notes.push('عدد الزوار المميزين محسوب من آخر ١٠٬٠٠٠ مشاهدة فقط.');if(payload.accounts_limited)notes.push('تم الوصول إلى حد عرض الحسابات.');if(payload.visitors_limited)notes.push('سجل الزوار يعرض أحدث ١٥٠ جلسة فقط.');
+    const detailHost=$('analyticsDetail');
+    const detailRows=(title,rows,build)=>{
+     detailHost.replaceChildren();detailHost.hidden=false;
+     const head=document.createElement('div');head.className='analytics-detail-head';
+     const heading=document.createElement('h4');heading.textContent=title;
+     const close=document.createElement('button');close.type='button';close.className='community-btn';close.textContent='إغلاق التفاصيل';close.addEventListener('click',()=>{detailHost.hidden=true;detailHost.replaceChildren()});
+     head.append(heading,close);detailHost.append(head);
+     const content=document.createElement('div');detailHost.append(content);renderRecords(content,rows,build);
+    };
+    const showKpiDetail=(id,label)=>{
+     const todayStart=todayStartForKpis;
+     const todayEnd=todayEndForKpis;
+     const personCard=(card,person)=>{
+      const row=person.latest,head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=visitorName(person);const email=document.createElement('small');email.textContent=visitorEmail(person);info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=person.is_online?'متصل الآن':'غير متصل';head.append(info,status);card.append(head);
+      addFields(card,[['أول زيارة',fmtDate(person.first_seen)],['آخر نشاط',fmtDate(person.last_seen)],['عدد الجلسات',Number(person.session_count).toLocaleString('ar-EG')],['إجمالي مدة الجلسات',durationText(person.total_duration)],['آخر صفحة',arabicPath(row.current_path)],['المتصفح',browserArabic(row.browser_name)],['الجهاز',row.device_type||'غير متاح']]);
+     };
+     if(id==='today'){
+      const rows=visitors.filter(p=>p.sessions.some(r=>{const t=new Date(r.started_at||0).getTime();return t>=todayStart&&t<todayEnd}));
+      detailRows(label+' — '+rows.length.toLocaleString('ar-EG')+' زائر',rows,personCard);
+     }else if(id==='online'||id==='guests'){
+      const rows=visitors.filter(p=>p.is_online&&(id!=='guests'||!p.user_id));
+      detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,personCard);
+     }else if(id==='activeSessions'){
+      const rows=visitors.filter(p=>p.sessions.some(r=>!r.ended_at&&r.last_seen&&(nowMs-new Date(r.last_seen).getTime())<=90000));
+      detailRows(label+' — '+rows.length.toLocaleString('ar-EG')+' زائر',rows,personCard);
+     }else if(id==='membersOnline'||id==='accounts'){
+      const rows=id==='membersOnline'?accounts.filter(a=>a.status==='active'):accounts;
+      detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.name||'عضو مسجل';const email=document.createElement('small');email.textContent=row.email||'غير متاح';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=statusLabel(row);head.append(info,status);card.append(head);addFields(card,[['إنشاء الحساب',fmtDate(row.created_at)],['آخر دخول',fmtDate(row.last_login_at)],['آخر نشاط',fmtDate(row.last_seen_at)],['مرات الدخول',Number(row.login_count||0).toLocaleString('ar-EG')],['آخر صفحة',arabicPath(row.last_path)]]);});
+     }else if(id==='views'){
+      detailRows(label,payload.top_pages_30d||[],(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const name=document.createElement('strong');name.textContent=arabicPath(row.path);const count=document.createElement('span');count.className='analytics-record-status';count.textContent=Number(row.views).toLocaleString('ar-EG')+' مشاهدة';head.append(name,count);card.append(head);});
+     }else if(id==='visits'||id==='unique30'){
+      const cutoff=id==='unique30'?nowMs-30*86400000:0;
+      const rows=visitors.filter(p=>p.sessions.some(r=>new Date(r.last_seen||r.started_at||0).getTime()>=cutoff));
+      detailRows(label+' — '+(id==='visits'?Number(payload.total_visits||0).toLocaleString('ar-EG')+' زيارة؛ '+rows.length.toLocaleString('ar-EG')+' زائر في السجل المعروض':rows.length.toLocaleString('ar-EG')+' زائر في آخر 30 يومًا'),rows,personCard);
+     }else if(id==='sessionsToday'||id==='accountsToday'){
+      if(id==='sessionsToday'){
+       const rows=visitors.filter(p=>p.sessions.some(r=>{const t=new Date(r.started_at||0).getTime();return t>=todayStart&&t<todayEnd}));
+       detailRows(label+' — '+rows.length.toLocaleString('ar-EG')+' زائر',rows,personCard);
+      }else{
+       const rows=accounts.filter(a=>{const t=new Date(a.created_at||0).getTime();return t>=todayStart&&t<todayEnd});
+       detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.name||'عضو مسجل';const email=document.createElement('small');email.textContent=row.email||'غير متاح';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent='حساب جديد';head.append(info,status);card.append(head);addFields(card,[['تاريخ إنشاء الحساب',fmtDate(row.created_at)],['آخر نشاط',fmtDate(row.last_seen_at)],['آخر صفحة',arabicPath(row.last_path)]]);});
+      }
+     }
+     detailHost.scrollIntoView({behavior:'smooth',block:'start'});
+    };
+    const notes=[];if(payload.visitors_today_sampled)notes.push('عدد زوار اليوم محسوب من عينة أول ١٠٬٠٠٠ جلسة.');if(payload.unique_visitors_sampled)notes.push('عدد الزوار المميزين محسوب من آخر ١٠٬٠٠٠ مشاهدة فقط.');if(payload.accounts_limited)notes.push('تم الوصول إلى حد عرض الحسابات.');if(payload.visitors_limited)notes.push('سجل الزوار يعرض أحدث ١٬٠٠٠ جلسة فقط.');
     say('analyticsMessage','آخر تحديث: '+fmtDate(payload.updated_at)+(notes.length?' — '+notes.join(' '):''));
    }catch(error){say('analyticsMessage',error.message.startsWith('انتهت')?error.message:'تعذر تحميل البيانات. حاول تحديث اللوحة مرة أخرى.');$('analyticsKpis').replaceChildren();$('analyticsPages').textContent='غير متاح';$('analyticsUsers').textContent='غير متاح';$('analyticsAccounts').textContent='غير متاح';$('analyticsVisitors').textContent='غير متاح';$('analyticsEvents').textContent='غير متاح'}
    finally{$('refreshAnalytics').disabled=false}

@@ -18,12 +18,42 @@ const authClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
 
-async function getCaller(req: Request): Promise<string | null> {
+type Caller = { id: string; email: string; displayName: string };
+
+async function getCaller(req: Request): Promise<Caller | null> {
   const bearer = (req.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
   if (!bearer || bearer === SUPABASE_ANON_KEY || bearer.startsWith("sb_publishable_")) return null;
   const { data, error } = await authClient.auth.getUser(bearer);
   if (error || !data.user) throw new Error("Invalid session");
-  return data.user.id;
+  return {
+    id: data.user.id,
+    email: data.user.email || "",
+    displayName: String(data.user.user_metadata?.display_name || data.user.user_metadata?.full_name || ""),
+  };
+}
+
+function parseDevice(req: Request) {
+  const ua = req.headers.get("user-agent") || "";
+  const browser = /Edg\//.test(ua) ? "Microsoft Edge"
+    : /OPR\//.test(ua) ? "Opera"
+    : /Firefox\//.test(ua) ? "Firefox"
+    : /Chrome\//.test(ua) ? "Google Chrome"
+    : /Safari\//.test(ua) ? "Safari" : "متصفح غير محدد";
+  const os = /Android/i.test(ua) ? "Android"
+    : /iPhone|iPad|iPod/i.test(ua) ? "iOS"
+    : /Windows/i.test(ua) ? "Windows"
+    : /Mac OS|Macintosh/i.test(ua) ? "macOS"
+    : /Linux/i.test(ua) ? "Linux" : "نظام غير محدد";
+  const type = /iPad|Tablet/i.test(ua) ? "جهاز لوحي"
+    : /Mobile|Android|iPhone|iPod/i.test(ua) ? "هاتف"
+    : "كمبيوتر";
+  return {
+    device_type: type,
+    browser_name: browser,
+    os_name: os,
+    device_label: type + " · " + os,
+    language: (req.headers.get("accept-language") || "").split(",")[0].slice(0, 24),
+  };
 }
 
 async function isRateLimited(key: string, maxRequests: number): Promise<boolean> {
@@ -41,68 +71,104 @@ async function adminAnalytics(userId: string) {
     .from("user_roles").select("role").eq("user_id", userId).maybeSingle();
   if (roleError || role?.role !== "admin") throw new Error("Admin access required");
 
-  const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-  const onlineSince = new Date(Date.now() - 90 * 1000).toISOString();
-  const [sessionsCount, viewsCount, activeCount, activeGuestsCount, activeResult, viewResult] = await Promise.all([
+  const now = new Date();
+  const since = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
+  const onlineSince = new Date(now.getTime() - 90 * 1000).toISOString();
+  const cairoParts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Africa/Cairo", year: "numeric", month: "2-digit", day: "2-digit",
+  }).formatToParts(now);
+  const part = (type: string) => cairoParts.find((p) => p.type === type)?.value || "01";
+  const offsetText = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Africa/Cairo", timeZoneName: "longOffset",
+  }).formatToParts(now).find((p) => p.type === "timeZoneName")?.value || "GMT+02:00";
+  const offsetMatch = offsetText.match(/GMT([+-])(\d{2}):(\d{2})/);
+  const offsetMinutes = offsetMatch ? (offsetMatch[1] === "+" ? 1 : -1) *
+    (Number(offsetMatch[2]) * 60 + Number(offsetMatch[3])) : 120;
+  const todayStart = new Date(Date.UTC(Number(part("year")), Number(part("month")) - 1, Number(part("day"))) - offsetMinutes * 60000).toISOString();
+
+  const [sessionsCount, viewsCount, activeResult, todaySessions, viewResult, visitorResult] = await Promise.all([
     service.from("site_sessions").select("session_id", { count: "exact", head: true }),
     service.from("site_page_views").select("id", { count: "exact", head: true }),
-    service.from("site_sessions").select("session_id", { count: "exact", head: true }).is("ended_at", null).gte("last_seen", onlineSince),
-    service.from("site_sessions").select("session_id", { count: "exact", head: true }).is("ended_at", null).is("user_id", null).gte("last_seen", onlineSince),
-    service.from("site_sessions").select("session_id,visitor_id,user_id,current_path,last_seen,started_at")
-      .is("ended_at", null).gte("last_seen", onlineSince).order("last_seen", { ascending: false }).limit(250),
+    service.from("site_sessions")
+      .select("session_id,visitor_id,user_id,current_path,last_seen,started_at,device_type,browser_name,os_name,device_label,language")
+      .is("ended_at", null).gte("last_seen", onlineSince).order("last_seen", { ascending: false }).limit(1000),
+    service.from("site_sessions").select("visitor_id,session_id", { count: "exact" })
+      .gte("started_at", todayStart).limit(10000),
     service.from("site_page_views").select("visitor_id,path,viewed_at")
       .gte("viewed_at", since).order("viewed_at", { ascending: false }).limit(10000),
+    service.from("site_sessions")
+      .select("session_id,visitor_id,user_id,current_path,last_seen,started_at,ended_at,device_type,browser_name,os_name,device_label,language")
+      .order("last_seen", { ascending: false }).limit(150),
   ]);
-  if (sessionsCount.error || viewsCount.error || activeCount.error || activeGuestsCount.error || activeResult.error || viewResult.error) {
+  if (sessionsCount.error || viewsCount.error || activeResult.error || todaySessions.error || viewResult.error || visitorResult.error) {
     throw new Error("Analytics query failed");
   }
 
   const active = activeResult.data || [];
-  const activeUserIds = [...new Set(active.map((s: any) => s.user_id).filter(Boolean))] as string[];
+  const guestActive = active.filter((s: any) => !s.user_id);
   const viewRows = viewResult.data || [];
   const uniqueVisitors30d = new Set(viewRows.map((v: any) => v.visitor_id));
+  const uniqueVisitorsToday = new Set((todaySessions.data || []).map((v: any) => v.visitor_id));
   const pages = new Map<string, number>();
   for (const row of viewRows) pages.set(row.path, (pages.get(row.path) || 0) + 1);
 
-  const profiles = activeUserIds.length
-    ? await service.from("profiles").select("id,display_name").in("id", activeUserIds)
-    : { data: [], error: null };
-  if (profiles.error) throw new Error("Could not load active profiles");
-  const profileMap = new Map((profiles.data || []).map((p: any) => [p.id, p.display_name]));
-
-  // Fetch only currently online account records; never enumerate the full user directory.
-  const userRecords = await Promise.all(activeUserIds.map(async (id) => {
-    const { data, error } = await service.auth.admin.getUserById(id);
-    if (error) return [id, ""] as const;
-    return [id, data.user?.email || ""] as const;
-  }));
-  const emailMap = new Map(userRecords);
-
-  const onlineUsers = activeUserIds.map((id) => {
-    const session = active.find((s: any) => s.user_id === id);
+  const authUsers: any[] = [];
+  for (let page = 1; page <= 5; page++) {
+    const { data, error } = await service.auth.admin.listUsers({ page, perPage: 1000 });
+    if (error) throw new Error("Could not load registered accounts");
+    authUsers.push(...(data.users || []));
+    if ((data.users || []).length < 1000) break;
+  }
+  const accountIds = authUsers.map((u: any) => u.id);
+  const [profileResult, activityResult] = accountIds.length
+    ? await Promise.all([
+        service.from("profiles").select("id,display_name").in("id", accountIds),
+        service.from("site_account_activity").select("*").in("user_id", accountIds),
+      ])
+    : [{ data: [], error: null }, { data: [], error: null }];
+  if (profileResult.error || activityResult.error) throw new Error("Could not load account history");
+  const profileMap = new Map((profileResult.data || []).map((p: any) => [p.id, p.display_name]));
+  const activityMap = new Map((activityResult.data || []).map((a: any) => [a.user_id, a]));
+  const accounts = authUsers.map((u: any) => {
+    const activity: any = activityMap.get(u.id) || {};
+    const lastSeen = activity.last_seen_at || u.last_sign_in_at || null;
+    const isOnline = !!lastSeen && new Date(lastSeen).getTime() >= now.getTime() - 90 * 1000 &&
+      activity.last_status === "active";
+    const status = isOnline ? "active" : activity.last_status === "logged_out" ? "logged_out" : "inactive";
     return {
-      id,
-      name: profileMap.get(id) || "عضو مسجل",
-      email: emailMap.get(id) || "",
-      last_seen: session?.last_seen || null,
-      current_path: session?.current_path || "/",
+      id: u.id,
+      name: profileMap.get(u.id) || activity.display_name_snapshot || u.user_metadata?.display_name || u.email || "عضو مسجل",
+      email: u.email || activity.email_snapshot || "",
+      status,
+      created_at: u.created_at || activity.first_seen_at || null,
+      last_login_at: activity.last_login_at || u.last_sign_in_at || null,
+      last_logout_at: activity.last_logout_at || null,
+      last_seen_at: lastSeen,
+      login_count: Number(activity.login_count || 0),
+      last_path: activity.last_path || "/",
     };
-  });
+  }).sort((a: any, b: any) => new Date(b.last_seen_at || b.created_at || 0).getTime() - new Date(a.last_seen_at || a.created_at || 0).getTime());
+  const onlineUsers = accounts.filter((a: any) => a.status === "active");
   const topPages = [...pages.entries()]
     .map(([path, views]) => ({ path, views }))
     .sort((a, b) => b.views - a.views).slice(0, 10);
 
   return {
-    online_sessions: activeCount.count || 0,
-    online_registered: activeUserIds.length,
-    online_guests: activeGuestsCount.count || 0,
+    online_sessions: active.length,
+    online_registered: onlineUsers.length,
+    online_guests: guestActive.length,
+    visitors_today: uniqueVisitorsToday.size,
+    sessions_today: todaySessions.count || 0,
     total_visits: sessionsCount.count || 0,
     total_page_views: viewsCount.count || 0,
     unique_visitors_30d: uniqueVisitors30d.size,
     unique_visitors_sampled: viewRows.length >= 10000,
     top_pages_30d: topPages,
     online_users: onlineUsers,
-    online_users_limited: active.length >= 250,
+    accounts,
+    accounts_limited: authUsers.length >= 5000,
+    visitors: visitorResult.data || [],
+    visitors_limited: (visitorResult.data || []).length >= 150,
     updated_at: new Date().toISOString(),
   };
 }
@@ -127,10 +193,11 @@ Deno.serve(async (req: Request) => {
     return Response.json({ error: "Invalid JSON" }, { status: 400, headers: cors });
   }
 
-  let userId: string | null;
-  try { userId = await getCaller(req); } catch {
+  let caller: Caller | null;
+  try { caller = await getCaller(req); } catch {
     return Response.json({ error: "Invalid session" }, { status: 401, headers: cors });
   }
+  const userId = caller?.id || null;
 
   if (body?.action === "admin_analytics") {
     if (!userId) return Response.json({ error: "Sign-in required" }, { status: 401, headers: cors });
@@ -147,9 +214,12 @@ Deno.serve(async (req: Request) => {
   }
 
   const { action, session_id, visitor_id } = body ?? {};
-  if (!["heartbeat", "pageview", "end"].includes(action) ||
+  if (!["heartbeat", "pageview", "end", "login", "logout"].includes(action) ||
       !uuidPattern.test(session_id ?? "") || !uuidPattern.test(visitor_id ?? "")) {
     return Response.json({ error: "Invalid tracking request" }, { status: 400, headers: cors });
+  }
+  if ((action === "login" || action === "logout") && !userId) {
+    return Response.json({ error: "Sign-in required" }, { status: 401, headers: cors });
   }
 
   try {
@@ -161,10 +231,22 @@ Deno.serve(async (req: Request) => {
     return Response.json({ error: "Tracking temporarily unavailable" }, { status: 503, headers: cors });
   }
 
-  // Guest sessions expire by inactivity; an unauthenticated caller cannot close another user's session.
+  const now = new Date().toISOString();
+
+  if (action === "logout") {
+    const { error: sessionError } = await service.from("site_sessions")
+      .update({ ended_at: now, last_seen: now })
+      .eq("session_id", session_id).eq("visitor_id", visitor_id).eq("user_id", userId);
+    if (sessionError) return Response.json({ error: "Could not close session" }, { status: 500, headers: cors });
+    const { error: accountError } = await service.rpc("record_site_account_logout", {
+      p_user_id: userId, p_session_id: session_id, p_seen_at: now,
+    });
+    if (accountError) return Response.json({ error: "Could not save sign-out status" }, { status: 500, headers: cors });
+    return Response.json({ ok: true }, { headers: cors });
+  }
+
   if (action === "end") {
     if (userId) {
-      const now = new Date().toISOString();
       const { error } = await service.from("site_sessions")
         .update({ ended_at: now, last_seen: now })
         .eq("session_id", session_id).eq("visitor_id", visitor_id).eq("user_id", userId);
@@ -183,22 +265,36 @@ Deno.serve(async (req: Request) => {
   const { data: existing, error: lookupError } = await service.from("site_sessions")
     .select("visitor_id,user_id").eq("session_id", session_id).maybeSingle();
   if (lookupError) return Response.json({ error: "Tracking lookup failed" }, { status: 500, headers: cors });
-  if (existing && (existing.visitor_id !== visitor_id || (existing.user_id && userId && existing.user_id !== userId))) {
+  if (existing && (existing.visitor_id !== visitor_id || (existing.user_id && existing.user_id !== userId))) {
     return Response.json({ error: "Session ownership mismatch" }, { status: 403, headers: cors });
   }
 
-  const now = new Date().toISOString();
+  const device = parseDevice(req);
+  let displayName = caller?.displayName || "";
+  if (userId && !displayName) {
+    const { data: profile } = await service.from("profiles").select("display_name").eq("id", userId).maybeSingle();
+    displayName = profile?.display_name || "عضو بر عنخ";
+  }
   const row = {
     session_id, visitor_id, user_id: userId || existing?.user_id || null,
-    current_path: path, last_seen: now, ended_at: null,
+    current_path: path, last_seen: now, ended_at: null, ...device,
   };
   const write = existing
     ? await service.from("site_sessions").update({
-        user_id: row.user_id, current_path: path, last_seen: now, ended_at: null,
+        user_id: row.user_id, current_path: path, last_seen: now, ended_at: null, ...device,
       }).eq("session_id", session_id).eq("visitor_id", visitor_id)
     : await service.from("site_sessions").insert({ ...row, started_at: now });
 
   if (write.error) return Response.json({ error: "Could not record session" }, { status: 500, headers: cors });
+
+  if (userId) {
+    const rpcName = action === "login" ? "record_site_account_login" : "touch_site_account_activity";
+    const { error } = await service.rpc(rpcName, {
+      p_user_id: userId, p_email: caller?.email || "", p_display_name: displayName,
+      p_session_id: session_id, p_path: path, p_seen_at: now,
+    });
+    if (error) return Response.json({ error: "Could not save account activity" }, { status: 500, headers: cors });
+  }
 
   if (action === "pageview") {
     const { error } = await service.from("site_page_views").insert({
@@ -207,5 +303,5 @@ Deno.serve(async (req: Request) => {
     if (error) return Response.json({ error: "Could not record page view" }, { status: 500, headers: cors });
   }
 
-  return Response.json({ ok: true }, { headers: cors });
+  return Response.json({ ok: true }, { headers: cors });;
 });

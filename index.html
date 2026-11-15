@@ -1164,8 +1164,9 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
    return pathname || '/';
  };
  const sendAnalytics=async(action)=>{
-   if(analyticsInFlight)return;
-   analyticsInFlight=true;
+   const priority=action==='login'||action==='logout';
+   if(analyticsInFlight&&!priority)return;
+   if(!priority)analyticsInFlight=true;
    try{
      const {data}=await sb.auth.getSession();
      const token=data.session?.access_token||SUPABASE_PUBLISHABLE_KEY;
@@ -1179,7 +1180,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      if(!response.ok&&response.status!==429)console.warn('Per Ankh analytics:',response.status);
      if(action==='pageview'&&response.ok)analyticsLastPath=path;
    }catch(error){console.warn('Per Ankh analytics temporarily unavailable:',error)}
-   finally{analyticsInFlight=false}
+   finally{if(!priority)analyticsInFlight=false}
  };
  const trackCurrentPage=()=>{
    const path=analyticsPath();

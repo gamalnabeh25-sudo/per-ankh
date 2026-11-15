@@ -120,13 +120,18 @@ async function adminAnalytics(userId: string) {
     if ((data.users || []).length < 1000) break;
   }
   const accountIds = authUsers.map((u: any) => u.id);
-  const [profileResult, activityResult] = accountIds.length
-    ? await Promise.all([
-        service.from("profiles").select("id,display_name").in("id", accountIds),
-        service.from("site_account_activity").select("*").in("user_id", accountIds),
-      ])
-    : [{ data: [], error: null }, { data: [], error: null }];
-  if (profileResult.error || activityResult.error) throw new Error("Could not load account history");
+  const [profileResult, activityResult, eventResult] = await Promise.all([
+    accountIds.length
+      ? service.from("profiles").select("id,display_name").in("id", accountIds)
+      : Promise.resolve({ data: [], error: null }),
+    accountIds.length
+      ? service.from("site_account_activity").select("*").in("user_id", accountIds)
+      : Promise.resolve({ data: [], error: null }),
+    service.from("site_account_events")
+      .select("user_id,email_snapshot,display_name_snapshot,event_type,session_id,event_at,current_path")
+      .order("event_at", { ascending: false }).limit(100),
+  ]);
+  if (profileResult.error || activityResult.error || eventResult.error) throw new Error("Could not load account history");
   const profileMap = new Map((profileResult.data || []).map((p: any) => [p.id, p.display_name]));
   const activityMap = new Map((activityResult.data || []).map((a: any) => [a.user_id, a]));
   const accounts = authUsers.map((u: any) => {
@@ -169,6 +174,7 @@ async function adminAnalytics(userId: string) {
     accounts_limited: authUsers.length >= 5000,
     visitors: visitorResult.data || [],
     visitors_limited: (visitorResult.data || []).length >= 150,
+    account_events: eventResult.data || [],
     updated_at: new Date().toISOString(),
   };
 }

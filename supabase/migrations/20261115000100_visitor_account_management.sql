@@ -67,7 +67,7 @@ select
   coalesce(u.created_at, now()),
   u.last_sign_in_at,
   u.last_sign_in_at,
-  case when u.last_sign_in_at is null then 0 else 1 end,
+  0,
   'inactive',
   now(),
   now()

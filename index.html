@@ -1275,14 +1275,19 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      const button=document.createElement('button');button.type='button';button.className='analytics-session-open';button.textContent='عرض الجلسات والتفاصيل';button.addEventListener('click',()=>showPersonSessions(person));
      wrap.append(heading,button);card.append(wrap);
     };
+    const addAccountSessions=(card,account)=>{
+     const person=visitors.find(item=>item.user_id&&item.user_id===account.id);
+     if(person)addSessionHistory(card,person);
+     else{const note=document.createElement('p');note.className='community-hint';note.textContent='لا توجد جلسات مرتبطة بهذا الحساب ضمن السجل المعروض.';card.append(note)}
+    };
     renderRecords($('analyticsVisitors'),visitors,(card,person)=>{
      const row=person.latest,head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=visitorName(person);const email=document.createElement('small');email.textContent=visitorEmail(person);info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=person.is_online?'متصل الآن':'غير متصل';head.append(info,status);card.append(head);
      addFields(card,[['نوع الجهاز',row.device_type||'غير متاح للزيارات القديمة'],['المتصفح',browserArabic(row.browser_name)],['نظام التشغيل',osArabic(row.os_name)],['لغة المتصفح',languageArabic(row.language)],['أول زيارة',fmtDate(person.first_seen)],['آخر نشاط',fmtDate(person.last_seen)],['عدد الجلسات',Number(person.session_count).toLocaleString('ar-EG')],['إجمالي مدة الجلسات',durationText(person.total_duration)],['آخر صفحة',arabicPath(row.current_path)]]);
      addSessionHistory(card,person);
     });
     for(const card of document.querySelectorAll('#analyticsAccounts .analytics-record')){
-     const person=visitors.find(item=>item.user_id&&item.user_id===card.dataset.accountId);
-     if(person)addSessionHistory(card,person);
+     const account=accounts.find(item=>item.id===card.dataset.accountId);
+     if(account)addAccountSessions(card,account);
     }
     const events=[...(payload.account_events||[])].sort((a,b)=>new Date(b.event_at||0)-new Date(a.event_at||0));
     renderRecords($('analyticsEvents'),events,(card,row)=>{
@@ -1321,7 +1326,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
       detailRows(label+' — '+rows.length.toLocaleString('ar-EG')+' زائر',rows,personCard);
      }else if(id==='membersOnline'||id==='accounts'){
       const rows=id==='membersOnline'?accounts.filter(a=>a.status==='active'):accounts;
-      detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.name||'عضو مسجل';const email=document.createElement('small');email.textContent=row.email||'غير متاح';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=statusLabel(row);head.append(info,status);card.append(head);addFields(card,[['إنشاء الحساب',fmtDate(row.created_at)],['آخر دخول',fmtDate(row.last_login_at)],['آخر نشاط',fmtDate(row.last_seen_at)],['مرات الدخول',Number(row.login_count||0).toLocaleString('ar-EG')],['آخر صفحة',arabicPath(row.last_path)]]);});
+      detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.name||'عضو مسجل';const email=document.createElement('small');email.textContent=row.email||'غير متاح';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=statusLabel(row);head.append(info,status);card.append(head);addFields(card,[['إنشاء الحساب',fmtDate(row.created_at)],['آخر دخول',fmtDate(row.last_login_at)],['آخر نشاط',fmtDate(row.last_seen_at)],['مرات الدخول',Number(row.login_count||0).toLocaleString('ar-EG')],['آخر صفحة',arabicPath(row.last_path)]]);addAccountSessions(card,row);});
      }else if(id==='views'){
       detailRows(label,payload.top_pages_30d||[],(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const name=document.createElement('strong');name.textContent=arabicPath(row.path);const count=document.createElement('span');count.className='analytics-record-status';count.textContent=Number(row.views).toLocaleString('ar-EG')+' مشاهدة';head.append(name,count);card.append(head);});
      }else if(id==='visits'||id==='unique30'){
@@ -1334,7 +1339,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
        detailRows(label+' — '+rows.length.toLocaleString('ar-EG')+' زائر',rows,personCard);
       }else{
        const rows=accounts.filter(a=>{const t=new Date(a.created_at||0).getTime();return t>=todayStart&&t<todayEnd});
-       detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.name||'عضو مسجل';const email=document.createElement('small');email.textContent=row.email||'غير متاح';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent='حساب جديد';head.append(info,status);card.append(head);addFields(card,[['تاريخ إنشاء الحساب',fmtDate(row.created_at)],['آخر نشاط',fmtDate(row.last_seen_at)],['آخر صفحة',arabicPath(row.last_path)]]);});
+       detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.name||'عضو مسجل';const email=document.createElement('small');email.textContent=row.email||'غير متاح';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent='حساب جديد';head.append(info,status);card.append(head);addFields(card,[['تاريخ إنشاء الحساب',fmtDate(row.created_at)],['آخر نشاط',fmtDate(row.last_seen_at)],['آخر صفحة',arabicPath(row.last_path)]]);addAccountSessions(card,row);});
       }
      }
      const closeButton=detailHost.querySelector('.analytics-detail-close');if(closeButton)closeButton.focus();

@@ -1072,11 +1072,12 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
    if(!Number.isFinite(seconds))return 'الوقت غير متاح';
    if(seconds<60)return 'أقل من دقيقة';
    const minutes=Math.floor(seconds/60),hours=Math.floor(minutes/60),days=Math.floor(hours/24);
+   const unit=(n,one,two,few,many)=>n===1?one:n===2?two:n%100>=3&&n%100<=10?few:many;
    const parts=[];
-   if(days)parts.push(days.toLocaleString('ar-EG')+' '+(days===1?'يوم':days===2?'يومين':'يوم'));
+   if(days)parts.push(days.toLocaleString('ar-EG')+' '+unit(days,'يوم','يومين','أيام','يومًا'));
    const remHours=hours%24,remMinutes=minutes%60;
-   if(remHours)parts.push(remHours.toLocaleString('ar-EG')+' '+(remHours===1?'ساعة':remHours===2?'ساعتين':'ساعة'));
-   if(remMinutes && parts.length<2)parts.push(remMinutes.toLocaleString('ar-EG')+' '+(remMinutes===1?'دقيقة':remMinutes===2?'دقيقتين':'دقيقة'));
+   if(remHours)parts.push(remHours.toLocaleString('ar-EG')+' '+unit(remHours,'ساعة','ساعتين','ساعات','ساعة'));
+   if(remMinutes && parts.length<2)parts.push(remMinutes.toLocaleString('ar-EG')+' '+unit(remMinutes,'دقيقة','دقيقتين','دقائق','دقيقة'));
    return 'منذ '+parts.join(' و');
   };
   const statusLabel=(row)=>{

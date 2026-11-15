@@ -1149,8 +1149,10 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      {id:'unique30',label:'زوار مميزون خلال 30 يومًا',value:payload.unique_visitors_30d??0},
      {id:'accounts',label:'الحسابات المسجلة',value:payload.accounts?.length??0},
      {id:'sessionsToday',label:'جلسات اليوم',value:payload.sessions_today??0},
-     {id:'endedSessions',label:'الجلسات المنتهية',value:Math.max(0,(payload.total_visits??0)-(payload.online_sessions??0))}
+     {id:'accountsToday',label:'حسابات جديدة اليوم',value:(payload.accounts||[]).filter(a=>{const t=new Date(a.created_at||0).getTime();return t>=todayStartForKpis()&&t<todayEndForKpis()}).length}
     ];
+    const cairoDayBounds=()=>{const now=new Date();const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Cairo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(now);const p=t=>parts.find(x=>x.type===t)?.value||'01';const offset=new Intl.DateTimeFormat('en-US',{timeZone:'Africa/Cairo',timeZoneName:'longOffset'}).formatToParts(now).find(x=>x.type==='timeZoneName')?.value||'GMT+02:00';const m=offset.match(/GMT([+-])(\\d{2}):(\\d{2})/);const mins=m?(m[1]==='+'?1:-1)*(Number(m[2])*60+Number(m[3])):120;const start=Date.UTC(Number(p('year')),Number(p('month'))-1,Number(p('day')))-mins*60000;return [start,start+86400000]};
+    const [todayStartForKpis,todayEndForKpis]=cairoDayBounds();
     const kpiHost=$('analyticsKpis');kpiHost.replaceChildren();
     kpis.forEach(item=>{
      const card=document.createElement('button');card.type='button';card.className='analytics-kpi analytics-kpi-button';card.setAttribute('aria-label','عرض تفاصيل '+item.label);
@@ -1230,11 +1232,11 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      const heading=document.createElement('h4');heading.textContent=title;
      const close=document.createElement('button');close.type='button';close.className='community-btn';close.textContent='إغلاق التفاصيل';close.addEventListener('click',()=>{detailHost.hidden=true;detailHost.replaceChildren()});
      head.append(heading,close);detailHost.append(head);
-     renderRecords(detailHost,rows,build);
+     const content=document.createElement('div');detailHost.append(content);renderRecords(content,rows,build);
     };
     const showKpiDetail=(id,label)=>{
-     const todayStart=new Date(new Date().toLocaleDateString('en-US',{timeZone:'Africa/Cairo'})).getTime();
-     const todayEnd=todayStart+86400000;
+     const todayStart=todayStartForKpis;
+     const todayEnd=todayEndForKpis;
      const personCard=(card,person)=>{
       const row=person.latest,head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=visitorName(person);const email=document.createElement('small');email.textContent=visitorEmail(person);info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=person.is_online?'متصل الآن':'غير متصل';head.append(info,status);card.append(head);
       addFields(card,[['أول زيارة',fmtDate(person.first_seen)],['آخر نشاط',fmtDate(person.last_seen)],['عدد الجلسات',Number(person.session_count).toLocaleString('ar-EG')],['إجمالي مدة الجلسات',durationText(person.total_duration)],['آخر صفحة',arabicPath(row.current_path)],['المتصفح',browserArabic(row.browser_name)],['الجهاز',row.device_type||'غير متاح']]);
@@ -1255,9 +1257,9 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
       detailRows(label,payload.top_pages_30d||[],(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const name=document.createElement('strong');name.textContent=arabicPath(row.path);const count=document.createElement('span');count.className='analytics-record-status';count.textContent=Number(row.views).toLocaleString('ar-EG')+' مشاهدة';head.append(name,count);card.append(head);});
      }else if(id==='visits'||id==='unique30'){
       detailRows(label+' — '+visitors.length.toLocaleString('ar-EG')+' زائر معروض',visitors,personCard);
-     }else if(id==='sessionsToday'||id==='endedSessions'){
-      const rows=visitors.flatMap(p=>p.sessions.filter(r=>id==='sessionsToday'?new Date(r.started_at||0).getTime()>=todayStart&&new Date(r.started_at||0).getTime()<todayEnd:!!r.ended_at).map(r=>({...r,visitor_label:visitorName(p),visitor_email:visitorEmail(p)})));
-      detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.visitor_label;const email=document.createElement('small');email.textContent=row.visitor_email;info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=row.ended_at?'انتهت الجلسة':'جلسة';head.append(info,status);card.append(head);addFields(card,[['بداية الجلسة',fmtDate(row.started_at)],['آخر نشاط',fmtDate(row.last_seen)],['آخر صفحة',arabicPath(row.current_path)]]);});
+     }else if(id==='sessionsToday'||id==='accountsToday'){
+      const rows=id==='sessionsToday'?visitors.flatMap(p=>p.sessions.filter(r=>new Date(r.started_at||0).getTime()>=todayStart&&new Date(r.started_at||0).getTime()<todayEnd).map(r=>({...r,visitor_label:visitorName(p),visitor_email:visitorEmail(p)}))):accounts.filter(a=>{const t=new Date(a.created_at||0).getTime();return t>=todayStart&&t<todayEnd});
+      detailRows(label+' — '+rows.length.toLocaleString('ar-EG'),rows,(card,row)=>{const head=document.createElement('div');head.className='analytics-record-head';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=row.visitor_label||row.name||'عضو مسجل';const email=document.createElement('small');email.textContent=row.visitor_email||row.email||'غير متاح';info.append(name,email);const status=document.createElement('span');status.className='analytics-record-status';status.textContent=row.visitor_label?'جلسة':'حساب جديد';head.append(info,status);card.append(head);addFields(card,[['التاريخ',fmtDate(row.started_at||row.created_at)],['آخر نشاط',fmtDate(row.last_seen)],['آخر صفحة',arabicPath(row.current_path||row.last_path)]]);});
      }
      detailHost.scrollIntoView({behavior:'smooth',block:'start'});
     };

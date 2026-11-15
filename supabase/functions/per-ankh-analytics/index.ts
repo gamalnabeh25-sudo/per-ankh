@@ -106,6 +106,8 @@ async function adminAnalytics(userId: string) {
 
   const active = activeResult.data || [];
   const guestActive = active.filter((s: any) => !s.user_id);
+  const onlineVisitors = new Set(active.map((s: any) => s.visitor_id));
+  const onlineGuestVisitors = new Set(guestActive.map((s: any) => s.visitor_id));
   const viewRows = viewResult.data || [];
   const uniqueVisitors30d = new Set(viewRows.map((v: any) => v.visitor_id));
   const uniqueVisitorsToday = new Set((todaySessions.data || []).map((v: any) => v.visitor_id));
@@ -160,9 +162,11 @@ async function adminAnalytics(userId: string) {
 
   return {
     online_sessions: active.length,
+    online_visitors: onlineVisitors.size,
     online_registered: onlineUsers.length,
-    online_guests: guestActive.length,
+    online_guests: onlineGuestVisitors.size,
     visitors_today: uniqueVisitorsToday.size,
+    visitors_today_sampled: (todaySessions.data || []).length >= 10000,
     sessions_today: todaySessions.count || 0,
     total_visits: sessionsCount.count || 0,
     total_page_views: viewsCount.count || 0,

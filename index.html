@@ -621,6 +621,7 @@ select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{ou
 .analytics-field span{color:#91a5b5;font-size:10px}
 .analytics-field b{color:#e5ebef;font-size:12px;font-weight:500;overflow-wrap:anywhere;word-break:break-word}
 .analytics-empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed #ffffff24;border-radius:9px}
+@media(max-width:650px){.analytics-record-grid{grid-template-columns:1fr}}
 .analytics-record-grid .analytics-record:only-child{grid-column:1/-1}
 .signup-nudge{position:fixed;z-index:70;inset:auto 16px 16px;max-width:760px;margin-inline:auto;padding:15px 18px;border:1px solid rgba(216,181,107,.72);border-radius:14px;background:linear-gradient(120deg,rgba(9,27,44,.98),rgba(18,48,69,.98));box-shadow:0 16px 55px #0009;display:flex;align-items:center;gap:14px;backdrop-filter:blur(14px)}
 .signup-nudge[hidden]{display:none}
@@ -1190,10 +1191,13 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      if(!row.started_at||!row.last_seen)return 0;
      return Math.max(0,Math.floor((new Date(row.last_seen)-new Date(row.started_at))/1000));
     };
+    const visitorAccountMap=new Map();
+    for(const row of (payload.visitors||[])){if(row.user_id&&row.visitor_id)visitorAccountMap.set(row.visitor_id,row.user_id)}
     const groupedVisitors=new Map();
     for(const row of (payload.visitors||[])){
-     const key=row.user_id?'user:'+row.user_id:'visitor:'+row.visitor_id;
-     if(!groupedVisitors.has(key))groupedVisitors.set(key,{key,user_id:row.user_id||null,visitor_id:row.visitor_id,sessions:[]});
+     const linkedUserId=row.user_id||visitorAccountMap.get(row.visitor_id)||null;
+     const key=linkedUserId?'user:'+linkedUserId:'visitor:'+row.visitor_id;
+     if(!groupedVisitors.has(key))groupedVisitors.set(key,{key,user_id:linkedUserId,visitor_id:row.visitor_id,sessions:[]});
      groupedVisitors.get(key).sessions.push(row);
     }
     const visitors=[...groupedVisitors.values()].map(person=>{

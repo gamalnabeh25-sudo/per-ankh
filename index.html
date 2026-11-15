@@ -1105,7 +1105,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
     const accounts=$('analyticsAccounts');accounts.replaceChildren();
     if(payload.accounts?.length){
      const table=document.createElement('table');table.className='admin-table';
-     const thead=document.createElement('thead');thead.innerHTML='<tr><th>الاسم</th><th>البريد الإلكتروني</th><th>الحالة</th><th>تاريخ إنشاء الحساب</th><th>آخر تسجيل دخول</th><th>آخر تسجيل خروج</th><th>آخر نشاط</th><th>عدد مرات الدخول</th><th>آخر صفحة</th></tr>';table.append(thead);
+     const thead=document.createElement('thead');thead.innerHTML='<tr><th>الاسم</th><th>البريد الإلكتروني</th><th>الحالة</th><th>تاريخ إنشاء الحساب</th><th>آخر تسجيل دخول</th><th>آخر تسجيل خروج</th><th>آخر نشاط</th><th>مرات الدخول المسجلة</th><th>آخر صفحة</th></tr>';table.append(thead);
      const tbody=document.createElement('tbody');
      payload.accounts.forEach(row=>{const tr=document.createElement('tr');[row.name||'عضو مسجل',row.email||'غير متاح',statusLabel(row.status),fmtDate(row.created_at),fmtDate(row.last_login_at),fmtDate(row.last_logout_at),fmtDate(row.last_seen_at),Number(row.login_count||0).toLocaleString('ar-EG'),arabicPath(row.last_path)].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td)});tbody.append(tr)});
      table.append(tbody);accounts.append(table);

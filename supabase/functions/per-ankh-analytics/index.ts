@@ -139,8 +139,9 @@ async function adminAnalytics(userId: string) {
   const accounts = authUsers.map((u: any) => {
     const activity: any = activityMap.get(u.id) || {};
     const lastSeen = activity.last_seen_at || u.last_sign_in_at || null;
-    const isOnline = !!lastSeen && new Date(lastSeen).getTime() >= now.getTime() - 90 * 1000 &&
-      activity.last_status === "active";
+    // A member is online if at least one of their sessions has a recent heartbeat.
+    // This avoids marking them offline when they sign out on one device but remain active on another.
+    const isOnline = active.some((session: any) => session.user_id === u.id);
     const status = isOnline ? "active" : activity.last_status === "logged_out" ? "logged_out" : "inactive";
     return {
       id: u.id,

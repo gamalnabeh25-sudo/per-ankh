@@ -1118,9 +1118,11 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
    const pathname=(location.pathname||'/').replace(/\/{2,}/g,'/').slice(0,180);
    const rawHash=(location.hash||'').replace(/^#/,'');
    if(!rawHash || /(?:access_token|refresh_token|id_token|provider_token|code=|state=|error_description|expires_in|scope=)/i.test(rawHash)) return pathname || '/';
-   // Preserve only simple in-app hash routes; ignore arbitrary fragments.
-   if(/^\/[a-zA-Z0-9_/-]{1,120}$/.test(rawHash) && !rawHash.startsWith('//')) {
-     return (pathname.endsWith('/')?pathname:pathname+'/') + rawHash.replace(/^\/+/, '');
+   // Preserve the site's actual hash-anchor routes (for example #kings-details)
+   // and simple slash-prefixed routes, while rejecting query-like/OAuth fragments.
+   if(/^(?:\/[a-zA-Z0-9_/-]{1,120}|[a-zA-Z0-9_-]{1,120})$/.test(rawHash) && !rawHash.startsWith('//')) {
+     const route=rawHash.replace(/^\/+/, '');
+     return pathname==='/' ? '/'+route : (pathname.endsWith('/')?pathname:pathname+'/')+route;
    }
    return pathname || '/';
  };

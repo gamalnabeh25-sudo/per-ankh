@@ -1062,7 +1062,7 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
   const arabicPath=(path)=>{
    const key=(path||'/').replace(/^\/+|\/+$/g,'');
    const labels={'':'الرئيسية','home':'الرئيسية','discover':'الأقسام الرئيسية','kings-details':'ملوك مصر القديمة','religion-details':'الديانة والمعتقدات','timeline-details':'العصور والأسرات','sites-details':'المواقع الأثرية','library-details':'المكتبة','learning-details':'التعلم والاختبارات','about':'المؤسس','architecture-details':'العمارة والفنون','daily-life-details':'الحياة اليومية','virtual-museum':'المتحف الافتراضي','digital-lab':'معمل الآثار الرقمي','academy-details':'أكاديمية بر عنخ','references-details':'المراجع والمصادر','library-expanded':'المكتبة الأثرية','interactive-lab':'مختبر الحضارة التفاعلي','atlas-explorer':'الأطلس الأثري','photo-gallery':'معرض الصور الأثري','community-hub':'مجتمع بر عنخ'};
-   return labels[key]||key.replace(/[-_]/g,' ');
+   return labels[key]||'صفحة أخرى';
   };
   const fmtDate=(v)=>v?new Date(v).toLocaleString('ar-EG'):'غير متاح';
   const fmtTime=(v)=>v?new Date(v).toLocaleTimeString('ar-EG'):'غير متاح';
@@ -1082,10 +1082,11 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      body:JSON.stringify({action:'admin_analytics'})
     });
     const payload=await response.json().catch(()=>({}));
-    if(!response.ok)throw new Error(payload.error||'تعذر تحميل الإحصائيات ('+response.status+')');
+    if(!response.ok)throw new Error('تعذر تحميل الإحصائيات. تحقق من الاتصال وصلاحيات المدير ثم حاول مرة أخرى.');
     const kpis=[
      ['زوار اليوم',payload.visitors_today??0],
-     ['المتصلون الآن',payload.online_sessions??0],
+     ['الأشخاص المتصلون الآن',payload.online_visitors??0],
+     ['الجلسات النشطة الآن',payload.online_sessions??0],
      ['الزوار غير المسجلين الآن',payload.online_guests??0],
      ['الأعضاء المسجلون النشطون الآن',payload.online_registered??0],
      ['إجمالي الزيارات',payload.total_visits??0],
@@ -1125,9 +1126,9 @@ const canvas=document.getElementById('temple3d');if(canvas&&window.THREE){const 
      payload.account_events.forEach(row=>{const tr=document.createElement('tr');const vals=[row.display_name_snapshot||'عضو مسجل',row.email_snapshot||'غير متاح',row.event_type==='login'?'تسجيل دخول':'تسجيل خروج',fmtDate(row.event_at),arabicPath(row.current_path)];vals.forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td)});tbody.append(tr)});
      table.append(tbody);events.append(table);
     }else events.textContent='لا توجد عمليات دخول أو خروج مسجلة بعد.';
-    const notes=[];if(payload.unique_visitors_sampled)notes.push('عدد الزوار المميزين محسوب من آخر ١٠٬٠٠٠ مشاهدة فقط.');if(payload.accounts_limited)notes.push('تم الوصول إلى حد عرض الحسابات.');if(payload.visitors_limited)notes.push('سجل الزوار يعرض أحدث ١٥٠ جلسة فقط.');
+    const notes=[];if(payload.visitors_today_sampled)notes.push('عدد زوار اليوم محسوب من عينة أول ١٠٬٠٠٠ جلسة.');if(payload.unique_visitors_sampled)notes.push('عدد الزوار المميزين محسوب من آخر ١٠٬٠٠٠ مشاهدة فقط.');if(payload.accounts_limited)notes.push('تم الوصول إلى حد عرض الحسابات.');if(payload.visitors_limited)notes.push('سجل الزوار يعرض أحدث ١٥٠ جلسة فقط.');
     say('analyticsMessage','آخر تحديث: '+fmtDate(payload.updated_at)+(notes.length?' — '+notes.join(' '):''));
-   }catch(error){say('analyticsMessage','تعذر تحميل البيانات: '+error.message);$('analyticsKpis').replaceChildren();$('analyticsPages').textContent='غير متاح';$('analyticsUsers').textContent='غير متاح';$('analyticsAccounts').textContent='غير متاح';$('analyticsVisitors').textContent='غير متاح';$('analyticsEvents').textContent='غير متاح'}
+   }catch(error){say('analyticsMessage',error.message.startsWith('انتهت')?error.message:'تعذر تحميل البيانات. حاول تحديث اللوحة مرة أخرى.');$('analyticsKpis').replaceChildren();$('analyticsPages').textContent='غير متاح';$('analyticsUsers').textContent='غير متاح';$('analyticsAccounts').textContent='غير متاح';$('analyticsVisitors').textContent='غير متاح';$('analyticsEvents').textContent='غير متاح'}
    finally{$('refreshAnalytics').disabled=false}
   };
   $('refreshAnalytics').onclick=refresh;await refresh();

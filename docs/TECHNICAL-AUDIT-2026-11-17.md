@@ -87,3 +87,23 @@ A first structural/content sample was read from these pages: Narmer, Hatshepsut,
 - The generic footer note says interpretations may vary, but it does not identify which claims are disputed or provide a source for dates and historical statements.
 - This is a content-quality gap, not a reason to add unverified filler. Enrichment should proceed in batches, with each significant historical/archaeological claim linked to a named source and confidence note.
 - The shared favicon is referenced by all sampled pages. The social-preview image is referenced by the home page metadata. Binary visual inspection and dimension verification remain pending.
+
+
+## Follow-up work — 2026-11-17
+
+### First content expansion: Beni Hasan
+- Expanded `sites/07-bny-hsn/index.html` from a short introductory stub into a structured Arabic article covering location, rock-cut architecture, interior spaces, wall painting, historical/archaeological value, and a method for reading scenes.
+- Added an explicit methodological warning that general site-level observations must not be treated as descriptions of every individual tomb.
+- Added a bibliographic entry for Percy E. Newberry, `Beni Hasan, Part I` (Archaeological Survey of Egypt, First Memoir, Egypt Exploration Fund, London, 1893).
+- No page numbers, direct quotations, precise measurements, or tomb-specific architectural claims were invented. The article explicitly flags page-level verification and tomb-by-tomb attribution as outstanding.
+- This is a first editorial draft, not a final scholarly sign-off. The repository contains no primary excavation publication or scanned source file at this time, so the reference has not yet been checked against the original scan in this work session.
+
+### Asset and founder-reference follow-up
+- GitHub returned the PNG and JPEG assets as base64 text, but the available GitHub fetch wrapper does not provide a binary image inspection/rendering path. Therefore visual quality, decoded dimensions, perceptual duplicates, and visual content remain unverified; no asset was modified.
+- An exact GitHub code-search request for `gamal-founder-image` returned zero matches but `incomplete_results=true`. This is not conclusive evidence that all founder-image references are absent. The previously deleted asset remains absent from the audit branch; no replacement was added.
+- No production branch, backup branch, Supabase schema/data, authentication settings, or Vercel deployment was changed.
+
+### Remaining validation
+- Review all HTML/CSS/JS references for the deleted founder asset using a complete repository scan.
+- Validate the expanded Beni Hasan article against the original Newberry publication and add precise page references only after checking the source.
+- Continue expanding the next pages in small, source-backed batches; do not publish or merge without explicit approval.

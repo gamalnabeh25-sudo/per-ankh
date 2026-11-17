@@ -76,3 +76,14 @@ Not inspected exhaustively:
 
 ## Safety boundary
 This report records findings only. No production code, database schema, RLS policy, Auth setting, Edge Function, or Vercel deployment was changed.
+
+
+## Sampled editorial-page review
+A first structural/content sample was read from these pages: Narmer, Hatshepsut, Akhenaten, Beni Hasan, and the Middle Kingdom.
+
+- The sampled pages share a lightweight static HTML template with title, description, canonical URL, Open Graph metadata, and JSON-LD Article/WebPage markup.
+- The main article content is currently very short: king pages contain a brief paragraph plus a small fact grid; the Beni Hasan and Middle Kingdom pages contain only a few short sections.
+- The sampled pages do not display a bibliography or itemized source list. The CSS includes a source presentation class, but the inspected page bodies do not use it to cite specific references.
+- The generic footer note says interpretations may vary, but it does not identify which claims are disputed or provide a source for dates and historical statements.
+- This is a content-quality gap, not a reason to add unverified filler. Enrichment should proceed in batches, with each significant historical/archaeological claim linked to a named source and confidence note.
+- The shared favicon is referenced by all sampled pages. The social-preview image is referenced by the home page metadata. Binary visual inspection and dimension verification remain pending.

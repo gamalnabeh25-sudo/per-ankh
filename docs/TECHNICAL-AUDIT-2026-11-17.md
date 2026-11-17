@@ -4,7 +4,7 @@
 Read-only inspection of the GitHub branch `audit/2026-11-17` and the linked Supabase project `per-ankh`. No database writes, schema changes, Edge Function deployments, production deployments, or edits to `main` were made.
 
 Inspected:
-- Recursive Git tree for the audit branch (192 files; tree response not truncated).
+- Recursive Git tree for the audit branch (376 tracked paths; 180 HTML files; tree response not truncated).
 - Supabase public-schema table inventory with columns, keys, row estimates, and RLS flags.
 - Applied Supabase migration list.
 - Public-schema RLS policies and table grants for `anon`, `authenticated`, and `service_role`.
@@ -22,13 +22,10 @@ Not inspected exhaustively:
 - Deployed Edge Function source independently; source in Git was reviewed, but the deployed-function retrieval did not provide readable source in this inspection.
 
 ## Repository inventory
-- 192 tracked files: 180 HTML, 5 Markdown, 2 TXT, 1 PNG, 1 JPG, 1 XML, 1 TypeScript, and 1 SQL.
+- 376 tracked paths in the recursive tree, including 180 HTML files. The earlier file-type count is superseded by this current tree inventory.
 - Main folders include `kings/`, `eras/`, `sites/`, `assets/`, `supabase/`, and `docs/`.
-- The sitemap inventory previously recorded 179 URLs (1 home, 150 kings, 16 sites, 9 eras, and 3 section indexes). A sitemap URL is not proof that its page is complete, reachable, or indexed.
-- The three files under `assets/` total 1,077,957 bytes:
-  - `gamal-founder-image.txt`: removed from the audit branch at the owner's request; the founder image is not wanted on the site. Confirm there are no remaining references before any later asset cleanup.
-  - `per-ankh-favicon-v2.png`: 432,029 bytes; unusually large for a favicon and a likely optimization candidate after visual verification.
-  - `per-ankh-social-preview(1).jpg`: 184,716 bytes.
+- The sitemap contains 179 URLs (1 home, 150 kings, 16 sites, 9 eras, and 3 section indexes). A direct path-to-tree comparison resolved all 179 URLs to tracked files when directory URLs are mapped to their `index.html` files. One additional HTML file, `google50cca9201ac901b3.html`, is not listed in the sitemap; it appears to be a search-engine verification file and should remain outside the content inventory unless its purpose is disproven.
+- The two remaining files under `assets/` are `per-ankh-favicon-v2.png` (432,029 bytes) and `per-ankh-social-preview(1).jpg` (184,716 bytes). The founder-image file is absent from the current tree. A repository code-search request for `founder` returned zero matches but was marked incomplete, so it is not proof that no textual references remain.
 - `index.html` is 978,060 bytes (about 955 KiB), much larger than the other HTML pages. It combines substantial page markup, styles, data, and JavaScript; consider modularization only after mapping dependencies and regression behavior.
 - `kings/index.html` is 50,665 bytes. Several individual king pages exceed 10 KB.
 
@@ -67,9 +64,15 @@ Not inspected exhaustively:
 1. Review the exact account-table access path and run controlled security tests against the Edge Function without changing production configuration.
 2. Enable leaked-password protection after confirming the setting and user impact.
 3. Inventory asset references, actual file signatures/dimensions, and duplicates; optimize only verified assets on the audit branch.
-4. Build a page-by-page sitemap-to-file audit, then sample page templates for missing references, metadata, accessibility, and content depth.
+4. Continue with page-template checks for missing references, metadata, accessibility, and content depth; the 179 sitemap URLs now all map to tracked files.
 5. Plan the home-page modularization only after documenting its data structures, event handlers, and dependencies.
 6. Decide whether editorial content will remain static HTML or move to `content_items`; do not migrate until the content model, publishing workflow, and rollback plan are agreed.
+
+## Sitemap-to-file comparison
+- Parsed `sitemap.xml` from the audit branch and compared all 179 URL paths against the recursive Git tree.
+- Result: 0 missing files after mapping `/kings/`, `/sites/`, and `/eras/` to their respective `index.html` files.
+- One tracked HTML file is not in the sitemap: `google50cca9201ac901b3.html`. It was not treated as a missing content page.
+- This is a repository path check only; it does not test deployed HTTP status, redirects, canonical tags, or page rendering.
 
 ## Safety boundary
 This report records findings only. No production code, database schema, RLS policy, Auth setting, Edge Function, or Vercel deployment was changed.

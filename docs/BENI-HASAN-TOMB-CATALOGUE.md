@@ -99,3 +99,13 @@
 | BH2 | Jmnjj — إمني | 40 |
 
 **المصدر:** Rabehl, *Das Grab des Amenemhet (Jmnjj) in Beni Hassan...*, Inhaltsverzeichnis, pp. v–vii. تمت مراجعة النص الكامل المستخرج للرسالة عبر CoChat، مع مطابقة عناوين الأقسام وأرقام الصفحات المطبوعة. لا تمثل هذه القائمة حصرًا لكل مقابر الجبانة.
+
+## 10. العدد الإجمالي للمقابر في الجبانة
+
+تذكر Silvia Maria Rabehl في مقدمة الرسالة (ص 2) أن مجموعة المقابر العلوية في بني حسن تضم **39 مقبرة إجمالًا**، وأن **10 فقط** منها تحمل برنامجًا من الصور والنصوص (Bild- und Textprogramm). وتورد الرسالة المقابر العشر بالترتيب الزمني التالي:
+
+BH29 (BAqt I), BH33 (BAqt II), BH27 (RA-mw-Sntj), BH15 (BAqt III), BH14 ($nm-Htp I), BH17 ($tjj), BH21 (Nxt), BH23 (NTr-nxt), BH2 (Jmnjj), BH3 ($nm-Htp II).
+
+هذه نقطة أساس موثقة للصفحة، لكنها لا تقدم في هذا الموضع أسماء أصحاب كل المقابر التسع والعشرين الأخرى. لذلك لا ننشئ أسماء أو ملفات تفصيلية لها بالتخمين. يلزم استخراج قائمة الترقيم الكاملة ومطابقتها مع مخطط Newberry/النشر الأثري قبل نشر حصر اسمي شامل.
+
+**المصدر المباشر:** Rabehl, *Das Grab des Amenemhet (Jmnjj) in Beni Hassan...*, Einleitung, p. 2 (النسخة الرقمية لمستودع LMU، DOI: 10.5282/edoc.5073). نص الرسالة المفتوح يصرح: “Von den insgesamt neununddreißig Gräbern sind nur zehn mit Bild- und Textprogramm ausgestattet.”

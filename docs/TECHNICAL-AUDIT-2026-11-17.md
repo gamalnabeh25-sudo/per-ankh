@@ -26,7 +26,7 @@ Not inspected exhaustively:
 - Main folders include `kings/`, `eras/`, `sites/`, `assets/`, `supabase/`, and `docs/`.
 - The sitemap inventory previously recorded 179 URLs (1 home, 150 kings, 16 sites, 9 eras, and 3 section indexes). A sitemap URL is not proof that its page is complete, reachable, or indexed.
 - The three files under `assets/` total 1,077,957 bytes:
-  - `gamal-founder-image.txt`: 461,212 bytes. Its extension is unusual for an image-like asset; determine its actual content/usage before renaming or converting.
+  - `gamal-founder-image.txt`: removed from the audit branch at the owner's request; the founder image is not wanted on the site. Confirm there are no remaining references before any later asset cleanup.
   - `per-ankh-favicon-v2.png`: 432,029 bytes; unusually large for a favicon and a likely optimization candidate after visual verification.
   - `per-ankh-social-preview(1).jpg`: 184,716 bytes.
 - `index.html` is 978,060 bytes (about 955 KiB), much larger than the other HTML pages. It combines substantial page markup, styles, data, and JavaScript; consider modularization only after mapping dependencies and regression behavior.

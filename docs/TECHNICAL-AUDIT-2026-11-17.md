@@ -35,9 +35,9 @@ Not inspected exhaustively:
 ## Supabase project and schema
 - Linked project: `per-ankh`, region `eu-central-1`, status `ACTIVE_HEALTHY`.
 - Eleven applied migrations were listed, ending with `20261115064142 visitor_account_management`.
-- The public schema contains 11 tables, all with RLS enabled:
+- The public schema contains 12 tables, all with RLS enabled:
   `profiles`, `user_roles`, `favorites`, `comments`, `suggestions`, `content_items`, `quiz_attempts`, `site_sessions`, `site_page_views`, `analytics_rate_limits`, `site_account_activity`, and `site_account_events`.
-  (The live table inventory returned 12 names; confirm the final count from the raw table list before using it as a KPI. The names above are the complete returned list.)
+
 - The current inventory reports activity in the analytics tables: 258 sessions, 465 page views, 8 account activity snapshots, and 47 account events. These are database row counts, not validated unique people or audited traffic totals.
 - `content_items` currently has zero rows in the returned inventory. This means the CMS-style table is present but does not currently hold content rows.
 - User-facing account features include profiles, roles, favorites, comments, suggestions, and quiz history.

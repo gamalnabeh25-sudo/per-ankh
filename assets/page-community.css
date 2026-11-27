@@ -1,0 +1,34 @@
+/* بر عنخ — بطاقة التعليقات والإعجابات المشتركة لكل الصفحات */
+#pageCommunity{--pc-gold:var(--gold,#d8b56b);--pc-gold2:var(--gold2,#f2dca0);--pc-panel:var(--panel,#10263b);--pc-white:var(--white,#f5f1e8);--pc-muted:var(--muted,#a9b7c5);--pc-line:var(--line,rgba(216,181,107,.25));max-width:900px;margin:32px auto;padding:0 16px;font-family:"Noto Naskh Arabic","Segoe UI",Tahoma,Arial,sans-serif;color:var(--pc-white)}
+#pageCommunity .pc-card{background:var(--pc-panel);border:1px solid var(--pc-line);border-radius:14px;padding:20px}
+#pageCommunity .pc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+#pageCommunity h2{margin:0;color:var(--pc-gold);font-size:22px;font-weight:800}
+#pageCommunity .pc-like{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(216,181,107,.55);background:linear-gradient(135deg,#b28b4e,#725832);color:#fff5df;border-radius:999px;padding:8px 18px;font:inherit;font-size:15px;cursor:pointer;transition:filter .15s,transform .15s}
+#pageCommunity .pc-like:hover{filter:brightness(1.12);transform:translateY(-1px)}
+#pageCommunity .pc-like.pc-on{background:linear-gradient(135deg,#d8b56b,#a8823f);color:#1a1206}
+#pageCommunity .pc-heart{font-size:17px;line-height:1}
+#pageCommunity .pc-count{font-weight:800;min-width:14px;text-align:center}
+#pageCommunity form{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+#pageCommunity input,#pageCommunity textarea{width:100%;box-sizing:border-box;background:rgba(7,19,33,.65);border:1px solid var(--pc-line);border-radius:10px;color:var(--pc-white);font:inherit;font-size:15px;padding:10px 14px;resize:vertical}
+#pageCommunity input:focus,#pageCommunity textarea:focus{outline:none;border-color:var(--pc-gold)}
+#pageCommunity textarea{min-height:90px;line-height:1.8}
+#pageCommunity .pc-submit{align-self:flex-start;border:1px solid rgba(216,181,107,.55);background:linear-gradient(135deg,#b28b4e,#725832);color:#fff5df;border-radius:8px;padding:9px 20px;font:inherit;font-size:14px;cursor:pointer}
+#pageCommunity .pc-submit:hover{filter:brightness(1.12)}
+#pageCommunity .pc-hint{color:var(--pc-muted);font-size:13px}
+#pageCommunity .pc-msg{font-size:14px;min-height:20px}
+#pageCommunity .pc-msg.pc-ok{color:#9fe6b8}
+#pageCommunity .pc-msg.pc-err{color:#f3a6a6}
+#pageCommunity .pc-list{display:flex;flex-direction:column;gap:12px}
+#pageCommunity .pc-entry{border:1px solid var(--pc-line);border-radius:10px;padding:12px 14px;background:rgba(7,19,33,.45)}
+#pageCommunity .pc-entry-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+#pageCommunity .pc-name{color:var(--pc-gold);font-weight:800;font-size:15px}
+#pageCommunity .pc-date{color:var(--pc-muted);font-size:12px}
+#pageCommunity .pc-entry p{margin:0;font-size:15px;line-height:1.9;word-break:break-word}
+#pageCommunity .pc-empty{color:var(--pc-muted);font-size:14px}
+@media (max-width:480px){
+  #pageCommunity{padding:0 10px;margin:24px auto}
+  #pageCommunity .pc-card{padding:14px}
+  #pageCommunity h2{font-size:19px}
+  #pageCommunity .pc-head{flex-direction:column;align-items:stretch}
+  #pageCommunity .pc-like,#pageCommunity .pc-submit{width:100%;justify-content:center;text-align:center}
+}

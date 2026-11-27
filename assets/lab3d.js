@@ -72,7 +72,7 @@
   var STONE_DARK = mat(0x9c8b6b, { flat: true });
   var GOLD = mat(0xe2b457, { roughness: 0.42, metalness: 0.3 });
   var GLOW = new T.MeshStandardMaterial({ color: 0xf0c86a, emissive: 0xd99b2e, emissiveIntensity: 0.85, roughness: 0.5 });
-  var GLOW_SOFT = new T.MeshStandardMaterial({ color: 0x6fd3c4, emissive: 0x2b8f86, emissiveIntensity: 0.7, roughness: 0.6, transparent: true, opacity: 0.92 });
+  var GLOW_SOFT = new T.MeshStandardMaterial({ color: 0xd8c6a0, emissive: 0x8a6420, emissiveIntensity: 0.45, roughness: 0.75 });
   var GRANITE = mat(0xa8543f, { flat: true, roughness: 0.9 });
   var GROUND = mat(0x0e2233, { roughness: 1 });
   var SHELL = mat(0xe6d6b2, { flat: true, roughness: .8, opacity: .42 });
@@ -87,6 +87,7 @@
     var g = new T.Mesh(new T.BoxGeometry(w, Math.max(2, w * 0.006), d), GROUND);
     g.position.y = -Math.max(2, w * 0.006) / 2;
     g.receiveShadow = true;
+    g.userData.isBase = true;
     return g;
   }
   function squarePyramid(side, height, material) {
@@ -146,34 +147,34 @@
     cut.add(sub);
     // ascending passage up to the Grand Gallery (Grand Gallery length 46 m, cited)
     var asc = new T.Mesh(new T.BoxGeometry(3.2, 2.4, 46), GLOW_SOFT);
-    asc.position.set(0, 14, 30);
-    asc.rotation.x = 0.5;
+    asc.position.set(0, 12, 28);
+    asc.rotation.x = 0.45;
     cut.add(asc);
     // Queen's Chamber (position schematic, horizontal passage cited)
     var queen = new T.Mesh(new T.BoxGeometry(9, 4.4, 8), GLOW_SOFT);
-    queen.position.set(0, 24, -2);
+    queen.position.set(0, 22, -2);
     cut.add(queen);
     // Grand Gallery: 46 m long, corbelled (length cited; width/height schematic)
     var gallery = new T.Mesh(new T.BoxGeometry(4.2, 8.6, 46), GLOW);
-    gallery.position.set(0, 44, -14);
-    gallery.rotation.x = 0.52;
+    gallery.position.set(0, 33, -12);
+    gallery.rotation.x = 0.45;
     cut.add(gallery);
     // King's Chamber: granite-lined (cited); sarcophagus + five relieving compartments above (cited)
     var king = new T.Mesh(new T.BoxGeometry(10.4, 5.8, 5.4), mat(0xa8543f, { opacity: .92 }));
-    king.position.set(0, 60, -34);
+    king.position.set(0, 45, -34);
     cut.add(king);
     var sarc = new T.Mesh(new T.BoxGeometry(3.2, 1.5, 1.6), GOLD);
-    sarc.position.set(0, 58, -34);
+    sarc.position.set(0, 43.4, -34);
     cut.add(sarc);
     for (var i = 0; i < 5; i++) {
       var slab = new T.Mesh(new T.BoxGeometry(11, 0.7, 6), STONE_DARK);
-      slab.position.set(0, 64 + i * 2.4, -34);
+      slab.position.set(0, 49 + i * 2.2, -34);
       cut.add(slab);
     }
     // two shafts from the King's Chamber (purpose unknown, cited as such)
     [-1, 1].forEach(function (s) {
       var shaft = new T.Mesh(new T.BoxGeometry(0.9, 0.9, 46), GLOW);
-      shaft.position.set(s * 3.2, 74, -18);
+      shaft.position.set(s * 3.2, 56, -20);
       shaft.rotation.x = -0.62;
       shaft.rotation.z = s * 0.12;
       cut.add(shaft);
@@ -182,7 +183,14 @@
     g.add(base(320, 320));
     var h = human(34, 132);
     g.add(h);
-    return { obj: g, dist: 520, label: 'هرم خوفو', explode: [shell], interior: { pos: [0, 62, 6], look: [0, 60, -34] } };
+    return {
+      obj: g, dist: 520, label: 'هرم خوفو', explode: [shell],
+      interior: { hideShell: true, stops: [
+        { t: 'مقطع عام · الممرات والحجرات', pos: [132, 100, 140], look: [0, 6, 30] },
+        { t: 'الممر الهابط والحجرة الأرضية', pos: [92, 34, 116], look: [0, -8, 60] },
+        { t: 'الممر الصاعد الكبير وحجرة الملك', pos: [72, 66, 6], look: [0, 42, -30] }
+      ] }
+    };
   }
 
   /* ---------- 2. Karnak hypostyle ----------
@@ -230,7 +238,14 @@
     g.add(roof);
     g.add(base(W + 24, D + 24));
     g.add(human(44, 18));
-    return { obj: g, dist: 210, label: 'قاعة الأعمدة الكبرى', explode: [roof, naveGroup], interior: { pos: [0, 8, 26], look: [0, 14, -10] } };
+    return {
+      obj: g, dist: 210, label: 'قاعة الأعمدة الكبرى', explode: [roof, naveGroup],
+      interior: { stops: [
+        { t: 'الصحن الوسطي · 12 عمودًا', pos: [0, 8, 30], look: [0, 15, -10] },
+        { t: 'الرواق الجانبي', pos: [-30, 6, 26], look: [-26, 9, -10] },
+        { t: 'من أعلى · الرواق الأعلى', pos: [0, 46, 40], look: [0, 18, -8] }
+      ] }
+    };
   }
 
   /* ---------- 3. Lateran obelisk ----------
@@ -336,10 +351,53 @@
       halls.add(h);
     });
     g.add(halls);
+    // first hall: rows of square pillars (the temple is described as decorated with Osiride statues of the king;
+    // their number and spacing are not given in the source, so the rows are schematic)
+    var pillars = new T.Group();
+    for (var pi = 0; pi < 4; pi++) {
+      [-1, 1].forEach(function (side) {
+        var col = new T.Mesh(new T.BoxGeometry(2.2, 9, 2.2), STONE_DARK);
+        col.position.set(side * 6.4, 4.5, -9 - pi * 4.6);
+        pillars.add(col);
+      });
+    }
+    g.add(pillars);
+    var hallFloor = new T.Mesh(new T.BoxGeometry(18, 0.6, 56), mat(0x9c8b6b, { flat: true }));
+    hallFloor.position.set(0, 0.3, -30);
+    g.add(hallFloor);
+    var hallRoof = new T.Mesh(new T.BoxGeometry(18, 0.8, 56), mat(0x6b5a44, { flat: true }));
+    hallRoof.position.set(0, 9.4, -30);
+    g.add(hallRoof);
+
+    // side walls of the three halls, so the cutaway reads as an interior
+    var hallWalls = new T.Group();
+    [-1, 1].forEach(function (side) {
+      var wl = new T.Mesh(new T.BoxGeometry(0.9, 9.4, 56), mat(0x7d6a4f, { flat: true, roughness: .95 }));
+      wl.position.set(side * 8.9, 4.7, -30);
+      hallWalls.add(wl);
+    });
+    g.add(hallWalls);
+
     // sanctuary at the far end (position cited: end of the 56 m axis)
-    var sanct = new T.Mesh(new T.BoxGeometry(7, 6, 4), GLOW);
-    sanct.position.set(0, 3, -56 - 2);
+    var sanct = new T.Mesh(new T.BoxGeometry(7.4, 6, 1), mat(0x8a7350, { flat: true, roughness: .9 }));
+    sanct.position.set(0, 3, -58.2);
     g.add(sanct);
+    // four seated figures of the sanctuary: the sun reaches them on about 22 February and 22 October (date cited;
+    // the number and identity of the figures are not in the source used here, so they are shown without labels)
+    var sanctStatues = new T.Group();
+    [-3.3, -1.1, 1.1, 3.3].forEach(function (sx) {
+      var fig = new T.Group();
+      var body = new T.Mesh(new T.BoxGeometry(1.7, 2.7, 1.3), GLOW);
+      body.position.y = 1.55;
+      var head = new T.Mesh(new T.BoxGeometry(0.95, 1.05, 0.95), GLOW);
+      head.position.y = 3.35;
+      var knees = new T.Mesh(new T.BoxGeometry(1.9, 1.2, 0.9), GLOW);
+      knees.position.set(0, 0.6, 0.75);
+      fig.add(body, head, knees);
+      fig.position.set(sx, 0.4, -57.1);
+      sanctStatues.add(fig);
+    });
+    g.add(sanctStatues);
 
     // small Hathor temple to the north, statues 10.5 m (cited height)
     var small = new T.Group();
@@ -357,8 +415,12 @@
     g.add(human(26, 12));
     return {
       obj: g, dist: 240, label: 'معبد أبو سمبل',
-      explode: [halls, colossi],
-      interior: { pos: [0, 5, 6], look: [0, 3.5, -58] },
+      explode: [halls, colossi, hallRoof],
+      interior: { stops: [
+        { t: 'الواجهة · التماثيل الأربعة', pos: [0, 19, 74], look: [0, 13, 0] },
+        { t: 'الصالة الأولى · الأعمدة والتماثيل', pos: [0, 5.4, -3], look: [0, 4.2, -40] },
+        { t: 'قدس الأقداس · تعامد الشمس', pos: [0, 3.6, -44], look: [0, 3, -57] }
+      ] },
       sun: { pos: [0, 40, 60], target: [0, 3, -58] }
     };
   }
@@ -369,9 +431,9 @@
   var HOTSPOTS = {
     pyramid: [
       { p: [0, 20, 116], t: 'المدخل', d: 'المدخل في الجهة الشمالية على ارتفاع نحو 18 مترًا من سطح الأرض.', s: 'Britannica' },
-      { p: [0, 46, -14], t: 'الممر الصاعد الكبير', d: 'ممر مسقوف بطريقة «الحضن» (corbel)، طوله 46 مترًا.', s: 'Britannica' },
-      { p: [0, 62, -34], t: 'حجرة الدفن الملكية', d: 'مبطّنة بالجرانيت بالكامل، وفوقها خمس حجرات فاصلة من ألواح جرانيتية أفقيّة لتخفيف الثقل.', s: 'Britannica' },
-      { p: [4, 76, -18], t: 'بئر تهوية', d: 'بئران ضيّقان ينفذان من الحجرة إلى خارج البناء؛ الغرض منهما غير معروف، دينيًا كان أو للتهوية.', s: 'Britannica' },
+      { p: [0, 34, -12], t: 'الممر الصاعد الكبير', d: 'ممر مسقوف بطريقة «الحضن» (corbel)، طوله 46 مترًا.', s: 'Britannica' },
+      { p: [0, 46, -34], t: 'حجرة الدفن الملكية', d: 'مبطّنة بالجرانيت بالكامل، وفوقها خمس حجرات فاصلة من ألواح جرانيتية أفقيّة لتخفيف الثقل.', s: 'Britannica' },
+      { p: [4, 58, -20], t: 'بئر تهوية', d: 'بئران ضيّقان ينفذان من الحجرة إلى خارج البناء؛ الغرض منهما غير معروف، دينيًا كان أو للتهوية.', s: 'Britannica' },
       { p: [0, -22, 44], t: 'الحجرة الأرضية', d: 'الحجرات تحت الأرض لم تُكتمل، ويصفها المصدر بأنها غير منتهية.', s: 'Britannica' }
     ],
     hypostyle: [
@@ -464,7 +526,7 @@
     }
   };
 
-  var state = { model: 'pyramid', rotY: -0.55, rotX: 0.22, dist: 520, target: 520, auto: true, night: false, explode: false, interior: false };
+  var state = { model: 'pyramid', rotY: -0.55, rotX: 0.22, dist: 520, target: 520, auto: true, night: false, explode: false, interior: false, stop: 0 };
   var factsEl = document.getElementById('lab3dFacts');
   var hotLayer = document.getElementById('lab3dHot');
   var hotInfo = document.getElementById('lab3dHotInfo');
@@ -513,6 +575,38 @@
     });
   }
 
+  function interiorStops(o) { return (o && o.stops) ? o.stops : (o ? [o] : []); }
+
+  // walk-through caption: names the current interior stop above the canvas
+  var stopCap = null;
+  function showStop() {
+    if (!stopCap) {
+      stopCap = document.createElement('div');
+      stopCap.className = 'lab3d-stop';
+      stopCap.style.cssText = 'position:absolute;inset-inline-start:14px;top:50px;z-index:3;max-width:58%;background:rgba(7,19,33,.86);border:1px solid rgba(216,181,107,.5);border-radius:8px;padding:7px 12px;font-size:12px;line-height:1.6;color:#f0d9a2;pointer-events:none;opacity:0;transition:opacity .25s';
+      var host = canvas.parentNode;
+      if (host) host.appendChild(stopCap);
+    }
+    var stops = (built && built.interior) ? interiorStops(built.interior) : [];
+    if (!state.interior || !stops.length) { stopCap.style.opacity = '0'; return; }
+    var s = stops[state.stop] || stops[0];
+    stopCap.textContent = (state.stop + 1) + '/' + stops.length + ' · ' + s.t;
+    stopCap.style.opacity = '1';
+  }
+
+  function applyInteriorView() {
+    if (!built) return;
+    if (hotLayer) hotLayer.style.display = state.interior ? 'none' : '';
+    var cut = !!(state.interior && built.interior && built.interior.hideShell);
+    var dim = cut ? 0 : (state.interior && !state.explode ? 0.17 : (state.explode ? 0.16 : 0.42));
+    SHELL.opacity = dim;
+    built.obj.traverse(function (o) {
+      if (o.isMesh && o.material === SHELL) o.material.opacity = dim;
+      if (o.isMesh && o.userData.isBase) o.visible = !state.interior;
+    });
+    showStop();
+  }
+
   function setModel(name) {
     if (!BUILDERS[name]) return;
     clearGroup();
@@ -524,6 +618,7 @@
     state.target = built.dist;
     state.explode = false;
     state.interior = false;
+    state.stop = 0;
     state.sun = false;
     sunBeam.intensity = 0;
     renderFacts(name);
@@ -534,6 +629,7 @@
       b.setAttribute('aria-selected', on ? 'true' : 'false');
     });
     syncButtons();
+    applyInteriorView();
   }
 
   function syncButtons() {
@@ -544,7 +640,12 @@
     var sb = document.getElementById('lab3dSun');
     if (sb) { sb.disabled = !(built && built.sun); if (!(built && built.sun)) sb.classList.remove('on'); }
     var inn = document.getElementById('lab3dInside');
-    if (inn) { inn.classList.toggle('on', state.interior); inn.disabled = !(built && built.interior); }
+    if (inn) {
+      inn.classList.toggle('on', state.interior);
+      inn.disabled = !(built && built.interior);
+      var sn = (built && built.interior) ? interiorStops(built.interior).length : 0;
+      inn.textContent = state.interior && sn > 1 ? ('داخل · ' + (state.stop + 1) + '/' + sn) : 'داخل البناء';
+    }
   }
 
   function applyLight() {
@@ -607,8 +708,10 @@
     if (state.auto) state.rotY += 0.0022;
     var r = state.dist;
     if (state.interior && built && built.interior) {
-      camera.position.set(built.interior.pos[0], built.interior.pos[1], built.interior.pos[2]);
-      camera.lookAt(built.interior.look[0], built.interior.look[1], built.interior.look[2]);
+      var stops = interiorStops(built.interior);
+      var st = stops[state.stop] || stops[0];
+      camera.position.set(st.pos[0], st.pos[1], st.pos[2]);
+      camera.lookAt(st.look[0], st.look[1], st.look[2]);
     } else {
       camera.position.set(Math.sin(state.rotY) * Math.cos(state.rotX) * r, Math.sin(state.rotX) * r + r * 0.12, Math.cos(state.rotY) * Math.cos(state.rotX) * r);
       camera.lookAt(0, state.model === 'obelisk' ? 16 : 22, 0);
@@ -647,7 +750,8 @@
   var reset = document.getElementById('lab3dReset');
   if (reset) reset.addEventListener('click', function () {
     state.rotY = -0.55; state.rotX = 0.22; state.auto = true;
-    state.interior = false;
+    state.interior = false; state.stop = 0;
+    applyInteriorView();
     var d = built ? built.dist : 520;
     state.target = d; state.dist = d;
     syncButtons();
@@ -665,7 +769,7 @@
     if (!built || !built.sun) return;
     state.sun = !state.sun;
     if (state.sun) {
-      state.interior = true;
+      state.interior = true; state.stop = 0; applyInteriorView();
       sunBeam.position.set(built.sun.pos[0], built.sun.pos[1], built.sun.pos[2]);
       sunBeam.target.position.set(built.sun.target[0], built.sun.target[1], built.sun.target[2]);
       sunBeam.intensity = 3.2;
@@ -678,7 +782,11 @@
   var inBtn = document.getElementById('lab3dInside');
   if (inBtn) inBtn.addEventListener('click', function () {
     if (!built || !built.interior) return;
-    state.interior = !state.interior; state.auto = false; syncButtons();
+    var stops = interiorStops(built.interior);
+    if (!state.interior) { state.interior = true; state.stop = 0; }
+    else { state.stop = (state.stop + 1) % stops.length; }
+    state.auto = false;
+    applyInteriorView(); syncButtons();
   });
 
   var wanted = null;

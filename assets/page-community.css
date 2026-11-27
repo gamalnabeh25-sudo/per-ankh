@@ -1,5 +1,5 @@
 /* بر عنخ — بطاقة التعليقات والإعجابات المشتركة لكل الصفحات */
-#pageCommunity{--pc-gold:var(--gold,#d8b56b);--pc-gold2:var(--gold2,#f2dca0);--pc-panel:var(--panel,#10263b);--pc-white:var(--white,#f5f1e8);--pc-muted:var(--muted,#a9b7c5);--pc-line:var(--line,rgba(216,181,107,.25));max-width:900px;margin:32px auto;padding:0 16px;font-family:"Noto Naskh Arabic","Segoe UI",Tahoma,Arial,sans-serif;color:var(--pc-white)}
+#pageCommunity{--pc-gold:var(--gold,#e2b457);--pc-gold2:var(--gold2,#f3d68e);--pc-panel:var(--panel,#14100a);--pc-white:var(--white,#f4ead2);--pc-muted:var(--muted,#b9ab8e);--pc-line:var(--line,rgba(226,180,87,.45));max-width:900px;margin:32px auto;padding:0 16px;font-family:"Noto Naskh Arabic","Segoe UI",Tahoma,Arial,sans-serif;color:var(--pc-white)}
 #pageCommunity .pc-card{background:var(--pc-panel);border:1px solid var(--pc-line);border-radius:14px;padding:20px}
 #pageCommunity .pc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 #pageCommunity h2{margin:0;color:var(--pc-gold);font-size:22px;font-weight:800}

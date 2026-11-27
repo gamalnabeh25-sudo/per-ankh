@@ -254,6 +254,7 @@ SITES2 = {
 
 if __name__ == "__main__":
     for slug, d in SITES2.items():
+        d["cover"] = "sites/" + slug
         p = os.path.join(ROOT, "sites", slug, "index.html")
         os.makedirs(os.path.dirname(p), exist_ok=True)
         open(p, "w", encoding="utf-8").write(build(slug, d))

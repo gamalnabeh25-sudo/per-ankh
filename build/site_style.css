@@ -36,5 +36,6 @@ p,li{font-size:17px}
 .pn a{display:inline-block;padding:8px 14px;border:1px solid var(--gold);border-radius:9px;text-decoration:none;color:var(--gold);font-size:15px}
 footer{border-top:1px solid var(--line);margin-top:26px;padding-top:14px;color:var(--muted);font-size:14px}
 @media(max-width:520px){.wrap{padding:12px 12px 60px}p,li{font-size:16px}.panel{padding:14px}}
+.cover .aimg{position:absolute;inset-inline-start:12px;bottom:8px;z-index:3;font-size:11px;line-height:1.6;color:rgba(255,255,255,.62);background:rgba(6,14,24,.38);padding:1px 9px;border-radius:999px}@media(max-width:600px){.cover .aimg{top:8px;bottom:auto;font-size:10px;padding:0 7px}}
 .cover.plain{background:linear-gradient(135deg,#0d2136,#132a41 55%,#1a2a1f);min-height:clamp(150px,26vw,260px)}
 .cover.plain .ctext{position:static;padding:26px 16px}

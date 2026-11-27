@@ -93,7 +93,7 @@ SITES = {
     "17-tl-qwsna": dict(
         name="تل قويسنا", en="TELL QUESNA", loc="محافظة المنوفية – وسط الدلتا، نحو ٦٥ كم شمال غرب القاهرة",
         period="من العصر المتأخر إلى العصرين البطلمي والروماني", era=["09-alasr-almtakhr"],
-        cover=None,
+        cover="sites/17-tl-qwsna",
         intro="جبانة أفراد في وسط الدلتا، كُشف عنها مصادفة أثناء نقل الرمال، وتضم مقبرة جماعية من العصر المتأخر–البطلمي ومقبرة رومانية ومنطقة صقور مقدسة.",
         secs=[
             dict(h="الموقع وأول كشف", badge="v",
@@ -202,7 +202,7 @@ def build(slug, d):
          "inLanguage": "ar-EG", "mainEntityOfPage": url,
          "author": {"@type": "Organization", "name": "بر عنخ | PER ANKH", "url": BASE + "/"}}]}
     return f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(d['name'])} | المواقع الأثرية — بر عنخ</title><meta name="description" content="{html.escape(desc)}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}"><meta property="og:type" content="article"><meta property="og:locale" content="ar_EG"><meta property="og:site_name" content="بر عنخ | PER ANKH"><meta property="og:title" content="{html.escape(d['name'])} | بر عنخ"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary"><link rel="icon" href="/assets/per-ankh-favicon-v2.png?v=20261115-3"><style>{CSS}</style><script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script></head><body><main class="wrap"><a class="brand" href="/">بر عنخ | PER ANKH</a><div class="crumb"><a href="/">الرئيسية</a> / <a href="/sites/">المواقع الأثرية</a> / {html.escape(d['name'])}</div>
-<header class="hero"><div class="cover{' plain' if not d['cover'] else ''}">{('<img src="/assets/'+d['cover']+'.webp" alt="" width="1600" height="900">') if d['cover'] else ''}<div class="cgrad"></div><div class="ctext"><h1>{html.escape(d['name'])}</h1><p class="sub">{html.escape(d['en'])} · {html.escape(d['period'])}</p></div></div></header>
+<header class="hero"><div class="cover{' plain' if not d['cover'] else ''}">{('<img src="/assets/'+d['cover']+'.webp" alt="" width="1600" height="900">') if d['cover'] else ''}<div class="cgrad"></div><div class="ctext"><h1>{html.escape(d['name'])}</h1><p class="sub">{html.escape(d['en'])} · {html.escape(d['period'])}</p></div>{'<span class="aimg">صورة توضيحية بالذكاء الاصطناعي</span>' if d['cover'] else ''}</div></header>
 <div class="facts"><div class="fact"><b>الاسم بالإنجليزية</b><span>{html.escape(d['en'])}</span></div><div class="fact"><b>الموقع</b><span>{html.escape(d['loc'])}</span></div><div class="fact"><b>الفترة</b><span>{html.escape(d['period'])}</span></div></div>
 <p class="lead">{html.escape(d['intro'])}</p>
 {''.join(secs_html)}

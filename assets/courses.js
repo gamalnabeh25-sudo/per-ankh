@@ -14,7 +14,7 @@
   function render(){
     var done = totalDone(), total = totalLessons();
     var sum = document.getElementById('paCourseStats');
-    if(sum) sum.textContent = 'أكملت ' + done + ' من ' + total + ' دروس';
+    if(sum) sum.textContent = 'أكملت ' + done + ' من ' + total + ' درسًا';
 
     root.innerHTML = data.map(function(c){
       var s = st(c.id);

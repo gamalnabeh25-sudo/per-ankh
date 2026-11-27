@@ -2,7 +2,7 @@ import os,re,shutil
 SRC=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DST='/tmp/preview'
 if os.path.exists(DST): shutil.rmtree(DST)
-for d in ['assets','kings','eras','sites']:
+for d in ['assets','kings','eras','sites','dynasties']:
     shutil.copytree(os.path.join(SRC,d),os.path.join(DST,d))
 shutil.copy(os.path.join(SRC,'index.html'),DST)
 def fix(path,depth):

@@ -5,11 +5,11 @@
 #pageCommunity h2{margin:0;color:var(--pc-gold);font-size:22px;font-weight:800}
 #pageCommunity .pc-like{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(216,181,107,.55);background:linear-gradient(135deg,#b28b4e,#725832);color:#fff5df;border-radius:999px;padding:8px 18px;font:inherit;font-size:15px;cursor:pointer;transition:filter .15s,transform .15s}
 #pageCommunity .pc-like:hover{filter:brightness(1.12);transform:translateY(-1px)}
-#pageCommunity .pc-like.pc-on{background:linear-gradient(135deg,#d8b56b,#a8823f);color:#1a1206}
+#pageCommunity .pc-like.pc-on{background:linear-gradient(135deg,#e2b457,#b8934a);color:#1a1206}
 #pageCommunity .pc-heart{font-size:17px;line-height:1}
 #pageCommunity .pc-count{font-weight:800;min-width:14px;text-align:center}
 #pageCommunity form{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
-#pageCommunity input,#pageCommunity textarea{width:100%;box-sizing:border-box;background:rgba(7,19,33,.65);border:1px solid var(--pc-line);border-radius:10px;color:var(--pc-white);font:inherit;font-size:15px;padding:10px 14px;resize:vertical}
+#pageCommunity input,#pageCommunity textarea{width:100%;box-sizing:border-box;background:rgba(20,16,10,.65);border:1px solid var(--pc-line);border-radius:10px;color:var(--pc-white);font:inherit;font-size:15px;padding:10px 14px;resize:vertical}
 #pageCommunity input:focus,#pageCommunity textarea:focus{outline:none;border-color:var(--pc-gold)}
 #pageCommunity textarea{min-height:90px;line-height:1.8}
 #pageCommunity .pc-submit{align-self:flex-start;border:1px solid rgba(216,181,107,.55);background:linear-gradient(135deg,#b28b4e,#725832);color:#fff5df;border-radius:8px;padding:9px 20px;font:inherit;font-size:14px;cursor:pointer}
@@ -19,7 +19,7 @@
 #pageCommunity .pc-msg.pc-ok{color:#9fe6b8}
 #pageCommunity .pc-msg.pc-err{color:#f3a6a6}
 #pageCommunity .pc-list{display:flex;flex-direction:column;gap:12px}
-#pageCommunity .pc-entry{border:1px solid var(--pc-line);border-radius:10px;padding:12px 14px;background:rgba(7,19,33,.45)}
+#pageCommunity .pc-entry{border:1px solid var(--pc-line);border-radius:10px;padding:12px 14px;background:rgba(20,16,10,.45)}
 #pageCommunity .pc-entry-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
 #pageCommunity .pc-name{color:var(--pc-gold);font-weight:800;font-size:15px}
 #pageCommunity .pc-date{color:var(--pc-muted);font-size:12px}

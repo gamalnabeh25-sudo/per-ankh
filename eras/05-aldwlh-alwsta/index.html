@@ -332,19 +332,15 @@ h3{font-size:clamp(17px,3.6vw,20px);color:var(--gold2);margin:22px 0 8px}
 p,li{font-size:17px}
 .hero{padding:8px 0 6px;margin-bottom:8px}
 .phero{display:block;margin:6px 0 10px}
-.cover{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);margin:6px 0 14px;background:var(--panel)}
-
-.abt{margin:16px 0 6px;padding:14px 16px;border:1px solid rgba(216,181,107,.30);border-radius:14px;background:rgba(12,26,42,.75)}
-.abt h2{font-size:15px;margin:0 0 8px;color:var(--gold2)}
-.abt ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.abt li{display:flex;gap:8px;font-size:13.5px;line-height:1.85;color:var(--muted)}
-.abt b{color:var(--white);flex:0 0 auto;min-width:52px}
-.abt span{flex:1}
-.cover img{width:100%;height:clamp(200px,34vw,380px);object-fit:cover;display:block}
-.cgrad{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,19,33,.97) 4%,rgba(7,19,33,.6) 40%,rgba(7,19,33,.12) 78%)}
-.ctext{position:absolute;inset:auto 0 0 0;padding:16px 16px 12px;text-align:center}
-.ctext h1{margin:0 0 2px;text-shadow:0 2px 18px rgba(0,0,0,.75)}
-.ctext .sub{margin:0;color:#e3eaf2;font-size:15px;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.cover{position:relative;margin:8px -16px 0;background:transparent;border:0;border-radius:0}
+.cover:after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(to top,#071321 6%,rgba(7,19,33,.85) 38%,rgba(7,19,33,0) 100%);pointer-events:none}
+.cover img{width:100%;height:auto;max-height:clamp(240px,42vw,420px);object-fit:cover;object-position:center 30%;display:block;-webkit-mask-image:linear-gradient(#000 55%,transparent 100%);mask-image:linear-gradient(#000 55%,transparent 100%)}
+.cgrad{display:none}
+.ctext{position:relative;z-index:2;inset:auto;margin-top:6px;padding:0 16px 6px;text-align:center}
+.ctext h1{font-size:clamp(46px,11vw,104px);line-height:1.15;margin:0;font-weight:800;background:linear-gradient(180deg,#fff0c4,#e0bd73 60%,#b88a3a);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+.ctext .sub{color:var(--muted);font-size:clamp(13px,2.6vw,16px);margin:6px 0 0;text-shadow:none}
+.cover.plain .ctext{margin-top:0;padding:26px 16px}
+@media(max-width:520px){.cover{margin:8px -10px 0}}
 .hero .sub{color:var(--muted);font-size:16px;margin:0 0 4px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
 .chips a{display:inline-block;background:rgba(216,181,107,.08);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:14px;color:var(--gold2);text-decoration:none}

@@ -75,6 +75,12 @@
       } else {
         var nameField2 = document.getElementById('pcName');
         if (nameField2) nameField2.remove();
+        // نبضة وقت القراءة للأعضاء: كل دقيقة والصفحة ظاهرة (للوحة الصدارة)
+        setInterval(function () {
+          if (document.visibilityState === 'visible') {
+            sb.rpc('track_reading', { p_seconds: 60, p_page_id: pid }).catch(function () {});
+          }
+        }, 60000);
       }
     }).catch(function () {});
     var likeBtn = document.getElementById('pcLike');

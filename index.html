@@ -848,6 +848,14 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 .kq-list a:hover{background:#f2dca0}
 .kq-note{font-size:12px;color:#9fb0ba;margin-top:12px!important}
 @media(max-width:700px){.hiero-course,.king-quizzes{padding:16px}.hc-glyph{font-size:30px}.hc-glyph.big{font-size:52px}}
+</style><style id="acad-img-css">
+.acad-banner{grid-column:1/-1;border-radius:12px;overflow:hidden;border:1px solid rgba(216,181,107,.3);aspect-ratio:3/2;max-height:300px;background:#081826}
+.acad-banner img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.kq-list{gap:12px}
+.kq-list a.kq-card{display:flex;align-items:center;gap:12px;background:linear-gradient(145deg,#112d43,#0b1c2b);border:1px solid rgba(216,181,107,.4);border-radius:12px;padding:8px 16px 8px 8px;color:#f0d9a2;font-weight:700}
+.kq-list a.kq-card img{width:72px;height:96px;object-fit:cover;object-position:center 44%;border-radius:8px;border:1px solid rgba(216,181,107,.35);flex:0 0 auto}
+.kq-list a.kq-card:hover{background:#16374f;color:#fff2c4}
+@media(max-width:700px){.kq-list a.kq-card{width:100%}}
 </style></head>
 <body>
 <div class="topline"></div>
@@ -1072,7 +1080,7 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 </div>
 <div class="academy-history"><div class="academy-history-head"><div><h3>سجل التقدم</h3><p>نتائج الحساب المسجل تُحفظ في قاعدة بيانات Supabase، ونتائج الزائر تُحفظ محليًا على هذا الجهاز.</p></div><button class="tool-btn secondary-tool" id="academyRefreshHistory" type="button">تحديث السجل</button></div><div aria-live="polite" id="academyHistoryList"><p class="community-hint">لم تُحمّل النتائج بعد.</p></div></div>
 <div class="academy-note">ملاحظة: التصنيفات الموضوعية استدلالية، وقد يكون السؤال الواحد متعدد المحاور. بنك الأسئلة يحتوي 300 سؤالًا بأربعة اختيارات وشرح ورابط مصدر؛ وجود الرابط لا يغني عن مراجعة المرجع قبل الاقتباس الأكاديمي.</div>
-<div class="hiero-course" id="hieroCourse"><div class="hc-head"><div class="mini">HIEROGLYPH COURSE · ثلاثة دروس</div><h3>دروس الكتابة الهيروغليفية</h3><p>ثلاثة دروس قصيرة مبنية على جدول العلامات الأحادية المستخدم في الموقع نفسه: كل علامة بصورتها وقراءتها الصوتية ورمزها في قائمة جاردنر ووصفها. اقرأ الدرس ثم اختبر قراءتك لأربع علامات منه. القراءة هنا لعلامة مفردة، وليست تهجئة اسم أو ترجمة نص.</p></div><div class="hc-tabs" id="hcTabs"></div><div class="hc-stage" id="hcStage" aria-live="polite"></div></div><div class="king-quizzes"><h3>اختبارات صفحات الملوك</h3><p>كل صفحة ملك مكتملة تنتهي باختبار من أسئلة مبنية على نص الصفحة نفسها. الاختبارات هنا تفتح داخل صفحة الملك، ومصادر كل سؤال مذكورة مع تفسير إجابته.</p><div class="kq-list"><a href="/kings/001-narmr/#quiz">نعرمر · اختبار الصفحة</a><a href="/kings/019-khwfw/#quiz">خوفو · اختبار الصفحة</a></div><p class="kq-note">الملوك 002 وما بعده تُضاف هنا بمجرد اكتمال صفحاتهم.</p></div></section>
+<div class="hiero-course" id="hieroCourse"><div class="hc-head"><div class="mini">HIEROGLYPH COURSE · ثلاثة دروس</div><h3>دروس الكتابة الهيروغليفية</h3><p>ثلاثة دروس قصيرة مبنية على جدول العلامات الأحادية المستخدم في الموقع نفسه: كل علامة بصورتها وقراءتها الصوتية ورمزها في قائمة جاردنر ووصفها. اقرأ الدرس ثم اختبر قراءتك لأربع علامات منه. القراءة هنا لعلامة مفردة، وليست تهجئة اسم أو ترجمة نص.</p></div><div class="hc-tabs" id="hcTabs"></div><div class="hc-stage" id="hcStage" aria-live="polite"></div></div><div class="king-quizzes" id="king-quizzes"><h3>اختبارات صفحات الملوك</h3><p>كل صفحة ملك مكتملة تنتهي باختبار من أسئلة مبنية على نص الصفحة نفسها. الاختبارات هنا تفتح داخل صفحة الملك، ومصادر كل سؤال مذكورة مع تفسير إجابته.</p><div class="kq-list"><a class="kq-card" href="/kings/001-narmr/#quiz"><img src="/kings/001-narmr/banners/cover_b.jpg" alt="لوحة الملك نعرمر" width="900" height="1200" loading="lazy" decoding="async"><span>نعرمر · اختبار الصفحة</span></a><a class="kq-card" href="/kings/019-khwfw/#quiz"><img src="/kings/019-khwfw/banners/cover_b.jpg" alt="لوحة الملك خوفو" width="900" height="1200" loading="lazy" decoding="async"><span>خوفو · اختبار الصفحة</span></a></div><p class="kq-note">الملوك 002 وما بعده تُضاف هنا بمجرد اكتمال صفحاتهم.</p></div></section>
 <section class="content-section knowledge-section" id="references-details">
 <div class="content-head"><div class="eyebrow">PART 10 · REFERENCES &amp; SOURCES</div><h2>المراجع والمصادر</h2><p>بوابة للمصادر المؤسسية التي يستند إليها المحتوى، مع توضيح وظيفة المصدر وحدوده.</p></div>
 <div class="content-grid">

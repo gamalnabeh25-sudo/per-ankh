@@ -272,7 +272,83 @@
     return { obj: g, dist: 190, label: 'من المصطبة إلى الهرم', explode: [mas, stepGroup], interior: null };
   }
 
-  var BUILDERS = { pyramid: buildPyramid, hypostyle: buildHypostyle, obelisk: buildObelisk, mastaba: buildMastaba };
+
+  /* ---------- 5. Abu Simbel ----------
+     Cited: four seated colossi 66 ft / 20 m; the temple consists of three halls extending 185 ft / 56 m into the cliff;
+     the first rays of the morning sun reach the sanctuary on about 22 February and 22 October; the small Hathor temple
+     north of it has 35 ft / 10.5 m statues (Britannica). Facade width, hall widths and colossus width are schematic. */
+  function buildAbuSimbel() {
+    var g = new T.Group();
+    var facadeH = 33, facadeW = 38;           // schematic proportions
+    var cliff = new T.Mesh(new T.BoxGeometry(120, facadeH + 26, 74), mat(0x8d6f4e, { flat: true, roughness: .95 }));
+    cliff.position.set(0, (facadeH + 26) / 2 - 6, -37);
+    g.add(cliff);
+
+    // recessed facade frame
+    var frame = new T.Mesh(new T.BoxGeometry(facadeW, facadeH, 1.6), mat(0xa8835c, { flat: true }));
+    frame.position.set(0, facadeH / 2, 0.9);
+    g.add(frame);
+
+    // four seated colossi, 20 m tall (cited height; width and pose simplified)
+    var colossi = new T.Group();
+    [-1, 1].forEach(function (side) {
+      [0, 1].forEach(function (row) {
+        var c = new T.Group();
+        var body = new T.Mesh(new T.BoxGeometry(6.4, 11, 5.4), STONE);
+        body.position.y = 5.5;
+        var legs = new T.Mesh(new T.BoxGeometry(7.4, 4.4, 7.2), STONE_DARK);
+        legs.position.y = 2.2;
+        var head = new T.Mesh(new T.BoxGeometry(3.4, 3.6, 3.4), STONE);
+        head.position.y = 12.8;
+        var crown = new T.Mesh(new T.CylinderGeometry(1.5, 2.1, 3.4, 10), GOLD);
+        crown.position.y = 16.2;
+        c.add(body, legs, head, crown);
+        c.scale.setScalar(20 / 18.5);          // total height ~20 m
+        c.position.set(side * (4.6 + row * 8.4), 0, 3.2);
+        colossi.add(c);
+      });
+    });
+    g.add(colossi);
+
+    // entrance and three halls cut 56 m into the cliff (cited depth)
+    var door = new T.Mesh(new T.BoxGeometry(3.4, 6.4, 1.2), mat(0x1b2b33));
+    door.position.set(0, 3.2, 1.6);
+    g.add(door);
+    var halls = new T.Group();
+    [0, 1, 2].forEach(function (i) {
+      var h = new T.Mesh(new T.BoxGeometry(16 - i * 3, 9 - i * 1.6, 56 / 3 - 1.2), GLOW_SOFT);
+      h.position.set(0, 4.5 - i * 0.4, -6 - i * (56 / 3));
+      halls.add(h);
+    });
+    g.add(halls);
+    // sanctuary at the far end (position cited: end of the 56 m axis)
+    var sanct = new T.Mesh(new T.BoxGeometry(7, 6, 4), GLOW);
+    sanct.position.set(0, 3, -56 - 2);
+    g.add(sanct);
+
+    // small Hathor temple to the north, statues 10.5 m (cited height)
+    var small = new T.Group();
+    var sm = new T.Mesh(new T.BoxGeometry(16, 14, 16), mat(0x8d6f4e, { flat: true }));
+    sm.position.y = 7;
+    var st1 = new T.Mesh(new T.BoxGeometry(2.2, 10.5, 2.2), STONE);
+    st1.position.set(-4.4, 5.25, -8.4);
+    var st2 = new T.Mesh(new T.BoxGeometry(2.2, 10.5, 2.2), STONE);
+    st2.position.set(4.4, 5.25, -8.4);
+    small.add(sm, st1, st2);
+    small.position.set(-44, 0, 12);
+    g.add(small);
+
+    g.add(base(170, 130));
+    g.add(human(26, 12));
+    return {
+      obj: g, dist: 240, label: 'معبد أبو سمبل',
+      explode: [halls, colossi],
+      interior: { pos: [0, 6, -6], look: [0, 3, -58] },
+      sun: { pos: [0, 40, 60], target: [0, 3, -58] }
+    };
+  }
+
+  var BUILDERS = { pyramid: buildPyramid, hypostyle: buildHypostyle, obelisk: buildObelisk, mastaba: buildMastaba, abusimbel: buildAbuSimbel };
 
   /* ---------- hotspots: every one carries its source line ---------- */
   var HOTSPOTS = {
@@ -292,6 +368,12 @@
     obelisk: [
       { p: [0, 2, 2], t: 'القاعدة', d: 'ضلع القاعدة نحو 2.7 مترًا، والارتفاع الكلي نحو 32 مترًا.', s: 'Britannica' },
       { p: [0, 31, 1], t: 'القمة', d: 'ضلع القمة نحو 1.88 مترًا، والوزن نحو 230 طنًا.', s: 'Britannica' }
+    ],
+    abusimbel: [
+      { p: [0, 21, -4], t: 'التماثيل الأربعة', d: 'أربعة تماثيل جالسة للملك بارتفاع 20 مترًا (66 قدمًا) على واجهة المعبد.', s: 'Britannica' },
+      { p: [0, 5, -30], t: 'القاعات الثلاث', d: 'ثلاث قاعات متتابعة تنفذ 56 مترًا (185 قدمًا) في الصخر.', s: 'Britannica' },
+      { p: [0, 3, -58], t: 'قدس الأقداس', d: 'في يومين من السنة، نحو 22 فبراير و22 أكتوبر، تنفذ أشعة الشمس الأولى بطول المعبد وتضيء قدس الأقداس.', s: 'Britannica' },
+      { p: [-44, 11, -2], t: 'معبد حتحور', d: 'إلى الشمال معبد أصغر مكرّس للملكة نفرتاري وللمعبودة حتحور، وتماثيله بارتفاع 10.5 مترًا (35 قدمًا).', s: 'Britannica' }
     ],
     mastaba: [
       { p: [0, 62, 0], t: 'هرم زوسر', d: 'ست طبقات، ارتفاعها نحو 61 مترًا، وهي أبعاد موثّقة.', s: 'Britannica' },
@@ -340,6 +422,18 @@
         ['الوزن', 'نحو 230 طنًا']
       ],
       src: [['Britannica — Obelisk', 'https://www.britannica.com/technology/obelisk']]
+    },
+    abusimbel: {
+      title: 'معبد أبو سمبل الكبير',
+      note: 'الارتفاع والعُمق وتاريخ تعامد الشمس موثّقة. أما عرض الواجهة وعرض القاعات وشكل التماثيل فمبسّطة للتوضيح، ولا تقيس الأبعاد الفعلية.',
+      rows: [
+        ['ارتفاع التماثيل', 'نحو 20 م (66 قدمًا)'],
+        ['عُمق المعبد في الصخر', 'نحو 56 م (185 قدمًا)'],
+        ['عدد القاعات', 'ثلاث قاعات متتابعة'],
+        ['تعامد الشمس', 'نحو 22 فبراير و22 أكتوبر'],
+        ['معبد حتحور · التماثيل', 'نحو 10.5 م (35 قدمًا)']
+      ],
+      src: [['Britannica — Abu Simbel', 'https://www.britannica.com/place/Abu-Simbel']]
     },
     mastaba: {
       title: 'من المصطبة إلى الهرم · سقارة',

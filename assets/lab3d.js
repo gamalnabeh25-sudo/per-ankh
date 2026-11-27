@@ -8,7 +8,7 @@
   var T = THREE;
 
   var scene = new T.Scene();
-  scene.background = new T.Color(0x081726);
+  scene.background = SKY_DAY;
   scene.fog = new T.Fog(0x081726, 900, 2600);
 
   var camera = new T.PerspectiveCamera(45, 1, 0.5, 6000);
@@ -17,6 +17,21 @@
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = T.PCFSoftShadowMap;
   if ('outputEncoding' in renderer) renderer.outputEncoding = T.sRGBEncoding;
+
+
+  function skyTexture(top, bottom) {
+    var c = document.createElement('canvas');
+    c.width = 2; c.height = 256;
+    var ctx = c.getContext('2d');
+    var grd = ctx.createLinearGradient(0, 0, 0, 256);
+    grd.addColorStop(0, top); grd.addColorStop(1, bottom);
+    ctx.fillStyle = grd; ctx.fillRect(0, 0, 2, 256);
+    var t = new T.CanvasTexture(c);
+    if ('encoding' in t) t.encoding = T.sRGBEncoding;
+    return t;
+  }
+  var SKY_DAY = skyTexture('#1c3f5c', '#0a1c2a');
+  var SKY_NIGHT = skyTexture('#04080f', '#010306');
 
   var hemi = new T.HemisphereLight(0xdff0ff, 0x1a2b3a, 0.85);
   scene.add(hemi);
@@ -316,7 +331,7 @@
     g.add(door);
     var halls = new T.Group();
     [0, 1, 2].forEach(function (i) {
-      var h = new T.Mesh(new T.BoxGeometry(16 - i * 3, 9 - i * 1.6, 56 / 3 - 1.2), GLOW_SOFT);
+      var h = new T.Mesh(new T.BoxGeometry(16 - i * 3, 9 - i * 1.6, 56 / 3 - 1.2), mat(0x6fa8b8, { opacity: .16, roughness: .7 }));
       h.position.set(0, 4.5 - i * 0.4, -6 - i * (56 / 3));
       halls.add(h);
     });
@@ -343,7 +358,7 @@
     return {
       obj: g, dist: 240, label: 'معبد أبو سمبل',
       explode: [halls, colossi],
-      interior: { pos: [0, 6, -6], look: [0, 3, -58] },
+      interior: { pos: [0, 5, 6], look: [0, 3.5, -58] },
       sun: { pos: [0, 40, 60], target: [0, 3, -58] }
     };
   }
@@ -487,7 +502,7 @@
       dot.type = 'button';
       dot.className = 'lab3d-dot';
       dot.setAttribute('aria-label', hs.t);
-      dot.innerHTML = '<i></i><span>' + hs.t + '</span>';
+      dot.innerHTML = '<i>' + (idx + 1) + '</i><span>' + hs.t + '</span>';
       dot.addEventListener('click', function () {
         if (!hotInfo) return;
         hotInfo.hidden = false;
@@ -509,6 +524,8 @@
     state.target = built.dist;
     state.explode = false;
     state.interior = false;
+    state.sun = false;
+    sunBeam.intensity = 0;
     renderFacts(name);
     addHotspots(name);
     document.querySelectorAll('.lab3d-tab').forEach(function (b) {
@@ -524,20 +541,22 @@
     if (en) { en.classList.toggle('on', state.night); en.textContent = state.night ? '☾ ليل' : '☀ نهار'; }
     var ex = document.getElementById('lab3dExplode');
     if (ex) ex.classList.toggle('on', state.explode);
+    var sb = document.getElementById('lab3dSun');
+    if (sb) { sb.disabled = !(built && built.sun); if (!(built && built.sun)) sb.classList.remove('on'); }
     var inn = document.getElementById('lab3dInside');
     if (inn) { inn.classList.toggle('on', state.interior); inn.disabled = !(built && built.interior); }
   }
 
   function applyLight() {
     if (state.night) {
-      scene.background = new T.Color(0x02060c);
+      scene.background = SKY_NIGHT;
       scene.fog = new T.Fog(0x02060c, 700, 2400);
       hemi.color.set(0x2a4a66); hemi.groundColor.set(0x050b12); hemi.intensity = 0.3;
       key.color.set(0x9fc4ff); key.intensity = 0.35; key.position.set(-260, 420, -180);
       rim.color.set(0x4b7fbf); rim.intensity = 0.55;
       sunBeam.intensity = 0.0;
     } else {
-      scene.background = new T.Color(0x081726);
+      scene.background = SKY_DAY;
       scene.fog = new T.Fog(0x081726, 900, 2600);
       hemi.color.set(0xdff0ff); hemi.groundColor.set(0x1a2b3a); hemi.intensity = 0.85;
       key.color.set(0xffe6b8); key.intensity = 1.2; key.position.set(320, 520, 260);
@@ -640,6 +659,21 @@
   var expBtn = document.getElementById('lab3dExplode');
   if (expBtn) expBtn.addEventListener('click', function () {
     state.explode = !state.explode; applyExplode(); syncButtons();
+  });
+  var sunBtn = document.getElementById('lab3dSun');
+  if (sunBtn) sunBtn.addEventListener('click', function () {
+    if (!built || !built.sun) return;
+    state.sun = !state.sun;
+    if (state.sun) {
+      state.interior = true;
+      sunBeam.position.set(built.sun.pos[0], built.sun.pos[1], built.sun.pos[2]);
+      sunBeam.target.position.set(built.sun.target[0], built.sun.target[1], built.sun.target[2]);
+      sunBeam.intensity = 3.2;
+    } else {
+      sunBeam.intensity = 0;
+    }
+    sunBtn.classList.toggle('on', state.sun);
+    syncButtons();
   });
   var inBtn = document.getElementById('lab3dInside');
   if (inBtn) inBtn.addEventListener('click', function () {

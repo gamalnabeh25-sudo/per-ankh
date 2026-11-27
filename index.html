@@ -884,9 +884,9 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 .model-wrap{position:relative}
 .lab3d-hot{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .lab3d-dot{position:absolute;left:0;top:0;pointer-events:auto;background:none;border:0;padding:0;cursor:pointer;display:flex;align-items:center;gap:6px;font:inherit;color:#f4d99d;white-space:nowrap}
-.lab3d-dot i{display:block;width:12px;height:12px;border-radius:50%;background:#e7c778;box-shadow:0 0 0 4px rgba(231,199,120,.25),0 0 12px rgba(231,199,120,.9);animation:lab3dPulse 2.4s infinite}
+.lab3d-dot i{display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#e7c778;color:#08131f;font-style:normal;font-size:11px;font-weight:700;box-shadow:0 0 0 4px rgba(231,199,120,.22),0 0 12px rgba(231,199,120,.85);animation:lab3dPulse 2.6s infinite}
 .lab3d-dot span{font-size:11px;background:rgba(4,16,27,.82);border:1px solid rgba(231,199,120,.45);border-radius:3px;padding:2px 6px;opacity:0;transition:opacity .2s}
-.lab3d-dot:hover span,.lab3d-dot:focus-visible span{opacity:1}
+.lab3d-dot:hover span,.lab3d-dot:focus-visible span{opacity:1;background:rgba(231,199,120,.22)}
 @keyframes lab3dPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.75}}
 .lab3d-hotinfo{position:absolute;inset-inline:12px;bottom:58px;background:rgba(4,16,27,.94);border:1px solid #b9975c;border-radius:6px;padding:12px 14px;z-index:4;max-width:420px}
 .lab3d-hotinfo b{color:#f4d99d;display:block;margin-bottom:4px;font-size:13px}
@@ -1078,7 +1078,7 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 <div class="model-wrap">
 <div class="model-label">نموذج تعليمي · أبعاد موثّقة</div>
 <canvas id="lab3d" aria-label="نموذج ثلاثي الأبعاد تعليمي بأبعاد موثّقة"></canvas><div class="lab3d-hot" id="lab3dHot"></div><div class="lab3d-hotinfo" id="lab3dHotInfo" hidden></div>
-<div class="model-controls"><button id="lab3dReset" type="button">إعادة ضبط</button><button id="lab3dNight" type="button">☀ نهار</button><button id="lab3dExplode" type="button">مقطع متفجر</button><button id="lab3dInside" type="button">داخل البناء</button><span>اسحب للتدوير · عجلة الفأرة للتقريب · اضغط النقاط الذهبية للشرح</span></div>
+<div class="model-controls"><button id="lab3dReset" type="button">إعادة ضبط</button><button id="lab3dNight" type="button">☀ نهار</button><button id="lab3dExplode" type="button">مقطع متفجر</button><button id="lab3dInside" type="button">داخل البناء</button><button id="lab3dSun" type="button">شعاع الشمس · 22 فبراير</button><span>اسحب للتدوير · عجلة الفأرة للتقريب · اضغط النقاط الذهبية للشرح</span></div>
 </div>
 <div class="lab3d-facts" id="lab3dFacts"></div>
 </div>
@@ -2659,7 +2659,7 @@ function startQuiz(){
  qi=0;score=0;answered=false;state='quiz';render();
 }
 render();
-})();</script><script src="assets/lab3d.js?v=2" defer></script>
+})();</script><script src="assets/lab3d.js?v=3" defer></script>
 <script src="assets/hiero-data.js?v=1" defer></script>
 <script src="assets/hiero.js?v=1" defer></script>
 <script src="assets/courses-data.js?v=3" defer></script>

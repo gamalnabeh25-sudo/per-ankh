@@ -327,19 +327,59 @@
     });
   }
 
+  function pageLeaderboard() {
+    var host = $('coBoard');
+    function draw(r) {
+      host.replaceChildren();
+      if (!r.data || !r.data.length) { host.append(el('div', 'co-empty', 'لا توجد نقاط بعد. كن أول من يدخل اللوحة!')); return; }
+      r.data.forEach(function (row, i) {
+        var item = el('div', 'co-item co-board-row');
+        var rank = el('span', 'co-rank', String(i + 1));
+        item.append(rank);
+        var mid = el('div', 'co-board-mid');
+        var name = el('h3', null, row.display_name || 'عضو');
+        mid.append(name);
+        if (row.badges && row.badges.length) {
+          var bs = el('div', 'co-meta');
+          row.badges.forEach(function (b) { bs.append(el('span', 'co-chip co-badge', b)); });
+          mid.append(bs);
+        }
+        item.append(mid);
+        item.append(el('span', 'co-points', row.points + ' نقطة'));
+        item.addEventListener('click', function () { location.href = '/community/member/?id=' + row.member_id; });
+        host.append(item);
+      });
+    }
+    function load() {
+      sb.from('community_leaderboard').select('member_id,display_name,avatar_url,points,badges')
+        .then(draw).catch(function () {});
+    }
+    load();
+    setInterval(load, 60000); // تحديث كل دقيقة
+  }
+
   function pageMember() {
     var id = qp('id'), host = $('coProfile'), arts = $('coArticles'), discs = $('coDiscussions'), reps = $('coReplies');
     if (!id) { host.append(el('div', 'co-empty', 'رابط غير صالح.')); return; }
-    sb.from('community_members_public').select('id,display_name,bio,created_at').eq('id', id).maybeSingle()
+    sb.from('community_members_public').select('id,display_name,bio,avatar_url,created_at').eq('id', id).maybeSingle()
       .then(function (r) {
         host.replaceChildren();
         if (!r.data) { host.append(el('div', 'co-empty', 'هذا العضو غير موجود أو ملفه خاص.')); return; }
         var m = r.data;
         document.title = m.display_name + ' | مجتمع بر عنخ';
         var head = el('div', 'co-profile-head');
+        if (m.avatar_url) { var img = el('img', 'co-avatar'); img.src = m.avatar_url; img.alt = ''; head.append(img); }
         head.append(el('h1', null, m.display_name));
         if (m.bio) head.append(el('p', 'co-bio', m.bio));
         head.append(el('span', 'co-hint', 'عضو منذ ' + fmtDate(m.created_at)));
+        sb.from('member_badges').select('badge,awarded_at').eq('member_id', id)
+          .then(function (br) {
+            if (br.data && br.data.length) {
+              var bs = el('div', 'co-meta co-badges');
+              br.data.forEach(function (b) { bs.append(el('span', 'co-chip co-badge', b.badge)); });
+              head.append(bs);
+            }
+          });
         host.append(head);
       });
     sb.from('community_articles').select('id,title,body,topic,author_name,member_id,created_at')
@@ -444,6 +484,7 @@
       else if (page === 'discussion') pageDiscussion();
       else if (page === 'member') pageMember();
       else if (page === 'me') pageMe();
+      else if (page === 'leaderboard') pageLeaderboard();
       if (page !== 'me' && page !== 'write' && page !== 'new-discussion') maybeNudge();
     });
   }

@@ -58,3 +58,13 @@
 .co-register h3{color:#e2b457;margin:0 0 8px;font-size:20px}
 .co-register p{color:#c9bda3;font-size:14px;line-height:1.9;margin:0 0 16px}
 @media(max-width:720px){.co-nudge{padding:10px 12px;font-size:13px}}
+
+/* لوحة الصدارة والأوسمة */
+.co-board-row{display:flex;align-items:center;gap:14px;cursor:pointer}
+.co-rank{font-size:22px;font-weight:700;color:#e2b457;min-width:34px;text-align:center}
+.co-board-mid{flex:1}
+.co-board-mid h3{margin:0}
+.co-points{color:#e2b457;font-weight:700;white-space:nowrap}
+.co-badge{background:#b9985c22;border-color:#e2b45766;color:#e8cf9a}
+.co-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #b9985c88}
+.co-badges{margin-top:8px}

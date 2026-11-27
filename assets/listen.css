@@ -1,0 +1,7 @@
+.pa-listen{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0;padding:12px 14px;background:linear-gradient(150deg,#0d2233,#071827);border:1px solid #b9975c55;border-radius:8px}
+.pa-listen button{font:inherit;font-size:13px;padding:9px 14px;border-radius:5px;border:1px solid #b9975c;background:#b9975c22;color:#f4d99d;cursor:pointer}
+.pa-listen button:hover{background:#b9975c33}
+.pa-listen .pa-listen-resume{border-color:#55c4b5;color:#55c4b5;background:#55c4b51a}
+.pa-listen-now{color:#cfe0ea;font-size:12.5px;min-height:1em}
+.pa-listen-hint{color:#7e93a3;font-size:11px;margin-inline-start:auto}
+@media(max-width:640px){.pa-listen{padding:10px}.pa-listen button{font-size:12px;padding:8px 12px}.pa-listen-hint{display:none}}

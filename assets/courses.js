@@ -64,6 +64,13 @@
       var s = st(cid);
       if(s.ex[li] !== undefined) return;
       s.ex[li] = oi; save(); render();
+      /* نتيجة التمرين تُرسل إلى نقاط المسجلين (award_quiz_points) بعد كل سؤال */
+      var course = null, lesson = null;
+      for (var ci = 0; ci < data.length; ci++) { if (data[ci].id === cid) { course = data[ci]; break; } }
+      if (course && course.lessons[li]) lesson = course.lessons[li];
+      if (lesson && window.PA_GATE && window.PA_GATE.awardQuiz) {
+        window.PA_GATE.awardQuiz(oi === lesson.ex.a ? 1 : 0, 1);
+      }
       return;
     }
     if(t.classList.contains('pc-done')){

@@ -1,0 +1,43 @@
+/* Per Ankh — شارة القفل للميزات المخصّصة للمسجلين */
+.pa-gate-host { position: relative; }
+.pa-gate-chip {
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 14px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(231, 199, 120, .55);
+  background: rgba(7, 19, 33, .9);
+  color: #f4d99d;
+  font: inherit;
+  font-size: 11.5px;
+  line-height: 1.2;
+  cursor: pointer;
+  backdrop-filter: blur(3px);
+  transition: background .18s, border-color .18s, color .18s;
+}
+.pa-gate-chip svg { width: 14px; height: 14px; flex: none; }
+.pa-gate-chip:hover,
+.pa-gate-chip:focus-visible {
+  background: #123048;
+  border-color: #f4d99d;
+  color: #fff3d0;
+  outline: none;
+}
+.pa-gate-chip:focus-visible { box-shadow: 0 0 0 2px rgba(244, 217, 157, .45); }
+/* داخل مشغّل الاستماع: شارة سطرية بلا تعويم */
+.pa-gate-chip.pa-gate-inline {
+  position: static;
+  margin-inline-start: 10px;
+  align-self: center;
+  padding: 4px 9px;
+  font-size: 11px;
+}
+.pa-member .pa-gate-chip { display: none !important; }
+@media (max-width: 600px) {
+  .pa-gate-chip { top: 10px; inset-inline-end: 10px; font-size: 11px; padding: 5px 10px; }
+}

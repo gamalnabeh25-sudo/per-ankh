@@ -1127,6 +1127,55 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 <div class="academy-history"><div class="academy-history-head"><div><h3>سجل التقدم</h3><p>نتائج الحساب المسجل تُحفظ في قاعدة بيانات Supabase، ونتائج الزائر تُحفظ محليًا على هذا الجهاز.</p></div><button class="tool-btn secondary-tool" id="academyRefreshHistory" type="button">تحديث السجل</button></div><div aria-live="polite" id="academyHistoryList"><p class="community-hint">لم تُحمّل النتائج بعد.</p></div></div>
 <div class="academy-note">ملاحظة: التصنيفات الموضوعية استدلالية، وقد يكون السؤال الواحد متعدد المحاور. بنك الأسئلة يحتوي 300 سؤالًا بأربعة اختيارات وشرح ورابط مصدر؛ وجود الرابط لا يغني عن مراجعة المرجع قبل الاقتباس الأكاديمي.</div>
 <div class="hiero-course" id="hieroCourse"><div class="hc-head"><div class="mini">HIEROGLYPH COURSE · ثلاثة دروس</div><h3>دروس الكتابة الهيروغليفية</h3><p>ثلاثة دروس قصيرة مبنية على جدول العلامات الأحادية المستخدم في الموقع نفسه: كل علامة بصورتها وقراءتها الصوتية ورمزها في قائمة جاردنر ووصفها. اقرأ الدرس ثم اختبر قراءتك لأربع علامات منه. القراءة هنا لعلامة مفردة، وليست تهجئة اسم أو ترجمة نص.</p></div><div class="hc-tabs" id="hcTabs"></div><div class="hc-stage" id="hcStage" aria-live="polite"></div></div><div class="king-quizzes" id="king-quizzes"><h3>اختبارات صفحات الملوك</h3><p>كل صفحة ملك مكتملة تنتهي باختبار من أسئلة مبنية على نص الصفحة نفسها. الاختبارات هنا تفتح داخل صفحة الملك، ومصادر كل سؤال مذكورة مع تفسير إجابته.</p><div class="kq-list"><a class="kq-card" href="/kings/001-narmr/#quiz"><img src="/assets/thumbs/kq-narmr.webp" alt="لوحة الملك نعرمر" width="216" height="288" decoding="async"><span>نعرمر · اختبار الصفحة</span></a><a class="kq-card" href="/kings/019-khwfw/#quiz"><img src="/assets/thumbs/kq-khwfw.webp" alt="لوحة الملك خوفو" width="216" height="288" decoding="async"><span>خوفو · اختبار الصفحة</span></a></div><p class="kq-note">الملوك 002 وما بعده تُضاف هنا بمجرد اكتمال صفحاتهم.</p></div></section>
+<style id="pa-courses-css">
+#academy-courses{--pc-gold:#e7c778;--pc-gold2:#f4d99d;--pc-teal:#55c4b5;--pc-mut:#a8b6c2}
+#academy-courses .pc-top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:0 0 18px}
+#academy-courses .pc-top p{margin:0;color:var(--pc-mut);font-size:13px;line-height:1.9;max-width:70ch}
+#academy-courses .pc-stat{color:var(--pc-gold2);font-size:14px;font-weight:600}
+#academy-courses .pc-reset{font:inherit;font-size:12px;padding:8px 14px;border-radius:4px;border:1px solid #40586b;background:transparent;color:#dce4e9;cursor:pointer}
+#academy-courses .pc-course{margin:0 0 14px;padding:20px;background:linear-gradient(150deg,#112a40,#091b2b);border:1px solid #b9975c55;border-radius:8px;min-width:0}
+#academy-courses .pc-cmeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+#academy-courses .pc-cmeta span{display:inline-block;unicode-bidi:isolate;font-size:11px;padding:4px 9px;border-radius:20px;border:1px solid #40586b;color:#cfe0ea}
+#academy-courses .pc-cmeta .pc-level{border-color:var(--pc-gold);color:var(--pc-gold2)}
+#academy-courses .pc-course h3{margin:0 0 6px;color:var(--pc-gold2);font-size:20px}
+#academy-courses .pc-summary{margin:0 0 14px;color:var(--pc-mut);font-size:13px;line-height:1.9}
+#academy-courses .pc-bar{position:relative;height:6px;border-radius:6px;background:#0a1c2a;border:1px solid #2b4256;overflow:hidden;max-width:420px}
+#academy-courses .pc-bar i{display:block;height:100%;background:linear-gradient(90deg,#b9975c,#e7c778);transition:width .3s}
+#academy-courses .pc-pct{display:inline-block;color:var(--pc-teal);font-size:12px;margin-inline-start:8px}
+#academy-courses .pc-toggle{margin-top:12px;font:inherit;font-size:13px;padding:10px 18px;border-radius:4px;border:1px solid var(--pc-gold);background:#b9975c22;color:var(--pc-gold2);cursor:pointer}
+#academy-courses .pc-lessons{margin-top:18px;display:grid;gap:12px}
+#academy-courses .pc-lesson{padding:18px;background:#071827;border:1px solid #2b4256;border-radius:6px;border-inline-start:3px solid #b9975c66}
+#academy-courses .pc-lesson.is-done{border-inline-start-color:var(--pc-teal)}
+#academy-courses .pc-lhead{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+#academy-courses .pc-lnum{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1px solid var(--pc-gold);color:var(--pc-gold2);font-size:13px}
+#academy-courses .pc-lhead h4{margin:0;color:#fff;font-size:16px}
+#academy-courses .pc-par{margin:0 0 10px;color:#d3dde4;font-size:13.5px;line-height:2}
+#academy-courses .pc-src{margin:0 0 14px;color:#7e93a3;font-size:11.5px;line-height:1.8;word-break:break-word}
+#academy-courses .pc-ex{padding:14px;background:#0b2031;border:1px solid #b9975c33;border-radius:6px}
+#academy-courses .pc-q{color:var(--pc-gold2);font-size:13px;margin-bottom:10px;line-height:1.8}
+#academy-courses .pc-opts{display:grid;grid-template-columns:1fr;gap:8px}
+#academy-courses .pc-opt{text-align:start;font:inherit;font-size:13px;padding:10px 12px;border-radius:4px;border:1px solid #40586b;background:#071827;color:#dce4e9;cursor:pointer;line-height:1.7}
+#academy-courses .pc-opt:hover:not([disabled]){border-color:var(--pc-teal)}
+#academy-courses .pc-opt.ok{border-color:var(--pc-teal);background:#0f3a38;color:#d8f5f1}
+#academy-courses .pc-opt.no{border-color:#8c4a4a;background:#2a1414;color:#f0d6d6}
+#academy-courses .pc-fb{margin-top:10px;color:#cfe0ea;font-size:12.5px;line-height:1.9;padding-inline-start:10px;border-inline-start:2px solid var(--pc-teal)}
+#academy-courses .pc-done{margin-top:14px;font:inherit;font-size:12px;padding:9px 14px;border-radius:4px;border:1px solid #40586b;background:transparent;color:#dce4e9;cursor:pointer}
+#academy-courses .pc-done.is-done{border-color:var(--pc-teal);color:var(--pc-teal)}
+@media(max-width:640px){
+ #academy-courses .pc-course{padding:15px 13px}
+ #academy-courses .pc-course h3{font-size:17px}
+ #academy-courses .pc-lesson{padding:14px 12px}
+ #academy-courses .pc-par{font-size:13px;line-height:1.95}
+}
+
+</style>
+<section class="content-section academy-section" id="academy-courses">
+<div class="content-head"><div class="eyebrow">PART 09 · STRUCTURED COURSES</div><h2>مسارات الأكاديمية</h2><p>ثلاثة مسارات، تسعة دروس، وتمرين بعد كل درس. كل درس يذكر مصدره، والتمرين يُصحَّح فورًا بشرح، والتقدم يُحفظ على هذا الجهاز.</p></div>
+<div class="pc-top"><p>القراءة بالترتيب أفضل: المسار الأول يبني طريقة التعامل مع الدليل، والثاني يطبّقها على العمارة الجنائزية، والثالث يفتح الكتابة الهيروغليفية عبر جدول العلامات في القسم التالي.</p><div><span class="pc-stat" id="paCourseStats"></span> <button class="pc-reset" id="paCourseReset" type="button">تصفير التقدم</button></div></div>
+<div id="paCourses"></div>
+<p class="ha-note">التقدم يُحفظ محليًا في هذا المتصفح فقط، ولا يُرسل إلى أي حساب. والتصحيح هنا تعليمي: التمرين يختبر ما ورد في الدرس، لا يحل محل مراجعة المصدر المذكور.</p>
+</section>
+
 <style id="hiero-academy-css">
 @font-face{font-family:'PerAnkhHiero';src:url(assets/fonts/perankh-hiero.woff2) format('woff2');font-display:swap;font-weight:400}
 #hiero-academy{--ha-gold:#e7c778;--ha-gold2:#f4d99d;--ha-teal:#55c4b5;--ha-mut:#a8b6c2}
@@ -2596,4 +2645,6 @@ render();
 })();</script><script src="assets/lab3d.js?v=1" defer></script>
 <script src="assets/hiero-data.js?v=1" defer></script>
 <script src="assets/hiero.js?v=1" defer></script>
+<script src="assets/courses-data.js?v=1" defer></script>
+<script src="assets/courses.js?v=1" defer></script>
 </body></html>

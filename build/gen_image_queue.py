@@ -54,10 +54,23 @@ for kind in ("sites", "eras"):
             num = slug.split("-")[0]
             path = "assets/eras/era%s.webp" % num
             subject = ERA_PROMPT.get(num, title)
+        count = ""
+        if kind == "eras":
+            nk = len(re.findall(r'<td><a href="/kings/', s))
+            ns = len(set(re.findall(r'<a href="/sites/([a-z0-9\-]+)/"', s)))
+            bits = []
+            if nk:
+                bits.append("%d ملكًا" % nk)
+            if ns:
+                bits.append("%d مواقع" % ns)
+            count = " · ".join(bits)
         prompt = ("vertical portrait photograph 900x1200 of %s. %s. Warm low sun, deep blue to amber sky, clean foreground, "
-                  "no people, no text, no watermark, archaeological documentary photography, high detail" % (title, subject))
+                  "no people, no watermark, archaeological documentary photography, high detail" % (title, subject))
+        if count:
+            prompt += (' The only text baked into the image is the count "%s", small gold Arabic type in the lower third.' % count)
         rows.append("| %d | %s/%s | %s | %s | %s |" % (n, kind, slug, title, path, prompt))
 out += rows
+out.append("\nCounts rule: a count is baked into the image itself, never printed as text under a cover or in a card. Era covers carry the verified number of kings with pages and related sites; if that number changes, the image is regenerated.\n")
 out.append("\n## 2. Section banners — 99 (after the covers)\n")
 out.append("Size 1000x667 (3:2), webp, same grade as the covers. Each banner shows a specific archaeological subject named in that section, never a generic pyramid. Target path: `assets/sections/<page-slug>-<section-id>.webp`. The full per-page section list is in /downloads/per-ankh-image-gaps.md.\n")
 open("/downloads/per-ankh-image-queue.md", "w", encoding="utf-8").write("\n".join(out) + "\n")

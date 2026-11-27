@@ -350,7 +350,7 @@ function fmt(t){if(!isFinite(t))return"0:00";var m=Math.floor(t/60),s=Math.floor
 function btns(){document.querySelectorAll(".lbtn").forEach(function(b){var on=b.dataset.s===cur&&!au.paused;b.classList.toggle("on",on);b.querySelector("span").textContent=on?"إيقاف مؤقت":(b.dataset.s===cur&&au.currentTime>1?"أكمل الاستماع":"استمع لهذا القسم");b.querySelector("svg").outerHTML=on?Q:P})}
 function ui(){var pa=au.paused;pp.innerHTML=pa?P:Q;pp.setAttribute("aria-label",pa?"تشغيل":"إيقاف مؤقت");btns()}
 function show(){pl.classList.add("on");document.body.classList.add("pl-on")}
-function load(id,n){cur=id;part=n;au.src="/beliefs/hour-08/audio/"+id+"-"+n+".mp3?v=r53";au.playbackRate=sp[si];$("tt").textContent=S[id][0]+(S[id][1]>1?" ("+n+"/"+S[id][1]+")":"");$("er").hidden=true;sk.value=0;$("cur").textContent="0:00";$("dur").textContent="0:00"}
+function load(id,n){cur=id;part=n;au.src="/beliefs/hour-08/audio/"+id+"-"+n+".mp3?v=r54";au.playbackRate=sp[si];$("tt").textContent=S[id][0]+(S[id][1]>1?" ("+n+"/"+S[id][1]+")":"");$("er").hidden=true;sk.value=0;$("cur").textContent="0:00";$("dur").textContent="0:00"}
 function play(){var r=au.play();if(r&&r.catch)r.catch(function(){$("er").hidden=false})}
 function start(id){show();if(cur===id){au.paused?play():au.pause();return}load(id,1);play()}
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".lbtn");if(b){e.preventDefault();start(b.dataset.s)}});

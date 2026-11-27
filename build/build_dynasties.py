@@ -159,7 +159,7 @@ def page(key, kings_by_dyn, nxt=None, prv=None):
         f'<div class="fact"><b>العصر</b><span><a href="/eras/{era_slug}/">{html.escape(era_label)}</a></span></div>'
         f'<div class="fact"><b>العاصمة</b><span>{html.escape(c.get("capital", "غير محدد في المصادر المتاحة"))}</span></div>'
         f'<div class="fact"><b>الفترة</b><span>{html.escape(c.get("span", "—"))}</span></div>'
-        f'<div class="fact"><b>ملوك هذه الأسرة على الموقع</b><span>{nk}</span></div>'
+        f'<div class="fact"><b>ملوك هذه الأسرة على الموقع</b><span>{kcount(nk)}</span></div>'
     )
     desc = f"{label} ({era_label}): العاصمة، والأحداث الكبرى، والعمارة، والملوك، والمصادر."
     ld = {"@context": "https://schema.org", "@graph": [

@@ -146,7 +146,8 @@ def page(key, kings_by_dyn, nxt=None, prv=None):
     nk = len(ks)
     if ks:
         cards = "".join(
-            f'<a href="{href}"><b>{html.escape(name)}</b><span>{i}</span></a>' for i, name, href, _n in ks)
+            f'<a href="{href}"><b>{html.escape(re.split(r"[()]", name)[0].strip())}</b><span>{pos}</span></a>'
+            for pos, (_o, name, href, _n) in enumerate(ks, 1))
         kbody = f'<div class="grid kingsgrid">{cards}</div>'
         kfoot = '<p class="note">الترتيب كما في قائمة الملوك على الموقع. الجدول يُبنى آليًا من صفحات الملوك، فأي صفحة ملك تُضاف تظهر هنا.</p>'
         if any(n for *_x, n in ks):

@@ -7,7 +7,7 @@
   var state = {};
   try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ state = {}; }
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
-  function st(cid){ if(!state[cid]) state[cid] = {done:[], ex:{}}; if(!state[cid].done) state[cid].done=[]; if(!state[cid].ex) state[cid].ex={}; return state[cid]; }
+  function st(cid){ if(!state[cid]) state[cid] = {done:[], ex:{}, awarded:{}}; if(!state[cid].done) state[cid].done=[]; if(!state[cid].ex) state[cid].ex={}; if(!state[cid].awarded) state[cid].awarded={}; return state[cid]; }
   function totalLessons(){ return data.reduce(function(n,c){ return n + c.lessons.length; }, 0); }
   function totalDone(){ return data.reduce(function(n,c){ return n + st(c.id).done.length; }, 0); }
 
@@ -64,12 +64,16 @@
       var s = st(cid);
       if(s.ex[li] !== undefined) return;
       s.ex[li] = oi; save(); render();
-      /* نتيجة التمرين تُرسل إلى نقاط المسجلين (award_quiz_points) بعد كل سؤال */
+      /* نتيجة التمرين تُرسل مرة واحدة عند إكمال التمرين: (عدد الصحيح، عدد الأسئلة)، لا لكل سؤال */
       var course = null, lesson = null;
       for (var ci = 0; ci < data.length; ci++) { if (data[ci].id === cid) { course = data[ci]; break; } }
       if (course && course.lessons[li]) lesson = course.lessons[li];
-      if (lesson && window.PA_GATE && window.PA_GATE.awardQuiz) {
-        window.PA_GATE.awardQuiz(oi === lesson.ex.a ? 1 : 0, 1);
+      if (lesson && !s.awarded[li] && window.PA_GATE && window.PA_GATE.awardQuiz) {
+        var qs = lesson.ex.qs || [lesson.ex];
+        var total = qs.length, correct = 0;
+        for (var qi = 0; qi < qs.length; qi++) { if (qs[qi].a === oi) correct++; }
+        s.awarded[li] = 1; save();
+        window.PA_GATE.awardQuiz(correct, total);
       }
       return;
     }

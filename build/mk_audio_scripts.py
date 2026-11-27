@@ -16,12 +16,12 @@ def plain(fragment):
 def sections(path):
     s = open(path, encoding="utf-8").read()
     out = []
-    for m in re.finditer(r'<section class="panel" id="(s\d+)"><h2>(.*?)</h2>(.*?)</section>', s, flags=re.S):
+    for m in re.finditer(r'<section class="panel"(?: id="([^"]*)")?[^>]*><h2>(.*?)</h2>(.*?)</section>', s, flags=re.S):
         sid, head, body = m.group(1), m.group(2), m.group(3)
         title = plain(re.sub(r'<span class="num">.*?</span>', "", head))
         paras = [plain(p) for p in re.findall(r"<p(?![^>]*class=\"note\")[^>]*>(.*?)</p>", body, flags=re.S)]
         paras = [p for p in paras if p and "المصدر:" not in p]
-        out.append(dict(id=sid, title=title, parts=paras))
+        out.append(dict(id=sid or ('s%d' % (len(out) + 1)), title=title, parts=paras))
     return out
 
 def main():

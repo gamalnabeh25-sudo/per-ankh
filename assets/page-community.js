@@ -1,4 +1,4 @@
-/* بر عنخ — ويدجت التعليقات والإعجابات المشترك لكل الصفحات (بدون حسابات) */
+/* بر عنخ — ويدجت التعليقات والإعجابات المشترك لكل الصفحات (التفاعل للأعضاء المسجلين، القراءة للجميع) */
 (function () {
   'use strict';
 
@@ -59,6 +59,24 @@
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     var pid = host.dataset.pageId || pageId();
     var vid = visitorId();
+    var authUser = null;
+    sb.auth.getSession().then(function (ar) {
+      authUser = ar && ar.data && ar.data.session && ar.data.session.user;
+      if (!authUser) {
+        // زائر: نموذج التعليق يتحول لدعوة تسجيل لطيفة
+        var nameField = document.getElementById('pcName');
+        if (nameField) nameField.remove();
+        var body0 = document.getElementById('pcBody');
+        if (body0) { body0.placeholder = 'سجّل الدخول لتشارك رأيك...'; }
+        var sub = form.querySelector('.pc-submit');
+        if (sub) sub.textContent = 'سجّل الدخول / إنشاء حساب للمشاركة';
+        var hint = form.querySelector('.pc-hint');
+        if (hint) hint.textContent = 'التسجيل مجاني ويفتح التعليق والإعجاب وحفظ نشاطك في ملفك.';
+      } else {
+        var nameField2 = document.getElementById('pcName');
+        if (nameField2) nameField2.remove();
+      }
+    }).catch(function () {});
     var likeBtn = document.getElementById('pcLike');
     var countEl = document.getElementById('pcCount');
     var form = document.getElementById('pcForm');
@@ -142,8 +160,12 @@
     }
 
     likeBtn.addEventListener('click', function () {
+      if (!authUser) {
+        if (window.confirm('الإعجاب متاح للأعضاء المسجلين. هل تريد تسجيل الدخول؟')) location.href = '/?account=1';
+        return;
+      }
       likeBtn.disabled = true;
-      sb.rpc('toggle_page_like', { p_page_id: pid, p_visitor: vid })
+      sb.rpc('toggle_page_like', { p_page_id: pid })
         .then(function (r) {
           likeBtn.disabled = false;
           if (r.error) return;
@@ -160,20 +182,22 @@
 
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
-      var name = document.getElementById('pcName').value.trim();
+      if (!authUser) {
+        if (window.confirm('التعليق متاح للأعضاء المسجلين. هل تريد تسجيل الدخول؟')) location.href = '/?account=1';
+        return;
+      }
       var body = document.getElementById('pcBody').value.trim();
       if (body.length < 3) { say('اكتب تعليقًا لا يقل عن 3 أحرف.', false); return; }
       say('', true);
       sb.rpc('submit_page_comment', {
-        p_page_id: pid, p_display_name: name, p_body: body, p_visitor: vid
+        p_page_id: pid, p_body: body
       }).then(function (r) {
         if (r.error) {
           var m = r.error.message || '';
           if (/الروابط/.test(m)) say('الروابط غير مسموحة في التعليقات.', false);
           else if (/مهلة|دقيقة/.test(m)) say('مهلة قصيرة بين التعليقات، جرّب بعد دقيقة.', false);
           else if (/الحد الأقصى/.test(m)) say('وصلت للحد الأقصى اليومي للتعليقات.', false);
-          else if (/مكرر/.test(m)) say('هذا التعليق مكرر.', false);
-          else if (/الاسم/.test(m)) say('الاسم بين 2 و40 حرفًا.', false);
+          else if (/يلزم تسجيل الدخول/.test(m)) say('سجّل الدخول أولًا للمشاركة.', false);
           else say('تعذر إرسال التعليق. جرّب مرة أخرى.', false);
           return;
         }

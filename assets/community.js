@@ -112,10 +112,11 @@
 
   var PAGE_PREFIX = { kings: 'الملوك', sites: 'المواقع الأثرية', eras: 'العصور', sections: 'الأقسام' };
   function pageLinkFromId(pid) {
-    return pid && pid.indexOf('/') > 0 ? '/' + pid + '/' : '/';
+    var i = pid.indexOf('-');
+    return i > 0 ? '/' + pid.slice(0, i) + '/' + pid.slice(i + 1) + '/' : '/';
   }
   function pageTitleFromId(pid) {
-    var i = pid.indexOf('/');
+    var i = pid.indexOf('-');
     if (i <= 0) return pid;
     var kind = PAGE_PREFIX[pid.slice(0, i)] || pid.slice(0, i);
     return kind + ' · ' + pid.slice(i + 1).replace(/-/g, ' ');

@@ -85,10 +85,11 @@ def expand_numbers(s):
 
 def normalize(s):
     s = expand_numbers(s)
-    s = s.replace("ق.م.", "قبل الميلاد").replace("ق. م.", "قبل الميلاد").replace("قبل الميلاد.", "قبل الميلاد")
+    s = re.sub(r"ق\.\s?م\.?", "قبل الميلاد", s)
+    s = s.replace("قبل الميلاد.", "قبل الميلاد").replace("قبل الميلاد،", "قبل الميلاد،")
     s = re.sub(r"\bص(\d+)", lambda m: "صفحة " + num2ar(m.group(1)), s)
     s = s.replace("ج1", "الجزء الأول").replace("ج2", "الجزء الثاني").replace("ج4", "الجزء الرابع")
-    s = re.sub(r"\bم\.\s", "ميلادية ", s)
+    s = re.sub(r"(?<![\u0621-\u064A])م\.(?![\u0621-\u064A])", "ميلادية", s)
     s = re.sub(r"\(\s*\)", "", s)
     s = re.sub(r"\s+", " ", s).strip()
     for k, v in NAMES.items():

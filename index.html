@@ -795,7 +795,60 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 .bel-refs a{color:#70d2c5;font-size:13px;word-break:break-word}
 #religion-details .bel-vsrc,.bel-vw .bel-vsrc{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.bel-vw .bel-vsrc a{color:#70d2c5;font-size:12.5px}.bel-vw .bel-who{color:#f0d9a2;font-weight:700;font-size:14px}
 @media(max-width:640px){.bel-chap>summary{font-size:15px;padding:13px 14px}.bel-sec{margin:0 8px 8px}}
-</style><style id="urlwrap">.acc .body,.acc .body p,.acc .body li,.acc .body a,.acc .body ol,.acc .body ul{overflow-wrap:anywhere;word-break:break-word;min-width:0;max-width:100%}.acc .body a{display:inline;unicode-bidi:plaintext}</style></head>
+</style><style id="urlwrap">.acc .body,.acc .body p,.acc .body li,.acc .body a,.acc .body ol,.acc .body ul{overflow-wrap:anywhere;word-break:break-word;min-width:0;max-width:100%}.acc .body a{display:inline;unicode-bidi:plaintext}
+.lab-sources{margin-top:14px;padding:12px 14px;border:1px solid rgba(216,181,107,.26);border-radius:10px;background:rgba(9,25,38,.55)}
+.lab-sources b{display:block;font-size:.78rem;letter-spacing:.04em;color:#e8cf95;margin-bottom:8px}
+.lab-sources ul{margin:0;padding-inline-start:18px}
+.lab-sources li{font-size:.78rem;line-height:1.85;color:#b9c6cf;margin:0 0 5px}
+.lab-sources a{color:#5fd0c5;text-decoration:underline;overflow-wrap:anywhere}
+.lab-sources .lab-caveat{display:block;margin-top:6px;font-size:.75rem;color:#98a9b0;line-height:1.75}
+.lab-next{margin:14px 0 0;font-size:.85rem;color:#b9c6cf;line-height:1.9}
+.lab-next a{color:#5fd0c5}
+@media(max-width:700px){.lab-sources{padding:10px 12px}.lab-sources li{font-size:.82rem}}
+
+#bel-guide .guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;margin-top:6px}
+#bel-guide .guide-row{display:flex;gap:12px;align-items:flex-start;padding:10px 14px;border:1px solid rgba(216,181,107,.22);border-radius:10px;background:rgba(9,25,38,.5)}
+#bel-guide .guide-name{color:#f0d9a2;font-size:14px;min-width:70px;line-height:1.8}
+#bel-guide .guide-links{display:flex;flex-wrap:wrap;gap:6px}
+#bel-guide .guide-link{font-size:12.5px;color:#c9d4da;text-decoration:none;border:1px solid rgba(95,208,197,.35);border-radius:999px;padding:3px 10px;background:rgba(95,208,197,.08);line-height:1.7}
+#bel-guide .guide-link:hover,#bel-guide .guide-link:focus-visible{color:#071321;background:#5fd0c5}
+@media(max-width:700px){#bel-guide .guide-grid{grid-template-columns:1fr}#bel-guide .guide-name{min-width:56px;font-size:13px}}
+
+.hiero-course{margin-top:28px;padding:22px;border:1px solid rgba(216,181,107,.28);border-radius:14px;background:linear-gradient(150deg,#0f2740,#08151f)}
+.hiero-course h3{color:#f0d9a2;font-size:22px;margin:6px 0 8px}
+.hiero-course p{color:#a9b7c5;font-size:13.5px;line-height:1.9;margin:0 0 12px}
+.hc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+.hc-tabs button{font:inherit;font-size:12.5px;color:#f0d9a2;background:rgba(216,181,107,.1);border:1px solid rgba(216,181,107,.4);border-radius:999px;padding:6px 14px;cursor:pointer}
+.hc-tabs button.on{background:#d8b56b;color:#071321;font-weight:700}
+.hc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.hc-card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;border:1px solid rgba(216,181,107,.22);border-radius:10px;background:rgba(9,25,38,.6);text-align:center}
+.hc-glyph{font-size:34px;line-height:1.2;color:#f4d99d}
+.hc-glyph.big{font-size:64px;display:block;text-align:center;margin:10px 0}
+.hc-card b{color:#e8cf95;font-size:15px}
+.hc-card code{font-size:11.5px;color:#5fd0c5;direction:ltr}
+.hc-desc{font-size:11.5px;color:#9fb0ba;line-height:1.6}
+.hc-note{font-size:12px;color:#9fb0ba;line-height:1.8;margin-top:12px}
+.hc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.hc-quiz{text-align:center}
+.hc-progress{font-size:12.5px;color:#9fb0ba;margin-bottom:6px}
+.hc-ask{color:#c9d4da;font-size:14px;margin:6px 0 12px}
+.hc-opts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.hc-opts button{font:inherit;font-size:18px;min-width:84px;padding:10px 18px;border-radius:10px;border:1px solid rgba(95,208,197,.4);background:rgba(95,208,197,.08);color:#dff5f2;cursor:pointer}
+.hc-opts button.ok{background:#2f7f72;border-color:#5fd0c5;color:#fff}
+.hc-opts button.no{background:#7a2f33;border-color:#c2605f;color:#fff}
+.hc-feedback{font-size:13px;color:#c9d4da;line-height:1.9;margin:14px 0}
+.hc-quiz .tool-btn{margin-top:6px}
+.hc-done{text-align:center}
+.hc-score{font-size:44px;color:#f2dca0;font-weight:700;letter-spacing:.04em}
+.king-quizzes{margin-top:26px;padding:22px;border:1px solid rgba(95,208,197,.25);border-radius:14px;background:linear-gradient(150deg,#0d2437,#08151f)}
+.king-quizzes h3{color:#f0d9a2;font-size:20px;margin:0 0 8px}
+.king-quizzes p{color:#a9b7c5;font-size:13.5px;line-height:1.9;margin:0 0 12px}
+.kq-list{display:flex;flex-wrap:wrap;gap:10px}
+.kq-list a{font-size:13.5px;color:#0a1a26;background:#d8b56b;border-radius:999px;padding:8px 18px;text-decoration:none;font-weight:700}
+.kq-list a:hover{background:#f2dca0}
+.kq-note{font-size:12px;color:#9fb0ba;margin-top:12px!important}
+@media(max-width:700px){.hiero-course,.king-quizzes{padding:16px}.hc-glyph{font-size:30px}.hc-glyph.big{font-size:52px}}
+</style></head>
 <body>
 <div class="topline"></div>
 <header>
@@ -852,7 +905,7 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 </div>
 </section>
 <section class="content-section interactive-lab" id="interactive-lab">
-<div class="content-head"><div class="eyebrow">PART 02 · INTERACTIVE KNOWLEDGE</div><h2>مختبر الحضارة التفاعلي</h2><p>شاهد بعض أفكار المصريين القدماء في رسوم مبسطة قابلة للاستكشاف. اختر عنصرًا لعرض المعلومة المرتبطة به.</p></div>
+<div class="content-head"><div class="eyebrow">PART 02 · INTERACTIVE KNOWLEDGE</div><h2>مختبر الحضارة التفاعلي</h2><p>شاهد بعض أفكار المصريين القدماء في رسوم مبسطة قابلة للاستكشاف. اختر عنصرًا لعرض المعلومة المرتبطة به. تحت كل رسم قائمة بمصادره، وما هو محل خلاف أو غير محقق مذكور صراحة.</p></div>
 <div class="lab-grid">
 <article class="lab-panel"><div class="lab-kicker">01 · ROYAL ARCHITECTURE</div><h3>مقارنة ارتفاع الأهرامات</h3><p class="lab-intro">ارتفاعات تقريبية للأهرامات عند اكتمال بنائها، وليست ارتفاعاتها الحالية.</p>
 <div aria-label="مقارنة تقريبية لارتفاع أربعة أهرامات مصرية" class="pyramid-chart" role="img">
@@ -860,34 +913,34 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 <button class="pyramid-item" data-height="143.5" data-note="هرم خفرع بالجيزة. كان ارتفاعه الأصلي نحو 143.5 مترًا، ويبدو أعلى بصريًا أحيانًا بسبب موضع بنائه." data-pyramid="خفرع"><span class="pyramid-shape khafre"></span><b>خفرع</b><small>143.5 م تقريبًا</small></button>
 <button class="pyramid-item" data-height="65" data-note="هرم منكاورع هو أصغر الأهرامات الثلاثة الرئيسية بهضبة الجيزة، وارتفاعه الأصلي نحو 65 مترًا." data-pyramid="منكاورع"><span class="pyramid-shape menkaure"></span><b>منكاورع</b><small>65 م تقريبًا</small></button>
 <button class="pyramid-item" data-height="62" data-note="الهرم المدرج في سقارة، ويبلغ ارتفاعه الأصلي قرابة 60 إلى 62 مترًا بحسب طريقة القياس." data-pyramid="زوسر"><span class="pyramid-shape djoser"></span><b>زوسر</b><small>نحو 60–62 م</small></button>
-</div><div aria-live="polite" class="lab-detail" id="pyramid-detail">اضغط على أحد الأهرامات لعرض نبذة عنه.</div><small class="lab-source-note">الأرقام تقريبية وشائعة في المراجع التعريفية؛ قد تختلف قليلًا بحسب المرجع وطريقة القياس.</small>
+</div><div aria-live="polite" class="lab-detail" id="pyramid-detail">اضغط على أحد الأهرامات لعرض نبذة عنه.</div><div class="lab-sources"><b>المصادر</b><ul><li>وزارة السياحة والآثار المصرية، «الهرم الأكبر»: الارتفاع الأصلي 146.5 م — <a href="https://egymonuments.gov.eg/ar/monuments/the-great-pyramid/" target="_blank" rel="noopener">egymonuments.gov.eg</a></li><li>سليم حسن، موسوعة مصر القديمة، الجزء الثاني: ارتفاعه 146 م — <a href="https://www.bookleaks.com/files/hind/history/185.pdf" target="_blank" rel="noopener">bookleaks.com (نسخة هنداوي)</a></li><li>أحمد فخري، الأهرامات المصرية (ترجمة عربية لكتابه The Pyramids، 1961) — <a href="https://archive.org/details/20201111_20201111_1902" target="_blank" rel="noopener">archive.org/details/20201111_20201111_1902</a></li></ul><span class="lab-caveat">الأرقام عند اكتمال البناء لا الارتفاع الحالي، وتختلف قليلًا بحسب المرجع وطريقة القياس.</span></div>
 </article>
 <article class="lab-panel"><div class="lab-kicker">02 · HELIOPOLITAN THEOLOGY</div><h3>تاسوع هليوبوليس</h3><p class="lab-intro">اختر اسمًا من مجموعة المعبودات لعرض صلته برواية الخلق الهليوبوليتية.</p>
 <div class="ennead-tree"><button data-god="آتوم" data-god-note="آتوم: المعبود الخالق الذي تبدأ به سلسلة النسب في رواية هليوبوليس.">آتوم</button><div class="tree-branch">↓</div><div class="god-pair"><button data-god="شو" data-god-note="شو: يرتبط بالهواء، ويُعد من الجيل التالي لآتوم في الرواية الهليوبوليتية.">شو</button><button data-god="تفنوت" data-god-note="تفنوت: ترتبط بالرطوبة، وهي أخت شو في نسب التاسوع.">تفنوت</button></div><div class="tree-branch">↓</div><div class="god-pair"><button data-god="جب" data-god-note="جب: معبود الأرض، ابن شو وتفنوت.">جب</button><button data-god="نوت" data-god-note="نوت: معبودة السماء، زوجة جب وأم أوزير وإيزيس وست ونفتيس.">نوت</button></div><div class="tree-branch">↓</div><div class="god-quartet"><button data-god="أوزير" data-god-note="أوزير: أحد أبناء جب ونوت، ويرتبط بالبعث والملكية والعالم الآخر.">أوزير</button><button data-god="إيزيس" data-god-note="إيزيس: إحدى بنات جب ونوت، وترتبط بالأمومة والسحر والحماية.">إيزيس</button><button data-god="ست" data-god-note="ست: أحد أبناء جب ونوت، وترتبط به قوى العاصفة والصحراء والصراع في الأساطير.">ست</button><button data-god="نفتيس" data-god-note="نفتيس: إحدى بنات جب ونوت، وترتبط بالحماية والطقوس الجنائزية.">نفتيس</button></div></div>
-<div aria-live="polite" class="lab-detail" id="god-detail">اضغط على اسم أحد المعبودات لعرض دوره.</div><small class="lab-source-note">الرسم تخطيطي للتسلسل الأسري في تقليد هليوبوليس، وليس تصويرًا لكل اختلافات المعتقدات المصرية عبر العصور.</small>
+<div aria-live="polite" class="lab-detail" id="god-detail">اضغط على اسم أحد المعبودات لعرض دوره.</div><div class="lab-sources"><b>المصادر</b><ul><li>سليم حسن، موسوعة مصر القديمة، الجزء الأول، الفصل الحادي عشر «نظرة إجمالية في أصول الديانة المصرية» — <a href="https://archive.org/details/20201104_20201104_1559" target="_blank" rel="noopener">archive.org/details/20201104_20201104_1559</a></li><li>عبد الحليم نور الدين، آثار وحضارة مصر القديمة، الجزء الأول، باب الديانة: مذاهب خلق العالم — <a href="https://archive.org/details/AAlexandrina-117303" target="_blank" rel="noopener">archive.org/details/AAlexandrina-117303</a></li><li>عبد العزيز صالح، «فلسفات نشأة الوجود في مصر القديمة»، مجلة كلية الآداب، جامعة القاهرة، فبراير 1959 (كما يحيل إليه نور الدين)</li></ul><span class="lab-caveat">التسلسل كما يرويه تقليد هليوبوليس؛ اختلفت التفاصيل وترتيب بعض الأسماء بين المصادر.</span></div>
 </article>
 <article class="lab-panel"><div class="lab-kicker">03 · JOURNEY THROUGH THE DUAT</div><h3>رحلة الشمس عبر ساعات الليل</h3><p class="lab-intro">كتاب الأمدوات يقسّم رحلة رع في العالم السفلي إلى اثنتي عشرة ساعة. اختر ساعة لقراءة ما تصفه.</p>
-<div class="duat-hours" id="duat-hours"><button aria-label="الساعة 1" data-hour="1">01</button><button aria-label="الساعة 2" data-hour="2">02</button><button aria-label="الساعة 3" data-hour="3">03</button><button aria-label="الساعة 4" data-hour="4">04</button><button aria-label="الساعة 5" data-hour="5">05</button><button aria-label="الساعة 6" data-hour="6">06</button><button aria-label="الساعة 7" data-hour="7">07</button><button aria-label="الساعة 8" data-hour="8">08</button><button aria-label="الساعة 9" data-hour="9">09</button><button aria-label="الساعة 10" data-hour="10">10</button><button aria-label="الساعة 11" data-hour="11">11</button><button aria-label="الساعة 12" data-hour="12">12</button></div><div aria-live="polite" class="lab-detail" id="duat-detail">اختر ساعة من الساعات الاثنتي عشرة.</div><small class="lab-source-note">تختلف النسخ في التفاصيل، والملخص هنا للنسخة التي تصفها الصفحة. مصادر كل ساعة محددة في صفحتها ضمن قسم المعتقدات.</small>
+<div class="duat-hours" id="duat-hours"><button aria-label="الساعة 1" data-hour="1">01</button><button aria-label="الساعة 2" data-hour="2">02</button><button aria-label="الساعة 3" data-hour="3">03</button><button aria-label="الساعة 4" data-hour="4">04</button><button aria-label="الساعة 5" data-hour="5">05</button><button aria-label="الساعة 6" data-hour="6">06</button><button aria-label="الساعة 7" data-hour="7">07</button><button aria-label="الساعة 8" data-hour="8">08</button><button aria-label="الساعة 9" data-hour="9">09</button><button aria-label="الساعة 10" data-hour="10">10</button><button aria-label="الساعة 11" data-hour="11">11</button><button aria-label="الساعة 12" data-hour="12">12</button></div><div aria-live="polite" class="lab-detail" id="duat-detail">اختر ساعة من الساعات الاثنتي عشرة.</div><div class="lab-sources"><b>المصادر</b><ul><li>عبد الحليم نور الدين، آثار وحضارة مصر القديمة، الجزء الأول، باب الكتب الدينية: الأمدوات ساعة بساعة — <a href="https://archive.org/details/AAlexandrina-117303" target="_blank" rel="noopener">archive.org/details/AAlexandrina-117303</a></li><li>إيريك هورنونج وبيدجونيا جوجل وآدم لوو، «الأمدوات»، نشرة مؤسسة فاكتوم آرته</li><li>E.A. Wallis Budge, The Egyptian Heaven and Hell, vol. 1: The Book of Am-Tuat (London, 1905) — <a href="https://archive.org/details/in.ernet.dli.2015.22181" target="_blank" rel="noopener">archive.org/details/in.ernet.dli.2015.22181</a></li></ul><span class="lab-caveat">تختلف النسخ في التفاصيل، ولكل ساعة صفحتها ومصادرها الخاصة في قسم المعتقدات.</span></div>
 </article>
 <article class="lab-panel"><div class="lab-kicker">04 · TEMPLE ARCHITECTURE</div><h3>كيف تتدرج أجزاء المعبد؟</h3><p class="lab-intro">مخطط مبسط لبعض العناصر الشائعة في المعابد المصرية؛ اضغط على كل جزء.</p>
 <div class="temple-cutaway"><button data-temple="الصـرح" data-temple-note="الصـرح: بوابة ضخمة غالبًا ما تتكون من برجين، وتحدد مدخل المعبد في نماذج معمارية كثيرة.">الصـرح</button><button data-temple="الفناء" data-temple-note="الفناء: مساحة مفتوحة قد تحيط بها أروقة، وتختلف تفاصيلها من معبد إلى آخر.">الفناء</button><button data-temple="قاعة الأعمدة" data-temple-note="قاعة الأعمدة: مساحة داخلية تحمل سقفها أعمدة، وقد تتدرج أرضيتها وإضاءتها بحسب تصميم المعبد.">قاعة الأعمدة</button><button data-temple="قدس الأقداس" data-temple-note="قدس الأقداس: الحيز الأشد خصوصية في المعبد، حيث يوجد موضع تمثال المعبود في كثير من المعابد.">قدس الأقداس</button></div>
-<div aria-live="polite" class="lab-detail" id="temple-detail">اختر جزءًا من المخطط لعرض وظيفته المعمارية.</div><small class="lab-source-note">هذا تسلسل توضيحي شائع، وليس مخططًا مطابقًا لجميع المعابد؛ التخطيط يختلف باختلاف العصر والموقع والمعبود.</small>
+<div aria-live="polite" class="lab-detail" id="temple-detail">اختر جزءًا من المخطط لعرض وظيفته المعمارية.</div><div class="lab-sources"><b>المصادر</b><ul><li>عبد الحليم نور الدين، آثار وحضارة مصر القديمة، الجزء الأول (العمارة: المعابد ودندرة والأقصر والكرنك) — <a href="https://archive.org/details/AAlexandrina-117303" target="_blank" rel="noopener">archive.org/details/AAlexandrina-117303</a></li><li>كرنك الرقمي، جامعة كاليفورنيا سانتا كروز، «الطقس اليومي» (سوليفان 2008)</li><li>وزارة السياحة والآثار المصرية، صفحة الكرنك</li></ul><span class="lab-caveat">هذا تسلسل توضيحي شائع، وليس مخططًا مطابقًا لجميع المعابد؛ التخطيط يختلف باختلاف العصر والموقع والمعبود.</span><span class="lab-caveat">للنموذج المجسم لنفس العناصر: <a href="#digital-lab">معمل الآثار الرقمي</a>.</span></div>
 </article>
 <article class="lab-panel"><div class="lab-kicker">05 · FUNERARY PRACTICES</div><h3>مراحل التحنيط</h3><p class="lab-intro">استكشف المراحل العامة لعملية التحنيط كما ترد في الشروح التعليمية؛ اختلفت التفاصيل والمواد والمدة عبر العصور والطبقات الاجتماعية.</p>
 <div class="process-steps" id="mummy-steps">
 <button data-mummy="1"><b>01</b><span>تجهيز الجسد</span></button><button data-mummy="2"><b>02</b><span>إزالة الأحشاء</span></button><button data-mummy="3"><b>03</b><span>التجفيف بالنطرون</span></button><button data-mummy="4"><b>04</b><span>التنظيف والتعطير</span></button><button data-mummy="5"><b>05</b><span>الحشو والتشكيل</span></button><button data-mummy="6"><b>06</b><span>اللف بالكتان</span></button><button data-mummy="7"><b>07</b><span>التمائم والدفن</span></button>
-</div><div aria-live="polite" class="lab-detail" id="mummy-detail">اختر مرحلة لعرض شرحها.</div><small class="lab-source-note">هذا تسلسل تعليمي عام؛ لا يعني أن كل مومياء خضعت للخطوات نفسها أو بالترتيب والمواد ذاتها.</small>
+</div><div aria-live="polite" class="lab-detail" id="mummy-detail">اختر مرحلة لعرض شرحها.</div><div class="lab-sources"><b>المصادر</b><ul><li>عبد الحليم نور الدين، آثار وحضارة مصر القديمة، الجزء الأول، باب الديانة: التحنيط والأثاث الجنائزي — <a href="https://archive.org/details/AAlexandrina-117303" target="_blank" rel="noopener">archive.org/details/AAlexandrina-117303</a></li><li>زاهي حواس، لقاء صحفي في برنامج «واحد من الناس»، جريدة الوفد، 27 أكتوبر 2025</li><li>هيرودوت، التواريخ، الكتاب الثاني، الفقرات 86–88 (ترجمة رولنسون، جامعة فوردهام)</li><li>سليمة عكرام، «التحنيط»، موسوعة جامعة كاليفورنيا لعلم المصريات، 2010</li></ul><span class="lab-caveat">المراحل عامة؛ اختلفت المواد والمدة والتفاصيل بحسب العصر والطبقة الاجتماعية.</span></div>
 </article>
 <article class="lab-panel"><div class="lab-kicker">06 · JUDGEMENT OF THE DEAD</div><h3>وزن القلب في الميزان</h3><p class="lab-intro">مشهد رمزي من التصورات الجنائزية: يُقارن قلب المتوفى بريشة ماعت، رمز الحق والاتزان والنظام.</p>
 <div aria-label="رسم تخطيطي لميزان وزن القلب وريشة ماعت" class="heart-scene" role="img"><div class="scale-top">ميزان ماعت</div><div class="scale-beam"><span class="heart-pan">♥<small>القلب</small></span><i></i><span class="feather-pan">𓆄<small>ريشة ماعت</small></span></div><div class="scale-base"></div><div class="scale-caption">القلب ↔ ريشة ماعت</div></div>
-<div class="judgement-actions"><button data-judgement="balanced" type="button">القلب متوازن</button><button data-judgement="heavy" type="button">القلب أثقل رمزيًا</button></div><div aria-live="polite" class="lab-detail" id="judgement-detail">اختر الحالة لقراءة دلالتها الرمزية في المشهد الجنائزي.</div><small class="lab-source-note">المشهد معروف من مناظر كتب الموتى، وتختلف صياغة النصوص وتفاصيل التصوير. لا يُقدَّم هنا كإجراء تاريخي قابل للقياس الحديث.</small>
+<div class="judgement-actions"><button data-judgement="balanced" type="button">القلب متوازن</button><button data-judgement="heavy" type="button">القلب أثقل رمزيًا</button></div><div aria-live="polite" class="lab-detail" id="judgement-detail">اختر الحالة لقراءة دلالتها الرمزية في المشهد الجنائزي.</div><div class="lab-sources"><b>المصادر</b><ul><li>مارتن شتادلر، «الحكم بعد الموت»، موسوعة جامعة كاليفورنيا لعلم المصريات، 2008</li><li>James Henry Breasted, Development of Religion and Thought in Ancient Egypt (1912, pp. 301–303) — <a href="https://archive.org/details/developmentofrel00brea" target="_blank" rel="noopener">archive.org/details/developmentofrel00brea</a></li><li>Thomas George Allen, The Egyptian Book of the Dead: Documents in the Oriental Institute Museum (OIP 82, 1960)، وصف الفصل 125</li></ul><span class="lab-caveat">المشهد معروف من مناظر كتب الموتى، وتختلف صياغة النصوص وتفاصيل التصوير. لا يُقدَّم هنا كإجراء تاريخي قابل للقياس.</span></div>
 </article>
 <article class="lab-panel"><div class="lab-kicker">07 · PYRAMID ENGINEERING</div><h3>كيف شُيّدت الأهرامات؟</h3><p class="lab-intro">تعرّف على مراحل العمل الكبرى من اختيار الموقع إلى كسوة الهرم. تفاصيل وسائل الرفع والنقل ما زالت موضع نقاش علمي.</p>
 <div class="build-sequence" id="build-sequence"><button data-build="1">اختيار الموقع</button><span>↓</span><button data-build="2">تسوية الأرض والأساسات</button><span>↓</span><button data-build="3">استخراج الأحجار ونقلها</button><span>↓</span><button data-build="4">رفع الكتل ورصّها</button><span>↓</span><button data-build="5">إنشاء الممرات والحجرات</button><span>↓</span><button data-build="6">التكسية والتشطيب</button></div>
-<div aria-live="polite" class="lab-detail" id="build-detail">اضغط على مرحلة لعرض فكرتها وأهميتها.</div><small class="lab-source-note">لا يوجد نموذج واحد متفق عليه يفسر كل تفاصيل بناء جميع الأهرامات؛ اختلفت الحلول الهندسية حسب المشروع والعصر.</small>
+<div aria-live="polite" class="lab-detail" id="build-detail">اضغط على مرحلة لعرض فكرتها وأهميتها.</div><div class="lab-sources"><b>المصادر</b><ul><li>سليم حسن، موسوعة مصر القديمة، الجزء الثاني — <a href="https://www.bookleaks.com/files/hind/history/185.pdf" target="_blank" rel="noopener">bookleaks.com (نسخة هنداوي)</a></li><li>أحمد فخري، الأهرامات المصرية — <a href="https://archive.org/details/20201111_20201111_1902" target="_blank" rel="noopener">archive.org/details/20201111_20201111_1902</a></li><li>زاهي حواس، «Who built the Pyramids?»، Ahram Online، 7 ديسمبر 2010 — <a href="https://english.ahram.org.eg/News/1313.aspx" target="_blank" rel="noopener">english.ahram.org.eg/News/1313.aspx</a></li><li>Pierre Tallet في Archaeology Magazine، يوليو/أغسطس 2022، عن برديات وادي الجرف — <a href="https://archaeology.org/issues/july-august-2022/features/egypt-wadi-al-jarf/" target="_blank" rel="noopener">archaeology.org (وادي الجرف)</a></li></ul><span class="lab-caveat">لا يوجد نموذج واحد متفق عليه يفسر كل تفاصيل بناء جميع الأهرامات؛ اختلفت الحلول الهندسية حسب المشروع والعصر.</span></div>
 </article>
 <article class="lab-panel"><div class="lab-kicker">08 · CHRONOLOGY &amp; DYNASTIES</div><h3>خريطة زمنية للعصور المصرية</h3><p class="lab-intro">اختر فترة تاريخية لعرض إطارها الزمني التقريبي وملامحها العامة. الحدود الزمنية إرشادية وليست تواريخ قطعية.</p>
-<div class="era-selector" id="era-selector"><button data-era="early">العصر العتيق</button><button data-era="old">الدولة القديمة</button><button data-era="middle">الدولة الوسطى</button><button data-era="new">الدولة الحديثة</button><button data-era="late">العصر المتأخر</button></div><div class="era-ruler" id="era-ruler"><span></span></div><div aria-live="polite" class="lab-detail" id="era-detail">اختر عصرًا لعرض الفترة والملامح.</div><small class="lab-source-note">التواريخ تقريبية وفق التقسيمات الشائعة، وقد تختلف سنوات البداية والنهاية بين المراجع المتخصصة.</small>
+<div class="era-selector" id="era-selector"><button data-era="early">العصر العتيق</button><button data-era="old">الدولة القديمة</button><button data-era="middle">الدولة الوسطى</button><button data-era="new">الدولة الحديثة</button><button data-era="late">العصر المتأخر</button></div><div class="era-ruler" id="era-ruler"><span></span></div><div aria-live="polite" class="lab-detail" id="era-detail">اختر عصرًا لعرض الفترة والملامح.</div><div class="lab-sources"><b>المصادر</b><ul><li>عبد العزيز صالح، الشرق الأدنى القديم، الجزء الأول — <a href="https://archive.org/details/20210510_20210510_0037" target="_blank" rel="noopener">archive.org/details/20210510_20210510_0037</a></li><li>عبد الحليم نور الدين، آثار وحضارة مصر القديمة، الجزء الأول — <a href="https://archive.org/details/AAlexandrina-117303" target="_blank" rel="noopener">archive.org/details/AAlexandrina-117303</a></li></ul><span class="lab-caveat">التواريخ تقريبية وفق التقسيمات الشائعة، وقد تختلف سنوات البداية والنهاية بين المراجع؛ ولكل عصر صفحته ومصادره.</span></div>
 </article>
 </div>
 </section>
@@ -936,7 +989,36 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 <button class="museum-card" data-exhibit="relief" data-room="art"><span>𓉐</span><b>النقوش البارزة</b><small>تقنيات النحت وقراءة المشهد</small></button>
 <button class="museum-card" data-exhibit="architecture" data-room="art"><span>𓊖</span><b>العناصر المعمارية</b><small>الأعمدة والتيجان والكتل الحجرية</small></button>
 </div><div aria-live="polite" class="museum-info" id="museumInfo"><h3>ابدأ جولتك</h3><p>اختر سجلًا من البطاقات لعرض بطاقة تعريف موسعة ومصدر للمراجعة. السجلات الموضوعية تشرح أنواع القطع ولا تدّعي أنها قطعة متحفية بعينها.</p></div><p class="source-note">ملاحظة توثيقية: لوحة نعرمر وحجر رشيد لهما سجلات/صفحات مرجعية محددة. بقية البطاقات مداخل تعليمية موضوعية وليست فهرسة لقطعة برقم تسجيل. لا تُستخدم الصور إلا بعد التحقق من شروط إعادة الاستخدام.</p></section>
-<section class="content-section" id="digital-lab"><div class="section-head"><div class="eyebrow">PART 07 · DIGITAL ARCHAEOLOGY LAB</div><h2>معمل الآثار الرقمي</h2><p>نماذج تعليمية مبسطة وأدوات تفاعلية لفهم العمارة واللقى الأثرية. النموذج ثلاثي الأبعاد التالي توضيحي وليس إعادة بناء أثرية دقيقة.</p></div><div class="lab-layout"><div class="model-wrap"><div class="model-label">نموذج تعليمي تخطيطي · معبد مصري</div><canvas aria-label="نموذج ثلاثي الأبعاد تخطيطي لمعبد مصري" id="temple3d"></canvas><div class="model-controls"><button id="modelReset">إعادة ضبط</button><span>اسحب للتدوير · استخدم عجلة الفأرة للتقريب</span></div></div><div class="lab-explain"><h3>قراءة عناصر المعبد</h3><p>اختر عنصرًا من القائمة لتتعرف على وظيفته المعمارية بصورة مبسطة.</p><div class="element-list"><button data-element="pylon">الصرح</button><button data-element="court">الفناء</button><button data-element="hypostyle">قاعة الأعمدة</button><button data-element="sanctuary">قدس الأقداس</button></div><div aria-live="polite" class="element-info" id="elementInfo">يتكون النموذج من كتل هندسية رمزية لتوضيح التتابع المكاني، ولا يمثل معبدًا بعينه.</div></div></div><div class="lab-tools"><a href="#pyramid-detail">مقارنة الأهرامات</a><a href="#god-detail">تاسوع هليوبوليس</a><a href="#duat-hours">ساعات العالم الآخر</a><a href="#temple-detail">مخطط المعبد</a><a href="#mummy-steps">مراحل التحنيط</a><a href="#judgement-detail">وزن القلب</a><a href="#build-sequence">بناء الهرم</a></div></section>
+<section class="content-section" id="digital-lab">
+<div class="section-head">
+<div class="eyebrow">PART 07 · DIGITAL ARCHAEOLOGY LAB</div>
+<h2>معمل الآثار الرقمي</h2>
+<p>نموذج تعليمي تخطيطي لمعبد مصري: كتل هندسية رمزية توضح التتابع المكاني بين أجزاء المعبد، وليست إعادة بناء أثرية دقيقة لمعبد بعينه.</p>
+</div>
+<div class="lab-layout">
+<div class="model-wrap">
+<div class="model-label">نموذج تعليمي تخطيطي · معبد مصري</div>
+<canvas aria-label="نموذج ثلاثي الأبعاد تخطيطي لمعبد مصري" id="temple3d"></canvas>
+<div class="model-controls">
+<button id="modelReset">إعادة ضبط</button>
+<span>اسحب للتدوير · استخدم عجلة الفأرة للتقريب</span>
+</div>
+</div>
+<div class="lab-explain">
+<h3>قراءة عناصر المعبد</h3>
+<p>اختر عنصرًا من القائمة لتتعرف على وظيفته المعمارية بصورة مبسطة.</p>
+<div class="element-list">
+<button data-element="pylon">الصرح</button>
+<button data-element="court">الفناء</button>
+<button data-element="hypostyle">قاعة الأعمدة</button>
+<button data-element="sanctuary">قدس الأقداس</button>
+</div>
+<div aria-live="polite" class="element-info" id="elementInfo">يتكون النموذج من كتل هندسية رمزية لتوضيح التتابع المكاني، ولا يمثل معبدًا بعينه.</div>
+</div>
+</div>
+<div class="lab-sources"><b>المصادر</b><ul><li>عبد الحليم نور الدين، آثار وحضارة مصر القديمة، الجزء الأول (العمارة: المعابد ودندرة والأقصر والكرنك) — <a href="https://archive.org/details/AAlexandrina-117303" target="_blank" rel="noopener">archive.org/details/AAlexandrina-117303</a></li><li>كرنك الرقمي، جامعة كاليفورنيا سانتا كروز، «الطقس اليومي» (سوليفان 2008)</li><li>وزارة السياحة والآثار المصرية، صفحة الكرنك</li></ul><span class="lab-caveat">هذا تسلسل توضيحي شائع، وليس مخططًا مطابقًا لجميع المعابد؛ التخطيط يختلف باختلاف العصر والموقع والمعبود.</span><span class="lab-caveat">للنموذج المجسم لنفس العناصر: <a href="#digital-lab">معمل الآثار الرقمي</a>.</span></div>
+<p class="lab-next">بقية الرسوم التفاعلية — مقارنة الأهرامات، وتاسوع هليوبوليس، وساعات الأمدوات، ومخطط المعبد، ومراحل التحنيط، ووزن القلب، ومراحل بناء الهرم، والخط الزمني — في قسم <a href="#interactive-lab">مختبر الحضارة التفاعلي</a>، ولكل رسم هناك مصادره.</p>
+</section>
 <section class="section" id="about-project" style="padding-top:65px;padding-bottom:65px">
 <div class="section-head" style="margin-bottom:0"><div class="eyebrow">ABOUT THE PROJECT</div><h2>بر عنخ — PER ANKH</h2><p>منصة معرفية رقمية تهدف إلى تقديم الحضارة المصرية القديمة بصورة دقيقة، تفاعلية، وممتعة؛ من خلال محتوى أثري موثق وتجربة استكشاف حديثة.</p></div>
 </section>
@@ -990,7 +1072,7 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 </div>
 <div class="academy-history"><div class="academy-history-head"><div><h3>سجل التقدم</h3><p>نتائج الحساب المسجل تُحفظ في قاعدة بيانات Supabase، ونتائج الزائر تُحفظ محليًا على هذا الجهاز.</p></div><button class="tool-btn secondary-tool" id="academyRefreshHistory" type="button">تحديث السجل</button></div><div aria-live="polite" id="academyHistoryList"><p class="community-hint">لم تُحمّل النتائج بعد.</p></div></div>
 <div class="academy-note">ملاحظة: التصنيفات الموضوعية استدلالية، وقد يكون السؤال الواحد متعدد المحاور. بنك الأسئلة يحتوي 300 سؤالًا بأربعة اختيارات وشرح ورابط مصدر؛ وجود الرابط لا يغني عن مراجعة المرجع قبل الاقتباس الأكاديمي.</div>
-</section>
+<div class="hiero-course" id="hieroCourse"><div class="hc-head"><div class="mini">HIEROGLYPH COURSE · ثلاثة دروس</div><h3>دروس الكتابة الهيروغليفية</h3><p>ثلاثة دروس قصيرة مبنية على جدول العلامات الأحادية المستخدم في الموقع نفسه: كل علامة بصورتها وقراءتها الصوتية ورمزها في قائمة جاردنر ووصفها. اقرأ الدرس ثم اختبر قراءتك لأربع علامات منه. القراءة هنا لعلامة مفردة، وليست تهجئة اسم أو ترجمة نص.</p></div><div class="hc-tabs" id="hcTabs"></div><div class="hc-stage" id="hcStage" aria-live="polite"></div></div><div class="king-quizzes"><h3>اختبارات صفحات الملوك</h3><p>كل صفحة ملك مكتملة تنتهي باختبار من أسئلة مبنية على نص الصفحة نفسها. الاختبارات هنا تفتح داخل صفحة الملك، ومصادر كل سؤال مذكورة مع تفسير إجابته.</p><div class="kq-list"><a href="/kings/001-narmr/#quiz">نعرمر · اختبار الصفحة</a><a href="/kings/019-khwfw/#quiz">خوفو · اختبار الصفحة</a></div><p class="kq-note">الملوك 002 وما بعده تُضاف هنا بمجرد اكتمال صفحاتهم.</p></div></section>
 <section class="content-section knowledge-section" id="references-details">
 <div class="content-head"><div class="eyebrow">PART 10 · REFERENCES &amp; SOURCES</div><h2>المراجع والمصادر</h2><p>بوابة للمصادر المؤسسية التي يستند إليها المحتوى، مع توضيح وظيفة المصدر وحدوده.</p></div>
 <div class="content-grid">
@@ -1083,7 +1165,7 @@ const IMG=['01-divinities','02-creation','03-kingship','04-maat-judgement','05-a
 BEL.cards.forEach((c,i)=>{if(BEL_IMGS.indexOf(IMG[i])>-1){const a=mk('article','bel-imgcard');a.setAttribute('aria-label',c.t);const im=document.createElement('img');im.src='assets/beliefs/'+IMG[i]+'.webp?v=22';im.alt='';im.width=1100;im.height=733;im.loading='lazy';im.decoding='async';a.append(im);bind(a,()=>open(c,'الديانة المصرية القديمة · '+c.en));grid.append(a);return}const a=mk('article','bel-card');a.append(mk('span','bel-num',String(i+1).padStart(2,'0')),mk('div','mini',c.en),mk('h3','',c.t),mk('p','',c.s),mk('span','bel-glyph',c.g));const f=mk('div','bel-foot');f.append(mk('span','bel-chip',c.n+' مصادر'),mk('span','card-open','اقرأ الموضوع ←'));a.append(f);bind(a,()=>open(c,'الديانة المصرية القديمة · '+c.en));grid.append(a)});
 const sec=document.getElementById('religion-details');
 const g2=mk('div','bel-group');g2.id='bel-deities';g2.append(mk('h3','','المعبودات الرئيسية · 12 بطاقة'),mk('p','bel-note','كل بطاقة مأخوذة من صفحة محددة في Britannica. الهيئة والألقاب والوظائف تتغير عبر العصور، فهي تعرض ما يذكره المصدر فقط.'));
-const gg=mk('div','content-grid');BEL.deities.forEach((d,i)=>{const dn='deity-'+String(i+1).padStart(2,'0');if(BEL_IMGS.indexOf(dn)>-1){const a=mk('article','bel-imgcard');a.setAttribute('aria-label',d.t);const im=document.createElement('img');im.src='assets/beliefs/'+dn+'.webp?v=20';im.alt='';im.width=1100;im.height=733;im.loading='lazy';im.decoding='async';a.append(im);bind(a,()=>open(d,'بطاقة معبود · الديانة المصرية القديمة'));gg.append(a);return}const a=mk('article','bel-card bel-small');a.append(mk('div','mini','DIVINITY'),mk('h3','',d.t),mk('p','',d.s),mk('span','card-open','افتح البطاقة ←'));bind(a,()=>open(d,'بطاقة معبود · الديانة المصرية القديمة'));gg.append(a)});g2.append(gg);sec.append(g2);
+const gg=mk('div','content-grid');BEL.deities.forEach((d,i)=>{const dn='deity-'+String(i+1).padStart(2,'0');if(BEL_IMGS.indexOf(dn)>-1){const a=mk('article','bel-imgcard');a.setAttribute('aria-label',d.t);const im=document.createElement('img');im.src='assets/beliefs/'+dn+'.webp?v=20';im.alt='';im.width=1100;im.height=733;im.loading='lazy';im.decoding='async';a.append(im);bind(a,()=>open(d,'بطاقة معبود · الديانة المصرية القديمة'));gg.append(a);return}const a=mk('article','bel-card bel-small');a.append(mk('div','mini','DIVINITY'),mk('h3','',d.t),mk('p','',d.s),mk('span','card-open','افتح البطاقة ←'));bind(a,()=>open(d,'بطاقة معبود · الديانة المصرية القديمة'));gg.append(a)});g2.append(gg);sec.append(g2);const g3=mk('div','bel-group');g3.id='bel-guide';g3.append(mk('h3','','دليل المعبودات · أين تقرأ عن كل معبود'),mk('p','bel-note','فوق اثنتا عشرة صفحة مستقلة لمعبودات. وهؤلاء معبودات بارزة في الصفحات نفسها ولا صفحة مستقلة لها بعد، ومعها الصفحات التي تُبحث فيها فعلًا — كل صفحة بمصادرها المرقّمة، وما فيها محل خلاف مذكور صراحة.'));const gd=mk('div','guide-grid');const GUIDE=[["ست",[["الميثولوجيا المصرية","/beliefs/creation/"],["المعابد والأعياد","/beliefs/temple/"],["الملكية المقدسة","/beliefs/kingship/"],["حورس","/beliefs/horus/"]]],["آتوم",[["الميثولوجيا المصرية","/beliefs/creation/"],["المعبودات","/beliefs/divinities/"]]],["جب ونوت",[["الميثولوجيا المصرية","/beliefs/creation/"],["العالم الآخر","/beliefs/afterlife/"],["إيزيس","/beliefs/isis/"]]],["خنوم",[["الميثولوجيا المصرية","/beliefs/creation/"]]],["شو وتفنوت",[["الميثولوجيا المصرية","/beliefs/creation/"],["ماعت والحساب","/beliefs/maat-judgement/"]]],["نفتيس",[["إيزيس","/beliefs/isis/"],["أوزير","/beliefs/osiris/"],["الساعة 2 من الأمدوات","/beliefs/hour-02/"]]],["مين",[["آمون","/beliefs/amun/"],["حورس","/beliefs/horus/"],["المعابد والأعياد","/beliefs/temple/"]]],["خونسو",[["آمون","/beliefs/amun/"],["المعابد والأعياد","/beliefs/temple/"]]],["بس",[["المعبودات","/beliefs/divinities/"],["النصوص والرموز","/beliefs/texts/"],["المعابد والأعياد","/beliefs/temple/"]]]];GUIDE.forEach(function(r){const row=mk('div','guide-row');row.append(mk('b','guide-name',r[0]));const cell=mk('div','guide-links');r[1].forEach(function(l){const a=mk('a','guide-link',l[0]);a.href=l[1];cell.append(a)});row.append(cell);gd.append(row)});g3.append(gd);sec.append(g3);
 const g4=mk('div','bel-group');g4.id='bel-hours';g4.append(mk('h3','','ساعات الليل · رحلة رع في الأمدوات · 12 بطاقة'),mk('p','bel-note','كل بطاقة تفتح صفحة الساعة بمصادرها المحددة. تختلف النسخ في التفاصيل.'));
 const hg=mk('div','content-grid');BEL.hours.forEach((d,i)=>{const hn='hour-'+String(i+1).padStart(2,'0');if(BEL_IMGS.indexOf(hn)>-1){const a=mk('article','bel-imgcard');a.setAttribute('aria-label',d.t);const im=document.createElement('img');im.src='assets/beliefs/'+hn+'.webp';im.alt='';im.width=1100;im.height=733;im.loading='lazy';im.decoding='async';a.append(im);bind(a,()=>open(d,'ساعات الليل · كتاب الأمدوات'));hg.append(a);return}const a=mk('article','bel-card bel-small');a.append(mk('div','mini','HOUR '+(i+1)),mk('h3','',d.t),mk('span','card-open','افتح البطاقة ←'));bind(a,()=>open(d,'ساعات الليل · كتاب الأمدوات'));hg.append(a)});g4.append(hg);sec.append(g4);
 })();
@@ -2248,4 +2330,36 @@ lab.append(wrap);
 })();
 </script>
 
-<script>(function(){function w(){document.querySelectorAll('#navlinks a,#panav a').forEach(function(a){if(a.querySelector('.pa-t'))return;var t=a.firstChild;if(!t)return;var s=document.createElement('span');s.className='pa-t';while(a.firstChild)s.appendChild(a.firstChild);a.appendChild(s)})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',w);else w()})();</script></body></html>
+<script>(function(){function w(){document.querySelectorAll('#navlinks a,#panav a').forEach(function(a){if(a.querySelector('.pa-t'))return;var t=a.firstChild;if(!t)return;var s=document.createElement('span');s.className='pa-t';while(a.firstChild)s.appendChild(a.firstChild);a.appendChild(s)})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',w);else w()})();</script><script>(function(){
+var host=document.getElementById('hcStage'),tabs=document.getElementById('hcTabs');
+if(!host||!tabs||typeof hieroSigns==='undefined'||!hieroSigns.length)return;
+var groups=[hieroSigns.slice(0,8),hieroSigns.slice(8,15),hieroSigns.slice(15,22)];
+var titles=['الدرس 1 · العلامات 1–8','الدرس 2 · العلامات 9–15','الدرس 3 · العلامات 16–22'];
+var cur=0,state='study',qs=[],qi=0,score=0,answered=false;
+function card(s){return '<div class="hc-card"><span class="hc-glyph">'+s.glyph+'</span><b>'+s.translit+'</b><code>'+s.gardiner+'</code><span class="hc-desc">'+s.description+'</span></div>';}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function tabsRender(){tabs.innerHTML='';groups.forEach(function(g,i){var b=document.createElement('button');b.type='button';b.textContent=titles[i];if(i===cur)b.className='on';b.onclick=function(){cur=i;state='study';render()};tabs.appendChild(b)})}
+function render(){
+ tabsRender();
+ if(state==='study'){
+  var g=groups[cur];
+  host.innerHTML='<div class="hc-grid">'+g.map(card).join('')+'</div><p class="hc-note">جدول العلامات: المصدر المذكور في فهرس العلامات بقسم التعلم (قائمة جاردنر وترميز يونيكود). العلامة قد تُقرأ بأكثر من قيمة في سياقات مختلفة؛ هذا الدرس يثبت القيمة الواحدة المسجلة في الجدول.</p><div class="hc-actions"><button type="button" class="tool-btn" id="hcStart">ابدأ التمرين · 4 أسئلة</button></div>';
+  document.getElementById('hcStart').onclick=function(){startQuiz()};
+  return;
+ }
+ if(state==='quiz'){
+  var q=qs[qi];
+  host.innerHTML='<div class="hc-quiz"><div class="hc-progress">سؤال '+(qi+1)+' من '+qs.length+' · النتيجة '+score+'</div><div class="hc-glyph big">'+q.s.glyph+'</div><p class="hc-ask">ما قراءة هذه العلامة في جدول الموقع؟</p><div class="hc-opts">'+q.opts.map(function(o){return '<button type="button" data-v="'+o+'">'+o+'</button>'}).join('')+'</div><div class="hc-feedback" id="hcFb">اختر قراءة واحدة.</div></div>';
+  Array.prototype.forEach.call(host.querySelectorAll('.hc-opts button'),function(b){b.onclick=function(){if(answered)return;answered=true;var ok=b.getAttribute('data-v')===q.s.translit;if(ok){score++;b.className='ok'}else{b.className='no';Array.prototype.forEach.call(host.querySelectorAll('.hc-opts button'),function(x){if(x.getAttribute('data-v')===q.s.translit)x.className='ok'})}var fb=document.getElementById('hcFb');fb.innerHTML=(ok?'إجابة صحيحة. ':'الإجابة الصحيحة: '+q.s.translit+'. ')+q.s.description+' · رمز '+q.s.gardiner;var nb=document.createElement('button');nb.type='button';nb.className='tool-btn';nb.textContent=(qi+1<qs.length?'السؤال التالي ←':'عرض النتيجة');nb.onclick=function(){if(qi+1<qs.length){qi++;answered=false;render()}else{state='done';render()}};host.querySelector('.hc-quiz').appendChild(nb)}});
+  return;
+ }
+ host.innerHTML='<div class="hc-done"><div class="hc-score">'+score+' / '+qs.length+'</div><p>'+(score===qs.length?'قراءة كاملة لمجموعة الدرس.':'راجع جدول العلامات ثم أعد التمرين.')+'</p><div class="hc-actions"><button type="button" class="tool-btn" id="hcAgain">أعد الدرس</button><button type="button" class="tool-btn secondary-tool" id="hcNext">'+(cur<groups.length-1?'الدرس التالي ←':'ابدأ من الدرس الأول')+'</button></div></div>';
+ document.getElementById('hcAgain').onclick=function(){state='study';render()};
+ document.getElementById('hcNext').onclick=function(){cur=(cur+1)%groups.length;state='study';render()};
+}
+function startQuiz(){
+ var g=groups[cur].slice();shuffle(g);qs=g.slice(0,4).map(function(s){var pool=hieroSigns.map(function(x){return x.translit}).filter(function(t){return t!==s.translit});shuffle(pool);return {s:s,opts:shuffle([s.translit].concat(pool.slice(0,3)))}});
+ qi=0;score=0;answered=false;state='quiz';render();
+}
+render();
+})();</script></body></html>

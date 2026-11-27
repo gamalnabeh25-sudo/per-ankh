@@ -6,8 +6,7 @@
   var SUPABASE_KEY = 'sb_publishable_iTQCxO9-vnDJIiksePF5Hg_yrQbcsFA';
   var SB_SRC = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.min.js';
   var TOPICS = ['ملوك', 'مواقع أثرية', 'عصور وأسر', 'معتقدات', 'عام'];
-  var NUDGE_KEY = 'perAnkhCoNudgeAt';
-  var NUDGE_INTERVAL = 3 * 24 * 3600 * 1000; // كل ٣ أيام كحد أقصى
+  var NUDGE_SESSION_KEY = 'perAnkhCoNudged'; // مرة واحدة في الجلسة، بعد دقيقة من الدخول
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -57,24 +56,28 @@
     return box;
   }
 
-  /* شريط دعوة لطيف أعلى صفحات القراءة — يظهر مرة كل ٣ أيام ويمكن إغلاقه */
+  /* شريط دعوة لطيف: يظهر بعد دقيقة تقريبًا من كل دخول للموقع (جلسة جديدة).
+     إغلاقه لا يخفيه لأيام — يعود في الزيارة التالية، ولا قمع عند أي إجراء مقفل. */
   function maybeNudge() {
     if (currentUser) return;
-    var last = 0;
-    try { last = parseInt(localStorage.getItem(NUDGE_KEY) || '0', 10) || 0; } catch (e) {}
-    if (Date.now() - last < NUDGE_INTERVAL) return;
-    try { localStorage.setItem(NUDGE_KEY, String(Date.now())); } catch (e) {}
-    var bar = el('div', 'co-nudge');
-    bar.setAttribute('role', 'note');
-    var txt = el('span', null, 'سجّل حسابًا مجانيًا لتكتب مقالات، تفتح مناقشات، وتحفظ نشاطك في المجتمع.');
-    var a = el('a', 'co-btn co-ghost', 'إنشاء حساب');
-    a.href = '/?account=1';
-    var x = el('button', 'co-nudge-x', 'لاحقًا');
-    x.type = 'button';
-    x.addEventListener('click', function () { bar.remove(); });
-    bar.append(txt, a, x);
-    var main = document.querySelector('main.wrap') || document.body;
-    main.insertBefore(bar, main.firstChild);
+    var shown = false;
+    try { shown = sessionStorage.getItem(NUDGE_SESSION_KEY) === '1'; } catch (e) {}
+    if (shown) return;
+    setTimeout(function () {
+      if (currentUser) return;
+      try { sessionStorage.setItem(NUDGE_SESSION_KEY, '1'); } catch (e) {}
+      var bar = el('div', 'co-nudge');
+      bar.setAttribute('role', 'note');
+      var txt = el('span', null, 'سجّل حسابًا مجانيًا لتكتب مقالات، تفتح مناقشات، وتحفظ نشاطك في المجتمع.');
+      var a = el('a', 'co-btn co-ghost', 'إنشاء حساب');
+      a.href = '/?account=1';
+      var x = el('button', 'co-nudge-x', 'لاحقًا');
+      x.type = 'button';
+      x.addEventListener('click', function () { bar.remove(); });
+      bar.append(txt, a, x);
+      var main = document.querySelector('main.wrap') || document.body;
+      main.insertBefore(bar, main.firstChild);
+    }, 60000);
   }
 
   function memberLink(memberId, name) {

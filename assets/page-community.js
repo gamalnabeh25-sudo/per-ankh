@@ -63,6 +63,28 @@
     sb.auth.getSession().then(function (ar) {
       authUser = ar && ar.data && ar.data.session && ar.data.session.user;
       if (!authUser) {
+        // دعوة التسجيل بعد دقيقة من دخول الموقع (مرة في الجلسة، وتعود في الزيارة التالية)
+        var nudged = false;
+        try { nudged = sessionStorage.getItem('perAnkhPcNudged') === '1'; } catch (e) {}
+        if (!nudged) setTimeout(function () {
+          if (authUser) return;
+          try { sessionStorage.setItem('perAnkhPcNudged', '1'); } catch (e) {}
+          var bar = document.createElement('div');
+          bar.className = 'pc-nudge';
+          var t = document.createElement('span');
+          t.textContent = 'سجّل حسابًا مجانيًا للتعليق والإعجاب وحفظ نشاطك.';
+          var a = document.createElement('a');
+          a.className = 'pc-nudge-link';
+          a.href = '/?account=1';
+          a.textContent = 'إنشاء حساب';
+          var x = document.createElement('button');
+          x.type = 'button';
+          x.className = 'pc-nudge-x';
+          x.textContent = 'لاحقًا';
+          x.addEventListener('click', function () { bar.remove(); });
+          bar.append(t, a, x);
+          host.insertBefore(bar, host.firstChild);
+        }, 60000);
         // زائر: نموذج التعليق يتحول لدعوة تسجيل لطيفة
         var nameField = document.getElementById('pcName');
         if (nameField) nameField.remove();

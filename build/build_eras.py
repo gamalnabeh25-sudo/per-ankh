@@ -51,6 +51,17 @@ SITE_ERAS = {
 }
 
 
+def king_word(n):
+    """Arabic number agreement: 1 -> malk, 2 -> malikan, 3-10 -> muluk, 11+ -> malikan."""
+    if n == 1:
+        return "ملك"
+    if n == 2:
+        return "ملكان"
+    if 3 <= n <= 10:
+        return "ملوك"
+    return "ملكًا"
+
+
 def read_kings():
     h = open(os.path.join(ROOT, "kings", "index.html"), encoding="utf-8").read()
     cards = re.findall(
@@ -198,7 +209,7 @@ def main():
                 f'<tr><td><a href="/kings/{slug}/">{html.escape(name)}</a></td>'
                 f'<td class="num">{i}</td></tr>' for i, (slug, name) in enumerate(ks, 1))
             parts.append(
-                f'<h3>{html.escape(dyn)} <span class="num">({len(ks)} ملكًا)</span></h3>'
+                f'<h3>{html.escape(dyn)} <span class="num">({len(ks)} {king_word(len(ks))})</span></h3>'
                 f'<div class="tw"><table><thead><tr><th>الملك</th><th>الترتيب في القائمة</th></tr></thead><tbody>{rows}</tbody></table></div>')
         for d in MISSING_DYNASTIES.get(era_dir, []):
             parts.append(f'<div class="flag"><b>{html.escape(d)}:</b> لا توجد لها صفحات ملوك في الموسوعة بعد.</div>')

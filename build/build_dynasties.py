@@ -222,6 +222,8 @@ def index_page(kings_by_dyn):
 .dyngrid .dyn span{{font-size:.86rem;opacity:.78}}
 .dyngrid .dyn i{{font-style:normal;font-size:.8rem;opacity:.62}}
 .dyngrid span.dyn{{opacity:.55;border-style:dashed}}
+.phero .cover.plain:after{{display:none}}
+.phero .ctext h1{{font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.3}}
 .phero .cover.plain{{background:radial-gradient(120% 150% at 82% 0%,rgba(212,175,55,.10),transparent 62%),linear-gradient(135deg,#071321,#0d2130 55%,#0a1a28);border:1px solid rgba(212,175,55,.14);border-radius:16px}}
 .kingsgrid a b{{font-size:.98rem}}
 .kingsgrid a span{{font-variant-numeric:tabular-nums}}

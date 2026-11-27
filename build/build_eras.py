@@ -6,6 +6,24 @@
 """
 import re, json, os, html
 from shell import STYLES as SHELL_STYLES, TOPBAR, TAILSCRIPTS, crumb as _crumb
+from build_dynasties import SLUGS as DYN_SLUGS, ORDER as DYN_ORDER, dynasty_label as dyn_label
+
+DYN_LABELS = {dyn_label(k): DYN_SLUGS[k] for k in DYN_ORDER}
+
+
+def dyn_link(name):
+    """رابط صفحة الأسرة إن وُجدت؛ يعيد '' إن لم تُبنَ بعد."""
+    if name in DYN_LABELS:
+        return '/dynasties/%s/' % DYN_LABELS[name]
+    if name.startswith('13'):
+        return '/dynasties/%s/' % DYN_LABELS['الأسرة الثالثة عشرة']
+    best = ''
+    for lab, slug in DYN_LABELS.items():
+        if name.startswith(lab) and len(lab) > len(best):
+            best = lab
+    if best:
+        return '/dynasties/%s/' % DYN_LABELS[best]
+    return ''
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -178,7 +196,7 @@ def page(era_dir, title, dating, dyn_html, sites_html, old_facts, old_secs, prev
 <div class="facts"><div class="fact"><b>حدود العصر</b><span>{html.escape(dating)}</span></div></div>
 <section class="panel" id="about"><h2>ملامح العصر كما يراها عبد العزيز صالح <span class="bdg v">موثّق</span></h2><p>{saleh}</p><p class="refs">المصدر: عبد العزيز صالح، الشرق الأدنى القديم، ج1 (مصر والعراق)، تصنيف عصور مصر القديمة — <a href="https://archive.org/details/20210510_20210510_0037" rel="noopener" target="_blank">نسخة الكتاب على archive.org</a>. النقل بالمعنى مع الحفاظ على ألفاظه.</p></section>
 <section class="panel" id="date"><h2>التأريخ</h2><p>حدود العصور في الموسوعة: {html.escape(dating)}.</p><p>التواريخ المطلقة لمصر القديمة تقديرية وتختلف بين الباحثين، ولذلك لا نعرض هنا سنة واحدة لكل حدث، ونذكر في صفحة كل ملك ما تنص عليه مصادره مع اسم صاحب الرأي.</p><div class="flag">لم نُثبِّت بعد تواريخ بداية ونهاية كل أسرة بمصدر صفحة محددة، فهذه الحدود قيد التوثيق. البند مفتوح في قسم «ما ينقصنا» أدناه.</div></section>
-<section class="panel" id="dyn"><h2>الأسرات والملوك</h2><p>كل ملك في الجدول يفتح صفحته في الموسوعة. الأسر التي لا توجد لها صفحات بعد مذكورة بالاسم في آخر الجدول.</p>{dyn_html}</section>
+<section class="panel" id="dyn"><h2>الأسرات والملوك</h2><p>كل ملك في الجدول يفتح صفحته في الموسوعة، ولكل أسرة صفحة مستقلة في <a href="/dynasties/">قسم الأسرات</a> فيها العاصمة والأحداث والعمارة والمصادر. الأسر التي لا توجد لها صفحات بعد مذكورة بالاسم في آخر الجدول.</p>{dyn_html}</section>
 <section class="panel" id="sites"><h2>مواقع أثرية من هذا العصر</h2>{sites_html}</section>
 <section class="panel" id="gaps"><h2>ما ينقصنا الآن</h2><ul><li>نصوص موثقة لملامح العصر من كتب العلماء المصريين (سليم حسن، عبد العزيز صالح، عبد الحليم نور الدين، أحمد فخري، زاهي حواس) بأرقام صفحات.</li><li>تواريخ بداية ونهاية كل أسرة مع اسم الباحث الذي يؤرخها.</li><li>آراء العلماء في المسائل الخلافية لكل عصر (مثل بداية الدولة الوسطى ونهاية الأسرة الثانية عشرة).</li><li>صور وخرائط لكل عصر، وتسجيل صوتي لكل قسم.</li></ul><div class="flag">لا نضع في الصفحة رأيًا أو رقمًا بلا مصدر. ما لم يُوثَّق يبقى هنا مذكورًا حتى يُضاف.</div></section>
 <section class="abt"><h2>عن هذه الصفحة</h2><ul><li><b>المحتوى</b><span>كل فقرة منسوبة إلى صاحبها برقم الصفحة؛ وما لم نجد له مصدرًا مذكور في «ما ينقصنا» ولا يُكتب.</span></li><li><b>الصور</b><span>صورة الغلاف توليد توضيحي بالذكاء الاصطناعي وليست صورة فوتوغرافية.</span></li></ul></section><section class="panel" id="refs"><h2>المراجع</h2><ol class="refs"><li>عبد العزيز صالح، الشرق الأدنى القديم، ج1 (مصر والعراق)، تصنيف عصور مصر القديمة: <a href="https://archive.org/details/20210510_20210510_0037" rel="noopener" target="_blank">archive.org/details/20210510_20210510_0037</a></li><li>سجلات الموسوعة الداخلية لصفحات الملوك (الأسرة والعصر لكل ملك) — أساس جداول الأسرات.</li></ol><p class="refs">لم نستخدم ويكيبيديا في هذه الصفحة.</p></section>
@@ -208,11 +226,17 @@ def main():
             rows = "".join(
                 f'<tr><td><a href="/kings/{slug}/">{html.escape(name)}</a></td>'
                 f'<td class="num">{i}</td></tr>' for i, (slug, name) in enumerate(ks, 1))
+            _l = dyn_link(dyn)
+            _t = (f'<a href="{_l}">{html.escape(dyn)}</a>' if _l else html.escape(dyn))
             parts.append(
-                f'<h3>{html.escape(dyn)} <span class="num">({len(ks)} {king_word(len(ks))})</span></h3>'
+                f'<h3>{_t} <span class="num">({len(ks)} {king_word(len(ks))})</span>'
+                + (f' <a class="num" href="{_l}">صفحة الأسرة</a>' if _l else '') + '</h3>'
                 f'<div class="tw"><table><thead><tr><th>الملك</th><th>الترتيب في القائمة</th></tr></thead><tbody>{rows}</tbody></table></div>')
         for d in MISSING_DYNASTIES.get(era_dir, []):
-            parts.append(f'<div class="flag"><b>{html.escape(d)}:</b> لا توجد لها صفحات ملوك في الموسوعة بعد.</div>')
+            _l = dyn_link(d)
+            _n = (f'<a href="{_l}">{html.escape(d)}</a>' if _l else html.escape(d))
+            parts.append(f'<div class="flag"><b>{_n}:</b> لا توجد لها صفحات ملوك في الموسوعة بعد'
+                         + (f'، ولها صفحة أسرة مستقلة: <a href="{_l}">افتحها</a>.' if _l else '.') + '</div>')
         if not dyns:
             parts.append('<div class="flag">لا توجد صفحات ملوك لهذا العصر بعد؛ العصر مبني على المواقع والآثار.</div>')
         dyn_html = "".join(parts)

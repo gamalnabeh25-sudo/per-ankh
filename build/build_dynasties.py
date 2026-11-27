@@ -153,14 +153,16 @@ def page(key, kings_by_dyn, nxt=None, prv=None):
         if any(n for *_x, n in ks):
             kfoot += '<p class="note">بعض هؤلاء الملوك تختلف المصادر في نسبتهم بين الأسرة 13 والأسرة 17، وهم مذكورون هنا وفي صفحة الأسرة 17 معًا، مع بيان الخلاف.</p>'
     else:
-        kbody = '<p>لم تُنشر بعدُ على الموقع صفحة مستقلة لأي ملك من ملوك هذه الأسرة. تُضاف أسماؤهم هنا تلقائيًا حين تُنشر صفحاتهم.</p>'
+        kbody = ('<p>لم تُنشر بعدُ على الموقع صفحة مستقلة لأي ملك من ملوك هذه الأسرة. تُضاف أسماؤهم هنا تلقائيًا حين تُنشر صفحاتهم.</p>'
+                 if isinstance(key, int) else
+                 '<p>لا تُنشر على الموقع صفحات مستقلة لملوك هذا العصر حتى الآن؛ تُضاف أسماؤهم هنا تلقائيًا حين تُنشر.</p>')
         kfoot = ""
     gaps = c.get("gaps", "")
     facts = (
         f'<div class="fact"><b>العصر</b><span><a href="/eras/{era_slug}/">{html.escape(era_label)}</a></span></div>'
         f'<div class="fact"><b>العاصمة</b><span>{html.escape(c.get("capital", "غير محدد في المصادر المتاحة"))}</span></div>'
         f'<div class="fact"><b>الفترة</b><span>{html.escape(c.get("span", "—"))}</span></div>'
-        f'<div class="fact"><b>ملوك هذه الأسرة على الموقع</b><span>{kcount(nk)}</span></div>'
+        f'<div class="fact"><b>{"ملوك هذه الأسرة على الموقع" if isinstance(key, int) else "الملوك على الموقع"}</b><span>{kcount(nk)}</span></div>'
     )
     desc = f"{label} ({era_label}): العاصمة، والأحداث الكبرى، والعمارة، والملوك، والمصادر."
     ld = {"@context": "https://schema.org", "@graph": [
@@ -179,7 +181,7 @@ def page(key, kings_by_dyn, nxt=None, prv=None):
 <header class="phero"><div class="cover plain"><div class="cgrad"></div><div class="ctext"><h1>{html.escape(label)}</h1><p class="sub">{html.escape(era_label)} · {html.escape(c.get('span', ''))}</p></div></div></header>
 <div class="facts">{facts}</div>
 {''.join(panels)}
-<section class="panel" id="kings"><h2><span class="num">{len(panels) + 1}</span>ملوك هذه الأسرة <span class="bdg v">من قائمة الملوك</span></h2>{kbody}{kfoot}</section>
+<section class="panel" id="kings"><h2><span class="num">{len(panels) + 1}</span>{"ملوك هذه الأسرة" if isinstance(key, int) else "الملوك"} <span class="bdg v">من قائمة الملوك</span></h2>{kbody}{kfoot}</section>
 <section class="panel" id="gaps"><h2><span class="num">{len(panels) + 2}</span>ما ينقص هذه الصفحة</h2>{gaps or '<p>لم يُسجَّل نقص محدد بعد.</p>'}<p class="note">لا نكتب في هذه الصفحة ما لا مصدر له. ما ينقص مذكور هنا حتى يُضاف بنص منسوب إلى صاحبه.</p></section>
 <section class="abt"><h2>عن هذه الصفحة</h2><ul><li><b>المحتوى</b><span>كل فقرة منسوبة إلى صاحبها أسفل القسم؛ وما لم نجد له مصدرًا مذكور في «ما ينقص هذه الصفحة» ولا يُكتب.</span></li><li><b>التواريخ</b><span>تواريخ الأسر تقريبية كما هي مبيّنة أعلى الصفحة، وليست مسجّلة في مصدر قديم.</span></li><li><b>الصور</b><span>لا تحمل الصفحة صورة بعد؛ تُضاف صورة معتمدة عند توفرها، ولا تُستبدل بصورة موقع آخر.</span></li></ul></section>
 <section class="panel" id="refs"><h2>المراجع</h2>{refs_block(used)}<p class="refs">لم نستخدم ويكيبيديا في هذه الصفحة.</p></section>

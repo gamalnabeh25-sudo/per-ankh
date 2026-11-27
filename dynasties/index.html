@@ -372,6 +372,21 @@ footer{border-top:1px solid var(--line);margin-top:26px;padding-top:14px;color:v
 
 .phero{display:block;margin:6px 0 10px}
 
+/* خط الزمن لصفحات الأسرات */
+.dtl{position:relative;margin:16px 0 8px;padding:14px 16px 10px;border:1px solid rgba(226,180,87,.28);border-radius:16px;background:linear-gradient(180deg,rgba(22,17,11,.8),rgba(10,14,22,.82))}
+.dtl-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:13.5px;font-weight:800;color:#f3d68e;margin-bottom:12px}
+.dtl-h small{font-size:11.5px;font-weight:700;color:#b9ab8e}
+.dtl-in{position:relative;height:30px;margin:0 16px}
+.dtl-band{position:absolute;top:0;height:100%;background:rgba(95,208,196,.07);border-radius:4px}
+.dtl-band:nth-of-type(2n){background:rgba(95,208,196,.14)}
+.dtl-tick{position:absolute;top:10px;height:10px;background:rgba(226,180,87,.46);border-radius:3px}
+.dtl-cur{position:absolute;top:3px;height:24px;background:linear-gradient(180deg,#f3d68e,#d9a73d);border-radius:5px;box-shadow:0 0 0 2px rgba(7,19,33,.9),0 4px 12px rgba(0,0,0,.45)}
+.dtl-ax{position:relative;height:16px;margin:6px 16px 0;font-size:11px;color:#a99b80;font-variant-numeric:tabular-nums}
+.dtl-ax span{position:absolute;transform:translateX(50%)}
+.dtl-c{margin:4px 0 0;font-size:11.5px;color:#8b8069}
+
+@media(max-width:520px){.dtl-ax span:nth-child(2),.dtl-ax span:nth-child(4),.dtl-ax span:nth-child(6){display:none}.dtl{padding:12px 10px 8px}.dtl-in,.dtl-ax{margin-inline:12px}}
+
 .dyngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .dyngrid .dyn{display:flex;flex-direction:column;gap:6px;padding:16px 18px;border:1px solid var(--line,#2a3b45);border-radius:14px;text-decoration:none}
 .dyngrid .dyn b{font-size:1.06rem}

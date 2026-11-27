@@ -57,7 +57,7 @@
     buildUI(host);
 
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    var pid = pageId();
+    var pid = host.dataset.pageId || pageId();
     var vid = visitorId();
     var likeBtn = document.getElementById('pcLike');
     var countEl = document.getElementById('pcCount');
@@ -87,7 +87,7 @@
     }
 
     function loadComments() {
-      sb.from('page_comments').select('display_name,body,created_at')
+      sb.from('page_comments').select('id,display_name,body,created_at')
         .eq('page_id', pid).eq('status', 'approved')
         .order('created_at', { ascending: false }).limit(20)
         .then(function (r) {
@@ -110,7 +110,28 @@
             var date = document.createElement('span');
             date.className = 'pc-date';
             try { date.textContent = new Date(c.created_at).toLocaleDateString('ar-EG'); } catch (e) {}
-            head.append(name, date);
+            var rep = document.createElement('button');
+            rep.className = 'pc-report';
+            rep.type = 'button';
+            rep.textContent = 'إبلاغ';
+            rep.addEventListener('click', function () {
+              sb.auth.getSession().then(function (ar) {
+                var u = ar && ar.data && ar.data.session && ar.data.session.user;
+                if (!u) {
+                  if (window.confirm('الإبلاغ عن المحتوى متاح للأعضاء المسجلين. هل تريد تسجيل الدخول؟')) location.href = '/?account=1';
+                  return;
+                }
+                var reason = window.prompt('ما سبب الإبلاغ عن هذا التعليق؟');
+                if (!reason || reason.trim().length < 3) return;
+                sb.rpc('report_community_content', {
+                  p_target_type: 'comment', p_target_id: String(c.id),
+                  p_reason: reason.trim()
+                }).then(function (r) {
+                  say(r.error ? 'تعذر إرسال البلاغ. جرّب لاحقًا.' : 'وصل بلاغك لإدارة الموقع. شكرًا.', !r.error);
+                }).catch(function () { say('تعذر إرسال البلاغ. جرّب لاحقًا.', false); });
+              });
+            });
+            head.append(name, date, rep);
             var p = document.createElement('p');
             p.textContent = esc(c.body);
             entry.append(head, p);

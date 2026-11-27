@@ -1127,6 +1127,182 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 <div class="academy-history"><div class="academy-history-head"><div><h3>سجل التقدم</h3><p>نتائج الحساب المسجل تُحفظ في قاعدة بيانات Supabase، ونتائج الزائر تُحفظ محليًا على هذا الجهاز.</p></div><button class="tool-btn secondary-tool" id="academyRefreshHistory" type="button">تحديث السجل</button></div><div aria-live="polite" id="academyHistoryList"><p class="community-hint">لم تُحمّل النتائج بعد.</p></div></div>
 <div class="academy-note">ملاحظة: التصنيفات الموضوعية استدلالية، وقد يكون السؤال الواحد متعدد المحاور. بنك الأسئلة يحتوي 300 سؤالًا بأربعة اختيارات وشرح ورابط مصدر؛ وجود الرابط لا يغني عن مراجعة المرجع قبل الاقتباس الأكاديمي.</div>
 <div class="hiero-course" id="hieroCourse"><div class="hc-head"><div class="mini">HIEROGLYPH COURSE · ثلاثة دروس</div><h3>دروس الكتابة الهيروغليفية</h3><p>ثلاثة دروس قصيرة مبنية على جدول العلامات الأحادية المستخدم في الموقع نفسه: كل علامة بصورتها وقراءتها الصوتية ورمزها في قائمة جاردنر ووصفها. اقرأ الدرس ثم اختبر قراءتك لأربع علامات منه. القراءة هنا لعلامة مفردة، وليست تهجئة اسم أو ترجمة نص.</p></div><div class="hc-tabs" id="hcTabs"></div><div class="hc-stage" id="hcStage" aria-live="polite"></div></div><div class="king-quizzes" id="king-quizzes"><h3>اختبارات صفحات الملوك</h3><p>كل صفحة ملك مكتملة تنتهي باختبار من أسئلة مبنية على نص الصفحة نفسها. الاختبارات هنا تفتح داخل صفحة الملك، ومصادر كل سؤال مذكورة مع تفسير إجابته.</p><div class="kq-list"><a class="kq-card" href="/kings/001-narmr/#quiz"><img src="/assets/thumbs/kq-narmr.webp" alt="لوحة الملك نعرمر" width="216" height="288" decoding="async"><span>نعرمر · اختبار الصفحة</span></a><a class="kq-card" href="/kings/019-khwfw/#quiz"><img src="/assets/thumbs/kq-khwfw.webp" alt="لوحة الملك خوفو" width="216" height="288" decoding="async"><span>خوفو · اختبار الصفحة</span></a></div><p class="kq-note">الملوك 002 وما بعده تُضاف هنا بمجرد اكتمال صفحاتهم.</p></div></section>
+<style id="hiero-academy-css">
+@font-face{font-family:'PerAnkhHiero';src:url(assets/fonts/perankh-hiero.woff2) format('woff2');font-display:swap;font-weight:400}
+#hiero-academy{--ha-gold:#e7c778;--ha-gold2:#f4d99d;--ha-teal:#55c4b5;--ha-mut:#a8b6c2}
+#hiero-academy .hg,#hiero-academy .hsg,#hiero-academy .hp-glyphs,#hiero-academy .ha-cartouche text{font-family:"PerAnkhHiero","Noto Sans Egyptian Hieroglyphs","Segoe UI Historic","Noto Sans Symbols 2",serif;font-variant-ligatures:none}
+#hiero-academy .ha-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0 8px;width:100%}
+#hiero-academy .ha-step{position:relative;padding:18px 16px 16px;background:linear-gradient(150deg,#112a40,#091b2b);border:1px solid #b9975c55;border-radius:6px;min-width:0}
+#hiero-academy .ha-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--ha-gold);color:var(--ha-gold2);font-size:14px;margin-bottom:8px}
+#hiero-academy .ha-step h4{margin:0 0 6px;color:var(--ha-gold2);font-size:17px}
+#hiero-academy .ha-step p{margin:0;color:var(--ha-mut);font-size:13px;line-height:1.85}
+#hiero-academy .ha-panel{margin:26px 0 0;padding:22px;background:linear-gradient(150deg,#0d2233,#071827);border:1px solid #b9975c44;border-radius:8px;min-width:0}
+#hiero-academy .ha-panel h3{margin:0 0 8px;color:var(--ha-gold2);font-size:21px}
+#hiero-academy .ha-lede{margin:0 0 16px;color:var(--ha-mut);font-size:13.5px;line-height:1.95;max-width:74ch}
+#hiero-academy .ha-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #3f586b;border-radius:6px}
+#hiero-academy table.ha-table{width:100%;border-collapse:collapse;min-width:560px;font-size:13px}
+#hiero-academy .ha-table th{background:#0b2031;color:var(--ha-gold);font-weight:600;text-align:right;padding:10px 8px;border-bottom:1px solid #3f586b;white-space:nowrap;font-size:12px}
+#hiero-academy .ha-table td{padding:8px;border-bottom:1px solid #24384a;color:#dfe7ec;text-align:right;vertical-align:middle}
+#hiero-academy .ha-table tr:last-child td{border-bottom:0}
+#hiero-academy .ha-table tr:nth-child(even) td{background:#0a1c2a}
+#hiero-academy .ha-table td.hg{font-size:30px;line-height:1;color:var(--ha-gold2);text-align:center;width:56px}
+#hiero-academy .ha-table td.hc{color:var(--ha-teal);font-weight:600;white-space:nowrap}
+#hiero-academy .ha-table td.hv{color:var(--ha-gold2);font-size:15px;white-space:nowrap}
+#hiero-academy .ha-table td.hs{color:var(--ha-mut);font-size:12px}
+#hiero-academy .ha-note{margin:14px 0 0;color:#8fa2b1;font-size:12px;line-height:1.9}
+#hiero-academy .ha-note b{color:var(--ha-gold2);font-weight:600}
+#hiero-academy .ha-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
+#hiero-academy .ha-controls input{flex:1 1 220px;min-width:0;background:#071827;color:#fff;border:1px solid #506779;border-radius:4px;padding:11px 12px;font:inherit;font-size:13px}
+#hiero-academy .ha-chips{display:flex;gap:6px;flex-wrap:wrap}
+#hiero-academy .ha-chips button{font:inherit;font-size:12px;padding:8px 12px;border-radius:4px;border:1px solid #40586b;background:#0b2031;color:#dce4e9;cursor:pointer}
+#hiero-academy .ha-chips button.active{border-color:var(--ha-teal);color:var(--ha-teal)}
+#hiero-academy .ha-count{color:var(--ha-mut);font-size:12px;margin-inline-start:auto}
+#hiero-academy .ha-siggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
+#hiero-academy .ha-sig{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;background:#0b2031;border:1px solid #b9975c33;border-radius:6px;text-align:center;min-width:0}
+#hiero-academy .ha-sig .hsg{font-size:34px;line-height:1.1;color:var(--ha-gold2)}
+#hiero-academy .ha-sig b{color:var(--ha-teal);font-size:12px}
+#hiero-academy .ha-sig em{color:#fff;font-style:normal;font-size:14px}
+#hiero-academy .ha-sig .hsd{color:var(--ha-mut);font-size:11px;line-height:1.5}
+#hiero-academy .ha-more{margin-top:16px;font:inherit;font-size:13px;padding:10px 18px;border-radius:4px;border:1px solid var(--ha-gold);background:transparent;color:var(--ha-gold2);cursor:pointer}
+#hiero-academy .ha-more:hover{background:#b9975c22}
+#hiero-academy .ha-dets{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+#hiero-academy .ha-det{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 10px;background:#0b2031;border:1px solid #b9975c33;border-radius:6px;text-align:center}
+#hiero-academy .ha-det .hg{font-size:32px;color:var(--ha-gold2);line-height:1.1}
+#hiero-academy .ha-det b{color:var(--ha-teal);font-size:12px}
+#hiero-academy .ha-det p{margin:0;color:var(--ha-mut);font-size:11.5px;line-height:1.6}
+#hiero-academy .ha-cartouche{width:100%;max-width:440px;height:auto;display:block;margin:6px auto 0;background:#04101b;border-radius:8px}
+#hiero-academy .ha-practices{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+#hiero-academy .ha-practice{display:flex;gap:14px;align-items:center;padding:14px;background:#0b2031;border:1px solid #b9975c33;border-radius:6px;min-width:0}
+#hiero-academy .hp-glyphs{font-size:38px;line-height:1.1;color:var(--ha-gold2);flex:0 0 auto;direction:ltr}
+#hiero-academy .hp-body{min-width:0}
+#hiero-academy .hp-q{color:#dfe7ec;font-size:13px;margin-bottom:6px}
+#hiero-academy .hp-a{color:var(--ha-gold2);font-size:13px;line-height:1.8;margin-bottom:8px}
+#hiero-academy .hp-a b{color:var(--ha-teal);font-size:16px}
+#hiero-academy .ha-reveal{font:inherit;font-size:12px;padding:7px 12px;border-radius:4px;border:1px solid #40586b;background:transparent;color:#dce4e9;cursor:pointer}
+#hiero-academy .hp-src{display:block;margin-top:6px;color:#7e93a3;font-size:11px}
+#hiero-academy .ha-sources{margin:26px 0 0;padding:20px 22px;background:#071827;border:1px solid #b9975c55;border-right:3px solid var(--ha-gold);border-radius:6px}
+#hiero-academy .ha-sources h3{margin:0 0 10px;color:var(--ha-gold2);font-size:18px}
+#hiero-academy .ha-sources ul{margin:0;padding-inline-start:18px}
+#hiero-academy .ha-sources li{color:var(--ha-mut);font-size:12.5px;line-height:1.95;margin-bottom:6px}
+#hiero-academy .ha-sources a{color:var(--ha-teal)}
+@media(max-width:900px){
+ #hiero-academy .ha-path{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+ #hiero-academy .ha-path{grid-template-columns:1fr}
+ #hiero-academy .ha-table th:nth-child(6),#hiero-academy .ha-table td:nth-child(6){display:none}
+ #hiero-academy .ha-table{min-width:0}
+}
+@media(max-width:640px){
+ #hiero-academy .ha-panel{padding:16px 13px}
+ #hiero-academy .ha-panel h3{font-size:18px}
+ #hiero-academy .ha-siggrid{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}
+ #hiero-academy .ha-table{min-width:520px;font-size:12px}
+ #hiero-academy .ha-table td.hg{font-size:26px}
+ #hiero-academy .ha-practice{flex-direction:column;align-items:flex-start}
+}
+#hiero-academy .ha-det .ha-det-ar{color:#dfe7ec;font-size:11.5px;line-height:1.65;margin:0}
+#hiero-academy .ha-det .ha-det-en{color:#7e93a3;font-size:10px;line-height:1.5;margin:0}
+#hiero-academy .ha-controls input{flex:1 1 200px;max-width:340px}
+
+</style>
+<section class="content-section academy-section" id="hiero-academy">
+<div class="content-head"><div class="eyebrow">PART 09 · HIEROGLYPH ACADEMY</div><h2>أكاديمية العلامات الهيروغليفية</h2><p>مسار من ست مراحل: من الصوت المفرد إلى قراءة نص. الجداول مبنية على قائمة جاردنر للعلامات (802 علامة مصنّفة)، وكل قراءة منسوبة إلى مصدرها.</p></div>
+<div class="ha-path"><article class="ha-step"><span class="ha-num">1</span><h4>الأساس</h4><p>لماذا كُتبت المصرية القديمة بالصور، وما الفرق بين الصورة والصوت. تبدأ بالعلامات الأحادية الـ24.</p></article>
+<article class="ha-step"><span class="ha-num">2</span><h4>العلامات الأحادية</h4><p>الأصوات المفردة: كل علامة = صوت واحد. بها تُكتب أي كلمة أجنبية وكل اسم.</p></article>
+<article class="ha-step"><span class="ha-num">3</span><h4>الثنائية والثلاثية</h4><p>علامة واحدة لصوتين أو ثلاثة، تُختصر بها الكلمات. تُقرأ بالقيمة الصوتية كاملة.</p></article>
+<article class="ha-step"><span class="ha-num">4</span><h4>المحدِّدات</h4><p>علامة صامتة في آخر الكلمة تحدد معناها العام: رجل، فعل، مكان، مادة.</p></article>
+<article class="ha-step"><span class="ha-num">5</span><h4>الأسماء والخراطيش</h4><p>الاسم الملكي داخل خرطوش، وترتيب العلامات، وكتابة اسمك بنفسك.</p></article>
+<article class="ha-step"><span class="ha-num">6</span><h4>قراءة نص</h4><p>قراءة سطر موثّق علامةً علامةً، ثم مقارنة قراءتك بقراءة المصدر.</p></article></div>
+
+<div class="ha-panel">
+<h3>1 · العلامات الأحادية (24 صوتًا)</h3>
+<p class="ha-lede">هذه هي الأبجدية المصرية القديمة: أربع وعشرون علامة لكل صوت مفرد. الجدول يجمع رمز جاردنر، والشكل، والقيمة الصوتية، والوصف كما ورد في القائمة، مع الاسم العربي للصوت.</p>
+<div class="ha-tablewrap"><table class="ha-table"><thead><tr><th>العلامة</th><th>جاردنر</th><th>القراءة</th><th>الاسم العربي</th><th>الشكل</th><th>الصوت</th></tr></thead><tbody>
+<tr><td class="hg">𓄿</td><td class="hc">G1</td><td class="hv">ꜣ</td><td>الألف الحلقية (همزة حلقية)</td><td>نسر / رخمة</td><td class="hs">صوت حلقي يشبه الهمزة المفتوحة</td></tr>
+<tr><td class="hg">𓇋</td><td class="hc">M17</td><td class="hv">i / j</td><td>الياء</td><td>ورقة بوص</td><td class="hs">صوت ياء</td></tr>
+<tr><td class="hg">𓂝</td><td class="hc">D36</td><td class="hv">ʿ</td><td>العين</td><td>ذراع</td><td class="hs">صوت عين حلقية</td></tr>
+<tr><td class="hg">𓅱</td><td class="hc">G43</td><td class="hv">w</td><td>الواو</td><td>كتكوت سمان</td><td class="hs">صوت واو</td></tr>
+<tr><td class="hg">𓃀</td><td class="hc">D58</td><td class="hv">b</td><td>الباء</td><td>قدم</td><td class="hs">باء</td></tr>
+<tr><td class="hg">𓊪</td><td class="hc">Q3</td><td class="hv">p</td><td>الباء الشفوية</td><td>مقعد (كرسي)</td><td class="hs">پاء</td></tr>
+<tr><td class="hg">𓆑</td><td class="hc">I9</td><td class="hv">f</td><td>الفاء</td><td>حية قرناء (أفعى)</td><td class="hs">فاء</td></tr>
+<tr><td class="hg">𓅓</td><td class="hc">G17</td><td class="hv">m</td><td>الميم</td><td>بومة</td><td class="hs">ميم</td></tr>
+<tr><td class="hg">𓈖</td><td class="hc">N35</td><td class="hv">n</td><td>النون</td><td>موجة ماء</td><td class="hs">نون</td></tr>
+<tr><td class="hg">𓂋</td><td class="hc">D21</td><td class="hv">r</td><td>الراء</td><td>فم</td><td class="hs">راء</td></tr>
+<tr><td class="hg">𓉔</td><td class="hc">O4</td><td class="hv">h</td><td>الهاء</td><td>مأوى من البوص</td><td class="hs">هاء</td></tr>
+<tr><td class="hg">𓎛</td><td class="hc">V28</td><td class="hv">ḥ</td><td>الحاء</td><td>فتيل</td><td class="hs">حاء</td></tr>
+<tr><td class="hg">𓐍</td><td class="hc">Aa1</td><td class="hv">ḫ</td><td>الخاء</td><td>مشيمة؟ (قراءتها محل خلاف)</td><td class="hs">خاء</td></tr>
+<tr><td class="hg">𓄡</td><td class="hc">F32</td><td class="hv">ẖ</td><td>الخاء المجهورة</td><td>بطن وذيل حيوان</td><td class="hs">خاء أعمق من ḫ</td></tr>
+<tr><td class="hg">𓊃</td><td class="hc">O34</td><td class="hv">z / s</td><td>الزاي/السين</td><td>مزلاج باب</td><td class="hs">سين مجهورة</td></tr>
+<tr><td class="hg">𓋴</td><td class="hc">S29</td><td class="hv">s</td><td>السين</td><td>قماش مطوي</td><td class="hs">سين</td></tr>
+<tr><td class="hg">𓈙</td><td class="hc">N37</td><td class="hv">š</td><td>الشين</td><td>بركة</td><td class="hs">شين</td></tr>
+<tr><td class="hg">𓈎</td><td class="hc">N29</td><td class="hv">q</td><td>القاف</td><td>منحدر رملي</td><td class="hs">قاف</td></tr>
+<tr><td class="hg">𓎡</td><td class="hc">V31</td><td class="hv">k</td><td>الكاف</td><td>سلة بمقبض</td><td class="hs">كاف</td></tr>
+<tr><td class="hg">𓎼</td><td class="hc">W11</td><td class="hv">g</td><td>الجيم</td><td>حامل حلقي</td><td class="hs">جيم</td></tr>
+<tr><td class="hg">𓏏</td><td class="hc">X1</td><td class="hv">t</td><td>التاء</td><td>رغيف صغير</td><td class="hs">تاء</td></tr>
+<tr><td class="hg">𓍿</td><td class="hc">V13</td><td class="hv">ṯ</td><td>الثاء</td><td>حبل ربط</td><td class="hs">ثاء</td></tr>
+<tr><td class="hg">𓂧</td><td class="hc">D46</td><td class="hv">d</td><td>الدال</td><td>يد</td><td class="hs">دال</td></tr>
+<tr><td class="hg">𓆓</td><td class="hc">I10</td><td class="hv">ḏ</td><td>الذال</td><td>كوبرا</td><td class="hs">ذال</td></tr>
+</tbody></table></div>
+<p class="ha-note">القراءتان <b>ḫ</b> و<b>ẖ</b> خاءان متمايزتان في المصرية القديمة؛ و<b>z</b> و<b>s</b> تختلفان في النطق وإن استخدمت العربية السين والزاي مقاربةً لهما. وعلامة Aa1 وصفها في المصدر «مشيمة؟» بعلامة استفهام، وهي قراءة محل خلاف بين الدارسين.</p>
+</div>
+
+<div class="ha-panel">
+<h3>2 · العلامات الثنائية والثلاثية</h3>
+<p class="ha-lede">علامة واحدة تحمل صوتين أو ثلاثة: تُقرأ بقيمتها كاملة، وهي اختصار الخط لا اختصار المعنى. ابحث بالرمز أو بالقراءة أو بالشكل.</p>
+<div class="ha-controls"><input id="haSearch" placeholder="ابحث: nfr أو F35 أو Flag" type="search"/><div class="ha-chips"><button class="active" data-ha-cls="bi" type="button">ثنائية</button><button data-ha-cls="tri" type="button">ثلاثية</button><button data-ha-cls="all" type="button">الكل</button></div><span id="haCount" class="ha-count"></span></div>
+<div class="ha-siggrid" id="haGrid"></div>
+<button class="ha-more" id="haMore" type="button">اعرض المزيد</button>
+</div>
+
+<div class="ha-panel">
+<h3>3 · المحدِّدات</h3>
+<p class="ha-lede">علامة لا تُنطق، تأتي في آخر الكلمة لتحدد باب معناها. قراءتها تُهمَل، ومعناها يُفهم من السياق.</p>
+<div class="ha-dets"><article class="ha-det"><span class="hg">𓏤</span><b>Z1</b><p class="ha-det-ar">خط مفرد: يدل على المفرد</p><p class="ha-det-en">Stroke</p></article>
+<article class="ha-det"><span class="hg">𓏥</span><b>Z2</b><p class="ha-det-ar">ثلاث شرطات: تدل على الجمع</p><p class="ha-det-en">Triple stroke</p></article>
+<article class="ha-det"><span class="hg">𓀀</span><b>A1</b><p class="ha-det-ar">رجل جالس: يدل على إنسان أو فعل يقوم به</p><p class="ha-det-en">Seated man</p></article>
+<article class="ha-det"><span class="hg">𓀁</span><b>A2</b><p class="ha-det-ar">رجل يده إلى فمه: يدل على الأكل أو الكلام أو الفكر</p><p class="ha-det-en">Man with hand to mouth</p></article>
+<article class="ha-det"><span class="hg">𓂡</span><b>D40</b><p class="ha-det-ar">عصا: تدل على القوة أو الحمل</p><p class="ha-det-en">Arm holding stick</p></article>
+<article class="ha-det"><span class="hg">𓅃</span><b>G5</b><p class="ha-det-ar">صقر: يدل على الملك أو الإله</p><p class="ha-det-en">Falcon</p></article>
+<article class="ha-det"><span class="hg">𓇯</span><b>N1</b><p class="ha-det-ar">السماء: تدل على ما في السماء</p><p class="ha-det-en">Sky</p></article>
+<article class="ha-det"><span class="hg">𓇳</span><b>N5</b><p class="ha-det-ar">الشمس: تدل على الزمن والنهار</p><p class="ha-det-en">Sun</p></article>
+<article class="ha-det"><span class="hg">𓏛</span><b>Y1</b><p class="ha-det-ar">لفافة بردية: تدل على الكتابة والعلم</p><p class="ha-det-en">Papyrus scroll</p></article>
+<article class="ha-det"><span class="hg">𓊚</span><b>O51</b><p class="ha-det-ar">مبنى: يدل على المكان أو المخزن</p><p class="ha-det-en">Grain mound on mud floor</p></article>
+<article class="ha-det"><span class="hg">𓏊</span><b>W22</b><p class="ha-det-ar">إبريق جعة: يدل على السوائل والشرب</p><p class="ha-det-en">Beer jugs</p></article>
+<article class="ha-det"><span class="hg">𓎟</span><b>V30</b><p class="ha-det-ar">سلة: تدل على الحمل والجمع</p><p class="ha-det-en">Basket</p></article></div>
+<p class="ha-note">مثال: كلمة «معبود» تُكتب بالعلامة الثلاثية R8 (راية) ومعها محدد. المحدد لا يضيف صوتًا، بل يقول للقارئ: الكلمة التالية تخص هذا الباب.</p>
+</div>
+
+<div class="ha-panel">
+<h3>4 · اكتب اسمك في خرطوش</h3>
+<p class="ha-lede">المصرية القديمة لا تكتب الحركات، فالاسم يُكتب بصوامته فقط. اكتب الاسم بحروف عربية أو لاتينية، وسيحوّله الجدول إلى علامات أحادية داخل خرطوش ملكي.</p>
+<div class="ha-controls"><input id="haName" maxlength="24" placeholder="مثال: جمال / gamal" type="text" value="جمال"/><button class="ha-more" id="haNameGo" type="button">حوّل إلى خرطوش</button></div>
+<svg class="ha-cartouche" id="haCart" viewBox="0 0 420 130" role="img" aria-label="خرطوش ملكي"><rect x="10" y="14" width="400" height="102" rx="52" ry="52" fill="#071827" stroke="#e7c778" stroke-width="4"/><line x1="404" y1="14" x2="404" y2="116" stroke="#e7c778" stroke-width="6"/><text id="haCartText" x="205" y="92" text-anchor="middle" font-size="58" fill="#f4d99d"></text></svg>
+<p class="ha-note">التقريب الصوتي هنا تقريبي: الأصوات غير الموجودة في المصرية القديمة (مثل الضاد واللام) تُقارب بأقرب صوت لها، والاسم نتيجة تقريب لا كتابة أثرية موثّقة.</p>
+</div>
+
+<div class="ha-panel">
+<h3>5 · تدريب القراءة</h3>
+<p class="ha-lede">خمس كلمات موثّقة. اقرأ العلامات أولًا، ثم اكشف القراءة والمصدر.</p>
+<div class="ha-practices"><article class="ha-practice"><div class="hp-glyphs">𓋹</div><div class="hp-body"><div class="hp-q">ما قراءة هذه العلامات؟</div><div class="hp-a" hidden><b>ʿnḫ</b> · ع ن خ · «حياة» — العلامة في الأصل رباط صندل، وتُقرأ ʿnḫ</div><button class="ha-reveal" type="button">اكشف القراءة</button><span class="hp-src">S34</span></div></article>
+<article class="ha-practice"><div class="hp-glyphs">𓄤</div><div class="hp-body"><div class="hp-q">ما قراءة هذه العلامات؟</div><div class="hp-a" hidden><b>nfr</b> · ن ف ر · «حسن / جميل» — قلب وقصبة هوائية</div><button class="ha-reveal" type="button">اكشف القراءة</button><span class="hp-src">F35</span></div></article>
+<article class="ha-practice"><div class="hp-glyphs">𓊵</div><div class="hp-body"><div class="hp-q">ما قراءة هذه العلامات؟</div><div class="hp-a" hidden><b>ḥtp</b> · ح ت پ · «سلام / قربان» — رغيف على حصيرة</div><button class="ha-reveal" type="button">اكشف القراءة</button><span class="hp-src">R4</span></div></article>
+<article class="ha-practice"><div class="hp-glyphs">𓊹</div><div class="hp-body"><div class="hp-q">ما قراءة هذه العلامات؟</div><div class="hp-a" hidden><b>nṯr</b> · ن ث ر · «معبود» — راية معبد</div><button class="ha-reveal" type="button">اكشف القراءة</button><span class="hp-src">R8</span></div></article>
+<article class="ha-practice"><div class="hp-glyphs">𓇋𓅓𓈖</div><div class="hp-body"><div class="hp-q">ما قراءة هذه العلامات؟</div><div class="hp-a" hidden><b>jmn</b> · إ م ن · «المحتجب» — اسم الإله آمون</div><button class="ha-reveal" type="button">اكشف القراءة</button><span class="hp-src">M17-G17-N35</span></div></article></div>
+</div>
+
+<div class="ha-sources">
+<h3>المصادر وحدودها</h3>
+<ul>
+<li><b>قائمة علامات جاردنر كاملة</b> (رمز، شكل، وصف، قيمة صوتية، أمثلة): <a href="https://www.egyptianhieroglyphs.net/gardiners-sign-list/" rel="noopener" target="_blank">egyptianhieroglyphs.net/gardiners-sign-list</a> — منها كل الجداول في هذه الصفحة.</li>
+<li><b>مراجعة الأصوات الأحادية</b>: <a href="https://www.ucl.ac.uk/museums-static/digitalegypt/writing/phoneticsigns.html" rel="noopener" target="_blank">UCL · Digital Egypt — Phonetic signs</a>، ويُستشهد بها في تصنيف العلامات الأحادية.</li>
+<li><b>الترميز والشكل</b>: <a href="https://www.unicode.org/charts/PDF/U13000.pdf" rel="noopener" target="_blank">Unicode · Egyptian Hieroglyphs (U+13000–U+1342F)</a>، ومنه أن لكل علامة رمزًا معياريًا مستقلًا عن الخط.</li>
+</ul>
+<p class="ha-note">القراءات تختلف بين مدارس النقل الصوتي (خاصة ʿ وꜣ وṯ وḏ)، وأي خلاف يُوسم «محل خلاف» بدل أن يُقدَّم كحقيقة. الجدول تعليمي، والرجوع إلى قائمة جاردنر والنسخ الأكاديمية شرط قبل الاقتباس.</p>
+</div>
+</section>
+
+
 <section class="content-section knowledge-section" id="references-details">
 <div class="content-head"><div class="eyebrow">PART 10 · REFERENCES &amp; SOURCES</div><h2>المراجع والمصادر</h2><p>بوابة للمصادر المؤسسية التي يستند إليها المحتوى، مع توضيح وظيفة المصدر وحدوده.</p></div>
 <div class="content-grid">
@@ -2418,4 +2594,6 @@ function startQuiz(){
 }
 render();
 })();</script><script src="assets/lab3d.js?v=1" defer></script>
+<script src="assets/hiero-data.js?v=1" defer></script>
+<script src="assets/hiero.js?v=1" defer></script>
 </body></html>

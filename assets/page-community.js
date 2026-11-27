@@ -128,15 +128,15 @@
     /* علامة القفل للزائر: تظهر على الإعجاب والحفظ ونموذج التعليق، وتختفي بعد تسجيل الدخول */
     function paintLocks() {
       var locked = !authUser;
-      [likeBtn, saveBtn, form].forEach(function (n) {
+      [likeBtn, saveBtn].forEach(function (n) {
         if (!n) return;
         n.classList.toggle('pc-locked', locked);
-        var chip = n.querySelector(':scope > .pc-lock');
+        var chip = n.querySelector('.pc-lock');
         if (locked && !chip) {
           var c = document.createElement('span');
           c.className = 'pc-lock';
           c.title = 'للأعضاء المسجلين';
-          c.textContent = '🔒';
+          c.innerHTML = '<svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" fill="currentColor"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>';
           n.appendChild(c);
         } else if (!locked && chip) { chip.remove(); }
       });

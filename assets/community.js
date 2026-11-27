@@ -154,7 +154,8 @@
       document.querySelectorAll('.co-actions a.co-btn').forEach(function (a) {
         if (/leaderboard/.test(a.getAttribute('href') || '')) return;
         if (a.querySelector('.co-lock')) return;
-        var c = el('span', 'co-lock', '\u{1F512}');
+        var c = el('span', 'co-lock');
+        c.innerHTML = '<svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" fill="currentColor"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>';
         c.title = 'للأعضاء المسجلين';
         a.appendChild(c);
       });

@@ -68,3 +68,14 @@
 .co-badge{background:#b9985c22;border-color:#e2b45766;color:#e8cf9a}
 .co-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #b9985c88}
 .co-badges{margin-top:8px}
+
+/* علامة القفل وألسنة اللوحة وقائمة القراءة */
+.co-lock{margin-inline-start:6px;font-size:13px}
+.co-lock-hint{font-size:12px;font-weight:400;color:#cbb27f;margin-inline-start:8px}
+.co-tabs{display:flex;gap:8px;margin:0 0 14px}
+.co-tabs button{background:#1a1408;border:1px solid #b9985c55;color:#e8d9b0;border-radius:9px;padding:7px 16px;font:inherit;font-size:14px;cursor:pointer}
+.co-tabs button.co-tab-on{background:#e2b457;color:#14100a;font-weight:700;border-color:#e2b457}
+.co-reading-row{display:block}
+.co-reading-row h3 a{color:#e2b457;text-decoration:none}
+.co-reading-row h3 a:hover{text-decoration:underline}
+.co-note{border-inline-start:3px solid #b9985c66;padding-inline-start:10px;color:#d9c89f;font-size:14px}

@@ -33,10 +33,15 @@
       '<div class="pc-card">' +
         '<div class="pc-head">' +
           '<h2>التعليقات والإعجابات</h2>' +
+          '<div class="pc-actions">' +
           '<button class="pc-like" id="pcLike" type="button" aria-pressed="false">' +
             '<span class="pc-heart" aria-hidden="true">♥</span> أعجبني ' +
             '<span class="pc-count" id="pcCount">0</span>' +
           '</button>' +
+          '<button class="pc-save" id="pcSave" type="button" aria-pressed="false">' +
+            '<span aria-hidden="true">☆</span> حفظ' +
+          '</button>' +
+          '</div>' +
         '</div>' +
         '<form id="pcForm" novalidate>' +
           '<input id="pcName" maxlength="40" autocomplete="name" placeholder="اسمك (اختياري)">' +
@@ -62,6 +67,8 @@
     var authUser = null;
     sb.auth.getSession().then(function (ar) {
       authUser = ar && ar.data && ar.data.session && ar.data.session.user;
+      paintLocks();
+      if (authUser) loadSaved();
       if (!authUser) {
         // دعوة التسجيل بعد دقيقة من دخول الموقع (مرة في الجلسة، وتعود في الزيارة التالية)
         var nudged = false;
@@ -112,8 +119,62 @@
     var list = document.getElementById('pcList');
 
     var liked = false;
+    var saved = false;
     try { liked = localStorage.getItem(likedKey(pid)) === '1'; } catch (e) {}
     paintLike();
+
+    var saveBtn = document.getElementById('pcSave');
+
+    /* علامة القفل للزائر: تظهر على الإعجاب والحفظ ونموذج التعليق، وتختفي بعد تسجيل الدخول */
+    function paintLocks() {
+      var locked = !authUser;
+      [likeBtn, saveBtn, form].forEach(function (n) {
+        if (!n) return;
+        n.classList.toggle('pc-locked', locked);
+        var chip = n.querySelector(':scope > .pc-lock');
+        if (locked && !chip) {
+          var c = document.createElement('span');
+          c.className = 'pc-lock';
+          c.title = 'للأعضاء المسجلين';
+          c.textContent = '🔒';
+          n.appendChild(c);
+        } else if (!locked && chip) { chip.remove(); }
+      });
+    }
+
+    function paintSaved() {
+      saveBtn.classList.toggle('pc-saved', saved);
+      saveBtn.setAttribute('aria-pressed', saved ? 'true' : 'false');
+      saveBtn.childNodes[1].textContent = saved ? ' محفوظ' : ' حفظ';
+    }
+
+    function loadSaved() {
+      sb.from('member_reading_list').select('page_id').eq('member_id', authUser.id).eq('page_id', pid).maybeSingle()
+        .then(function (r) { saved = !!(r.data && r.data.page_id); paintSaved(); })
+        .catch(function () {});
+    }
+
+    saveBtn.addEventListener('click', function () {
+      if (!authUser) {
+        if (window.confirm('حفظ الصفحات في قائمة قراءتك متاح للأعضاء المسجلين. هل تريد تسجيل الدخول؟')) location.href = '/?account=1';
+        return;
+      }
+      saveBtn.disabled = true;
+      if (saved) {
+        sb.rpc('remove_reading_item', { p_page_id: pid }).then(function (r) {
+          saveBtn.disabled = false;
+          if (!r.error) { saved = false; paintSaved(); }
+        }).catch(function () { saveBtn.disabled = false; });
+        return;
+      }
+      var note = window.prompt('ملاحظة خاصة تُحفظ مع الصفحة (اختياري):', '');
+      if (note === null) { saveBtn.disabled = false; return; }
+      sb.rpc('save_reading_item', { p_page_id: pid, p_note: note.trim() }).then(function (r) {
+        saveBtn.disabled = false;
+        if (r.error) { say('تعذر الحفظ. جرّب لاحقًا.', false); return; }
+        saved = true; paintSaved(); say('حُفظت الصفحة في قائمة قراءتك (صفحة «نشاطي»).', true);
+      }).catch(function () { saveBtn.disabled = false; say('تعذر الحفظ. جرّب لاحقًا.', false); });
+    });
 
     function paintLike() {
       likeBtn.classList.toggle('pc-on', liked);

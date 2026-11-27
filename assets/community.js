@@ -149,6 +149,16 @@
   /* ---------- الصفحات ---------- */
 
   function pageHub() {
+    /* علامة القفل على أقسام الأعضاء للزائر (تختفي بعد التسجيل) */
+    if (!currentUser) {
+      document.querySelectorAll('.co-actions a.co-btn').forEach(function (a) {
+        if (/leaderboard/.test(a.getAttribute('href') || '')) return;
+        if (a.querySelector('.co-lock')) return;
+        var c = el('span', 'co-lock', '\u{1F512}');
+        c.title = 'للأعضاء المسجلين';
+        a.appendChild(c);
+      });
+    }
     var arts = $('coArticles'), discs = $('coDiscussions'), liked = $('coLiked');
     sb.from('community_articles').select('id,title,body,topic,author_name,member_id,created_at')
       .eq('status', 'approved').order('created_at', { ascending: false }).limit(5)
@@ -332,9 +342,21 @@
 
   function pageLeaderboard() {
     var host = $('coBoard');
+    var mode = 'general';
+    var tabs = $('coBoardTabs');
+    if (tabs) {
+      tabs.querySelectorAll('button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          mode = b.dataset.board;
+          tabs.querySelectorAll('button').forEach(function (x) { x.classList.toggle('co-tab-on', x === b); });
+          load();
+        });
+      });
+    }
     function draw(r) {
       host.replaceChildren();
-      if (!r.data || !r.data.length) { host.append(el('div', 'co-empty', 'لا توجد نقاط بعد. كن أول من يدخل اللوحة!')); return; }
+      var empty = mode === 'quiz' ? 'لا توجد نقاط اختبارات بعد.' : 'لا توجد نقاط بعد. كن أول من يدخل اللوحة!';
+      if (!r.data || !r.data.length) { host.append(el('div', 'co-empty', empty)); return; }
       r.data.forEach(function (row, i) {
         var item = el('div', 'co-item co-board-row');
         var rank = el('span', 'co-rank', String(i + 1));
@@ -348,14 +370,19 @@
           mid.append(bs);
         }
         item.append(mid);
-        item.append(el('span', 'co-points', row.points + ' نقطة'));
+        item.append(el('span', 'co-points', (mode === 'quiz' ? row.quiz_points : row.points) + ' نقطة'));
         item.addEventListener('click', function () { location.href = '/community/member/?id=' + row.member_id; });
         host.append(item);
       });
     }
     function load() {
-      sb.from('community_leaderboard').select('member_id,display_name,avatar_url,points,badges')
-        .then(draw).catch(function () {});
+      if (mode === 'quiz') {
+        sb.from('community_quiz_leaderboard').select('member_id,display_name,avatar_url,quiz_points')
+          .then(draw).catch(function () {});
+      } else {
+        sb.from('community_leaderboard').select('member_id,display_name,avatar_url,points,badges')
+          .then(draw).catch(function () {});
+      }
     }
     load();
     setInterval(load, 60000); // تحديث كل دقيقة
@@ -419,9 +446,10 @@
   /* نشاطي: للعضو المسجل — مساهماته وحالتها، وإعدادات الملف في صفحة الحساب */
   function pageMe() {
     var host = $('coProfile'), arts = $('coArticles'), discs = $('coDiscussions'), reps = $('coReplies');
+    var rlist = $('coReading');
     if (!currentUser) {
       host.replaceChildren(registerPanel('صفحة "نشاطي" تعرض مساهماتك وحالة مراجعتها، وهي متاحة بعد تسجيل الدخول.'));
-      [arts, discs, reps].forEach(function (h) { if (h) h.replaceChildren(el('div', 'co-empty', 'سجّل الدخول لعرض نشاطك.')); });
+      [arts, discs, reps, rlist].forEach(function (h) { if (h) h.replaceChildren(el('div', 'co-empty', 'سجّل الدخول لعرض نشاطك.')); });
       return;
     }
     var uid = currentUser.id;
@@ -466,6 +494,41 @@
           return row;
         });
       });
+
+
+    /* قائمة قراءتي: الصفحات المحفوظة وملاحظاتي الخاصة */
+    function loadReading() {
+      if (!rlist) return;
+      sb.from('member_reading_list').select('page_id,note,saved_at')
+        .eq('member_id', uid).order('saved_at', { ascending: false }).limit(50)
+        .then(function (r) {
+          rlist.replaceChildren();
+          if (r.error || !r.data || !r.data.length) {
+            rlist.append(el('div', 'co-empty', 'لم تحفظ صفحات بعد. زر «☆ حفظ» أسفل أي صفحة يضيفها هنا.'));
+            return;
+          }
+          r.data.forEach(function (it) {
+            var row = el('div', 'co-item co-reading-row');
+            var a = el('a', null, pageTitleFromId(it.page_id));
+            a.href = pageLinkFromId(it.page_id);
+            var h = el('h3'); h.append(a);
+            row.append(h);
+            if (it.note) row.append(el('p', 'co-note', it.note));
+            var meta = el('div', 'co-meta');
+            meta.append(el('span', null, fmtDate(it.saved_at)));
+            var rm = el('button', 'co-report', 'إزالة');
+            rm.type = 'button';
+            rm.addEventListener('click', function () {
+              sb.rpc('remove_reading_item', { p_page_id: it.page_id }).then(loadReading).catch(loadReading);
+            });
+            meta.append(rm);
+            row.append(meta);
+            rlist.append(row);
+          });
+        })
+        .catch(function () {});
+    }
+    loadReading();
   }
 
   function boot() {

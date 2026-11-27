@@ -880,6 +880,22 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 .pano-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:14px;color:#8ea3af;font-size:12px;line-height:1.7;background:repeating-linear-gradient(135deg,rgba(216,181,107,.05) 0 10px,transparent 10px 20px)}
 .pano-empty b{color:#c9d4da;font-size:13px}
 @media(max-width:900px){.lab3d-grid{grid-template-columns:1fr}.pano-grid{grid-template-columns:1fr}}
+
+.model-wrap{position:relative}
+.lab3d-hot{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lab3d-dot{position:absolute;left:0;top:0;pointer-events:auto;background:none;border:0;padding:0;cursor:pointer;display:flex;align-items:center;gap:6px;font:inherit;color:#f4d99d;white-space:nowrap}
+.lab3d-dot i{display:block;width:12px;height:12px;border-radius:50%;background:#e7c778;box-shadow:0 0 0 4px rgba(231,199,120,.25),0 0 12px rgba(231,199,120,.9);animation:lab3dPulse 2.4s infinite}
+.lab3d-dot span{font-size:11px;background:rgba(4,16,27,.82);border:1px solid rgba(231,199,120,.45);border-radius:3px;padding:2px 6px;opacity:0;transition:opacity .2s}
+.lab3d-dot:hover span,.lab3d-dot:focus-visible span{opacity:1}
+@keyframes lab3dPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.75}}
+.lab3d-hotinfo{position:absolute;inset-inline:12px;bottom:58px;background:rgba(4,16,27,.94);border:1px solid #b9975c;border-radius:6px;padding:12px 14px;z-index:4;max-width:420px}
+.lab3d-hotinfo b{color:#f4d99d;display:block;margin-bottom:4px;font-size:13px}
+.lab3d-hotinfo p{margin:0 0 4px;color:#cfdae2;font-size:12px;line-height:1.8}
+.lab3d-hot-src{color:#7e93a3;font-size:11px}
+.lab3d-ar{margin:8px 0 0;color:#8fa2b1;font-size:11.5px;line-height:1.8}
+.model-controls button.on{border-color:#55c4b5;color:#55c4b5}
+.model-controls button:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:640px){.lab3d-hotinfo{inset-inline:8px;bottom:52px;padding:10px}.lab3d-dot span{display:none}}
 </style></head>
 <body>
 <div class="topline"></div>
@@ -1060,8 +1076,8 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 <div class="lab3d-grid">
 <div class="model-wrap">
 <div class="model-label">نموذج تعليمي · أبعاد موثّقة</div>
-<canvas id="lab3d" aria-label="نموذج ثلاثي الأبعاد تعليمي بأبعاد موثّقة"></canvas>
-<div class="model-controls"><button id="lab3dReset" type="button">إعادة ضبط</button><span>اسحب للتدوير · عجلة الفأرة للتقريب</span></div>
+<canvas id="lab3d" aria-label="نموذج ثلاثي الأبعاد تعليمي بأبعاد موثّقة"></canvas><div class="lab3d-hot" id="lab3dHot"></div><div class="lab3d-hotinfo" id="lab3dHotInfo" hidden></div>
+<div class="model-controls"><button id="lab3dReset" type="button">إعادة ضبط</button><button id="lab3dNight" type="button">☀ نهار</button><button id="lab3dExplode" type="button">مقطع متفجر</button><button id="lab3dInside" type="button">داخل البناء</button><span>اسحب للتدوير · عجلة الفأرة للتقريب · اضغط النقاط الذهبية للشرح</span></div>
 </div>
 <div class="lab3d-facts" id="lab3dFacts"></div>
 </div>
@@ -2642,7 +2658,7 @@ function startQuiz(){
  qi=0;score=0;answered=false;state='quiz';render();
 }
 render();
-})();</script><script src="assets/lab3d.js?v=1" defer></script>
+})();</script><script src="assets/lab3d.js?v=2" defer></script>
 <script src="assets/hiero-data.js?v=1" defer></script>
 <script src="assets/hiero.js?v=1" defer></script>
 <script src="assets/courses-data.js?v=1" defer></script>

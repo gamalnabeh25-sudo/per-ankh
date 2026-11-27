@@ -4,6 +4,7 @@
 كل نص منسوب إلى صاحبه مع رقم الصفحة؛ وما لا مصدر له يُذكر في «ما ينقصنا» ولا يُكتب.
 """
 import json, os, html, re
+from shell import STYLES as SHELL_STYLES, TOPBAR, TAILSCRIPTS, crumb as _crumb
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://per-ankh-egypt.vercel.app"
@@ -203,8 +204,8 @@ def build(slug, d):
         {"@type": "Article", "headline": f"{d['name']} | بر عنخ", "description": desc,
          "inLanguage": "ar-EG", "mainEntityOfPage": url,
          "author": {"@type": "Organization", "name": "بر عنخ | PER ANKH", "url": BASE + "/"}}]}
-    return f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(d['name'])} | المواقع الأثرية — بر عنخ</title><meta name="description" content="{html.escape(desc)}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}"><meta property="og:type" content="article"><meta property="og:locale" content="ar_EG"><meta property="og:site_name" content="بر عنخ | PER ANKH"><meta property="og:title" content="{html.escape(d['name'])} | بر عنخ"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary"><link rel="icon" href="/assets/per-ankh-favicon-v2.png?v=20261115-3"><style>{CSS}</style><script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script></head><body><main class="wrap"><a class="brand" href="/">بر عنخ | PER ANKH</a><div class="crumb"><a href="/">الرئيسية</a> / <a href="/sites/">المواقع الأثرية</a> / {html.escape(d['name'])}</div>
-<header class="hero"><div class="cover{' plain' if not d['cover'] else ''}">{('<img src="/assets/'+d['cover']+'.webp" alt="" width="1600" height="900">') if d['cover'] else ''}<div class="cgrad"></div><div class="ctext"><h1>{html.escape(d['name'])}</h1><p class="sub">{html.escape(d['en'])} · {html.escape(d['period'])}</p></div></div></header>
+    return f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(d['name'])} | المواقع الأثرية — بر عنخ</title><meta name="description" content="{html.escape(desc)}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}"><meta property="og:type" content="article"><meta property="og:locale" content="ar_EG"><meta property="og:site_name" content="بر عنخ | PER ANKH"><meta property="og:title" content="{html.escape(d['name'])} | بر عنخ"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary"><link rel="icon" href="/assets/per-ankh-favicon-v2.png?v=20261115-3"><style>{SHELL_STYLES}</style><style>{CSS}</style><script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script></head><body>{TOPBAR}<main class="wrap">{_crumb([("الرئيسية","/"),("المواقع الأثرية","/#sites-details"),(d["name"],None)])}
+<header class="phero"><div class="cover{' plain' if not d['cover'] else ''}">{('<img src="/assets/'+d['cover']+'.webp" alt="" width="1600" height="900">') if d['cover'] else ''}<div class="cgrad"></div><div class="ctext"><h1>{html.escape(d['name'])}</h1><p class="sub">{html.escape(d['en'])} · {html.escape(d['period'])}</p></div></div></header>
 <div class="facts"><div class="fact"><b>الاسم بالإنجليزية</b><span>{html.escape(d['en'])}</span></div><div class="fact"><b>الموقع</b><span>{html.escape(d['loc'])}</span></div><div class="fact"><b>الفترة</b><span>{html.escape(d['period'])}</span></div></div>
 <p class="lead">{html.escape(d['intro'])}</p>
 {''.join(secs_html)}
@@ -212,7 +213,7 @@ def build(slug, d):
 <section class="panel" id="refs"><h2>المراجع</h2>{refs_block(used)}<p class="refs">لم نستخدم ويكيبيديا في هذه الصفحة.</p></section>
 <nav class="pn"><a href="/sites/">← كل المواقع</a><a href="/">الرئيسية</a></nav>
 <footer>صفحة تعليمية من موسوعة بر عنخ. <a href="/eras/">العصور</a> · <a href="/kings/">الملوك</a></footer>
-</main></body></html>"""
+</main>{TAILSCRIPTS}</body></html>"""
 
 
 def main():

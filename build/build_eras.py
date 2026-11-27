@@ -5,6 +5,7 @@
 ونصوص العصر القديمة تُنقل كما هي مع وسم «لم يُتحقق منه» حتى تُوثّق من الكتب.
 """
 import re, json, os, html
+from shell import STYLES as SHELL_STYLES, TOPBAR, TAILSCRIPTS, crumb as _crumb
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -84,7 +85,7 @@ def read_old(era_dir):
 
 
 CSS = """
-:root{color-scheme:dark;--bg:#071321;--panel:#10263b;--gold:#d8b56b;--gold2:#f2dca0;--muted:#a9b7c5;--white:#f5f1e8;--teal:#83d6ce;--line:rgba(216,181,107,.25)}
+/* palette comes from the Narmer shell */
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--white);font-family:"Noto Naskh Arabic","Segoe UI",Tahoma,Arial,sans-serif;line-height:1.9;overflow-x:hidden}
 .wrap{max-width:900px;margin:auto;padding:16px 16px 70px}
@@ -96,13 +97,14 @@ h2{font-size:clamp(20px,4.4vw,26px);color:var(--gold);margin:0 0 10px;line-heigh
 h3{font-size:clamp(17px,3.6vw,20px);color:var(--gold2);margin:22px 0 8px}
 p,li{font-size:17px}
 .hero{padding:8px 0 6px;margin-bottom:8px}
-.cover{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);margin:6px 0 14px;background:#0a1728}
+.phero{display:block;margin:6px 0 10px}
+.cover{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);margin:6px 0 14px;background:var(--panel)}
 
 .abt{margin:16px 0 6px;padding:14px 16px;border:1px solid rgba(216,181,107,.30);border-radius:14px;background:rgba(12,26,42,.75)}
-.abt h2{font-size:15px;margin:0 0 8px;color:#e8c98a}
+.abt h2{font-size:15px;margin:0 0 8px;color:var(--gold2)}
 .abt ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.abt li{display:flex;gap:8px;font-size:13.5px;line-height:1.85;color:#b9c7d6}
-.abt b{color:#dce7f2;flex:0 0 auto;min-width:52px}
+.abt li{display:flex;gap:8px;font-size:13.5px;line-height:1.85;color:var(--muted)}
+.abt b{color:var(--white);flex:0 0 auto;min-width:52px}
 .abt span{flex:1}
 .cover img{width:100%;height:clamp(200px,34vw,380px);object-fit:cover;display:block}
 .cgrad{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,19,33,.97) 4%,rgba(7,19,33,.6) 40%,rgba(7,19,33,.12) 78%)}
@@ -164,8 +166,8 @@ def page(era_dir, title, dating, dyn_html, sites_html, old_facts, old_secs, prev
                  else '<span class="off">→ السابق</span>')
     next_html = (f'<a href="/eras/{next_era[0]}/">← {next_era[1]}</a>' if next_era
                  else '<span class="off">← التالي</span>')
-    return f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} | عصور مصر القديمة — بر عنخ</title><meta name="description" content="{html.escape(desc)}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}"><meta property="og:type" content="article"><meta property="og:locale" content="ar_EG"><meta property="og:site_name" content="بر عنخ | PER ANKH"><meta property="og:title" content="{html.escape(title)} | بر عنخ"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary"><link rel="icon" href="/assets/per-ankh-favicon-v2.png?v=20261115-3"><style>{CSS}</style><script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script></head><body><main class="wrap"><a class="brand" href="/">بر عنخ | PER ANKH</a><div class="crumb"><a href="/">الرئيسية</a> / <a href="/eras/">العصور التاريخية</a> / {html.escape(title)}</div>
-<header class="hero"><div class="cover"><img src="/assets/eras/era{era_num}.webp" alt="{html.escape(title)}" width="1600" height="900" loading="eager"><div class="cgrad"></div><div class="ctext"><h1>{html.escape(title)}</h1><p class="sub">{html.escape(dating)}</p></div></div><div class="chips"><a href="#dyn">الأسرات والملوك</a><a href="#sites">مواقع العصر</a><a href="#date">التأريخ</a><a href="#gaps">ما ينقصنا</a><a href="#refs">المراجع</a></div></header>
+    return f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} | عصور مصر القديمة — بر عنخ</title><meta name="description" content="{html.escape(desc)}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}"><meta property="og:type" content="article"><meta property="og:locale" content="ar_EG"><meta property="og:site_name" content="بر عنخ | PER ANKH"><meta property="og:title" content="{html.escape(title)} | بر عنخ"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary"><link rel="icon" href="/assets/per-ankh-favicon-v2.png?v=20261115-3"><style>{SHELL_STYLES}</style><style>{CSS}</style><script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script></head><body>{TOPBAR}<main class="wrap">{_crumb([("الرئيسية","/"),("العصور والأسرات","/#timeline-details"),(title,None)])}
+<header class="phero"><div class="cover"><img src="/assets/eras/era{era_num}.webp" alt="{html.escape(title)}" width="1600" height="900" loading="eager"><div class="cgrad"></div><div class="ctext"><h1>{html.escape(title)}</h1><p class="sub">{html.escape(dating)}</p></div></div><div class="chips"><a href="#dyn">الأسرات والملوك</a><a href="#sites">مواقع العصر</a><a href="#date">التأريخ</a><a href="#gaps">ما ينقصنا</a><a href="#refs">المراجع</a></div></header>
 <div class="facts"><div class="fact"><b>حدود العصر</b><span>{html.escape(dating)}</span></div><div class="fact"><b>الملوك في الموسوعة</b><span>{n_kings} ملكًا</span></div><div class="fact"><b>مواقع مرتبطة</b><span>{n_sites} موقعًا</span></div></div>
 <section class="panel" id="about"><h2>ملامح العصر كما يراها عبد العزيز صالح <span class="bdg v">موثّق</span></h2><p>{saleh}</p><p class="refs">المصدر: عبد العزيز صالح، الشرق الأدنى القديم، ج1 (مصر والعراق)، تصنيف عصور مصر القديمة — <a href="https://archive.org/details/20210510_20210510_0037" rel="noopener" target="_blank">نسخة الكتاب على archive.org</a>. النقل بالمعنى مع الحفاظ على ألفاظه.</p></section>
 <section class="panel" id="date"><h2>التأريخ</h2><p>حدود العصور في الموسوعة: {html.escape(dating)}.</p><p>التواريخ المطلقة لمصر القديمة تقديرية وتختلف بين الباحثين، ولذلك لا نعرض هنا سنة واحدة لكل حدث، ونذكر في صفحة كل ملك ما تنص عليه مصادره مع اسم صاحب الرأي.</p><div class="flag">لم نُثبِّت بعد تواريخ بداية ونهاية كل أسرة بمصدر صفحة محددة، فهذه الحدود قيد التوثيق. البند مفتوح في قسم «ما ينقصنا» أدناه.</div></section>
@@ -175,7 +177,7 @@ def page(era_dir, title, dating, dyn_html, sites_html, old_facts, old_secs, prev
 <section class="abt"><h2>عن هذه الصفحة</h2><ul><li><b>المحتوى</b><span>كل فقرة منسوبة إلى صاحبها برقم الصفحة؛ وما لم نجد له مصدرًا مذكور في «ما ينقصنا» ولا يُكتب.</span></li><li><b>الصور</b><span>صورة الغلاف توليد توضيحي بالذكاء الاصطناعي وليست صورة فوتوغرافية.</span></li></ul></section><section class="panel" id="refs"><h2>المراجع</h2><ol class="refs"><li>عبد العزيز صالح، الشرق الأدنى القديم، ج1 (مصر والعراق)، تصنيف عصور مصر القديمة: <a href="https://archive.org/details/20210510_20210510_0037" rel="noopener" target="_blank">archive.org/details/20210510_20210510_0037</a></li><li>سجلات الموسوعة الداخلية لصفحات الملوك (الأسرة والعصر لكل ملك) — أساس جداول الأسرات.</li></ol><p class="refs">لم نستخدم ويكيبيديا في هذه الصفحة.</p></section>
 <nav class="pn">{prev_html}{next_html}</nav>
 <footer>صفحة تعليمية من موسوعة بر عنخ. التواريخ والتفسيرات الأثرية تُعرض وفق المصادر المتاحة، وقد تختلف بعض التفاصيل بين الدراسات. <a href="/eras/">كل العصور</a> · <a href="/">الرئيسية</a></footer>
-</main></body></html>"""
+</main>{TAILSCRIPTS}</body></html>"""
 
 
 def main():

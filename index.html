@@ -856,6 +856,30 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 .kq-list a.kq-card img{width:72px;height:96px;object-fit:cover;object-position:center 44%;border-radius:8px;border:1px solid rgba(216,181,107,.35);flex:0 0 auto}
 .kq-list a.kq-card:hover{background:#16374f;color:#fff2c4}
 @media(max-width:700px){.kq-list a.kq-card{width:100%}}
+</style><style id="lab3d-css">
+.lab3d-head{margin:26px 0 10px}
+.lab3d-head h3{color:var(--gold2);font-size:clamp(18px,2.4vw,24px);margin:0 0 6px}
+.lab3d-head p{color:var(--muted);font-size:13.5px;margin:0}
+.lab3d-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab3d-tab{font:inherit;font-size:13px;color:#f0d9a2;background:rgba(216,181,107,.1);border:1px solid rgba(216,181,107,.4);border-radius:999px;padding:7px 15px;cursor:pointer}
+.lab3d-tab.on{background:#d8b56b;color:#071321;font-weight:700}
+.lab3d-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(240px,.85fr);gap:18px;align-items:start}
+.lab3d-grid canvas{width:100%;height:auto;aspect-ratio:16/10;display:block;border-radius:12px;background:#081726;border:1px solid rgba(216,181,107,.25);touch-action:none}
+.lab3d-facts{background:linear-gradient(145deg,#10283d,#0b1c2b);border:1px solid rgba(216,181,107,.28);border-radius:12px;padding:16px 18px}
+.lab3d-facts h3{color:var(--gold2);font-size:16px;margin:0 0 8px}
+.lab3d-note{color:#9fb2bd;font-size:12.5px;line-height:1.75;margin:0 0 10px}
+.lab3d-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.lab3d-table th,.lab3d-table td{text-align:right;padding:6px 2px;border-bottom:1px solid rgba(216,181,107,.14)}
+.lab3d-table th{color:#c9d4da;font-weight:600;width:52%}
+.lab3d-table td{color:#f0d9a2}
+.lab3d-src{font-size:11.5px;color:#8ea3af;margin:10px 0 0}
+.lab3d-src a{color:#5fd0c5;text-decoration:none}
+.pano-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px}
+.pano{position:relative;aspect-ratio:2/1;border-radius:12px;border:1px solid rgba(216,181,107,.25);background:#0a1c2a center/auto 100% no-repeat;overflow:hidden;touch-action:pan-y}
+.pano.has-img{cursor:grab;background-size:auto 100%;background-repeat:repeat-x}
+.pano-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:14px;color:#8ea3af;font-size:12px;line-height:1.7;background:repeating-linear-gradient(135deg,rgba(216,181,107,.05) 0 10px,transparent 10px 20px)}
+.pano-empty b{color:#c9d4da;font-size:13px}
+@media(max-width:900px){.lab3d-grid{grid-template-columns:1fr}.pano-grid{grid-template-columns:1fr}}
 </style></head>
 <body>
 <div class="topline"></div>
@@ -921,7 +945,9 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 <button class="pyramid-item" data-height="143.5" data-note="هرم خفرع بالجيزة. كان ارتفاعه الأصلي نحو 143.5 مترًا، ويبدو أعلى بصريًا أحيانًا بسبب موضع بنائه." data-pyramid="خفرع"><span class="pyramid-shape khafre"></span><b>خفرع</b><small>143.5 م تقريبًا</small></button>
 <button class="pyramid-item" data-height="65" data-note="هرم منكاورع هو أصغر الأهرامات الثلاثة الرئيسية بهضبة الجيزة، وارتفاعه الأصلي نحو 65 مترًا." data-pyramid="منكاورع"><span class="pyramid-shape menkaure"></span><b>منكاورع</b><small>65 م تقريبًا</small></button>
 <button class="pyramid-item" data-height="62" data-note="الهرم المدرج في سقارة، ويبلغ ارتفاعه الأصلي قرابة 60 إلى 62 مترًا بحسب طريقة القياس." data-pyramid="زوسر"><span class="pyramid-shape djoser"></span><b>زوسر</b><small>نحو 60–62 م</small></button>
-</div><div aria-live="polite" class="lab-detail" id="pyramid-detail">اضغط على أحد الأهرامات لعرض نبذة عنه.</div><div class="lab-sources"><b>المصادر</b><ul><li>وزارة السياحة والآثار المصرية، «الهرم الأكبر»: الارتفاع الأصلي 146.5 م — <a href="https://egymonuments.gov.eg/ar/monuments/the-great-pyramid/" target="_blank" rel="noopener">egymonuments.gov.eg</a></li><li>سليم حسن، موسوعة مصر القديمة، الجزء الثاني: ارتفاعه 146 م — <a href="https://www.bookleaks.com/files/hind/history/185.pdf" target="_blank" rel="noopener">bookleaks.com (نسخة هنداوي)</a></li><li>أحمد فخري، الأهرامات المصرية (ترجمة عربية لكتابه The Pyramids، 1961) — <a href="https://archive.org/details/20201111_20201111_1902" target="_blank" rel="noopener">archive.org/details/20201111_20201111_1902</a></li></ul><span class="lab-caveat">الأرقام عند اكتمال البناء لا الارتفاع الحالي، وتختلف قليلًا بحسب المرجع وطريقة القياس.</span></div>
+</div><div aria-live="polite" class="lab-detail" id="pyramid-detail">اضغط على أحد الأهرامات لعرض نبذة عنه.</div>
+</div>
+<div class="lab-sources"><b>المصادر</b><ul><li>وزارة السياحة والآثار المصرية، «الهرم الأكبر»: الارتفاع الأصلي 146.5 م — <a href="https://egymonuments.gov.eg/ar/monuments/the-great-pyramid/" target="_blank" rel="noopener">egymonuments.gov.eg</a></li><li>سليم حسن، موسوعة مصر القديمة، الجزء الثاني: ارتفاعه 146 م — <a href="https://www.bookleaks.com/files/hind/history/185.pdf" target="_blank" rel="noopener">bookleaks.com (نسخة هنداوي)</a></li><li>أحمد فخري، الأهرامات المصرية (ترجمة عربية لكتابه The Pyramids، 1961) — <a href="https://archive.org/details/20201111_20201111_1902" target="_blank" rel="noopener">archive.org/details/20201111_20201111_1902</a></li></ul><span class="lab-caveat">الأرقام عند اكتمال البناء لا الارتفاع الحالي، وتختلف قليلًا بحسب المرجع وطريقة القياس.</span></div>
 </article>
 <article class="lab-panel"><div class="lab-kicker">02 · HELIOPOLITAN THEOLOGY</div><h3>تاسوع هليوبوليس</h3><p class="lab-intro">اختر اسمًا من مجموعة المعبودات لعرض صلته برواية الخلق الهليوبوليتية.</p>
 <div class="ennead-tree"><button data-god="آتوم" data-god-note="آتوم: المعبود الخالق الذي تبدأ به سلسلة النسب في رواية هليوبوليس.">آتوم</button><div class="tree-branch">↓</div><div class="god-pair"><button data-god="شو" data-god-note="شو: يرتبط بالهواء، ويُعد من الجيل التالي لآتوم في الرواية الهليوبوليتية.">شو</button><button data-god="تفنوت" data-god-note="تفنوت: ترتبط بالرطوبة، وهي أخت شو في نسب التاسوع.">تفنوت</button></div><div class="tree-branch">↓</div><div class="god-pair"><button data-god="جب" data-god-note="جب: معبود الأرض، ابن شو وتفنوت.">جب</button><button data-god="نوت" data-god-note="نوت: معبودة السماء، زوجة جب وأم أوزير وإيزيس وست ونفتيس.">نوت</button></div><div class="tree-branch">↓</div><div class="god-quartet"><button data-god="أوزير" data-god-note="أوزير: أحد أبناء جب ونوت، ويرتبط بالبعث والملكية والعالم الآخر.">أوزير</button><button data-god="إيزيس" data-god-note="إيزيس: إحدى بنات جب ونوت، وترتبط بالأمومة والسحر والحماية.">إيزيس</button><button data-god="ست" data-god-note="ست: أحد أبناء جب ونوت، وترتبط به قوى العاصفة والصحراء والصراع في الأساطير.">ست</button><button data-god="نفتيس" data-god-note="نفتيس: إحدى بنات جب ونوت، وترتبط بالحماية والطقوس الجنائزية.">نفتيس</button></div></div>
@@ -1024,6 +1050,26 @@ html[dir=ltr] #navlinks.open,#pash[dir=ltr] #navlinks.open{border-right:0!import
 <div aria-live="polite" class="element-info" id="elementInfo">يتكون النموذج من كتل هندسية رمزية لتوضيح التتابع المكاني، ولا يمثل معبدًا بعينه.</div>
 </div>
 </div>
+<div class="lab3d-head"><h3>نماذج ثلاثية الأبعاد بأبعاد موثّقة</h3><p>كل رقم في البطاقة الجانبية مأخوذ من مصدر مذكور أسفلها. اسحب لتدوير النموذج، وبعجلة الفأرة للتقريب. الشكل يوضح البنية، والقياسات هي ما يثبته المصدر.</p></div>
+<div class="lab3d-tabs" role="tablist" aria-label="نماذج ثلاثية الأبعاد">
+<button class="lab3d-tab on" type="button" role="tab" aria-selected="true" data-model="pyramid">هرم خوفو · مقطع</button>
+<button class="lab3d-tab" type="button" role="tab" aria-selected="false" data-model="hypostyle">قاعة الأعمدة · الكرنك</button>
+<button class="lab3d-tab" type="button" role="tab" aria-selected="false" data-model="obelisk">مسلة لاتيران</button>
+<button class="lab3d-tab" type="button" role="tab" aria-selected="false" data-model="mastaba">من المصطبة إلى الهرم</button>
+</div>
+<div class="lab3d-grid">
+<div class="model-wrap">
+<div class="model-label">نموذج تعليمي · أبعاد موثّقة</div>
+<canvas id="lab3d" aria-label="نموذج ثلاثي الأبعاد تعليمي بأبعاد موثّقة"></canvas>
+<div class="model-controls"><button id="lab3dReset" type="button">إعادة ضبط</button><span>اسحب للتدوير · عجلة الفأرة للتقريب</span></div>
+</div>
+<div class="lab3d-facts" id="lab3dFacts"></div>
+</div>
+<div class="lab3d-head"><h3>جولات 360° للمواقع</h3><p>صور بانورامية للمواقع تُعرض هنا بعد اعتمادها؛ حتى ذلك الحين تظهر الخانة بحالتها الفارغة بدل صورة مؤقتة.</p></div>
+<div class="pano-grid">
+<div class="pano" data-src="/assets/pano/karnak.webp" role="img" aria-label="جولة بانورامية في الكرنك"><span class="pano-empty"><b>الكرنك · قاعة الأعمدة</b>الصورة البانورامية قيد الإعداد</span></div>
+<div class="pano" data-src="/assets/pano/luxor.webp" role="img" aria-label="جولة بانورامية في معبد الأقصر"><span class="pano-empty"><b>معبد الأقصر · الصرح الأول</b>الصورة البانورامية قيد الإعداد</span></div>
+<div class="pano" data-src="/assets/pano/giza.webp" role="img" aria-label="جولة بانورامية في هضبة الجيزة"><span class="pano-empty"><b>هضبة الجيزة</b>الصورة البانورامية قيد الإعداد</span></div>
 <div class="lab-sources"><b>المصادر</b><ul><li>عبد الحليم نور الدين، آثار وحضارة مصر القديمة، الجزء الأول (العمارة: المعابد ودندرة والأقصر والكرنك) — <a href="https://archive.org/details/AAlexandrina-117303" target="_blank" rel="noopener">archive.org/details/AAlexandrina-117303</a></li><li>كرنك الرقمي، جامعة كاليفورنيا سانتا كروز، «الطقس اليومي» (سوليفان 2008)</li><li>وزارة السياحة والآثار المصرية، صفحة الكرنك</li></ul><span class="lab-caveat">هذا تسلسل توضيحي شائع، وليس مخططًا مطابقًا لجميع المعابد؛ التخطيط يختلف باختلاف العصر والموقع والمعبود.</span><span class="lab-caveat">للنموذج المجسم لنفس العناصر: <a href="#digital-lab">معمل الآثار الرقمي</a>.</span></div>
 <p class="lab-next">بقية الرسوم التفاعلية — مقارنة الأهرامات، وتاسوع هليوبوليس، وساعات الأمدوات، ومخطط المعبد، ومراحل التحنيط، ووزن القلب، ومراحل بناء الهرم، والخط الزمني — في قسم <a href="#interactive-lab">مختبر الحضارة التفاعلي</a>، ولكل رسم هناك مصادره.</p>
 </section>
@@ -2371,4 +2417,5 @@ function startQuiz(){
  qi=0;score=0;answered=false;state='quiz';render();
 }
 render();
-})();</script></body></html>
+})();</script><script src="assets/lab3d.js?v=1" defer></script>
+</body></html>

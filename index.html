@@ -1853,6 +1853,7 @@ if(librarySection){
  {translit:'d',gardiner:'D46',glyph:'𓂧',description:'يد / hand',kind:'صوتية أحادية',source:'Gardiner, Egyptian Grammar; Unicode Unikemet'},
  {translit:'ḏ',gardiner:'I10',glyph:'𓆓',description:'كوبرا / cobra',kind:'صوتية أحادية',source:'Gardiner, Egyptian Grammar; Unicode Unikemet'}
  ];
+window.PA_HIERO_SIGNS=hieroSigns;
  const hieroTool=make('article','pa-hiero-lab');
  hieroTool.innerHTML=`<div class="mini">PER ANKH · PHILOLOGY & SCRIPT LAB · RESEARCH EDITION</div><h3>مختبر اللغتين المصرية الوسطى والقبطية</h3>
  <p>مختبر تعليمي مرجعي يفصل بين اللغة ونظام الكتابة. لا يساوي بين النقل الصوتي والترجمة، ولا ينشئ معنى أو قراءة غير موجودة في مصدر. كل جدول داخلي محدود وموسوم بحدوده؛ أما المعاجم والمتون المتخصصة فتُفتح من روابطها الأصلية.</p>
@@ -2332,8 +2333,8 @@ lab.append(wrap);
 
 <script>(function(){function w(){document.querySelectorAll('#navlinks a,#panav a').forEach(function(a){if(a.querySelector('.pa-t'))return;var t=a.firstChild;if(!t)return;var s=document.createElement('span');s.className='pa-t';while(a.firstChild)s.appendChild(a.firstChild);a.appendChild(s)})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',w);else w()})();</script><script>(function(){
 var host=document.getElementById('hcStage'),tabs=document.getElementById('hcTabs');
-if(!host||!tabs||typeof hieroSigns==='undefined'||!hieroSigns.length)return;
-var groups=[hieroSigns.slice(0,8),hieroSigns.slice(8,15),hieroSigns.slice(15,22)];
+var SIGNS=window.PA_HIERO_SIGNS||[];if(!host||!tabs||!SIGNS.length)return;
+var groups=[SIGNS.slice(0,8),SIGNS.slice(8,15),SIGNS.slice(15,22)];
 var titles=['الدرس 1 · العلامات 1–8','الدرس 2 · العلامات 9–15','الدرس 3 · العلامات 16–22'];
 var cur=0,state='study',qs=[],qi=0,score=0,answered=false;
 function card(s){return '<div class="hc-card"><span class="hc-glyph">'+s.glyph+'</span><b>'+s.translit+'</b><code>'+s.gardiner+'</code><span class="hc-desc">'+s.description+'</span></div>';}
@@ -2358,7 +2359,7 @@ function render(){
  document.getElementById('hcNext').onclick=function(){cur=(cur+1)%groups.length;state='study';render()};
 }
 function startQuiz(){
- var g=groups[cur].slice();shuffle(g);qs=g.slice(0,4).map(function(s){var pool=hieroSigns.map(function(x){return x.translit}).filter(function(t){return t!==s.translit});shuffle(pool);return {s:s,opts:shuffle([s.translit].concat(pool.slice(0,3)))}});
+ var g=groups[cur].slice();shuffle(g);qs=g.slice(0,4).map(function(s){var pool=SIGNS.map(function(x){return x.translit}).filter(function(t){return t!==s.translit});shuffle(pool);return {s:s,opts:shuffle([s.translit].concat(pool.slice(0,3)))}});
  qi=0;score=0;answered=false;state='quiz';render();
 }
 render();

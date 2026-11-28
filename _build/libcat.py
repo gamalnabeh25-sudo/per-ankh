@@ -38,7 +38,7 @@ _ids=sorted({int(k[:-1]) for k,v in _g.items() if v})
 GEM=[]
 for i in _ids:
     e=_g.get(f'{i}E'); a=_g.get(f'{i}A')
-    if e and a: GEM.append({'a':scrub(re.sub(r'\s+',' ',a[0]).strip()),'e':re.sub(r'\s+',' ',e[0]).strip(),'d':'','u':f'https://www.globalegyptianmuseum.org/glossary.aspx?id={i}&lan=A','s':'قاموس المتحف المصري العالمي (CULTNAT)، المدخل رقم %d. المقابل الإنجليزي والعربي كما ورد في المصدر.'%i})
+    if e and a and 'فرع' not in a[0]: GEM.append({'a':scrub(re.sub(r'\s+',' ',a[0]).strip()),'e':re.sub(r'\s+',' ',e[0]).strip(),'d':'','u':f'https://www.globalegyptianmuseum.org/glossary.aspx?id={i}&lan=A','s':'قاموس المتحف المصري العالمي (CULTNAT)، المدخل رقم %d. المقابل الإنجليزي والعربي كما ورد في المصدر.'%i})
 gk={_n(g['a']):g for g in GEM}
 terms=[]
 for a,d in T:

@@ -3,7 +3,7 @@ from urllib.parse import urlparse
 BAN=re.compile(r'(?:[بلوف]?ال)?(?:فرعون\w*|فراعن\w*|فرعوني\w*)')
 scrub=lambda s:BAN.sub('[ملوك مصر القديمة]',s)
 cat=json.load(open('/tmp/catalog.json'))
-OPEN=('egymonuments.gov.eg','gate.ahram.org.eg','www.almasryalyoum.com','escholarship.org','www.metmuseum.org','www.youm7.com','english.ahram.org.eg','smarthistory.org','egyptianmuseumcairo.eg','www.globalegyptianmuseum.org','www.elwatannews.com','www.britishmuseum.org','www.penn.museum','www.dainst.org','www.reuters.com','gizamedia.rc.fas.harvard.edu','www.aljazeera.net','www.giza.gov.eg','archaeology.org','www.smithsonianmag.com','www.cairo24.com','ccdl.claremont.edu','scc.gov.eg','doi.org','www.griffith.ox.ac.uk','mota.gov.eg','www.ucl.ac.uk','kids.britannica.com','www.britannica.com','www.nature.com','aeraweb.org','sis.gov.eg','www.cairo.gov.eg','streetstory.gov.eg','library.ecssr.ae','journal.walycenter.org','www.arabicacademy.gov.eg','catalogue.bnf.fr','www.bbc.com','www.abc.net.au','www.mesr24.com','www.elbalad.news','www.elfagr.org','www.nationalgeographic.com','www.worldhistory.org','www.ebsco.com','www.ashmolean.org','www.hierakonpolis-online.org','nowa.muzarp.poznan.pl','collections.rom.on.ca','library.biblicalarchaeology.org','www.monash.edu','ancient-egypt.org','web.archive.org','www.munzinger.de')
+OPEN=('egymonuments.gov.eg','gate.ahram.org.eg','www.almasryalyoum.com','escholarship.org','www.metmuseum.org','www.youm7.com','english.ahram.org.eg','smarthistory.org','egyptianmuseumcairo.eg','www.globalegyptianmuseum.org','www.elwatannews.com','www.britishmuseum.org','www.penn.museum','www.dainst.org','www.reuters.com','gizamedia.rc.fas.harvard.edu','www.aljazeera.net','www.giza.gov.eg','archaeology.org','www.smithsonianmag.com','www.cairo24.com','ccdl.claremont.edu','scc.gov.eg','doi.org','www.griffith.ox.ac.uk','mota.gov.eg','www.ucl.ac.uk','kids.britannica.com','www.britannica.com','www.nature.com','aeraweb.org','sis.gov.eg','www.cairo.gov.eg','streetstory.gov.eg','library.ecssr.ae','journal.walycenter.org','www.arabicacademy.gov.eg','catalogue.bnf.fr','www.bbc.com','www.abc.net.au','www.mesr24.com','www.elbalad.news','www.elfagr.org','www.nationalgeographic.com','www.worldhistory.org','www.ebsco.com','www.ashmolean.org','www.hierakonpolis-online.org','nowa.muzarp.poznan.pl','collections.rom.on.ca','library.biblicalarchaeology.org','www.monash.edu','ancient-egypt.org','web.archive.org','www.munzinger.de','www.hindawi.org')
 rows=[];hid=0
 for i,e in enumerate(cat):
     u=e['u']; host=urlparse(u).netloc if u else ''
@@ -11,6 +11,24 @@ for i,e in enumerate(cat):
     note='' if link else ('لا رابط مسجل' if not u else 'الرابط غير معروض: لم يُتحقق من أن المصدر مفتوح قانونيًا')
     if u and not link: hid+=1
     rows.append({'t':scrub(re.sub(r'[:\s—-]+(?:https?://)?(?:www\.)?[\w-]+(?:\.[\w-]+)+/\S*\s*$','',re.sub(r'[:\s—-]+(?:https?://)?www\.[\w.-]+\s*$','',e['t']))),'l':e['l'],'k':e['k'],'tp':e['tp'],'pr':e['pr'],'u':link,'n':note})
+
+import re as _re
+KEEP=_re.compile(r'مصر القديمة|مصر|الأهرام|الديانة المصرية|الحضارة المصرية|النوبة|الهكسوس|فرع|المومياء|هيروغليف')
+def _hd():
+    out=[]
+    for i,t in json.load(open('/tmp/hdb.json')).items():
+        p=[x.strip() for x in t.split('|')]
+        if len(p)<3 or 'هنداوي' not in p[-1]: continue
+        if not KEEP.search(p[0]) or 'الحرب الروسية' in p[0] or 'المسرح' in p[0] or 'خواطر' in p[0] or 'الفتح العثماني' in p[0] or 'عمرو بن' in p[0]: continue
+        out.append({'t':scrub(p[0]+' — '+p[1]+' — مؤسسة هنداوي (نسخة رقمية، سنة الطبعة الأصلية غير مسجلة هنا)'),'l':'عربي','k':'كتب','tp':['كتب هنداوي'],'pr':[],'u':'https://www.hindawi.org/books/'+i+'/','n':''})
+    return out
+def _uee():
+    out=[]
+    for k,v in json.load(open('/tmp/uee.json')).items():
+        out.append({'t':scrub(v['author']+' ('+v['date'][:4]+'). '+v['title']+'. UCLA Encyclopedia of Egyptology, '+v['journal'].replace('UCLA Encyclopedia of Egyptology, ','')+'. eScholarship.'),'l':'أجنبي','k':'مقالات','tp':['موسوعة UCLA لعلم المصريات'],'pr':[],'u':v['perm'],'n':''})
+    return out
+_hx=_hd();_ux=_uee();rows+=_hx+_ux
+print('extra hindawi',len(_hx),'uee',len(_ux))
 T=json.load(open('/tmp/data.json'))['terms']
 EN={'مصطبة':'Mastaba','السرخ':'Serekh','الكارتوش':'Cartouche','النطرون':'Natron','الصرح':'Pylon','قدس الأقداس':'Sanctuary / Holy of Holies','المسلة':'Obelisk','نصوص الأهرام':'Pyramid Texts','نصوص التوابيت':'Coffin Texts','أبو الهول':'Sphinx','الهيبوسطايل':'Hypostyle hall','السرابيوم':'Serapeum','الفيوم':'Fayum','القرابين':'Offerings','التاسوع':'Ennead','العلامة الدلالية':'Determinative','العلامة الصوتية':'Phonogram (phonetic sign)','أخيتاتون':'Akhetaten'}
 terms=[{'a':scrub(a),'e':EN.get(a,''),'d':scrub(d)} for a,d in T]

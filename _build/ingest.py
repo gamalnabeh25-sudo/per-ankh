@@ -4,7 +4,7 @@ dirs={}
 for sec in ['kings','sites','eras','beliefs']:
     for p in os.listdir(f'{R}/{sec}'):
         if os.path.isdir(f'{R}/{sec}/{p}'): dirs.setdefault(p,f'/{sec}/{p}/')
-NEWSITES={'18-edfu-horus':'معبد إدفو','19-alramsyum':'الرامسيوم','20-kom-ombo':'معبد كوم أمبو','21-dendera':'معبد دندرة','22-tl-bsta':'تل بسطة','23-mnf':'منف','24-alaskndryh':'الإسكندرية','25-dyr-almdynh':'دير المدينة','26-wady-almlkat':'وادي الملكات','27-alfywm-allahwn':'الفيوم واللاهون','28-tmthala-mmnwn':'تمثالا ممنون','29-awaris-tl-aldbaa':'أواريس تل الضبعة'}
+NEWSITES={'18-edfu-horus':'معبد إدفو','19-alramsyum':'الرامسيوم','20-kom-ombo':'معبد كوم أمبو','21-dendera':'معبد دندرة','22-tl-bsta':'تل بسطة','23-mnf':'منف','24-alaskndryh':'الإسكندرية','25-dyr-almdynh':'دير المدينة','26-wady-almlkat':'وادي الملكات','27-alfywm-allahwn':'الفيوم واللاهون','28-tmthala-mmnwn':'تمثالا ممنون','29-awaris-tl-aldbaa':'أواريس تل الضبعة','30-siwa':'سيوة','31-alwahat-albahria':'الواحات البحرية','32-alkharga-hibis':'الخارجة ومعبد هيبس','33-ilfantin':'إلفنتين'}
 def hl(slug,sec=None):
     if slug in dirs: return dirs[slug]
     if slug in NEWSITES: return f'/sites/{slug}/'
@@ -25,7 +25,7 @@ for s in d['sources']:
     if 'Wikimedia' in s['source'] or not s['source']: continue
     add(s['source'],(s['urls'] or [None])[0],[(hl(p,'kings'),None) for p in s['used_in_pages']])
 # sites 18-22
-d=json.load(open('/downloads/sites-references-09196251.json'))
+d=json.load(open('/downloads/sites-references-b72683c3.json'))
 for s in d['sources']:
     t=(s['author']+'، ' if s.get('author') else '')+s['title']
     add(t,(s.get('url') or '').split(' ; ')[0] or None,[(hl(p,'sites'),None) for p in s.get('pages_using',[])])

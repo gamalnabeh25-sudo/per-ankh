@@ -1,7 +1,7 @@
 import json,re,glob,html,os
 from urllib.parse import urlparse
 R=os.path.expanduser('~/per-ankh')
-raw=json.load(open('/tmp/refs_raw.json'))
+raw=json.load(open('/tmp/items.json'))
 # page titles
 titles={}
 for f in glob.glob(R+'/**/index.html',recursive=True):
@@ -22,10 +22,21 @@ for i in raw:
     for p,kk in CANON:
         if re.search(p,t[:140]) and not (kk in('brit-osiris-kids',) and 'بريتانيكا' not in t and 'Britannica' not in t) and not (kk=='hornung-amd' and 'خريطة' in t) : k=kk;break
     if k is None: k=i['u'] or re.sub(r'[\W_]+','',t)[:45]
-    e=D.setdefault(k,{'t':t,'u':i['u'],'pages':set()})
+    e=D.setdefault(k,{'t':t,'u':i['u'],'pages':set(),'kh':None,'fh':None})
     if len(t)>len(e['t']) or (i['u'] and not e['u']): 
         e['t']=t; e['u']=i['u'] or e['u']
-    e['pages'].add('/'+i['page']+'/')
+    for h,l in i['pages']: e['pages'].add((h,l))
+    e['kh']=e['kh'] or i.get('k'); 
+    if e['fh'] is None: e['fh']=i.get('for')
+# merge same URL
+U={}
+for k,e in list(D.items()):
+    if e['u'] and e['u'] in U:
+        o=U[e['u']]; o['pages']|=e['pages']; o['kh']=o['kh'] or e['kh']; 
+        if o['fh'] is None: o['fh']=e['fh']
+        if len(e['t'])>len(o['t']): o['t']=e['t']
+        del D[k]
+    elif e['u']: U[e['u']]=e
 FOR_DOM=('britannica','escholarship','ucl.ac.uk','penn.museum','nature.com','harvard','smithsonian','reuters','bbc.com','abc.net','archaeology.org','biblicalarchaeology','ancient-egypt.org','monash','academia.edu','smarthistory','worldhistory','ebsco','ashmolean','hierakonpolis','muzarp','nefershapiland','rom.on.ca','globalegyptianmuseum','dainst','munzinger','prabook','claremont','bnf.fr','aeraweb','digitalkarnak','metmuseum','egyptianmuseum.org','lockwood','britishmuseum','perseus','english.ahram','aucegypt','wmf.org','sis.gov.eg/en')
 FOR_KW=('بريتانيكا','Britannica','كاليفورنيا','كلية لندن','جامعة لندن','المتحف البريطاني','المتروبوليتان','بروكلين','معهد شيكاغو','سمارت','كرنك الرقمي','روزيكروشان','هيرودوت','بلوتارك','بلوتارخ','برستد','بدج','إيرمان','جاردنر','ويلكنسون','فرانكفورت','شتادلر','سميث','هورنونج','هارينغ','دارنل','لبسيوس','سيثه','كوربينيان','تيتر','مكلين','ألن','ليشتنبرج','Wallis','Breasted','Erman','Petrie','Frankfort','Plutarch','Kurt Sethe','أكرام','سليمة عكرام','لازاريديس','هيغو','هيس','Nature','المتحف المصري العالمي','Global Egyptian Museum')
 def isfor(e):
@@ -50,12 +61,16 @@ def kind(e):
     if any(t.startswith(x) for x in INST): return 'inst'
     return 'article'
 for e in D.values():
-    e['t']=scrub(e['t']); e['for']=isfor(e); e['k']=kind(e)
+    e['t']=scrub(e['t']); e['for']=e['fh'] if e['fh'] is not None else isfor(e); e['k']=e['kh'] or kind(e)
 KN={'book':'كتب','inst':'مؤسسات ووزارات وجامعات ومواقع رسمية','article':'مقالات وأبحاث وصحف ومواد موسوعية','museum':'سجلات المتاحف والمجموعات'}
 def CL(t): return re.sub(r'[:\s—-]+(?:https?://)?[\w.-]+\.(?:org|com|gov\.eg|net|eg|uk|de|ae|info|news|edu|ca|pl|au|fr)(?:/\S*)?\s*$','',t).strip()
 def li(e):
-    pg=sorted(e['pages'])
-    links=' · '.join(f'<a href="{p}">{html.escape(titles.get(p,p))}</a>' for p in pg)
+    pg=sorted(e['pages'],key=lambda x:(x[0] or 'z',x[1] or ''))
+    def lk(h,l):
+        name=l or titles.get(h) or (h or '').strip('/').split('/')[-1]
+        name=scrub(html.escape(name))
+        return f'<a href="{h}">{name}</a>' if h else name
+    links=' · '.join(lk(h,l) for h,l in pg)
     disp_u=re.sub('^https?://(www[.])?','',e['u'] or '')[:60]
     u=(' — <a href="%s" rel="noopener" target="_blank">%s</a>'%(e['u'],html.escape(disp_u))) if e['u'] else ''
     return f'<li>{html.escape(CL(e["t"]))}{u}<br><small>تُستخدم في: {links}</small></li>'
@@ -71,25 +86,66 @@ def blocks(forn):
     return b,cnt
 ar,ca=blocks(False); fo,cf=blocks(True)
 # disputes
-disp=[]
+FAV=re.compile(r'(يرجّح|يرجح|ترجيح|الترجيح|الأرجح|الراجح|يفضّل|يفضل|يميل إلى|الأقرب|رجّح|رجح|الأكثر قبولًا)')
+REJ=re.compile(r'(يردّ|يرد على|يرفض|يستبعد|يعارض|يدحض|ينفي|يعترض|يخطّئ|يخطئ)')
+def stance(x):
+    sents=[z.strip() for z in re.split(r'(?<=[.؟!])\s+',x) if z.strip()]
+    for z in sents:
+        if FAV.search(z): return 'الترجيح كما ورد في النص: '+z
+    for z in sents:
+        if REJ.search(z): return 'اعتراض صاحب المصدر على الرأي المقابل كما ورد في النص: '+z
+    return 'لا يوجد في النص ترجيح صريح من أي مصدر، والمسألة كما عُرضت أعلاه دون حسم.'
+G={}  # href -> list of (text)
+def put(h,x): G.setdefault(h,[]).append(scrub(x.strip()))
+ka=json.load(open('/downloads/references-all-7ebfd7c3.json'))
+cards={d['card'] for d in ka['disputes']}
+def card_h(c):
+    for p,h in [(os.path.basename(os.path.dirname(f)),'/kings/'+os.path.basename(os.path.dirname(f))+'/') for f in glob.glob(R+'/kings/*/index.html')]:
+        if p.startswith('%03d-'%c): return h
+covered={card_h(c) for c in cards}
 for f in sorted(glob.glob(R+'/**/index.html',recursive=True)):
     rel=os.path.relpath(f,R)
     if rel.startswith(('_build','supabase','references')): continue
+    h='/'+os.path.dirname(rel)+'/'
+    if h in covered: continue
     t=open(f,encoding='utf8').read()
-    ps=[]
     for m in re.finditer(r'<span class="bdg d">[^<]*</span>(.*?)(?:</p>|</li>|</div>)',t,re.S):
         x=html.unescape(re.sub(r'<sup.*?</sup>','',m.group(1),flags=re.S)); x=re.sub(r'<[^>]+>','',x).strip()
-        if len(x)>20 and not x.startswith('الصفحة نفسها تذكر'): ps.append(scrub(x))
-    if ps: disp.append(('/'+os.path.dirname(rel)+'/',ps))
-db=[{'p':'هذه كل المواضع التي ذكرت فيها صفحات الموقع أن الباحثين أو المصادر مختلفون، مجمّعة من الصفحات نفسها. نذكر من يقول ماذا كما ورد في الصفحة، وإن كان صاحب المصدر نفسه يرجّح رأيًا ويذكر سببه فهذا ينسب إليه هو. أما الموقع فلا يحكم بين الآراء.'}]
+        if len(x)>20 and not x.startswith('الصفحة نفسها تذكر'): put(h,x)
+for d in ka['disputes']:
+    h=card_h(d['card']) or '/kings/%03d/'%d['card']
+    x=d['summary_who_said_what']
+    if d.get('section'): x=d['section']+': '+x
+    if d.get('sources'): x+=' المصادر: '+'؛ '.join(d['sources'])+'.'
+    put(h,x)
+kf=json.load(open('/downloads/per-ankh-features-references-66249272.json'))
+for d in kf['disputes']:
+    vs='؛ '.join(f'{k}: {v}' for k,v in d['favors'].items()) if isinstance(d['favors'],dict) else str(d['favors'])
+    put('QUIZ','موضوع: '+d['topic']+'. الآراء ومن يقول بها: '+vs+'. ورد في: '+d['used_in']+'.')
+put('MUS','تاريخ كشف تمثال كا عبر: تذكر مصادر سنة 1870 وتذكر مصادر أخرى سنة 1860، والبطاقة لا تنسب الرأيين إلى عالم باسمه ولا تحسم بينهما.')
+for m in re.finditer(r'^- \*\*([^*]+)\*\*(.*)$',open('/downloads/per-ankh-references-sites-eras-e6d29aba.md',encoding='utf8').read(),re.M):
+    if 'king 074' in m.group(1): continue
+    put('SITES',m.group(1).strip(' :')+': '+m.group(2).strip())
+import csv
+for r in csv.DictReader(open('/downloads/per-ankh-references-6de6edad.csv',encoding='utf8')):
+    if r['disputes_notes'] and 'خلاف' in r['disputes_notes']: put('CSV',r['title'][:80]+': '+r['disputes_notes'])
+HEAD={'QUIZ':'اختبر نفسك (بنك الأسئلة)','MUS':'المتحف الافتراضي','SITES':'المواقع الأثرية والعصور','CSV':'العقيدة والمعبودات: ملاحظات المراجع'}
+db=[{'p':'هذه كل المواضع التي ذكرت فيها صفحات الموقع أن الباحثين أو المصادر مختلفون، مجمّعة من الصفحات نفسها. نذكر من يقول ماذا. وتحت كل موضع سطر يبيّن الترجيح: إن كان صاحب المصدر يرجّح رأيًا ويذكر سببه نقلنا ذلك السطر كما ورد وهو منسوب إليه، وإلا قلنا إنه لا يوجد في النص ترجيح صريح. والموقع نفسه لا يحكم بين الآراء.'}]
 tot=0
-for p,ps in disp:
-    db.append({'h':titles.get(p,p)})
-    db.append({'html':f'<p class="pt"><a href="{p}">فتح الصفحة</a></p>'})
-    for x in ps: db.append({'badge':'d','p':x}); tot+=1
+def order(h): 
+    return (0 if h.startswith('/kings') else 1 if h.startswith('/sites') else 2 if h.startswith('/eras') else 3 if h.startswith('/beliefs') else 4, h)
+for h in sorted(G,key=order):
+    ps=G[h]
+    db.append({'h':HEAD.get(h) or titles.get(h) or h.strip('/').split('/')[-1]})
+    if h in titles or h.startswith('/'): db.append({'html':f'<p class="pt"><a href="{h}">فتح الصفحة</a></p>'})
+    for x in ps:
+        db.append({'badge':'d','p':x}); db.append({'p':stance(x)}); tot+=1
+disp=list(G)
 out={'ar':ar,'fo':fo,'db':db,'counts':{'ar':ca,'fo':cf,'disputes':tot,'disputed_pages':len(disp),'unique':len(D),'raw':len(raw)}}
 json.dump(out,open('/tmp/master.json','w'),ensure_ascii=False)
 print(out['counts'])
+import sys
+if '-q' in sys.argv: sys.exit()
 for k in ['ar','fo']:
     for e in D.values():
         pass

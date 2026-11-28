@@ -9,7 +9,7 @@ for f in glob.glob(R+'/**/index.html',recursive=True):
     if rel.startswith(('_build','supabase')): continue
     m=re.search(r'<h1[^>]*>(.*?)</h1>',open(f,encoding='utf8').read(),re.S)
     titles['/'+os.path.dirname(rel)+'/']=re.sub(r'<[^>]+>','',m.group(1)).strip() if m else rel
-titles.update({'/sites/'+k+'/':v for k,v in {'18-edfu-horus':'معبد إدفو','19-alramsyum':'الرامسيوم','20-kom-ombo':'معبد كوم أمبو','21-dendera':'معبد دندرة','22-tl-bsta':'تل بسطة','23-mnf':'منف','24-alaskndryh':'الإسكندرية','25-dyr-almdynh':'دير المدينة','26-wady-almlkat':'وادي الملكات'}.items()})
+titles.update({'/sites/'+k+'/':v for k,v in {'18-edfu-horus':'معبد إدفو','19-alramsyum':'الرامسيوم','20-kom-ombo':'معبد كوم أمبو','21-dendera':'معبد دندرة','22-tl-bsta':'تل بسطة','23-mnf':'منف','24-alaskndryh':'الإسكندرية','25-dyr-almdynh':'دير المدينة','26-wady-almlkat':'وادي الملكات','27-alfywm-allahwn':'الفيوم واللاهون','28-tmthala-mmnwn':'تمثالا ممنون'}.items()})
 BAN=re.compile(r'(?:[بلوف]?ال)?(?:فرعون\w*|فراعن\w*|فرعوني\w*)')
 def scrub(s): return BAN.sub('[ملوك مصر القديمة]',s)
 def norm(t):
@@ -127,7 +127,7 @@ put('MUS','تاريخ كشف تمثال كا عبر: تذكر مصادر سنة 
 for m in re.finditer(r'^- \*\*([^*]+)\*\*(.*)$',open('/downloads/per-ankh-references-sites-eras-e6d29aba.md',encoding='utf8').read(),re.M):
     if 'king 074' in m.group(1): continue
     put('SITES',m.group(1).strip(' :')+': '+m.group(2).strip())
-sv=json.load(open('/downloads/sites-references-7ef88316.json'))
+sv=json.load(open('/downloads/sites-references-ab134c14.json'))
 for d in sv['disputes']:
     h='/sites/%s/'%d['page']
     x='موضوع: '+d['topic']+'. الآراء: '+'؛ '.join(f'{k}: {v}' for k,v in d['positions'].items())+'. نقلها: '+d.get('reported_by','')+'.'+(' ملاحظة: '+d['note'] if d.get('note') else '')

@@ -1,0 +1,53 @@
+/* بر عنخ — بطاقة التعليقات والإعجابات المشتركة لكل الصفحات */
+#pageCommunity{--pc-gold:var(--gold,#e2b457);--pc-gold2:var(--gold2,#f3d68e);--pc-panel:var(--panel,#14100a);--pc-white:var(--white,#f4ead2);--pc-muted:var(--muted,#b9ab8e);--pc-line:var(--line,rgba(226,180,87,.45));max-width:900px;margin:32px auto;padding:0 16px;font-family:"Noto Naskh Arabic","Segoe UI",Tahoma,Arial,sans-serif;color:var(--pc-white)}
+#pageCommunity .pc-card{background:var(--pc-panel);border:1px solid var(--pc-line);border-radius:14px;padding:20px}
+#pageCommunity .pc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+#pageCommunity h2{margin:0;color:var(--pc-gold);font-size:22px;font-weight:800}
+#pageCommunity .pc-like{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(216,181,107,.55);background:linear-gradient(135deg,#b28b4e,#725832);color:#fff5df;border-radius:999px;padding:8px 18px;font:inherit;font-size:15px;cursor:pointer;transition:filter .15s,transform .15s}
+#pageCommunity .pc-like:hover{filter:brightness(1.12);transform:translateY(-1px)}
+#pageCommunity .pc-like.pc-on{background:linear-gradient(135deg,#e2b457,#b8934a);color:#1a1206}
+#pageCommunity .pc-heart{font-size:17px;line-height:1}
+#pageCommunity .pc-count{font-weight:800;min-width:14px;text-align:center}
+#pageCommunity form{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+#pageCommunity input,#pageCommunity textarea{width:100%;box-sizing:border-box;background:rgba(20,16,10,.65);border:1px solid var(--pc-line);border-radius:10px;color:var(--pc-white);font:inherit;font-size:15px;padding:10px 14px;resize:vertical}
+#pageCommunity input:focus,#pageCommunity textarea:focus{outline:none;border-color:var(--pc-gold)}
+#pageCommunity textarea{min-height:90px;line-height:1.8}
+#pageCommunity .pc-submit{align-self:flex-start;border:1px solid rgba(216,181,107,.55);background:linear-gradient(135deg,#b28b4e,#725832);color:#fff5df;border-radius:8px;padding:9px 20px;font:inherit;font-size:14px;cursor:pointer}
+#pageCommunity .pc-submit:hover{filter:brightness(1.12)}
+#pageCommunity .pc-hint{color:var(--pc-muted);font-size:13px}
+#pageCommunity .pc-msg{font-size:14px;min-height:20px}
+#pageCommunity .pc-msg.pc-ok{color:#9fe6b8}
+#pageCommunity .pc-msg.pc-err{color:#f3a6a6}
+#pageCommunity .pc-list{display:flex;flex-direction:column;gap:12px}
+#pageCommunity .pc-entry{border:1px solid var(--pc-line);border-radius:10px;padding:12px 14px;background:rgba(20,16,10,.45)}
+#pageCommunity .pc-entry-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+#pageCommunity .pc-name{color:var(--pc-gold);font-weight:800;font-size:15px}
+#pageCommunity .pc-date{color:var(--pc-muted);font-size:12px}
+#pageCommunity .pc-entry p{margin:0;font-size:15px;line-height:1.9;word-break:break-word}
+#pageCommunity .pc-empty{color:var(--pc-muted);font-size:14px}
+@media (max-width:480px){
+  #pageCommunity{padding:0 10px;margin:24px auto}
+  #pageCommunity .pc-card{padding:14px}
+  #pageCommunity h2{font-size:19px}
+  #pageCommunity .pc-head{flex-direction:column;align-items:stretch}
+  #pageCommunity .pc-like,#pageCommunity .pc-submit{width:100%;justify-content:center;text-align:center}
+}
+#pageCommunity .pc-report{margin-inline-start:auto;border:1px solid var(--pc-line);background:transparent;color:var(--pc-muted);border-radius:6px;padding:2px 10px;font:inherit;font-size:11.5px;cursor:pointer}
+#pageCommunity .pc-report:hover{color:var(--pc-gold);border-color:var(--pc-gold)}
+
+/* دعوة التسجيل للزوار */
+.pc-nudge{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid #b9985c66;border-radius:12px;background:linear-gradient(145deg,#1a1408,#0d0a05);color:#e8d9b0;padding:10px 14px;margin:0 0 12px;font-size:13px;line-height:1.8}
+.pc-nudge span{flex:1;min-width:180px}
+.pc-nudge-link{color:#e2b457;font-weight:700;text-decoration:underline;white-space:nowrap}
+.pc-nudge-x{background:none;border:1px solid #b9985c55;border-radius:7px;color:#cbb27f;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}
+.pc-nudge-x:hover{background:#b9985c22}
+
+/* أزرار الإجراءات وعلامة القفل للزوار */
+.pc-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pc-save{background:#1a1408;border:1px solid #b9985c66;color:#e8d9b0;border-radius:10px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.pc-save:hover{background:#241c0c}
+.pc-save.pc-saved{border-color:#e2b457;color:#e2b457}
+.pc-lock{margin-inline-start:6px;font-size:12px;opacity:.85}
+.pc-locked{position:relative}
+.pc-lock svg{vertical-align:-1px}
+.pc-lock svg{vertical-align:-1px}

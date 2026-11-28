@@ -1,0 +1,83 @@
+/* مجتمع بر عنخ — تنسيقات صفحات المركز (ثيم الموقع الداكن الذهبي) */
+.co{max-width:900px;margin:auto;padding:16px 16px 60px;position:relative;z-index:1}
+.co-hero{border:1px solid var(--line,rgba(226,180,87,.45));border-radius:16px;padding:26px 22px;background:linear-gradient(180deg,rgba(226,180,87,.10),rgba(226,180,87,.02));text-align:center;margin:18px 0 26px}
+.co-hero h1{margin:0 0 8px;color:var(--gold,#e2b457);font-size:clamp(26px,6vw,40px);font-weight:800}
+.co-hero p{margin:0 auto;color:var(--muted,#b9ab8e);max-width:640px;font-size:15.5px;line-height:1.9}
+.co-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.co-btn{display:inline-block;border:1px solid rgba(226,180,87,.55);background:linear-gradient(135deg,#b28b4e,#725832);color:#fff5df;border-radius:9px;padding:10px 22px;font:inherit;font-size:14.5px;cursor:pointer;text-decoration:none;transition:filter .15s,transform .15s}
+.co-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.co-btn.co-ghost{background:transparent;color:var(--gold,#e2b457);border-color:var(--line,rgba(226,180,87,.45))}
+.co-sec{margin:26px 0}
+.co-sec>h2{margin:0 0 12px;color:var(--gold,#e2b457);font-size:21px;font-weight:800;border-bottom:1px solid var(--line,rgba(226,180,87,.45));padding-bottom:8px}
+.co-list{display:flex;flex-direction:column;gap:12px}
+.co-item{display:block;border:1px solid var(--line,rgba(226,180,87,.45));border-radius:12px;padding:14px 16px;background:var(--panel,#14100a);text-decoration:none;color:inherit;transition:border-color .15s}
+.co-item:hover{border-color:var(--gold,#e2b457)}
+.co-item h3{margin:0 0 6px;font-size:17px;color:var(--gold2,#f3d68e)}
+.co-item p{margin:0;color:var(--muted,#b9ab8e);font-size:14px;line-height:1.8}
+.co-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:12.5px;color:var(--muted,#b9ab8e)}
+.co-chip{border:1px solid var(--line,rgba(226,180,87,.45));border-radius:99px;padding:1px 10px;font-size:11.5px;color:var(--gold,#e2b457)}
+.co-meta a{color:var(--gold,#e2b457);text-decoration:none}
+.co-meta a:hover{text-decoration:underline}
+.co-empty{color:var(--muted,#b9ab8e);font-size:14.5px;border:1px dashed var(--line,rgba(226,180,87,.45));border-radius:12px;padding:18px;text-align:center}
+.co-form{display:flex;flex-direction:column;gap:12px;border:1px solid var(--line,rgba(226,180,87,.45));border-radius:14px;padding:18px;background:var(--panel,#14100a)}
+.co-form label{color:var(--gold2,#f3d68e);font-size:14px;font-weight:700}
+.co-form input,.co-form textarea,.co-form select{width:100%;box-sizing:border-box;background:rgba(20,16,10,.65);border:1px solid var(--line,rgba(226,180,87,.45));border-radius:10px;color:var(--white,#f4ead2);font:inherit;font-size:15px;padding:10px 14px}
+.co-form textarea{min-height:130px;line-height:1.9;resize:vertical}
+.co-form textarea.co-body{min-height:320px}
+.co-form input:focus,.co-form textarea:focus,.co-form select:focus{outline:none;border-color:var(--gold,#e2b457)}
+.co-hint{color:var(--muted,#b9ab8e);font-size:13px;line-height:1.8}
+.co-msg{min-height:22px;font-size:14.5px}
+.co-msg.ok{color:#9fe6b8}.co-msg.err{color:#f3a6a6}
+.co-article h1{margin:0 0 10px;color:var(--gold,#e2b457);font-size:clamp(24px,5.5vw,36px);line-height:1.5;font-weight:800}
+.co-article .co-body-text{font-size:16.5px;line-height:2.05;white-space:pre-wrap;word-break:break-word;margin:18px 0}
+.co-card{border:1px solid var(--line,rgba(226,180,87,.45));border-radius:14px;padding:18px;background:var(--panel,#14100a);margin:14px 0}
+.co-reply{border:1px solid var(--line,rgba(226,180,87,.45));border-radius:12px;padding:12px 14px;background:rgba(20,16,10,.45)}
+.co-reply p{margin:4px 0 0;font-size:15px;line-height:1.9;white-space:pre-wrap;word-break:break-word}
+.co-report{border:1px solid var(--line,rgba(226,180,87,.45));background:transparent;color:var(--muted,#b9ab8e);border-radius:6px;padding:3px 12px;font:inherit;font-size:12px;cursor:pointer}
+.co-report:hover{color:var(--gold,#e2b457);border-color:var(--gold,#e2b457)}
+.co-profile-head{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.co-profile-head h1{margin:0;color:var(--gold,#e2b457);font-size:clamp(24px,5.5vw,34px)}
+.co-profile-head .co-bio{color:var(--muted,#b9ab8e);font-size:15px;line-height:1.9;margin:0}
+.co-grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:720px){.co-grid2{grid-template-columns:1fr}}
+@media(max-width:480px){
+ .co{padding:12px 10px 50px}
+ .co-hero{padding:20px 14px}
+ .co-actions{flex-direction:column}
+ .co-btn{width:100%;text-align:center;box-sizing:border-box}
+ .co-form{padding:14px}
+}
+
+/* دعوة التسجيل للزوار */
+.co-nudge{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #b9985c66;border-radius:12px;background:linear-gradient(145deg,#1a1408,#0d0a05);color:#e8d9b0;padding:12px 16px;margin:0 0 18px;font-size:14px;line-height:1.8}
+.co-nudge span{flex:1;min-width:200px}
+.co-nudge .co-btn{padding:7px 14px;font-size:13px}
+.co-nudge-x{background:none;border:1px solid #b9985c55;border-radius:7px;color:#cbb27f;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.co-nudge-x:hover{background:#b9985c22}
+.co-register{border:1px solid #b9985c66;border-radius:14px;background:linear-gradient(145deg,#171208,#0c0904);padding:28px 24px;text-align:center}
+.co-register h3{color:#e2b457;margin:0 0 8px;font-size:20px}
+.co-register p{color:#c9bda3;font-size:14px;line-height:1.9;margin:0 0 16px}
+@media(max-width:720px){.co-nudge{padding:10px 12px;font-size:13px}}
+
+/* لوحة الصدارة والأوسمة */
+.co-board-row{display:flex;align-items:center;gap:14px;cursor:pointer}
+.co-rank{font-size:22px;font-weight:700;color:#e2b457;min-width:34px;text-align:center}
+.co-board-mid{flex:1}
+.co-board-mid h3{margin:0}
+.co-points{color:#e2b457;font-weight:700;white-space:nowrap}
+.co-badge{background:#b9985c22;border-color:#e2b45766;color:#e8cf9a}
+.co-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #b9985c88}
+.co-badges{margin-top:8px}
+
+/* علامة القفل وألسنة اللوحة وقائمة القراءة */
+.co-lock{margin-inline-start:6px;font-size:13px}
+.co-lock-hint{font-size:12px;font-weight:400;color:#cbb27f;margin-inline-start:8px}
+.co-tabs{display:flex;gap:8px;margin:0 0 14px}
+.co-tabs button{background:#1a1408;border:1px solid #b9985c55;color:#e8d9b0;border-radius:9px;padding:7px 16px;font:inherit;font-size:14px;cursor:pointer}
+.co-tabs button.co-tab-on{background:#e2b457;color:#14100a;font-weight:700;border-color:#e2b457}
+.co-reading-row{display:block}
+.co-reading-row h3 a{color:#e2b457;text-decoration:none}
+.co-reading-row h3 a:hover{text-decoration:underline}
+.co-note{border-inline-start:3px solid #b9985c66;padding-inline-start:10px;color:#d9c89f;font-size:14px}
+.co-lock svg{vertical-align:-1px}
+.co-lock svg{vertical-align:-1px}

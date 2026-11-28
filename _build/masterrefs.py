@@ -73,8 +73,13 @@ def CL(t): return re.sub(r'[:\s—-]+(?:https?://)?[\w.-]+\.(?:org|com|gov\.eg|n
 def li(e):
     pg=sorted(e['pages'],key=lambda x:(x[0] or 'z',x[1] or ''))
     def lk(h,l):
+        if h:
+            m=re.match(r'^/?index\.html\s*\((.+)\)/?$',h)
+            if m: h='/index.html#academy-details'; l=l or m.group(1)
         name=l or titles.get(h) or (h or '').strip('/').split('/')[-1]
         name=scrub(html.escape(name))
+        if h and re.search(r'\.(js|json|css|png|jpe?g|webp|svg|mp3)/?$',h,re.I):
+            return name
         return f'<a href="{h}">{name}</a>' if h else name
     links=' · '.join(lk(h,l) for h,l in pg)
     disp_u=re.sub('^https?://(www[.])?','',e['u'] or '')[:60]

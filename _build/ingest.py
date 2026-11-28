@@ -45,7 +45,7 @@ for s in d['references']:
         pg.append((card_dir(u['card']),u['king']))
     add(s['work'],s['url'],pg)
 # features
-d=json.load(open('/downloads/per-ankh-features-references-66249272.json'))
+d=json.load(open('/downloads/per-ankh-features-references-aee60db2.json'))
 for s in d['external_sources']:
     ti=s['title']; ti='صفحة بالرابط المذكور' if 'not fetched' in ti else ti
     add(s['organization']+': '+ti,s['url'],[(None,'اختبر نفسك (بنك الأسئلة)')])

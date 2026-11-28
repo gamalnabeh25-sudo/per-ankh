@@ -121,7 +121,7 @@ for d in ka['disputes']:
     if d.get('section'): x=d['section']+': '+x
     if d.get('sources'): x+=' المصادر: '+'؛ '.join(d['sources'])+'.'
     put(h,x)
-kf=json.load(open('/downloads/per-ankh-features-references-66249272.json'))
+kf=json.load(open('/downloads/per-ankh-features-references-aee60db2.json'))
 for d in kf['disputes']:
     vs='؛ '.join(f'{k}: {v}' for k,v in d['favors'].items()) if isinstance(d['favors'],dict) else str(d['favors'])
     put('QUIZ','موضوع: '+d['topic']+'. الآراء ومن يقول بها: '+vs+'. ورد في: '+d['used_in']+'.')

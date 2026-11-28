@@ -83,5 +83,12 @@ for ln in md2.split('\n'):
             u=mu.group(1); t=t[:mu.start()].strip()
             if not u.startswith('http'): u='https://'+u
         add(t,u,[(cur,None)])
+# dynasties md
+md3=open('/downloads/per-ankh-references-dynasties-48a26561.md',encoding='utf8').read()
+for blk in re.split(r'\n### ',md3.split('## تفصيل كل صفحة')[1].split('## ما زال ينقص')[0])[1:]:
+    pm=re.search(r'المسار: `([^`]+)`',blk)
+    if not pm: continue
+    for m in re.finditer(r'^  - (.+?) — (https?://\S+) — في \d+',blk,re.M):
+        add(m.group(1).strip(),m.group(2),[(pm.group(1),None)])
 json.dump(items,open('/tmp/items.json','w'),ensure_ascii=False)
 print(len(items))

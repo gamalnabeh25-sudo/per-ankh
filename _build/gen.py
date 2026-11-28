@@ -39,7 +39,7 @@ def build(d):
     h=re.sub(r'<span aria-current="page">[^<]*</span>',f'<span aria-current="page">{e(d["title"])}</span>',h)
     h=re.sub(r'<a href="/#religion-details" data-ar="الديانة المصرية" data-en="Egyptian religion">الديانة المصرية</a><i aria-hidden="true">‹</i>','',h)
     h=re.sub(r'<h1>[^<]*</h1><p class="sub">[^<]*</p>',f'<h1>{e(d["title"])}</h1><p class="sub">{e(d["sub"])}</p>',h)
-    h=re.sub(r'<div class="hero-img"><img src="[^"]*" alt="[^"]*" width="600" height="800"',f'<div class="hero-img"><img src="{d["hero"]}" alt="{e(d["title"])}" width="600" height="800"',h)
+    h=re.sub(r'<div class="hero-img"><img src="[^"]*" alt="[^"]*" width="900" height="1200"',f'<div class="hero-img"><img src="{d["hero"]}" alt="{e(d["title"])}" width="600" height="800"',h)
     h=h.replace('</head>','<style id="pa-cap">.acc>summary{position:relative;display:block}.acc>summary .bnr{display:block;width:100%;height:auto}.acc>summary .t,.acc>summary .n{position:absolute!important;clip:auto!important;overflow:visible!important;white-space:normal!important;height:auto!important}.acc>summary .t{width:auto!important;right:6%;left:6%;bottom:7%;text-align:center;font-size:clamp(17px,3.4vw,34px);font-weight:800;line-height:1.4;color:#fff3d0;text-shadow:0 2px 10px #000,0 0 3px #000;padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,rgba(5,12,24,.0),rgba(5,12,24,.78))}.acc>summary .n{width:clamp(30px,5vw,48px)!important;height:clamp(30px,5vw,48px)!important;top:7%;right:5%;font-size:clamp(15px,2.6vw,24px)!important;z-index:2}.acc>summary .ch{position:absolute;left:5%;top:7%}</style>'+'</head>',1)
     t=tail
     t=re.sub(r'var S=\{[^}]*\}',lambda m:'var S='+json.dumps(S,ensure_ascii=False),t,count=1)

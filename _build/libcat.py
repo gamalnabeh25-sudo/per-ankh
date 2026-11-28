@@ -59,6 +59,11 @@ for a,d in T:
     g=gk.get(_n(a))
     if g: g['d']=scrub(d); g['s']='التعريف نص الموقع. الاسم العربي والإنجليزي من قاموس المتحف المصري العالمي (CULTNAT)، المدخل رقم '+g['u'].split('id=')[1].split('&')[0]+'.'
     else: terms.append({'a':scrub(a),'e':EN.get(a,''),'d':scrub(d),'u':'','s':'التعريف نص الموقع. المقابل الإنجليزي غير موثق من مصدر بعد.'})
+GD=json.load(open('gdefs.json'))
+for g in GEM:
+    i=g['u'].split('id=')[1].split('&')[0]
+    if not g['d'] and i in GD:
+        g['d']=scrub(GD[i]); g['s']='التعريف بصياغتنا اعتمادًا على المدخل الإنجليزي رقم '+i+' في قاموس المتحف المصري العالمي (CULTNAT)، دون نقل نصه. الاسمان العربي والإنجليزي كما وردا في المصدر.'
 terms+=GEM
 data=json.dumps({'rows':rows,'terms':terms},ensure_ascii=False).replace('</','<\\/')
 CSS='''<style>.lc{--b:#8a5a00}.lc input,.lc select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid #b79a5a;background:#fffaf0;color:#222;max-width:100%}.lc .bar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.lc .bar input{flex:1 1 220px}.lc .it{padding:10px 0;border-bottom:1px solid rgba(0,0,0,.12);line-height:1.7}.lc .m{font-size:.85em;color:#6a5a3a}.lc .tg{display:inline-block;font-size:.78em;padding:1px 8px;border-radius:99px;background:rgba(176,120,20,.16);margin-inline-end:4px}.lc .az{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.lc .az button{font:inherit;padding:4px 9px;border-radius:6px;border:1px solid #b79a5a;background:#fffaf0;cursor:pointer}.lc .az button.on{background:#8a5a00;color:#fff}.lc .cnt{font-size:.9em;color:#6a5a3a}</style>'''

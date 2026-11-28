@@ -207,7 +207,7 @@
   },
   {
    "title": "آراء العلماء في الأهرام",
-   "banner": "/architecture/banners/b4.webp",
+   "banner": null,
    "blocks": [
     {
      "h": "أحمد فخري"
@@ -278,7 +278,7 @@
   },
   {
    "title": "أهرام سنفرو في دهشور وميدوم",
-   "banner": "/architecture/banners/b3.webp",
+   "banner": null,
    "blocks": [
     {
      "h": "الهرم المنحني"
@@ -318,7 +318,7 @@
   },
   {
    "title": "مدينة بناة الأهرام",
-   "banner": "/architecture/banners/b5.webp",
+   "banner": null,
    "blocks": [
     {
      "badge": "v",
@@ -345,7 +345,7 @@
   },
   {
    "title": "المعابد الكبرى: الكرنك والدير البحري وأبو سمبل",
-   "banner": "/architecture/banners/b6.webp",
+   "banner": null,
    "blocks": [
     {
      "h": "الكرنك"

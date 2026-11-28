@@ -26,11 +26,13 @@ def build(d):
                 cites=''.join(f'<sup class="cn" title="{e(re.sub("<[^>]+>","",refs[c-1]["t"])[:90])}"><a href="#r{c}">[{c}]</a></sup>' for c in bl.get('cite',[]))
                 body.append(f'<p class="pt">{bd}{inline(bl["p"])}{cites}</p>')
             if 'html' in bl: body.append(bl['html'])
-        banner=s.get('banner') or d['banner']
-        out.append(f'<details class="acc k{(i-1)%6+1}" id="{sid}"><summary><img class="bnr" src="{banner}" alt="" loading="lazy" width="1000" height="667"><span class="n">{i}</span><span class="t">{e(s["title"])}</span><span class="ch"></span></summary><div class="body pgb">{"".join(body)}</div></details>')
+        banner=s.get('banner')
+        SC='' if banner else ' class="nob"'; IMG=('<img class="bnr" src="%s" alt="" loading="lazy" width="1000" height="667">'%banner) if banner else ''
+        out.append(f'<details class="acc k{(i-1)%6+1}" id="{sid}"><summary{SC}>{IMG}<span class="n">{i}</span><span class="t">{e(s["title"])}</span><span class="ch"></span></summary><div class="body pgb">{"".join(body)}</div></details>')
     n=len(secs)+1
+    rb=d.get('refbanner'); SC2='' if rb else ' class="nob"'; IMG2=('<img class="bnr" src="%s" alt="" loading="lazy" width="1000" height="667">'%rb) if rb else ''
     rl=''.join(f'<li id="r{i}">{r["t"]}{(" — <a href=%s rel=noopener target=_blank>%s</a>"%(chr(34)+r["u"]+chr(34),e(re.sub("^https?://","",r["u"])))) if r.get("u") else ""}</li>' for i,r in enumerate(refs,1))
-    out.append(f'<details class="acc k{(n-1)%6+1}" id="{pre}{n}"><summary><img class="bnr" src="{d["banner"]}" alt="" loading="lazy" width="1000" height="667"><span class="n">{n}</span><span class="t">المراجع</span><span class="ch"></span></summary><div class="body pgb"><p class="src-note">هذه هي المراجع التي رجعنا إليها. لا نذكر مصدرًا لم نفتحه.</p><ol class="rl">{rl}</ol></div></details>')
+    out.append(f'<details class="acc k{(n-1)%6+1}" id="{pre}{n}"><summary{SC2}>{IMG2}<span class="n">{n}</span><span class="t">المراجع</span><span class="ch"></span></summary><div class="body pgb"><p class="src-note">هذه هي المراجع التي رجعنا إليها. لا نذكر مصدرًا لم نفتحه.</p><ol class="rl">{rl}</ol></div></details>')
     h=head
     h=re.sub(r'<title>.*?</title>',f'<title>{e(d["title"])} — بر عنخ</title>',h)
     h=re.sub(r'(<meta name="description" content=")[^"]*',r'\g<1>'+e(d['sub']),h)
@@ -39,8 +41,8 @@ def build(d):
     h=re.sub(r'<span aria-current="page">[^<]*</span>',f'<span aria-current="page">{e(d["title"])}</span>',h)
     h=re.sub(r'<a href="/#religion-details" data-ar="الديانة المصرية" data-en="Egyptian religion">الديانة المصرية</a><i aria-hidden="true">‹</i>','',h)
     h=re.sub(r'<h1>[^<]*</h1><p class="sub">[^<]*</p>',f'<h1>{e(d["title"])}</h1><p class="sub">{e(d["sub"])}</p>',h)
-    h=re.sub(r'<div class="hero-img"><img src="[^"]*" alt="[^"]*" width="900" height="1200"',f'<div class="hero-img"><img src="{d["hero"]}" alt="{e(d["title"])}" width="600" height="800"',h)
-    h=h.replace('</head>','<style id="pa-cap">.acc>summary{position:relative;display:block}.acc>summary .bnr{display:block;width:100%;height:auto}.acc>summary .t,.acc>summary .n{position:absolute!important;clip:auto!important;overflow:visible!important;white-space:normal!important;height:auto!important}.acc>summary .t{width:auto!important;right:6%;left:6%;bottom:7%;text-align:center;font-size:clamp(17px,3.4vw,34px);font-weight:800;line-height:1.4;color:#fff3d0;text-shadow:0 2px 10px #000,0 0 3px #000;padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,rgba(5,12,24,.0),rgba(5,12,24,.78))}.acc>summary .n{width:clamp(30px,5vw,48px)!important;height:clamp(30px,5vw,48px)!important;top:7%;right:5%;font-size:clamp(15px,2.6vw,24px)!important;z-index:2}.acc>summary .ch{position:absolute;left:5%;top:7%}</style>'+'</head>',1)
+    h=re.sub(r'<div class="hero-img"><img src="[^"]*" alt="[^"]*" width="600" height="800"',f'<div class="hero-img"><img src="{d["hero"]}" alt="{e(d["title"])}" width="600" height="800"',h)
+    h=h.replace('</head>','<style id="pa-cap">.acc>summary{position:relative;display:block}.acc>summary .bnr{display:block;width:100%;height:auto}.acc>summary .t,.acc>summary .n{position:absolute!important;clip:auto!important;overflow:visible!important;white-space:normal!important;height:auto!important}.acc>summary .t{width:auto!important;right:6%;left:6%;bottom:7%;text-align:center;font-size:clamp(17px,3.4vw,34px);font-weight:800;line-height:1.4;color:#fff3d0;text-shadow:0 2px 10px #000,0 0 3px #000;padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,rgba(5,12,24,.0),rgba(5,12,24,.78))}.acc>summary .n{width:clamp(30px,5vw,48px)!important;height:clamp(30px,5vw,48px)!important;top:7%;right:5%;font-size:clamp(15px,2.6vw,24px)!important;z-index:2}.acc>summary .ch{position:absolute;left:5%;top:7%}.acc>summary.nob{display:flex;align-items:center;gap:12px;padding:16px 18px;min-height:64px}.acc>summary.nob .n,.acc>summary.nob .t,.acc>summary.nob .ch{position:static!important}.acc>summary.nob .n{flex:none;width:36px!important;height:36px!important;font-size:18px!important}.acc>summary.nob .t{flex:1;background:none;text-shadow:none;text-align:right;padding:0;font-size:clamp(17px,2.6vw,24px)}</style>'+'</head>',1)
     t=tail
     t=re.sub(r'var S=\{[^}]*\}',lambda m:'var S='+json.dumps(S,ensure_ascii=False),t,count=1)
     t=t.replace('/beliefs/maat/audio/',f'/{slug}/audio/')

@@ -148,6 +148,18 @@ for h in sorted(G,key=order):
         inner+=f'<p class="pt"><span class="bdg d">محل خلاف</span> {html.escape(x)}</p><p class="pt"><small>{html.escape(stance(x))}</small></p>'; tot+=1
     db.append({'html':f'<details class="dg" style="margin:8px 0;border:1px solid rgba(176,120,20,.35);border-radius:10px"><summary style="cursor:pointer;padding:10px 14px;font-weight:700">{html.escape(nm)}</summary><div style="padding:0 14px 10px">{inner}</div></details>'})
 disp=list(G)
+KDATA=json.load(open('/tmp/data.json'))
+ERA={k['name']:k['era'] for k in KDATA['kings']}
+CAT=[]
+for e in D.values():
+    tp=set(); pr=set()
+    for h,l in e['pages']:
+        h=h or ''
+        sec=h.strip('/').split('/')[0] if h else ''
+        tp.add({'kings':'الملوك','sites':'المواقع','eras':'العصور','beliefs':'الديانة','architecture':'العمارة والفنون','daily-life':'الحياة اليومية','library':'المكتبة','references':'المراجع'}.get(sec, l or 'أخرى') if sec else (l or 'أخرى'))
+        if sec=='kings' and titles.get(h) in ERA: pr.add(ERA[titles[h]])
+    CAT.append({'t':CL(e['t']),'u':e['u'] or '','l':'أجنبي' if e['for'] else 'عربي','k':KN[e['k']].split(' ')[0] if e['k']!='inst' else 'مؤسسات ومواقع رسمية','tp':sorted(tp),'pr':sorted(pr),'n':len(e['pages'])})
+json.dump(CAT,open('/tmp/catalog.json','w'),ensure_ascii=False)
 out={'ar':ar,'fo':fo,'db':db,'counts':{'ar':ca,'fo':cf,'disputes':tot,'disputed_pages':len(disp),'unique':len(D),'raw':len(raw)}}
 json.dump(out,open('/tmp/master.json','w'),ensure_ascii=False)
 print(out['counts'])

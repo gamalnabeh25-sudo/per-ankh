@@ -9,6 +9,7 @@ for f in glob.glob(R+'/**/index.html',recursive=True):
     if rel.startswith(('_build','supabase')): continue
     m=re.search(r'<h1[^>]*>(.*?)</h1>',open(f,encoding='utf8').read(),re.S)
     titles['/'+os.path.dirname(rel)+'/']=re.sub(r'<[^>]+>','',m.group(1)).strip() if m else rel
+titles.update({'/sites/'+k+'/':v for k,v in {'18-edfu-horus':'معبد إدفو','19-alramsyum':'الرامسيوم','20-kom-ombo':'معبد كوم أمبو','21-dendera':'معبد دندرة','22-tl-bsta':'تل بسطة','23-mnf':'منف','24-alaskndryh':'الإسكندرية','25-dyr-almdynh':'دير المدينة','26-wady-almlkat':'وادي الملكات'}.items()})
 BAN=re.compile(r'(?:[بلوف]?ال)?(?:فرعون\w*|فراعن\w*|فرعوني\w*)')
 def scrub(s): return BAN.sub('[ملوك مصر القديمة]',s)
 def norm(t):
@@ -126,6 +127,11 @@ put('MUS','تاريخ كشف تمثال كا عبر: تذكر مصادر سنة 
 for m in re.finditer(r'^- \*\*([^*]+)\*\*(.*)$',open('/downloads/per-ankh-references-sites-eras-e6d29aba.md',encoding='utf8').read(),re.M):
     if 'king 074' in m.group(1): continue
     put('SITES',m.group(1).strip(' :')+': '+m.group(2).strip())
+sv=json.load(open('/downloads/sites-references-7ef88316.json'))
+for d in sv['disputes']:
+    h='/sites/%s/'%d['page']
+    x='موضوع: '+d['topic']+'. الآراء: '+'؛ '.join(f'{k}: {v}' for k,v in d['positions'].items())+'. نقلها: '+d.get('reported_by','')+'.'+(' ملاحظة: '+d['note'] if d.get('note') else '')
+    put(h,x)
 import csv
 for r in csv.DictReader(open('/downloads/per-ankh-references-6de6edad.csv',encoding='utf8')):
     if r['disputes_notes'] and 'خلاف' in r['disputes_notes']: put('CSV',r['title'][:80]+': '+r['disputes_notes'])
@@ -135,11 +141,12 @@ tot=0
 def order(h): 
     return (0 if h.startswith('/kings') else 1 if h.startswith('/sites') else 2 if h.startswith('/eras') else 3 if h.startswith('/beliefs') else 4, h)
 for h in sorted(G,key=order):
-    ps=G[h]
-    db.append({'h':HEAD.get(h) or titles.get(h) or h.strip('/').split('/')[-1]})
-    if h in titles or h.startswith('/'): db.append({'html':f'<p class="pt"><a href="{h}">فتح الصفحة</a></p>'})
+    ps=G[h]; nm=HEAD.get(h) or titles.get(h) or h.strip('/').split('/')[-1]
+    inner=''
+    if h.startswith('/'): inner+=f'<p class="pt"><a href="{h}">فتح الصفحة</a></p>'
     for x in ps:
-        db.append({'badge':'d','p':x}); db.append({'p':stance(x)}); tot+=1
+        inner+=f'<p class="pt"><span class="bdg d">محل خلاف</span> {html.escape(x)}</p><p class="pt"><small>{html.escape(stance(x))}</small></p>'; tot+=1
+    db.append({'html':f'<details class="dg" style="margin:8px 0;border:1px solid rgba(176,120,20,.35);border-radius:10px"><summary style="cursor:pointer;padding:10px 14px;font-weight:700">{html.escape(nm)}</summary><div style="padding:0 14px 10px">{inner}</div></details>'})
 disp=list(G)
 out={'ar':ar,'fo':fo,'db':db,'counts':{'ar':ca,'fo':cf,'disputes':tot,'disputed_pages':len(disp),'unique':len(D),'raw':len(raw)}}
 json.dump(out,open('/tmp/master.json','w'),ensure_ascii=False)

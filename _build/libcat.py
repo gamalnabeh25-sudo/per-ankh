@@ -31,11 +31,25 @@ _hx=_hd();_ux=_uee();rows+=_hx+_ux
 print('extra hindawi',len(_hx),'uee',len(_ux))
 T=json.load(open('/tmp/data.json'))['terms']
 EN={'مصطبة':'Mastaba','السرخ':'Serekh','الكارتوش':'Cartouche','النطرون':'Natron','الصرح':'Pylon','قدس الأقداس':'Sanctuary / Holy of Holies','المسلة':'Obelisk','نصوص الأهرام':'Pyramid Texts','نصوص التوابيت':'Coffin Texts','أبو الهول':'Sphinx','الهيبوسطايل':'Hypostyle hall','السرابيوم':'Serapeum','الفيوم':'Fayum','القرابين':'Offerings','التاسوع':'Ennead','العلامة الدلالية':'Determinative','العلامة الصوتية':'Phonogram (phonetic sign)','أخيتاتون':'Akhetaten'}
-terms=[{'a':scrub(a),'e':EN.get(a,''),'d':scrub(d)} for a,d in T]
+import re as _r2
+def _n(x): return _r2.sub(r'[\u064B-\u0652\u0640]','',x).replace('أ','ا').replace('إ','ا').replace('آ','ا').replace('ى','ي').replace('ة','ه').replace('ال','',1) if x.startswith('ال') else _r2.sub(r'[\u064B-\u0652\u0640]','',x).replace('أ','ا').replace('إ','ا').replace('آ','ا').replace('ى','ي').replace('ة','ه')
+_g=json.load(open('/tmp/gem.json'))
+_ids=sorted({int(k[:-1]) for k,v in _g.items() if v})
+GEM=[]
+for i in _ids:
+    e=_g.get(f'{i}E'); a=_g.get(f'{i}A')
+    if e and a: GEM.append({'a':scrub(re.sub(r'\s+',' ',a[0]).strip()),'e':re.sub(r'\s+',' ',e[0]).strip(),'d':'','u':f'https://www.globalegyptianmuseum.org/glossary.aspx?id={i}&lan=A','s':'قاموس المتحف المصري العالمي (CULTNAT)، المدخل رقم %d. المقابل الإنجليزي والعربي كما ورد في المصدر.'%i})
+gk={_n(g['a']):g for g in GEM}
+terms=[]
+for a,d in T:
+    g=gk.get(_n(a))
+    if g: g['d']=scrub(d); g['s']='التعريف نص الموقع. الاسم العربي والإنجليزي من قاموس المتحف المصري العالمي (CULTNAT)، المدخل رقم '+g['u'].split('id=')[1].split('&')[0]+'.'
+    else: terms.append({'a':scrub(a),'e':EN.get(a,''),'d':scrub(d),'u':'','s':'التعريف نص الموقع. المقابل الإنجليزي غير موثق من مصدر بعد.'})
+terms+=GEM
 data=json.dumps({'rows':rows,'terms':terms},ensure_ascii=False).replace('</','<\\/')
 CSS='''<style>.lc{--b:#8a5a00}.lc input,.lc select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid #b79a5a;background:#fffaf0;color:#222;max-width:100%}.lc .bar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.lc .bar input{flex:1 1 220px}.lc .it{padding:10px 0;border-bottom:1px solid rgba(0,0,0,.12);line-height:1.7}.lc .m{font-size:.85em;color:#6a5a3a}.lc .tg{display:inline-block;font-size:.78em;padding:1px 8px;border-radius:99px;background:rgba(176,120,20,.16);margin-inline-end:4px}.lc .az{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}.lc .az button{font:inherit;padding:4px 9px;border-radius:6px;border:1px solid #b79a5a;background:#fffaf0;cursor:pointer}.lc .az button.on{background:#8a5a00;color:#fff}.lc .cnt{font-size:.9em;color:#6a5a3a}</style>'''
 lib=f'''{CSS}<div class="lc" id="libcat"><p class="pt">فهرس بكل مرجع استُخدم في صفحات الموقع. لا نضيف مؤلفًا أو سنة أو ناشرًا لم نتحقق منه: ما هو مكتوب في المدخل هو ما سُجّل من المرجع، وغيره غير مذكور. الروابط تظهر فقط للمصادر المفتوحة المعروفة (مواقع الوزارة والمتاحف والجامعات والدوريات). الروابط إلى نسخ كتب على مواقع لم نتحقق من حقوقها مخفية.</p><div class="bar"><input id="lq" type="search" placeholder="ابحث في الفهرس" aria-label="ابحث في الفهرس"><select id="lk" aria-label="النوع"><option value="">كل الأنواع</option></select><select id="ll" aria-label="اللغة"><option value="">كل اللغات</option></select><select id="lp" aria-label="الفترة"><option value="">كل الفترات</option></select><select id="lt" aria-label="الموضوع"><option value="">كل المواضيع</option></select></div><p class="cnt" id="lc" aria-live="polite"></p><div id="lr"></div><p class="m">الفترة تؤخذ من صفحات الملوك التي تستخدم المرجع، والموضوع من الصفحة التي تستخدمه، وليسا وسمًا يدويًا من المؤلف.</p></div>'''
-gl='''<div class="lc" id="glos"><p class="pt">مسرد المصطلحات بالعربية والإنجليزية. التعريفات هي نص الموقع ولم تُربط بعد بمرجع لكل مصطلح، والمقابل الإنجليزي هو المتعارف عليه ولم يُتحقق منه من مرجع بعينه.</p><div class="bar"><input id="gq" type="search" placeholder="ابحث عن مصطلح بالعربية أو الإنجليزية" aria-label="ابحث عن مصطلح"></div><div class="az" id="gaz"></div><p class="cnt" id="gc" aria-live="polite"></p><div id="gr"></div></div>'''
+gl='''<div class="lc" id="glos"><p class="pt">مسرد المصطلحات بالعربية والإنجليزية. الأسماء العربية والإنجليزية مأخوذة من قاموس المتحف المصري العالمي (CULTNAT) كما وردت، مع رقم المدخل ورابطه. حيث لا يوجد تعريف مكتوب فالتعريف في المصدر ولم نكتب بدله شيئًا غير موثق.</p><div class="bar"><input id="gq" type="search" placeholder="ابحث عن مصطلح بالعربية أو الإنجليزية" aria-label="ابحث عن مصطلح"></div><div class="az" id="gaz"></div><p class="cnt" id="gc" aria-live="polite"></p><div id="gr"></div></div>'''
 js='''<script>(function(){var D=window.__LIB;function $(i){return document.getElementById(i)}function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function fill(id,vals){var s=$(id);vals.forEach(function(v){var o=document.createElement('option');o.value=v;o.textContent=v;s.appendChild(o)})}
 var U=function(a){return Array.from(new Set(a)).sort()};
@@ -46,7 +60,7 @@ function rl(){var q=nz($('lq').value),k=$('lk').value,l=$('ll').value,p=$('lp').
 var letter='';var L=U(D.terms.map(function(t){return nz(t.a.replace(/^ال/,'')).charAt(0)}));
 function az(){var h='<button class="'+(letter?'':'on')+'" data-l="">الكل</button>';L.forEach(function(c){h+='<button class="'+(letter===c?'on':'')+'" data-l="'+c+'">'+c+'</button>'});$('gaz').innerHTML=h}
 $('gaz').addEventListener('click',function(e){if(e.target.dataset&&e.target.tagName==='BUTTON'){letter=e.target.dataset.l;az();rg()}});
-function rg(){var q=nz($('gq').value),n=0,h='';D.terms.slice().sort(function(a,b){return a.a.localeCompare(b.a,'ar')}).forEach(function(t){var c=nz(t.a.replace(/^ال/,'')).charAt(0);if(letter&&c!==letter)return;if(q&&nz(t.a+' '+t.e+' '+t.d).indexOf(q)<0)return;n++;h+='<div class="it"><div><b>'+esc(t.a)+'</b>'+(t.e?' <span dir="ltr" class="m">'+esc(t.e)+'</span>':'')+'</div><div>'+esc(t.d)+'</div></div>'});$('gr').innerHTML=h||'<p>لا نتائج.</p>';$('gc').textContent=''}
+function rg(){var q=nz($('gq').value),n=0,h='';D.terms.slice().sort(function(a,b){return a.a.localeCompare(b.a,'ar')}).forEach(function(t){var c=nz(t.a.replace(/^ال/,'')).charAt(0);if(letter&&c!==letter)return;if(q&&nz(t.a+' '+t.e+' '+t.d).indexOf(q)<0)return;n++;h+='<div class="it"><div><b>'+esc(t.a)+'</b>'+(t.e?' <span dir="ltr" class="m">'+esc(t.e)+'</span>':'')+'</div><div>'+(t.d?esc(t.d):'<span class="m">التعريف في المصدر (رابط أدناه). لم نكتب تعريفًا بكلماتنا بعد.</span>')+'</div><div class="m">'+esc(t.s||'')+(t.u?' <a href="'+esc(t.u)+'" rel="noopener" target="_blank">فتح المدخل</a>':'')+'</div></div>'});$('gr').innerHTML=h||'<p>لا نتائج.</p>';$('gc').textContent=''}
 $('gq').addEventListener('input',rg);az();rg()})();</script>'''
 out={'lib':lib,'gl':gl,'js':'<script>window.__LIB='+data+';</script>'+js,'hidden':hid,'n':len(rows),'terms':len(terms)}
 json.dump(out,open('/tmp/libcat.json','w'),ensure_ascii=False)

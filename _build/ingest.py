@@ -50,7 +50,7 @@ for s in d['external_sources']:
     ti=s['title']; ti='صفحة بالرابط المذكور' if 'not fetched' in ti else ti
     add(s['organization']+': '+ti,s['url'],[(None,'اختبر نفسك (بنك الأسئلة)')])
 # csv
-for r in csv.DictReader(open('/downloads/per-ankh-references-6de6edad.csv',encoding='utf8')):
+for r in [x for f in ('6de6edad','5f288bd7') for x in csv.DictReader(open('/downloads/per-ankh-references-%s.csv'%f,encoding='utf8'))]:
     if 'ويكي' in r['type'] or 'wiki' in r['url'].lower(): continue
     pg=[]
     for p in [x.strip() for x in r['pages_using'].split(';') if x.strip()]:

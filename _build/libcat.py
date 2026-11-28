@@ -28,6 +28,20 @@ def _uee():
         out.append({'t':scrub(v['author']+' ('+v['date'][:4]+'). '+v['title']+'. UCLA Encyclopedia of Egyptology, '+v['journal'].replace('UCLA Encyclopedia of Egyptology, ','')+'. eScholarship.'),'l':'أجنبي','k':'مقالات','tp':['موسوعة UCLA لعلم المصريات'],'pr':[],'u':v['perm'],'n':''})
     return out
 _hx=_hd();_ux=_uee();rows+=_hx+_ux
+
+def _ekb():
+    out=[];K=re.compile(r'ancient|egypt|pyramid|temple|tomb|mumm|papyr|hierogl|nile|pharaon|karnak|luxor|thebes|giza|saqqara|abydos|amarna|ptolem|nubia|obelisk|sphinx|coffin|scarab|amun|osiris|isis|hathor|horus|deir|مصر|مصري|فرعون|أثري|آثار|معبد|مقبر|هرم|بردي|مومي',re.I)
+    EX=re.compile(r'فرعون|فراعن')
+    for u,v in json.load(open('/tmp/ekb.json')).items():
+        j=v['j']
+        if re.search(r'Hospitality|Tourism and Hotels|Chemistry|Design',j) and not re.search(r'ancient|pharaon|pyramid|temple|tomb|mumm|papyr|hierogl|karnak|luxor|egyptian (art|antiq)',v['t'],re.I): continue
+        if not K.search(v['t']): continue
+        ar=bool(re.search(r'[\u0600-\u06FF]',v['t']))
+        doi=(' DOI: '+v['doi']) if v['doi'] else ''
+        out.append({'t':scrub(v['t']+'. '+j+'. Egyptian Knowledge Bank (EKB).'+doi+' المؤلف والسنة غير مسجلين هنا.'),'l':'عربي' if ar else 'أجنبي','k':'مقالات','tp':['دوريات بنك المعرفة المصري'],'pr':[],'u':u,'n':''})
+    return out
+_ex=_ekb();rows+=_ex
+print('extra ekb',len(_ex))
 print('extra hindawi',len(_hx),'uee',len(_ux))
 T=json.load(open('/tmp/data.json'))['terms']
 EN={'مصطبة':'Mastaba','السرخ':'Serekh','الكارتوش':'Cartouche','النطرون':'Natron','الصرح':'Pylon','قدس الأقداس':'Sanctuary / Holy of Holies','المسلة':'Obelisk','نصوص الأهرام':'Pyramid Texts','نصوص التوابيت':'Coffin Texts','أبو الهول':'Sphinx','الهيبوسطايل':'Hypostyle hall','السرابيوم':'Serapeum','الفيوم':'Fayum','القرابين':'Offerings','التاسوع':'Ennead','العلامة الدلالية':'Determinative','العلامة الصوتية':'Phonogram (phonetic sign)','أخيتاتون':'Akhetaten'}

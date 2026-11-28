@@ -68,5 +68,20 @@ md=open('/downloads/per-ankh-references-sites-eras-e6d29aba.md',encoding='utf8')
 for m in re.finditer(r'^- (\S+) — `([^`]+)` — (.*)$',md,re.M):
     slug,u,t=m.groups(); t=re.sub(r':? ?نسخة الكتاب على archive.org$','',t).strip()
     add(t,u,[(hl(slug,'sites'),None)])
+# primary sources md
+md2=open('/downloads/sources-refs-67847299.md',encoding='utf8').read()
+cur=None
+for ln in md2.split('\n'):
+    h=re.match(r'^## .*\((/[^)]+/)\)',ln)
+    if h: cur=h.group(1); continue
+    m=re.match(r'^\d+\. (.*)$',ln)
+    if m and cur:
+        t=re.sub(r'\s*\(تاريخ الاطلاع[^)]*\)\s*$','',m.group(1))
+        mu=re.search(r'—\s*((?:https?://)?[\w.-]+\.[a-z]{2,}(?:/\S*)?)\s*$',t)
+        u=None
+        if mu:
+            u=mu.group(1); t=t[:mu.start()].strip()
+            if not u.startswith('http'): u='https://'+u
+        add(t,u,[(cur,None)])
 json.dump(items,open('/tmp/items.json','w'),ensure_ascii=False)
 print(len(items))

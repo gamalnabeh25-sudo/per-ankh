@@ -9,6 +9,8 @@ for f in glob.glob(R+'/**/index.html',recursive=True):
     if rel.startswith(('_build','supabase')): continue
     m=re.search(r'<h1[^>]*>(.*?)</h1>',open(f,encoding='utf8').read(),re.S)
     titles['/'+os.path.dirname(rel)+'/']=re.sub(r'<[^>]+>','',m.group(1)).strip() if m else rel
+import re as _r
+for _m in _r.finditer(r'^## (.*?)\s*\((/[^)]+/)\)',open('/downloads/sources-refs-67847299.md',encoding='utf8').read(),_r.M): titles[_m.group(2)]=_m.group(1).strip()
 titles.update({'/sites/'+k+'/':v for k,v in {'18-edfu-horus':'معبد إدفو','19-alramsyum':'الرامسيوم','20-kom-ombo':'معبد كوم أمبو','21-dendera':'معبد دندرة','22-tl-bsta':'تل بسطة','23-mnf':'منف','24-alaskndryh':'الإسكندرية','25-dyr-almdynh':'دير المدينة','26-wady-almlkat':'وادي الملكات','27-alfywm-allahwn':'الفيوم واللاهون','28-tmthala-mmnwn':'تمثالا ممنون','29-awaris-tl-aldbaa':'أواريس تل الضبعة','30-siwa':'سيوة','31-alwahat-albahria':'الواحات البحرية','32-alkharga-hibis':'الخارجة ومعبد هيبس','33-ilfantin':'إلفنتين'}.items()})
 BAN=re.compile(r'(?:[بلوف]?ال)?(?:فرعون\w*|فراعن\w*|فرعوني\w*)')
 def scrub(s): return BAN.sub('[ملوك مصر القديمة]',s)

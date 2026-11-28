@@ -74,7 +74,7 @@ ar,ca=blocks(False); fo,cf=blocks(True)
 disp=[]
 for f in sorted(glob.glob(R+'/**/index.html',recursive=True)):
     rel=os.path.relpath(f,R)
-    if rel.startswith(('_build','supabase')): continue
+    if rel.startswith(('_build','supabase','references')): continue
     t=open(f,encoding='utf8').read()
     ps=[]
     for m in re.finditer(r'<span class="bdg d">[^<]*</span>(.*?)(?:</p>|</li>|</div>)',t,re.S):
